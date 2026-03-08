@@ -1,0 +1,32 @@
+{
+  "nombre": "Lean",
+  "altura_cm": 191,
+  "edad": 37,
+  "sexo": "masculino",
+  "objetivo": "bajar_peso",
+  "protocolo": "Ayuno intermitente 16h",
+
+  "historial_peso": [
+    { "fecha": "2026-03-08", "peso_kg": 130 }
+  ],
+
+  "metabolismo": {
+    "metabolismo_basal_kcal": 2314,
+    "gasto_total_descanso_kcal": 2776,
+    "gasto_total_gym_kcal": 3355,
+    "nota": "Calculado con Mifflin-St Jeor. Factor 1.2 descanso, 1.45 días de gym."
+  },
+
+  "objetivos_diarios": {
+    "enfoque": "Déficit moderado sostenible. Target único promedio entre días activos e inactivos.",
+    "kcal_objetivo_promedio": 2560,
+    "kcal_dia_gym": 2850,
+    "kcal_dia_descanso": 2276,
+    "deficit_target_kcal": 500,
+    "proteina_g_min": 160,
+    "proteina_g_ideal": 190,
+    "grasa_g_min": 60,
+    "carbos_g_max": 300,
+    "nota_carbos": "Límite flexible. No es low-carb estricto, es tope orientativo para mantener foco en proteína y grasa."
+  }
+}

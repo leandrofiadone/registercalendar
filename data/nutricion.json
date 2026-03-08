@@ -1,0 +1,199 @@
+{
+  "ventanas": [
+    {
+      "ventana_id": "2026-03-07",
+      "protocolo": "ayuno_intermitente",
+      "ayuno_horas": 16,
+      "fecha_inicio_ventana": "2026-03-07",
+      "comidas": [
+        {
+          "tipo": "rompe_ayuno",
+          "hora": "22:18",
+          "fecha": "2026-03-07",
+          "descripcion": "Huevos revueltos con queso parmesano y champignones",
+          "alimentos": [
+            {
+              "nombre": "Queso parmesano",
+              "cantidad_g": 128,
+              "kcal": 551,
+              "proteina_g": 49,
+              "grasa_g": 37,
+              "carbos_g": 5
+            },
+            {
+              "nombre": "Huevos enteros",
+              "cantidad_g": 176,
+              "unidades": 3,
+              "kcal": 273,
+              "proteina_g": 23,
+              "grasa_g": 19,
+              "carbos_g": 2
+            },
+            {
+              "nombre": "Champignones en lata (Agaricus bisporus)",
+              "cantidad_g": 215,
+              "kcal": 22,
+              "proteina_g": 2,
+              "grasa_g": 0.4,
+              "carbos_g": 3
+            }
+          ],
+          "totales": {
+            "kcal": 846,
+            "proteina_g": 74,
+            "grasa_g": 56.4,
+            "carbos_g": 10,
+            "estimado": false
+          }
+        }
+      ],
+      "totales_ventana": {
+        "kcal": 846,
+        "proteina_g": 74,
+        "grasa_g": 56.4,
+        "carbos_g": 10
+      }
+    },
+    {
+      "ventana_id": "2026-03-08",
+      "protocolo": "ayuno_intermitente",
+      "fecha_inicio_ventana": "2026-03-08",
+      "comidas": [
+        {
+          "tipo": "comida",
+          "hora": "02:45",
+          "fecha": "2026-03-08",
+          "descripcion": "Cold brew vainilla y arepa pequeña de carne desmechada grasosa",
+          "alimentos": [
+            {
+              "nombre": "Cold Brew Vainilla Deseado",
+              "marca": "The Vaini Brew Deseado",
+              "cantidad_ml": 269,
+              "kcal": 30,
+              "proteina_g": 1,
+              "grasa_g": 0,
+              "carbos_g": 6
+            },
+            {
+              "nombre": "Arepa carne desmechada",
+              "cantidad_g_aprox": 225,
+              "notas": "Sin agregados, porción pequeña, carne grasosa. Macros estimados.",
+              "kcal": 350,
+              "proteina_g": 20,
+              "grasa_g": 15,
+              "carbos_g": 32
+            }
+          ],
+          "totales": {
+            "kcal": 380,
+            "proteina_g": 21,
+            "grasa_g": 15,
+            "carbos_g": 38,
+            "estimado": true
+          }
+        },
+        {
+          "tipo": "comida",
+          "hora": "05:10",
+          "fecha": "2026-03-08",
+          "descripcion": "Dos costillas de cerdo a la plancha con sal marina",
+          "alimentos": [
+            {
+              "nombre": "Costillas de cerdo a la plancha",
+              "peso_total_con_hueso_g": 400,
+              "hueso_y_grasa_retirada_g": 100,
+              "carne_neta_g": 300,
+              "condimento": "sal marina",
+              "coccion": "plancha",
+              "kcal": 876,
+              "proteina_g": 60,
+              "grasa_g": 66,
+              "carbos_g": 0
+            }
+          ],
+          "totales": {
+            "kcal": 876,
+            "proteina_g": 60,
+            "grasa_g": 66,
+            "carbos_g": 0,
+            "estimado": true
+          }
+        },
+        {
+          "tipo": "comida",
+          "hora": "06:21",
+          "fecha": "2026-03-08",
+          "descripcion": "Morrón relleno con queso pimienta negra y mayo",
+          "alimentos": [
+            {
+              "nombre": "Morrón rojo crudo",
+              "cantidad_g": 100,
+              "kcal": 31,
+              "proteina_g": 1,
+              "grasa_g": 0.3,
+              "carbos_g": 6
+            },
+            {
+              "nombre": "Queso pimienta negra Santa Rosa",
+              "marca": "Santa Rosa",
+              "cantidad_g": 183,
+              "kcal": 622.2,
+              "proteina_g": 39,
+              "grasa_g": 49.8,
+              "carbos_g": 1.8,
+              "notas": "Macros estimados por tipo de queso barra semiduro. Peso exacto."
+            },
+            {
+              "nombre": "Mayonesa",
+              "cantidad_g": 27,
+              "kcal": 184,
+              "proteina_g": 0.4,
+              "grasa_g": 20.3,
+              "carbos_g": 0.3
+            }
+          ],
+          "totales": {
+            "kcal": 837.2,
+            "proteina_g": 40.4,
+            "grasa_g": 70.4,
+            "carbos_g": 8.1,
+            "estimado": true
+          }
+        },
+        {
+          "tipo": "comida",
+          "hora": "06:29",
+          "fecha": "2026-03-08",
+          "descripcion": "Brownie Carrefour con nuez",
+          "alimentos": [
+            {
+              "nombre": "Brownie casero con nuez",
+              "marca": "Carrefour",
+              "cantidad_g": 148,
+              "coccion": "horno",
+              "kcal": 621.6,
+              "proteina_g": 7.4,
+              "grasa_g": 29.6,
+              "carbos_g": 81.4,
+              "notas": "Sin info nutricional en etiqueta. Macros estimados por tabla brownie casero."
+            }
+          ],
+          "totales": {
+            "kcal": 621.6,
+            "proteina_g": 7.4,
+            "grasa_g": 29.6,
+            "carbos_g": 81.4,
+            "estimado": true
+          }
+        }
+      ],
+      "totales_ventana": {
+        "kcal": 2714.8,
+        "proteina_g": 128.8,
+        "grasa_g": 181,
+        "carbos_g": 127.5,
+        "nota": "Macros parcialmente estimados"
+      }
+    }
+  ]
+}

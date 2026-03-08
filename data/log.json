@@ -1,0 +1,115 @@
+{
+  "sessions": [
+    {
+      "date": "2026-03-07",
+      "gimnasio": "Sportclub Libertador",
+      "ciudad": "Buenos Aires, Argentina",
+      "groups": ["Espalda-Bicep"],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Lat Pulldown",
+          "equipo": "Maquina Uranium",
+          "musculo_principal": "Dorsal ancho",
+          "musculos_secundarios": ["Romboides", "Trapecio medio", "Bíceps"],
+          "tipo": "maquina_cable",
+          "sets": [
+            { "set": 1, "reps": 10, "peso_kg": 75 },
+            { "set": 2, "reps": 10, "peso_kg": 75 },
+            { "set": 3, "reps": 10, "peso_kg": 75 }
+          ],
+          "notas": "3 series al mismo peso, volumen consistente"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Curl Bíceps",
+          "equipo": "Mancuerna",
+          "musculo_principal": "Bíceps",
+          "musculos_secundarios": ["Braquial"],
+          "tipo": "mancuerna_libre",
+          "sets": [
+            { "set": 1, "reps": 12, "peso_kg": 22.5 }
+          ],
+          "notas": "Serie única, 12 reps contando ambas manos alternadas (6 por lado)"
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Curl Bíceps Dropset",
+          "equipo": "Barra recta",
+          "musculo_principal": "Bíceps",
+          "musculos_secundarios": ["Braquial", "Braquiorradial"],
+          "tipo": "dropset_barra_recta",
+          "sets": [
+            {
+              "set": 1,
+              "tipo": "dropset",
+              "drops": [
+                { "drop": 1, "reps": 10, "peso_kg": 25 },
+                { "drop": 2, "reps": 10, "peso_kg": 20 }
+              ]
+            },
+            {
+              "set": 2,
+              "tipo": "dropset",
+              "drops": [
+                { "drop": 1, "reps": 10, "peso_kg": 25 },
+                { "drop": 2, "reps": 6,  "peso_kg": 20 },
+                { "drop": 3, "reps": 8,  "peso_kg": 10 }
+              ]
+            },
+            {
+              "set": 3,
+              "tipo": "dropset",
+              "drops": [
+                { "drop": 1, "reps": 10, "peso_kg": 25 },
+                { "drop": 2, "reps": 6,  "peso_kg": 20 },
+                { "drop": 3, "reps": 8,  "peso_kg": 10 }
+              ]
+            }
+          ],
+          "notas": "Set 1 fue introductorio con 2 drops. Sets 2 y 3 idénticos con 3 drops cada uno. Fatiga progresiva evidente en reducción de reps en drop 2."
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Natación",
+          "equipo": "Pileta 25 metros",
+          "hora_inicio": "19:28",
+          "hora_fin": "19:46",
+          "duracion_min": 18,
+          "distancia_km": null,
+          "distancia_m": 300,
+          "largos": 12,
+          "pasos": null,
+          "kcal": null,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "moderada",
+          "notas": "12 largos en pileta de 25m = 300m totales"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Cinta",
+          "equipo": "Bodytone Evolution Cardio",
+          "hora_inicio": null,
+          "hora_fin": null,
+          "duracion_min": 1.8,
+          "distancia_km": 0.27,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": 461,
+          "kcal": 20.1,
+          "velocidad_kmh": 3.6,
+          "inclinacion": 0,
+          "intensidad": "baja",
+          "notas": "Vuelta a la calma al finalizar la sesión"
+        }
+      ],
+      "nutricion_ref": "2026-03-07",
+      "weight_kg": null,
+      "energy": null,
+      "notes": ""
+    }
+  ]
+}
