@@ -45,7 +45,7 @@
         <p>Sin registros de nutrición</p>
       </div>
     {:else if ventanas[selectedIdx]}
-      <VentanaDetail ventana={ventanas[selectedIdx]} {perfil} {sessions} />
+      <VentanaDetail ventana={ventanas[selectedIdx]} {perfil} {sessions} {ventanas} />
     {:else}
       <div class="empty-state">
         <div class="ei">🥗</div>

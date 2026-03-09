@@ -1,0 +1,172 @@
+/**
+ * MET por tipo de cardio según intensidad.
+ * Fuente: Compendium of Physical Activities (Ainsworth et al.)
+ */
+const MET_CARDIO = {
+  natacion:     { baja: 4.5, moderada: 6.0, alta: 8.0 },
+  cinta:        { baja: 3.5, moderada: 5.5, alta: 8.5 },
+  trote:        { baja: 6.0, moderada: 8.0, alta: 10.0 },
+  correr:       { baja: 8.0, moderada: 10.0, alta: 12.0 },
+  bicicleta:    { baja: 4.0, moderada: 6.0, alta: 8.0 },
+  spinning:     { baja: 5.0, moderada: 7.5, alta: 10.0 },
+  eliptico:     { baja: 4.0, moderada: 5.5, alta: 7.0 },
+  remo:         { baja: 4.5, moderada: 6.0, alta: 8.5 },
+  hiit:         { baja: 6.0, moderada: 8.0, alta: 10.0 },
+  funcional:    { baja: 4.0, moderada: 5.5, alta: 7.0 },
+  yoga:         { baja: 2.5, moderada: 3.0, alta: 3.5 },
+  pilates:      { baja: 3.0, moderada: 3.5, alta: 4.0 },
+  caminata:     { baja: 2.5, moderada: 3.5, alta: 4.5 },
+  estiramiento: { baja: 2.0, moderada: 2.0, alta: 2.5 },
+  // Sauna: hipertermia pasiva eleva levemente el metabolismo
+  sauna:        { baja: 1.5, moderada: 1.8, alta: 1.8 },
+  // Ducha fría: vasoconstricción, gasto mínimo
+  ducha_fria:   { baja: 1.2, moderada: 1.2, alta: 1.2 },
+};
+
+/**
+ * Normaliza el string del ejercicio a una key del MET_CARDIO.
+ * Maneja acentos y variantes en español.
+ */
+function normalizarTipo(ejercicio) {
+  const e = ejercicio
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+  if (e.includes('natac') || e.includes('pileta') || e.includes('swim'))      return 'natacion';
+  if (e.includes('cinta') || e.includes('treadmill') || e.includes('caminador')) return 'cinta';
+  if (e.includes('trote') || e.includes('jogging'))                             return 'trote';
+  if (e.includes('corr')  || e.includes('running'))                             return 'correr';
+  if (e.includes('spinning'))                                                    return 'spinning';
+  if (e.includes('bici')  || e.includes('cicl'))                                return 'bicicleta';
+  if (e.includes('eliptic'))                                                     return 'eliptico';
+  if (e.includes('remo')  || e.includes('rowing'))                               return 'remo';
+  if (e.includes('hiit')  || e.includes('interval'))                             return 'hiit';
+  if (e.includes('funcional') || e.includes('crossfit'))                         return 'funcional';
+  if (e.includes('yoga'))                                                         return 'yoga';
+  if (e.includes('pilates'))                                                      return 'pilates';
+  if (e.includes('caminat') || e.includes('walk'))                               return 'caminata';
+  if (e.includes('estira') || e.includes('stretch'))                             return 'estiramiento';
+  if (e.includes('sauna') || e.includes('vapor') || e.includes('bano turco'))   return 'sauna';
+  if (e.includes('ducha'))                                                        return 'ducha_fria';
+  return null;
+}
+
+/**
+ * Calcula kcal de un item de cardio usando MET real + duración + intensidad.
+ * Si el item ya tiene kcal explícito, lo usa directo.
+ * Retorna objeto con kcal, met usado y tipo normalizado.
+ */
+export function cardioItemKcal(item, pesoKg) {
+  if (item.kcal != null) {
+    return { kcal: item.kcal, met: null, tipo: normalizarTipo(item.ejercicio ?? ''), fuente: 'explicito' };
+  }
+  const tipo      = normalizarTipo(item.ejercicio ?? '');
+  const intensidad = item.intensidad ?? 'moderada';
+  const metMap    = MET_CARDIO[tipo];
+  const met       = metMap
+    ? (metMap[intensidad] ?? metMap.moderada)
+    : 4.0; // fallback genérico si no se reconoce el ejercicio
+  const kcal = Math.round(met * pesoKg * ((item.duracion_min ?? 0) / 60));
+  return { kcal, met, tipo, fuente: 'estimado' };
+}
+
+/**
+ * Estima kcal de la parte de fuerza de una sesión.
+ * MET 4.5 = entrenamiento de fuerza moderado (Compendium of Physical Activities).
+ * Tiempo por set: ~3 min promedio (trabajo + descanso).
+ * Número único orientativo — sin monitor cardíaco el error real es ±30%.
+ */
+export function fuerzaKcal(session, pesoKg) {
+  const ejercicios = session.fuerza ?? [];
+  if (!ejercicios.length) return 0;
+  const totalSets = ejercicios.reduce((acc, ej) => acc + (ej.sets?.length ?? 0), 0);
+  const durMin    = totalSets * 3;
+  return Math.round(4.5 * pesoKg * (durMin / 60));
+}
+
+/**
+ * Calcula el gasto total de una sesión con desglose completo.
+ *
+ * Retorna:
+ * {
+ *   total       — kcal totales
+ *   fuerza      — kcal de ejercicios de fuerza
+ *   cardioTotal — kcal suma de todos los items cardio
+ *   cardio      — array con detalle por item: { ejercicio, tipo, duracion_min, intensidad, met, kcal, fuente }
+ *   fuente      — 'explicito' si viene de session.kcal_quemadas, 'estimado' si se calculó
+ * }
+ */
+export function gymKcalDetallado(session, pesoKg) {
+  if (session.kcal_quemadas != null) {
+    return {
+      total: session.kcal_quemadas,
+      fuerza: null,
+      cardioTotal: null,
+      cardio: [],
+      fuente: 'explicito',
+    };
+  }
+
+  const fuerza = fuerzaKcal(session, pesoKg);
+
+  const cardio = (session.cardio ?? []).map(item => {
+    const { kcal, met, tipo, fuente } = cardioItemKcal(item, pesoKg);
+    return {
+      ejercicio:    item.ejercicio,
+      tipo,
+      duracion_min: item.duracion_min ?? null,
+      intensidad:   item.intensidad ?? null,
+      met,
+      kcal,
+      fuente,
+    };
+  });
+
+  const cardioTotal = cardio.reduce((acc, c) => acc + c.kcal, 0);
+  const total       = fuerza + cardioTotal;
+
+  return { total, fuerza, cardioTotal, cardio, fuente: 'estimado' };
+}
+
+/**
+ * Versión simplificada — retorna solo el total (backward compat).
+ */
+export function gymKcal(session, pesoKg) {
+  return gymKcalDetallado(session, pesoKg).total;
+}
+
+/**
+ * Estima kcal de una actividad libre (no gym).
+ * Si tiene kcal_extra explícito, lo usa directo.
+ */
+export function actividadKcal(act, pesoKg) {
+  if (act.kcal_extra != null) return act.kcal_extra;
+  const tipo      = normalizarTipo(act.tipo ?? '');
+  const intensidad = act.intensidad ?? 'moderada';
+  const metMap    = MET_CARDIO[tipo];
+  const met       = metMap ? (metMap[intensidad] ?? metMap.moderada) : 4.0;
+  return Math.round(met * pesoKg * ((act.duracion_min ?? 0) / 60));
+}
+
+/** Label legible para tipo de actividad */
+export function actividadLabel(tipo) {
+  const labels = {
+    natacion:     'Natación',
+    cinta:        'Cinta',
+    trote:        'Trote',
+    correr:       'Correr',
+    bicicleta:    'Bicicleta',
+    spinning:     'Spinning',
+    eliptico:     'Elíptico',
+    remo:         'Remo',
+    hiit:         'HIIT',
+    funcional:    'Funcional',
+    yoga:         'Yoga',
+    pilates:      'Pilates',
+    caminata:     'Caminata',
+    estiramiento: 'Estiramiento',
+    sauna:        'Sauna',
+    ducha_fria:   'Ducha fría',
+  };
+  return labels[tipo] ?? tipo;
+}

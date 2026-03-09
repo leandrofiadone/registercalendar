@@ -232,13 +232,103 @@
             "carbos_g": 8.5,
             "estimado": true
           }
+        },
+        {
+          "tipo": "comida",
+          "hora": "00:47",
+          "fecha": "2026-03-09",
+          "descripcion": "Fideos con salsa bolognesa, arvejas y reggianito rallado",
+          "alimentos": [
+            {
+              "nombre": "Salsa bolognesa Oliovita",
+              "marca": "Oliovita",
+              "cantidad_g": 320,
+              "kcal": 224,
+              "proteina_g": 12.3,
+              "grasa_g": 8.5,
+              "carbos_g": 24.5
+            },
+            {
+              "nombre": "Arvejas La Banda (escurridas)",
+              "marca": "La Banda",
+              "cantidad_g": 200,
+              "kcal": 198,
+              "proteina_g": 12,
+              "grasa_g": 1,
+              "carbos_g": 36
+            },
+            {
+              "nombre": "Reggianito rallado",
+              "cantidad_g": 100,
+              "kcal": 380,
+              "proteina_g": 33,
+              "grasa_g": 28,
+              "carbos_g": 0,
+              "notas": "Sin etiqueta visible. Valores estimados por tabla de referencia estándar."
+            },
+            {
+              "nombre": "Fideos cocidos",
+              "cantidad_g": 700,
+              "kcal": 1124.8,
+              "proteina_g": 42.6,
+              "grasa_g": 7,
+              "carbos_g": 228,
+              "notas": "Calculado desde etiqueta producto seco (296 kcal/80g). 700g cocido ≈ 304g seco (factor cocción 2.3x)."
+            }
+          ],
+          "totales": {
+            "kcal": 1926.8,
+            "proteina_g": 99.9,
+            "grasa_g": 44.5,
+            "carbos_g": 288.5,
+            "estimado": true
+          }
+        },
+        {
+          "tipo": "snack",
+          "hora": "19:03",
+          "fecha": "2026-03-09",
+          "descripcion": "Café con leche, croissant y biscotti",
+          "alimentos": [
+            {
+              "nombre": "Café con leche",
+              "cantidad_ml": 250,
+              "kcal": 54,
+              "proteina_g": 2.6,
+              "grasa_g": 2.6,
+              "carbos_g": 3.8
+            },
+            {
+              "nombre": "Croissant de manteca",
+              "cantidad_g": 75,
+              "kcal": 304,
+              "proteina_g": 6,
+              "grasa_g": 15.8,
+              "carbos_g": 34.5
+            },
+            {
+              "nombre": "Biscotti / cantuccini",
+              "cantidad_g": 15,
+              "kcal": 69,
+              "proteina_g": 1.5,
+              "grasa_g": 2.7,
+              "carbos_g": 9.8
+            }
+          ],
+          "totales": {
+            "kcal": 427,
+            "proteina_g": 10.1,
+            "grasa_g": 21.1,
+            "carbos_g": 48.1,
+            "estimado": true
+          }
         }
       ],
       "totales_ventana": {
-        "kcal": 577.8,
-        "proteina_g": 32.5,
-        "grasa_g": 46.3,
-        "carbos_g": 8.5,
+        "kcal": 2931.6,
+        "proteina_g": 142.5,
+        "grasa_g": 111.9,
+        "carbos_g": 345.1,
         "nota": "Macros parcialmente estimados"
       }
     }

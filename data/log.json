@@ -1,6 +1,79 @@
 {
   "sessions": [
     {
+      "date": "2026-03-09",
+      "gimnasio": "Sportclub Belgrano",
+      "ciudad": "Buenos Aires, Argentina",
+      "groups": ["Pecho-Tricep"],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Aperturas en cable (inclinado)",
+          "equipo": "Máquina Matrix Cable Fly",
+          "musculo_principal": "Pectoral mayor",
+          "musculos_secundarios": ["Deltoides anterior", "Serrato anterior"],
+          "tipo": "maquina_cable",
+          "sets": [
+            { "set": 1, "reps": 10, "peso_kg": 63 },
+            { "set": 2, "reps": 10, "peso_kg": 63 },
+            { "set": 3, "reps": 10, "peso_kg": 63 }
+          ],
+          "notas": null
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Press de pecho inclinado",
+          "equipo": "Mancuerna",
+          "musculo_principal": "Pectoral mayor",
+          "musculos_secundarios": ["Deltoides anterior", "Tríceps"],
+          "tipo": "mancuerna_libre",
+          "sets": [
+            { "set": 1, "reps": 10, "peso_kg": 32 },
+            { "set": 2, "reps": 10, "peso_kg": 32 },
+            { "set": 3, "reps": 8, "peso_kg": 32 }
+          ],
+          "notas": "Última rep del set 2 costó. Set 3 llegó a 8 reps."
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Dips en máquina",
+          "equipo": "Máquina Matrix Dips",
+          "musculo_principal": "Pectoral menor",
+          "musculos_secundarios": ["Tríceps", "Deltoides anterior"],
+          "tipo": "maquina_guiada",
+          "sets": [
+            { "set": 1, "reps": 8, "peso_kg": 47 },
+            { "set": 2, "reps": 10, "peso_kg": 54 },
+            { "set": 3, "reps": 10, "peso_kg": 54 }
+          ],
+          "notas": "Peso sumado al corporal (130kg). Peso total efectivo: set 1 = 177kg, sets 2-3 = 184kg."
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Sauna",
+          "equipo": null,
+          "hora_inicio": null,
+          "hora_fin": null,
+          "duracion_min": 15,
+          "distancia_km": null,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": null,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "baja",
+          "notas": "Ducha fría/templada en el medio."
+        }
+      ],
+      "nutricion_ref": null,
+      "weight_kg": 130,
+      "energy": null,
+      "notes": ""
+    },
+    {
       "date": "2026-03-07",
       "gimnasio": "Sportclub Libertador",
       "ciudad": "Buenos Aires, Argentina",

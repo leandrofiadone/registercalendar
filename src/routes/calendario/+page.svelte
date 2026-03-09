@@ -243,7 +243,7 @@
     {#if selectedSession}
       <SessionDetail session={selectedSession} {ventanas} {perfil} />
     {:else if selectedVentana}
-      <VentanaDetail ventana={selectedVentana} {perfil} {sessions} />
+      <VentanaDetail ventana={selectedVentana} {perfil} {sessions} {ventanas} />
     {:else}
       <div class="empty-state">
         <div class="ei">📅</div>

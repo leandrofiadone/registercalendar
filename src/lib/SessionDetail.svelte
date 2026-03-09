@@ -1,5 +1,6 @@
 <script>
   import { fmtDateLong } from '$lib/utils.js';
+  import { gymKcalDetallado } from '$lib/activity.js';
   import VentanaDetail from '$lib/VentanaDetail.svelte';
 
   let { session, ventanas = [], sessions = [], perfil = null, compact = false } = $props();
@@ -8,6 +9,13 @@
     if (!s.nutricion_ref) return null;
     return ventanas.find(v => v.ventana_id === s.nutricion_ref) ?? null;
   }
+
+  let pesoKg  = $derived(perfil?.historial_peso?.at(-1)?.peso_kg ?? 80);
+  let detalle = $derived(session ? gymKcalDetallado(session, pesoKg) : null);
+
+  let cardioKcalMap = $derived(
+    detalle ? Object.fromEntries(detalle.cardio.map((c, i) => [i, c])) : {}
+  );
 </script>
 
 {#if session}
@@ -20,6 +28,36 @@
         {#if session.weight_kg}<div class="meta-badge">⚖️ <strong>{session.weight_kg} kg</strong></div>{/if}
         {#if session.energy}<div class="meta-badge">⚡ <strong>{session.energy}</strong></div>{/if}
       </div>
+    </div>
+  {/if}
+
+  <!-- Resumen gasto energético -->
+  {#if detalle}
+    <div class="gasto-card">
+      <div class="gasto-title">🔥 Gasto estimado</div>
+      <div class="gasto-items">
+        {#if detalle.fuerza > 0}
+          <div class="gasto-item">
+            <span class="gasto-icon">💪</span>
+            <span class="gasto-lbl">Fuerza ({(session.groups||[]).join(' + ')})</span>
+            <span class="gasto-kcal">~{detalle.fuerza} kcal</span>
+          </div>
+        {/if}
+        {#each detalle.cardio as c}
+          <div class="gasto-item">
+            <span class="gasto-icon">{c.tipo === 'sauna' ? '🧖' : c.tipo === 'natacion' ? '🏊' : '🏃'}</span>
+            <span class="gasto-lbl">{c.ejercicio}{c.duracion_min ? ` · ${c.duracion_min}min` : ''}{c.intensidad ? ` · ${c.intensidad}` : ''}</span>
+            <span class="gasto-kcal {c.tipo === 'sauna' ? 'dim' : ''}">{c.kcal} kcal{c.fuente === 'estimado' ? ' *' : ''}</span>
+          </div>
+        {/each}
+      </div>
+      <div class="gasto-total">
+        <span>Total sesión</span>
+        <span class="gasto-total-val">~{detalle.total} kcal</span>
+      </div>
+      {#if detalle.fuente === 'estimado'}
+        <div class="gasto-nota">* estimado por MET · sin monitor cardíaco el error puede ser ±30%</div>
+      {/if}
     </div>
   {/if}
 
@@ -69,10 +107,16 @@
   {#if session.cardio?.length}
     <div class="section">
       <div class="sec-label">🏃 Cardio</div>
-      {#each session.cardio as c}
+      {#each session.cardio as c, ci}
+        {@const ck = cardioKcalMap[ci]}
         <div class="cardio-card">
-          <div class="cardio-name">
-            {c.ejercicio}{#if c.equipo}<span style="font-size:11px;color:var(--dim)"> · {c.equipo}</span>{/if}
+          <div class="cardio-name-row">
+            <span class="cardio-name">
+              {c.ejercicio}{#if c.equipo}<span style="font-size:11px;color:var(--dim)"> · {c.equipo}</span>{/if}
+            </span>
+            {#if ck}
+              <span class="cardio-kcal {ck.tipo === 'sauna' ? 'dim' : ''}">~{ck.kcal} kcal{ck.met ? ` · MET ${ck.met}` : ''}</span>
+            {/if}
           </div>
           <div class="cardio-metrics">
             {#if c.duracion_min}<div class="cmetric"><span class="cmetric-val">{c.duracion_min}</span><span class="cmetric-lbl">min</span></div>{/if}
@@ -96,7 +140,7 @@
     {#if v}
       <div class="section">
         <div class="sec-label">🥗 Nutrición vinculada</div>
-        <VentanaDetail ventana={v} {perfil} {sessions} bodyOnly />
+        <VentanaDetail ventana={v} {perfil} {sessions} {ventanas} bodyOnly />
       </div>
     {/if}
   {/if}
@@ -128,6 +172,39 @@
   }
   .meta-badge strong { color: #bbb; }
 
+  /* ── Gasto energético ── */
+  .gasto-card {
+    background: var(--s2); border: 1px solid rgba(251,146,60,.2);
+    border-radius: 10px; padding: 14px 16px; margin-bottom: 24px;
+  }
+  .gasto-title {
+    font-size: 10px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: #fb923c; margin-bottom: 10px;
+  }
+  .gasto-items { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+  .gasto-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 12px; color: var(--muted);
+  }
+  .gasto-icon { font-size: 13px; flex-shrink: 0; }
+  .gasto-lbl  { flex: 1; }
+  .gasto-kcal { font-weight: 700; color: #fb923c; font-variant-numeric: tabular-nums; }
+  .gasto-kcal.dim { color: #888; font-weight: 500; }
+
+  .gasto-total {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 8px; border-top: 1px solid rgba(251,146,60,.15);
+    font-size: 12px; color: var(--muted);
+  }
+  .gasto-total-val {
+    font-size: 18px; font-weight: 800; color: #fb923c;
+    font-variant-numeric: tabular-nums;
+  }
+  .gasto-nota {
+    font-size: 9px; color: var(--dim); margin-top: 6px;
+    font-style: italic; opacity: .7;
+  }
+
   .section { margin-bottom: 26px; }
   .sec-label {
     font-size: 10px; font-weight: 700;
@@ -150,7 +227,7 @@
     background: var(--s2); border: 1px solid var(--b1);
     padding: 1px 6px; border-radius: 3px;
   }
-  .ex-muscles { font-size: 11px; color: var(--dim); margin-bottom: 9px; }
+.ex-muscles { font-size: 11px; color: var(--dim); margin-bottom: 9px; }
   .ex-muscles .mp { color: #7778aa; }
 
   .sets-row { display: flex; flex-wrap: wrap; gap: 5px; }
@@ -178,7 +255,16 @@
     border-left: 3px solid var(--blue);
     border-radius: 8px; padding: 13px 15px; margin-bottom: 8px;
   }
-  .cardio-name { font-size: 14px; font-weight: 600; color: #ddd; margin-bottom: 12px; }
+  .cardio-name-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+  .cardio-name { font-size: 14px; font-weight: 600; color: #ddd; flex: 1; }
+  .cardio-kcal {
+    font-size: 10px; font-weight: 600; color: #fb923c;
+    background: rgba(251,146,60,.08); border: 1px solid rgba(251,146,60,.15);
+    padding: 2px 8px; border-radius: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .cardio-kcal.dim { color: #888; background: rgba(136,136,136,.08); border-color: rgba(136,136,136,.15); }
+
   .cardio-metrics { display: flex; gap: 20px; flex-wrap: wrap; }
   .cmetric { display: flex; flex-direction: column; gap: 1px; }
   .cmetric-val { font-size: 22px; font-weight: 700; color: var(--blue); line-height: 1; }
