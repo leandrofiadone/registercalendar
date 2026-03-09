@@ -194,6 +194,53 @@
         "carbos_g": 127.5,
         "nota": "Macros parcialmente estimados"
       }
+    },
+    {
+      "ventana_id": "2026-03-09",
+      "protocolo": "ayuno_intermitente",
+      "comidas": [
+        {
+          "tipo": "snack",
+          "hora": "00:07",
+          "fecha": "2026-03-09",
+          "descripcion": "Mix de frutos secos Happy Snack + reggianito",
+          "alimentos": [
+            {
+              "nombre": "Mix Supremo (cajú, almendras y nueces)",
+              "marca": "The Happy Snack",
+              "cantidad_g": 50,
+              "kcal": 311.8,
+              "proteina_g": 9.4,
+              "grasa_g": 27.4,
+              "carbos_g": 7.1,
+              "notas": "Bolsa completa 50g. Valores calculados desde etiqueta: 106kcal/17g."
+            },
+            {
+              "nombre": "Queso reggianito",
+              "cantidad_g": 70,
+              "kcal": 266,
+              "proteina_g": 23.1,
+              "grasa_g": 18.9,
+              "carbos_g": 1.4,
+              "notas": "Valores estimados por tabla estándar reggianito (~380kcal/100g)."
+            }
+          ],
+          "totales": {
+            "kcal": 577.8,
+            "proteina_g": 32.5,
+            "grasa_g": 46.3,
+            "carbos_g": 8.5,
+            "estimado": true
+          }
+        }
+      ],
+      "totales_ventana": {
+        "kcal": 577.8,
+        "proteina_g": 32.5,
+        "grasa_g": 46.3,
+        "carbos_g": 8.5,
+        "nota": "Macros parcialmente estimados"
+      }
     }
   ]
 }
