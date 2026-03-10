@@ -196,6 +196,44 @@
       }
     },
     {
+      "ventana_id": "2026-03-10",
+      "protocolo": "ayuno_intermitente",
+      "comidas": [
+        {
+          "tipo": "comida",
+          "hora": "01:01",
+          "fecha": "2026-03-10",
+          "descripcion": "Carne picada premium a la plancha",
+          "alimentos": [
+            {
+              "nombre": "Carne picada premium",
+              "cantidad_g": 330,
+              "coccion": "plancha",
+              "kcal": 874.5,
+              "proteina_g": 82.5,
+              "grasa_g": 56.1,
+              "carbos_g": 0,
+              "notas": "Valores estimados. Sin dato exacto de % grasa; se usó referencia intermedia ~265kcal/100g cocida."
+            }
+          ],
+          "totales": {
+            "kcal": 874.5,
+            "proteina_g": 82.5,
+            "grasa_g": 56.1,
+            "carbos_g": 0,
+            "estimado": true
+          }
+        }
+      ],
+      "totales_ventana": {
+        "kcal": 874.5,
+        "proteina_g": 82.5,
+        "grasa_g": 56.1,
+        "carbos_g": 0,
+        "nota": "Macros estimados"
+      }
+    },
+    {
       "ventana_id": "2026-03-09",
       "protocolo": "ayuno_intermitente",
       "comidas": [

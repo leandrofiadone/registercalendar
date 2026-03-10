@@ -133,7 +133,9 @@
       {@const deficitActual = Math.round(maintGym - consumed)}
       {@const restante      = Math.round(targetGym - consumed)}
       {@const overAmount     = consumed > maintGym ? Math.round(consumed - maintGym) : 0}
-      {@const fillGreenPct  = Math.min(consumedPct, targetPct)}
+      {@const targetBasePct = Math.round((targetBase / maintGym) * 100)}
+      {@const fillBasePct   = Math.min(consumedPct, targetBasePct)}
+      {@const fillGymPct    = Math.max(0, Math.min(consumedPct, targetPct) - targetBasePct)}
       {@const fillAmberPct  = Math.max(0, consumedPct - targetPct)}
       <div class="today-balance">
 
@@ -195,13 +197,29 @@
           <!-- Barra: 100% = sin déficit -->
           <div class="tb-bar-track">
             <div class="tb-bar-bg">
-              <div class="tb-zone-green" style="width:{targetPct}%"></div>
+              <div class="tb-zone-green" style="width:{targetBasePct}%"></div>
+              {#if extraGym > 0}
+                <div class="tb-zone-gym" style="left:{targetBasePct}%; width:{targetPct - targetBasePct}%"></div>
+              {/if}
               <div class="tb-zone-amber" style="left:{targetPct}%"></div>
-              <div class="tb-fill-green" style="width:{fillGreenPct}%"></div>
+              <div class="tb-fill-green" style="width:{fillBasePct}%"></div>
+              {#if fillGymPct > 0}
+                <div class="tb-fill-gym" style="left:{targetBasePct}%; width:{fillGymPct}%"></div>
+              {/if}
               {#if fillAmberPct > 0}
                 <div class="tb-fill-amber" style="left:{targetPct}%; width:{fillAmberPct}%"></div>
               {/if}
             </div>
+            {#if extraGym > 0}
+              <div class="tb-base-marker" style="left:{targetBasePct}%">
+                <div class="tb-base-line"></div>
+                <div class="tb-base-arrow"></div>
+                <div class="tb-base-lbl">
+                  <span class="tb-base-name">sin gym</span>
+                  <span class="tb-base-val">{targetBase}</span>
+                </div>
+              </div>
+            {/if}
             <div class="tb-marker" style="left:{targetPct}%">
               <div class="tb-marker-line"></div>
               <div class="tb-marker-arrow"></div>
@@ -256,8 +274,12 @@
       {@const pb_deficit    = Math.round(pb_maintGym - pb_consumed)}
       {@const pb_over       = pb_consumed > pb_maintGym ? Math.round(pb_consumed - pb_maintGym) : 0}
       {@const pb_restante    = Math.round(pb_targetGym - pb_consumed)}
-      {@const pb_fillGreenPct = Math.min(pb_pct, pb_targetPct)}
-      {@const pb_fillAmberPct = Math.max(0, pb_pct - pb_targetPct)}
+      {@const pb_targetBase    = Math.round(vsObjetivo.tdeBase - vsObjetivo.deficitTarget)}
+      {@const pb_targetBasePct = Math.round((pb_targetBase / pb_maintGym) * 100)}
+      {@const pb_extraGym      = pb_targetGym - pb_targetBase}
+      {@const pb_fillBasePct   = Math.min(pb_pct, pb_targetBasePct)}
+      {@const pb_fillGymPct    = Math.max(0, Math.min(pb_pct, pb_targetPct) - pb_targetBasePct)}
+      {@const pb_fillAmberPct  = Math.max(0, pb_pct - pb_targetPct)}
       <div class="past-balance">
 
         <!-- Gasto inline -->
@@ -275,13 +297,29 @@
         <!-- Barra: 100% = sin déficit -->
         <div class="tb-bar-track">
           <div class="tb-bar-bg">
-            <div class="tb-zone-green" style="width:{pb_targetPct}%"></div>
+            <div class="tb-zone-green" style="width:{pb_targetBasePct}%"></div>
+            {#if pb_extraGym > 0}
+              <div class="tb-zone-gym" style="left:{pb_targetBasePct}%; width:{pb_targetPct - pb_targetBasePct}%"></div>
+            {/if}
             <div class="tb-zone-amber" style="left:{pb_targetPct}%"></div>
-            <div class="tb-fill-green" style="width:{pb_fillGreenPct}%"></div>
+            <div class="tb-fill-green" style="width:{pb_fillBasePct}%"></div>
+            {#if pb_fillGymPct > 0}
+              <div class="tb-fill-gym" style="left:{pb_targetBasePct}%; width:{pb_fillGymPct}%"></div>
+            {/if}
             {#if pb_fillAmberPct > 0}
               <div class="tb-fill-amber" style="left:{pb_targetPct}%; width:{pb_fillAmberPct}%"></div>
             {/if}
           </div>
+          {#if pb_extraGym > 0}
+            <div class="tb-base-marker" style="left:{pb_targetBasePct}%">
+              <div class="tb-base-line"></div>
+              <div class="tb-base-arrow"></div>
+              <div class="tb-base-lbl">
+                <span class="tb-base-name">sin gym</span>
+                <span class="tb-base-val">{pb_targetBase}</span>
+              </div>
+            </div>
+          {/if}
           <div class="tb-marker" style="left:{pb_targetPct}%">
             <div class="tb-marker-line"></div>
             <div class="tb-marker-arrow"></div>
@@ -518,6 +556,12 @@
     position: absolute; top: 0; bottom: 0; left: 0;
     background: rgba(74,222,128,.12);
   }
+  .tb-zone-gym {
+    position: absolute; top: 0; bottom: 0;
+    background: rgba(74,222,128,.05);
+    border-left: 1px dashed rgba(74,222,128,.2);
+    border-right: 1px dashed rgba(74,222,128,.2);
+  }
   .tb-zone-amber {
     position: absolute; top: 0; bottom: 0; right: 0;
     background: repeating-linear-gradient(
@@ -535,6 +579,13 @@
     background: #4ade80;
     box-shadow: 0 0 12px rgba(74,222,128,.45);
     transition: width .7s cubic-bezier(.4,0,.2,1);
+  }
+  .tb-fill-gym {
+    position: absolute; top: 0; bottom: 0;
+    z-index: 3;
+    background: #16a34a;
+    box-shadow: 0 0 8px rgba(22,163,74,.35);
+    transition: left .7s cubic-bezier(.4,0,.2,1), width .7s cubic-bezier(.4,0,.2,1);
   }
   .tb-fill-amber {
     position: absolute; top: 0; bottom: 0;
@@ -563,6 +614,23 @@
     font-size: 20px; font-weight: 800; color: #fff;
     font-variant-numeric: tabular-nums; line-height: 1;
   }
+
+  /* Marcador base (sin gym) */
+  .tb-base-marker {
+    position: absolute; top: 0;
+    display: flex; flex-direction: column; align-items: center;
+    pointer-events: none; z-index: 3; transform: translateX(-50%);
+  }
+  .tb-base-line  { width: 1px; height: 22px; background: rgba(148,163,184,.45); flex-shrink: 0; }
+  .tb-base-arrow {
+    width: 0; height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 7px solid rgba(148,163,184,.45);
+  }
+  .tb-base-lbl  { display: flex; flex-direction: column; align-items: center; margin-top: 4px; gap: 1px; }
+  .tb-base-name { font-size: 8px; text-transform: uppercase; letter-spacing: .09em; color: #64748b; font-weight: 700; }
+  .tb-base-val  { font-size: 13px; font-weight: 700; color: #64748b; font-variant-numeric: tabular-nums; line-height: 1; }
 
   /* Marcador superávit (fin de barra) */
   .tb-end-marker {

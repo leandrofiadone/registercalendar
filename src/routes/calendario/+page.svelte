@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { sessionType, sessionColor } from '$lib/utils.js';
   import { getMoonPhase } from '$lib/moon.js';
+  import { gymKcalDetallado } from '$lib/activity.js';
   import SessionDetail from '$lib/SessionDetail.svelte';
   import VentanaDetail from '$lib/VentanaDetail.svelte';
   import Luna13Cal from '$lib/Luna13Cal.svelte';
@@ -20,24 +21,46 @@
   let fcCalendar = null;
 
   function gymCalEvents() {
-    return sessions.map((s, i) => ({
-      title: '',
-      date: s.date,
-      backgroundColor: sessionColor(s),
-      borderColor: 'transparent',
-      textColor: '#fff',
-      extendedProps: {
-        type: 'gym', idx: i,
-        groups: s.groups || [],
-        hasCardio: !!s.cardio?.length,
-        color: sessionColor(s),
-      },
-    }));
+    const pesoKg = perfil?.historial_peso?.at(-1)?.peso_kg ?? 80;
+    return sessions.map((s, i) => {
+      const det = gymKcalDetallado(s, pesoKg);
+      const kcal = Math.round(det.fuerza + det.cardio.reduce((sum, c) => sum + c.kcal, 0));
+      return {
+        title: '',
+        date: s.date,
+        backgroundColor: sessionColor(s),
+        borderColor: 'transparent',
+        textColor: '#fff',
+        extendedProps: {
+          type: 'gym', idx: i,
+          groups: s.groups || [],
+          hasCardio: !!s.cardio?.length,
+          color: sessionColor(s),
+          kcal,
+        },
+      };
+    });
   }
 
   function nutriCalEvents() {
+    const pesoKg      = perfil?.historial_peso?.at(-1)?.peso_kg ?? 80;
+    const tdeBase     = perfil?.metabolismo?.gasto_total_descanso_kcal ?? 2776;
+    const kcalBase    = perfil?.objetivos_diarios?.kcal_dia_descanso ?? 2276;
+    const deficitTarget = perfil?.objetivos_diarios?.deficit_target_kcal ?? 500;
+
     return ventanas.map((v, i) => {
       const t = v.totales_ventana || {};
+      const gymSess = sessions.find(s => s.date === v.ventana_id);
+      let kcalActividad = 0;
+      if (gymSess) {
+        const det = gymKcalDetallado(gymSess, pesoKg);
+        kcalActividad = det.fuerza + det.cardio.reduce((sum, c) => sum + c.kcal, 0);
+      }
+      const kcalTarget = Math.round(kcalBase + kcalActividad);
+      const maintTotal = Math.round(tdeBase + kcalActividad);
+      const consumed   = t.kcal || 0;
+      const zone = consumed <= kcalTarget ? 'ok' : consumed <= maintTotal ? 'warn' : 'over';
+      const pct  = Math.min(100, Math.round((consumed / kcalTarget) * 100));
       return {
         title: '',
         date: v.ventana_id,
@@ -46,10 +69,12 @@
         textColor: '#000',
         extendedProps: {
           type: 'nutri', vIdx: i,
-          kcal: t.kcal || 0,
+          kcal: consumed,
           prot: t.proteina_g || 0,
           gras: t.grasa_g    || 0,
           carb: t.carbos_g   || 0,
+          kcalTarget, zone, pct,
+          hasGym: !!gymSess,
         },
       };
     });
@@ -95,24 +120,29 @@
         eventContent(arg) {
           const p = arg.event.extendedProps;
           if (p.type === 'nutri') {
-            const pct = Math.min(100, Math.round((p.kcal / 2500) * 100));
+            const zoneColor = { ok: '#166534', warn: '#92400e', over: '#991b1b' }[p.zone];
+            const zoneDot   = { ok: '#4ade80', warn: '#fbbf24', over: '#f87171' }[p.zone];
+            const gymBadge  = p.hasGym ? `<span class="ev-n-gym">💪</span>` : '';
             return { html: `<div class="ev-nutri">
               <div class="ev-n-top">
                 <span class="ev-n-kcal">${p.kcal}</span>
-                <span class="ev-n-unit">kcal</span>
+                <span class="ev-n-unit">/ ${p.kcalTarget} kcal</span>
+                ${gymBadge}
+                <span class="ev-n-dot" style="background:${zoneDot}"></span>
               </div>
               <div class="ev-n-macros">
                 <span class="ev-dot prot"></span>${p.prot}g
                 <span class="ev-dot gras"></span>${p.gras}g
                 <span class="ev-dot carb"></span>${p.carb}g
               </div>
-              <div class="ev-n-bar"><div class="ev-n-bar-fill" style="width:${pct}%"></div></div>
+              <div class="ev-n-bar"><div class="ev-n-bar-fill" style="width:${p.pct}%;background:${zoneColor}"></div></div>
             </div>` };
           }
           if (p.type === 'gym') {
             const tags = p.groups.map(g => `<span class="ev-g-tag">${g}</span>`).join('');
             const cardio = p.hasCardio ? '<span class="ev-g-cardio">Cardio</span>' : '';
-            return { html: `<div class="ev-gym">${tags}${cardio}</div>` };
+            const kcal = p.kcal > 0 ? `<span class="ev-g-kcal">~${p.kcal} kcal</span>` : '';
+            return { html: `<div class="ev-gym">${tags}${cardio}${kcal}</div>` };
           }
         },
 
@@ -351,9 +381,11 @@
 
   /* Custom calendar event content */
   :global(.ev-nutri) { padding: 4px 8px; width: 100%; cursor: pointer; }
-  :global(.ev-n-top)  { display: flex; align-items: baseline; gap: 4px; margin-bottom: 3px; }
+  :global(.ev-n-top)  { display: flex; align-items: center; gap: 4px; margin-bottom: 3px; }
   :global(.ev-n-kcal) { font-size: 15px; font-weight: 800; color: #000; line-height: 1; }
-  :global(.ev-n-unit) { font-size: 9px; color: rgba(0,0,0,0.5); }
+  :global(.ev-n-unit) { font-size: 9px; color: rgba(0,0,0,0.5); flex: 1; }
+  :global(.ev-n-gym)  { font-size: 10px; }
+  :global(.ev-n-dot)  { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
   :global(.ev-n-macros) {
     display: flex; align-items: center; gap: 5px;
     font-size: 9px; color: rgba(0,0,0,0.6); margin-bottom: 4px;
@@ -363,7 +395,7 @@
   :global(.ev-dot.gras) { background: #991b1b; }
   :global(.ev-dot.carb) { background: #065f46; }
   :global(.ev-n-bar) { height: 3px; background: rgba(0,0,0,0.15); border-radius: 2px; overflow: hidden; }
-  :global(.ev-n-bar-fill) { height: 100%; background: rgba(0,0,0,0.45); border-radius: 2px; }
+  :global(.ev-n-bar-fill) { height: 100%; border-radius: 2px; }
 
   :global(.ev-gym) { padding: 5px 8px; width: 100%; cursor: pointer; display: flex; flex-wrap: wrap; gap: 3px; align-items: center; }
   :global(.ev-g-tag) {
@@ -377,6 +409,11 @@
     color: #93c5fd;
     background: rgba(59,130,246,0.2);
     border-radius: 3px; padding: 1px 5px;
+  }
+  :global(.ev-g-kcal) {
+    font-size: 10px; font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    margin-left: auto;
   }
 
   /* Moon phase */
