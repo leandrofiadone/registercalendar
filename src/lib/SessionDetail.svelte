@@ -16,6 +16,24 @@
   let cardioKcalMap = $derived(
     detalle ? Object.fromEntries(detalle.cardio.map((c, i) => [i, c])) : {}
   );
+
+  // Multi-gym: agrupar ejercicios/cardio por gimnasio si tienen campo `gimnasio`
+  let gymSections = $derived.by(() => {
+    if (!session) return null;
+    const gyms = [...new Set([
+      ...(session.fuerza||[]).map(e => e.gimnasio),
+      ...(session.cardio||[]).map(c => c.gimnasio),
+    ].filter(Boolean))];
+    if (gyms.length <= 1) return null; // render normal
+    return gyms.map(gym => {
+      const fuerza = (session.fuerza||[]).filter(e => e.gimnasio === gym);
+      const cardio  = (session.cardio||[]).filter(c => c.gimnasio === gym);
+      const subSess = { ...session, fuerza, cardio };
+      const det     = gymKcalDetallado(subSess, pesoKg);
+      const cMap    = Object.fromEntries(det.cardio.map((c, i) => [i, c]));
+      return { gym, fuerza, cardio, det, cMap };
+    });
+  });
 </script>
 
 {#if session}
@@ -61,77 +79,161 @@
     </div>
   {/if}
 
-  <!-- Fuerza -->
-  {#if session.fuerza?.length}
-    <div class="section">
-      <div class="sec-label">💪 Fuerza</div>
-      {#each session.fuerza as e}
-        <div class="ex-card">
-          <div class="ex-name-row">
-            <span class="ex-name">{e.ejercicio}</span>
-            {#if e.equipo}<span class="ex-equipo">{e.equipo}</span>{/if}
-          </div>
-          {#if e.musculo_principal}
-            <div class="ex-muscles">
-              <span class="mp">{e.musculo_principal}</span>
-              {#if e.musculos_secundarios?.length}
-                <span style="color:var(--dim)"> · {e.musculos_secundarios.join(', ')}</span>
-              {/if}
-            </div>
-          {/if}
-          <div class="sets-row">
-            {#each e.sets as set}
-              {#if set.tipo === 'dropset'}
-                <div class="set-pill ds">
-                  <span class="sn">S{set.set}</span>
-                  {#each set.drops as drop, di}
-                    {#if di > 0}<span class="drop-sep">→</span>{/if}
-                    <span class="sr">{drop.reps}</span><span style="color:var(--dim)">×</span><span class="sw">{drop.peso_kg}kg</span>
+  {#if gymSections}
+    <!-- ── Multi-gym: secciones por gimnasio ── -->
+    {#each gymSections as gs, gsi}
+      <div class="gym-section">
+        <div class="gym-section-header">
+          <span class="gym-section-num">{gsi + 1}</span>
+          <span class="gym-section-name">🏛 {gs.gym}</span>
+          <span class="gym-section-kcal">~{gs.det.total} kcal</span>
+        </div>
+
+        {#if gs.fuerza.length}
+          <div class="section">
+            <div class="sec-label">💪 Fuerza</div>
+            {#each gs.fuerza as e}
+              <div class="ex-card">
+                <div class="ex-name-row">
+                  <span class="ex-name">{e.ejercicio}</span>
+                  {#if e.equipo}<span class="ex-equipo">{e.equipo}</span>{/if}
+                </div>
+                {#if e.musculo_principal}
+                  <div class="ex-muscles">
+                    <span class="mp">{e.musculo_principal}</span>
+                    {#if e.musculos_secundarios?.length}
+                      <span style="color:var(--dim)"> · {e.musculos_secundarios.join(', ')}</span>
+                    {/if}
+                  </div>
+                {/if}
+                <div class="sets-row">
+                  {#each e.sets as set}
+                    {#if set.tipo === 'dropset'}
+                      <div class="set-pill ds">
+                        <span class="sn">S{set.set}</span>
+                        {#each set.drops as drop, di}
+                          {#if di > 0}<span class="drop-sep">→</span>{/if}
+                          <span class="sr">{drop.reps}</span><span style="color:var(--dim)">×</span><span class="sw">{drop.peso_kg}kg</span>
+                        {/each}
+                      </div>
+                    {:else}
+                      <div class="set-pill">
+                        <span class="sn">S{set.set}</span>
+                        <span class="sr">{set.reps}</span><span style="color:var(--dim)">×</span><span class="sw">{set.peso_kg}kg</span>
+                      </div>
+                    {/if}
                   {/each}
                 </div>
-              {:else}
-                <div class="set-pill">
-                  <span class="sn">S{set.set}</span>
-                  <span class="sr">{set.reps}</span><span style="color:var(--dim)">×</span><span class="sw">{set.peso_kg}kg</span>
-                </div>
-              {/if}
+                {#if e.notas}<div class="ex-notas">{e.notas}</div>{/if}
+              </div>
             {/each}
           </div>
-          {#if e.notas}<div class="ex-notas">{e.notas}</div>{/if}
-        </div>
-      {/each}
-    </div>
-  {/if}
+        {/if}
 
-  <!-- Cardio -->
-  {#if session.cardio?.length}
-    <div class="section">
-      <div class="sec-label">🏃 Cardio</div>
-      {#each session.cardio as c, ci}
-        {@const ck = cardioKcalMap[ci]}
-        <div class="cardio-card">
-          <div class="cardio-name-row">
-            <span class="cardio-name">
-              {c.ejercicio}{#if c.equipo}<span style="font-size:11px;color:var(--dim)"> · {c.equipo}</span>{/if}
-            </span>
-            {#if ck}
-              <span class="cardio-kcal {ck.tipo === 'sauna' ? 'dim' : ''}">~{ck.kcal} kcal{ck.met ? ` · MET ${ck.met}` : ''}</span>
+        {#if gs.cardio.length}
+          <div class="section">
+            <div class="sec-label">🏃 Cardio</div>
+            {#each gs.cardio as c, ci}
+              {@const ck = gs.cMap[ci]}
+              <div class="cardio-card">
+                <div class="cardio-name-row">
+                  <span class="cardio-name">
+                    {c.ejercicio}{#if c.equipo}<span style="font-size:11px;color:var(--dim)"> · {c.equipo}</span>{/if}
+                  </span>
+                  {#if ck}
+                    <span class="cardio-kcal {ck.tipo === 'sauna' ? 'dim' : ''}">~{ck.kcal} kcal{ck.met ? ` · MET ${ck.met}` : ''}</span>
+                  {/if}
+                </div>
+                <div class="cardio-metrics">
+                  {#if c.duracion_min}<div class="cmetric"><span class="cmetric-val">{c.duracion_min}</span><span class="cmetric-lbl">min</span></div>{/if}
+                  {#if c.distancia_km}<div class="cmetric"><span class="cmetric-val">{c.distancia_km}</span><span class="cmetric-lbl">km</span></div>{/if}
+                  {#if c.distancia_m}<div class="cmetric"><span class="cmetric-val">{c.distancia_m}</span><span class="cmetric-lbl">m</span></div>{/if}
+                  {#if c.largos}<div class="cmetric"><span class="cmetric-val">{c.largos}</span><span class="cmetric-lbl">largos</span></div>{/if}
+                  {#if c.pasos}<div class="cmetric"><span class="cmetric-val">{c.pasos}</span><span class="cmetric-lbl">pasos</span></div>{/if}
+                  {#if c.kcal}<div class="cmetric"><span class="cmetric-val">{c.kcal}</span><span class="cmetric-lbl">kcal</span></div>{/if}
+                  {#if c.velocidad_kmh}<div class="cmetric"><span class="cmetric-val">{c.velocidad_kmh}</span><span class="cmetric-lbl">km/h</span></div>{/if}
+                  {#if c.intensidad}<div class="cmetric"><span class="cmetric-val">{c.intensidad}</span><span class="cmetric-lbl">intensidad</span></div>{/if}
+                </div>
+                {#if c.notas}<div class="ex-notas" style="margin-top:10px">{c.notas}</div>{/if}
+              </div>
+            {/each}
+          </div>
+        {/if}
+      </div>
+    {/each}
+
+  {:else}
+    <!-- ── Sesión simple ── -->
+    {#if session.fuerza?.length}
+      <div class="section">
+        <div class="sec-label">💪 Fuerza</div>
+        {#each session.fuerza as e}
+          <div class="ex-card">
+            <div class="ex-name-row">
+              <span class="ex-name">{e.ejercicio}</span>
+              {#if e.equipo}<span class="ex-equipo">{e.equipo}</span>{/if}
+            </div>
+            {#if e.musculo_principal}
+              <div class="ex-muscles">
+                <span class="mp">{e.musculo_principal}</span>
+                {#if e.musculos_secundarios?.length}
+                  <span style="color:var(--dim)"> · {e.musculos_secundarios.join(', ')}</span>
+                {/if}
+              </div>
             {/if}
+            <div class="sets-row">
+              {#each e.sets as set}
+                {#if set.tipo === 'dropset'}
+                  <div class="set-pill ds">
+                    <span class="sn">S{set.set}</span>
+                    {#each set.drops as drop, di}
+                      {#if di > 0}<span class="drop-sep">→</span>{/if}
+                      <span class="sr">{drop.reps}</span><span style="color:var(--dim)">×</span><span class="sw">{drop.peso_kg}kg</span>
+                    {/each}
+                  </div>
+                {:else}
+                  <div class="set-pill">
+                    <span class="sn">S{set.set}</span>
+                    <span class="sr">{set.reps}</span><span style="color:var(--dim)">×</span><span class="sw">{set.peso_kg}kg</span>
+                  </div>
+                {/if}
+              {/each}
+            </div>
+            {#if e.notas}<div class="ex-notas">{e.notas}</div>{/if}
           </div>
-          <div class="cardio-metrics">
-            {#if c.duracion_min}<div class="cmetric"><span class="cmetric-val">{c.duracion_min}</span><span class="cmetric-lbl">min</span></div>{/if}
-            {#if c.distancia_km}<div class="cmetric"><span class="cmetric-val">{c.distancia_km}</span><span class="cmetric-lbl">km</span></div>{/if}
-            {#if c.distancia_m}<div class="cmetric"><span class="cmetric-val">{c.distancia_m}</span><span class="cmetric-lbl">m</span></div>{/if}
-            {#if c.largos}<div class="cmetric"><span class="cmetric-val">{c.largos}</span><span class="cmetric-lbl">largos</span></div>{/if}
-            {#if c.pasos}<div class="cmetric"><span class="cmetric-val">{c.pasos}</span><span class="cmetric-lbl">pasos</span></div>{/if}
-            {#if c.kcal}<div class="cmetric"><span class="cmetric-val">{c.kcal}</span><span class="cmetric-lbl">kcal</span></div>{/if}
-            {#if c.velocidad_kmh}<div class="cmetric"><span class="cmetric-val">{c.velocidad_kmh}</span><span class="cmetric-lbl">km/h</span></div>{/if}
-            {#if c.intensidad}<div class="cmetric"><span class="cmetric-val">{c.intensidad}</span><span class="cmetric-lbl">intensidad</span></div>{/if}
+        {/each}
+      </div>
+    {/if}
+
+    {#if session.cardio?.length}
+      <div class="section">
+        <div class="sec-label">🏃 Cardio</div>
+        {#each session.cardio as c, ci}
+          {@const ck = cardioKcalMap[ci]}
+          <div class="cardio-card">
+            <div class="cardio-name-row">
+              <span class="cardio-name">
+                {c.ejercicio}{#if c.equipo}<span style="font-size:11px;color:var(--dim)"> · {c.equipo}</span>{/if}
+              </span>
+              {#if ck}
+                <span class="cardio-kcal {ck.tipo === 'sauna' ? 'dim' : ''}">~{ck.kcal} kcal{ck.met ? ` · MET ${ck.met}` : ''}</span>
+              {/if}
+            </div>
+            <div class="cardio-metrics">
+              {#if c.duracion_min}<div class="cmetric"><span class="cmetric-val">{c.duracion_min}</span><span class="cmetric-lbl">min</span></div>{/if}
+              {#if c.distancia_km}<div class="cmetric"><span class="cmetric-val">{c.distancia_km}</span><span class="cmetric-lbl">km</span></div>{/if}
+              {#if c.distancia_m}<div class="cmetric"><span class="cmetric-val">{c.distancia_m}</span><span class="cmetric-lbl">m</span></div>{/if}
+              {#if c.largos}<div class="cmetric"><span class="cmetric-val">{c.largos}</span><span class="cmetric-lbl">largos</span></div>{/if}
+              {#if c.pasos}<div class="cmetric"><span class="cmetric-val">{c.pasos}</span><span class="cmetric-lbl">pasos</span></div>{/if}
+              {#if c.kcal}<div class="cmetric"><span class="cmetric-val">{c.kcal}</span><span class="cmetric-lbl">kcal</span></div>{/if}
+              {#if c.velocidad_kmh}<div class="cmetric"><span class="cmetric-val">{c.velocidad_kmh}</span><span class="cmetric-lbl">km/h</span></div>{/if}
+              {#if c.intensidad}<div class="cmetric"><span class="cmetric-val">{c.intensidad}</span><span class="cmetric-lbl">intensidad</span></div>{/if}
+            </div>
+            {#if c.notas}<div class="ex-notas" style="margin-top:10px">{c.notas}</div>{/if}
           </div>
-          {#if c.notas}<div class="ex-notas" style="margin-top:10px">{c.notas}</div>{/if}
-        </div>
-      {/each}
-    </div>
+        {/each}
+      </div>
+    {/if}
   {/if}
 
   <!-- Nutrición vinculada -->
@@ -204,6 +306,34 @@
     font-size: 9px; color: var(--dim); margin-top: 6px;
     font-style: italic; opacity: .7;
   }
+
+  /* ── Multi-gym sections ── */
+  .gym-section {
+    border: 1px solid var(--b1); border-radius: 10px;
+    padding: 14px 16px; margin-bottom: 20px;
+    background: rgba(255,255,255,.015);
+  }
+  .gym-section-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 16px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--b1);
+  }
+  .gym-section-num {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    font-size: 10px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .gym-section-name { font-size: 13px; font-weight: 600; color: #ccc; flex: 1; }
+  .gym-section-kcal {
+    font-size: 11px; font-weight: 700; color: #fb923c;
+    background: rgba(251,146,60,.08); border: 1px solid rgba(251,146,60,.2);
+    border-radius: 4px; padding: 2px 8px;
+    font-variant-numeric: tabular-nums;
+  }
+  .gym-section .section { margin-bottom: 16px; }
+  .gym-section .section:last-child { margin-bottom: 0; }
 
   .section { margin-bottom: 26px; }
   .sec-label {

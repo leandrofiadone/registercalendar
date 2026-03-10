@@ -17,6 +17,13 @@
     if (c) return 'cardio';
     return 'other';
   }
+
+  function gymCount(s) {
+    return new Set([
+      ...(s.fuerza||[]).map(e => e.gimnasio),
+      ...(s.cardio||[]).map(c => c.gimnasio),
+    ].filter(Boolean)).size;
+  }
 </script>
 
 <div class="layout">
@@ -24,12 +31,16 @@
   <div class="sidebar">
     {#each sessions as s, i}
       {@const type = sessionType(s)}
+      {@const gyms = gymCount(s)}
       <button
         class="sidebar-item t-{type}"
         class:active={selectedIdx === i}
         onclick={() => selectedIdx = i}
       >
-        <div class="date">{fmtDate(s.date)}</div>
+        <div class="date">
+          {fmtDate(s.date)}
+          {#if gyms > 1}<span class="multi-gym-badge">{gyms} sesiones</span>{/if}
+        </div>
         <div class="si-tags">
           {#if s.fuerza?.length}
             {#each (s.groups || ['Fuerza']) as g}
@@ -98,7 +109,12 @@
   .sidebar-item:hover  { background: var(--s2); }
   .sidebar-item.active { background: var(--s3); }
 
-  .date  { font-size: 12px; font-weight: 600; color: #bbb; margin-bottom: 5px; }
+  .date { font-size: 12px; font-weight: 600; color: #bbb; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .multi-gym-badge {
+    font-size: 8px; font-weight: 600; color: var(--accent-l);
+    background: rgba(124,106,245,.12); border: 1px solid rgba(124,106,245,.25);
+    border-radius: 3px; padding: 0 5px; font-weight: 500;
+  }
   .si-tags { display: flex; flex-wrap: wrap; gap: 3px; }
 
   .tag {
