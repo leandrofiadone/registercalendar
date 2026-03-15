@@ -1,6 +1,76 @@
 {
   "ventanas": [
     {
+      "ventana_id": "2026-03-15",
+      "protocolo": "ayuno_intermitente",
+      "comidas": [
+        {
+          "tipo": "comida",
+          "hora": "02:39",
+          "fecha": "2026-03-15",
+          "descripcion": "Ensalada con reggianito, arroz yamani y mayo",
+          "alimentos": [
+            {
+              "nombre": "Tomate fresco",
+              "cantidad_g": 140,
+              "kcal": 25.2,
+              "proteina_g": 1.3,
+              "grasa_g": 0.3,
+              "carbos_g": 5.5
+            },
+            {
+              "nombre": "Lechuga",
+              "cantidad_g": 60,
+              "kcal": 9,
+              "proteina_g": 0.8,
+              "grasa_g": 0.1,
+              "carbos_g": 1.7
+            },
+            {
+              "nombre": "Queso reggianito",
+              "cantidad_g": 128,
+              "kcal": 499.2,
+              "proteina_g": 46.1,
+              "grasa_g": 35.8,
+              "carbos_g": 1.9,
+              "notas": "Valores estimados por tabla de referencia; sin etiqueta provista"
+            },
+            {
+              "nombre": "Arroz yamani cocido",
+              "cantidad_g": 300,
+              "kcal": 333,
+              "proteina_g": 7.8,
+              "grasa_g": 2.7,
+              "carbos_g": 69,
+              "notas": "Asumido cocido; si era crudo los valores se triplican aprox."
+            },
+            {
+              "nombre": "Mayonesa",
+              "cantidad_g": 28,
+              "kcal": 190.4,
+              "proteina_g": 0.3,
+              "grasa_g": 21,
+              "carbos_g": 0.1
+            }
+          ],
+          "totales": {
+            "kcal": 1056.8,
+            "proteina_g": 56.3,
+            "grasa_g": 59.9,
+            "carbos_g": 78.2,
+            "estimado": true
+          }
+        }
+      ],
+      "totales_ventana": {
+        "kcal": 1056.8,
+        "proteina_g": 56.3,
+        "grasa_g": 59.9,
+        "carbos_g": 78.2,
+        "nota": "Macros estimados"
+      }
+    },
+    {
       "ventana_id": "2026-03-14",
       "protocolo": "ayuno_intermitente",
       "comidas": [
@@ -193,13 +263,46 @@
             "carbos_g": 8.1,
             "estimado": true
           }
+        },
+        {
+          "tipo": "snack",
+          "hora": "23:49",
+          "fecha": "2026-03-14",
+          "descripcion": "Barra proteica x2 (1 naranja + 1 roja)",
+          "alimentos": [
+            {
+              "nombre": "Barra proteica (packaging naranja)",
+              "cantidad_g": 45,
+              "kcal": 168.5,
+              "proteina_g": 15,
+              "grasa_g": 6.5,
+              "carbos_g": 12.5,
+              "notas": "1 barra = mitad de porción etiqueta (90g = 2 barras). Datos de etiqueta exactos."
+            },
+            {
+              "nombre": "Barra proteica Imagina (packaging rojo)",
+              "cantidad_g": 45,
+              "kcal": 155,
+              "proteina_g": 15,
+              "grasa_g": 5,
+              "carbos_g": 12.5,
+              "notas": "1 barra = mitad de porción etiqueta (90g = 2 barras). Datos de etiqueta exactos."
+            }
+          ],
+          "totales": {
+            "kcal": 323.5,
+            "proteina_g": 30,
+            "grasa_g": 11.5,
+            "carbos_g": 25,
+            "estimado": false
+          }
         }
       ],
       "totales_ventana": {
-        "kcal": 2312.3,
-        "proteina_g": 128.3,
-        "grasa_g": 93.3,
-        "carbos_g": 231.9,
+        "kcal": 2635.8,
+        "proteina_g": 158.3,
+        "grasa_g": 104.8,
+        "carbos_g": 256.9,
         "nota": "Macros estimados"
       }
     },

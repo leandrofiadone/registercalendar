@@ -1,6 +1,7 @@
 <script>
   import { page } from '$app/stores';
   import FastingCounter from '$lib/FastingCounter.svelte';
+  import TrendChip from '$lib/TrendChip.svelte';
   import { localDateStr } from '$lib/utils.js';
 
   let { data, children } = $props();
@@ -65,6 +66,7 @@
     {#if totalKcal > 0}
       <div class="stat-chip">kcal log <span class="v">{Math.round(totalKcal)}</span></div>
     {/if}
+    <TrendChip {ventanas} {sessions} {perfil} />
     <FastingCounter {ventanas} />
   </div>
   <nav class="tabs">

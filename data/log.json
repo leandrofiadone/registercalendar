@@ -1,6 +1,80 @@
 {
   "sessions": [
     {
+      "date": "2026-03-14",
+      "gimnasio": "Sportclub Dot",
+      "ciudad": "Buenos Aires, Argentina",
+      "groups": ["Pecho-Tricep", "Espalda-Bicep"],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Press de banca",
+          "equipo": "Smith Machine",
+          "musculo_principal": "Pectoral mayor",
+          "musculos_secundarios": ["Deltoides anterior", "Tríceps"],
+          "tipo": "maquina_guiada",
+          "sets": [
+            { "set": 1, "reps": 6, "peso_kg": 80 },
+            { "set": 2, "reps": 8, "peso_kg": 80 },
+            { "set": 3, "reps": 5, "peso_kg": 80 },
+            { "set": 4, "reps": 10, "peso_kg": 60 }
+          ],
+          "notas": null
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Extensión de tríceps sobre cabeza unilateral",
+          "equipo": "Precor FTS Glide",
+          "musculo_principal": "Tríceps",
+          "musculos_secundarios": [],
+          "tipo": "maquina_cable",
+          "sets": [
+            { "set": 1, "reps": 14, "peso_kg": 20 },
+            { "set": 2, "reps": 12, "peso_kg": 18 },
+            { "set": 3, "reps": 10, "peso_kg": 21 }
+          ],
+          "notas": "Unilateral, agarre en bola, cada lado por separado"
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Lat Pulldown",
+          "equipo": "Precor Pulldown 304",
+          "musculo_principal": "Dorsal ancho",
+          "musculos_secundarios": ["Romboides", "Bíceps"],
+          "tipo": "maquina_guiada",
+          "sets": [
+            { "set": 1, "reps": 12, "peso_kg": 68 },
+            { "set": 2, "reps": 4, "peso_kg": 90 },
+            { "set": 3, "reps": 6, "peso_kg": 90 }
+          ],
+          "notas": "Pesos originales en libras: 150lb, 199lb, 199lb"
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Cinta",
+          "equipo": null,
+          "hora_inicio": null,
+          "hora_fin": null,
+          "duracion_min": 11,
+          "distancia_km": 1.05,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": null,
+          "velocidad_kmh": 5.7,
+          "inclinacion": 0.0,
+          "intensidad": "baja",
+          "notas": null
+        }
+      ],
+      "nutricion_ref": null,
+      "weight_kg": null,
+      "energy": null,
+      "notes": ""
+    },
+    {
       "date": "2026-03-13",
       "gimnasio": "Sportclub Libertador",
       "ciudad": "Buenos Aires, Argentina",

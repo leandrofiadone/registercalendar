@@ -1,5 +1,6 @@
 <script>
   import { fmtDate } from '$lib/utils.js';
+  import { gymKcalDetallado } from '$lib/activity.js';
 
   let { data } = $props();
   let sessions = $derived(data.sessions);
@@ -34,22 +35,42 @@
       : 1
   );
 
-  let avgKcal = $derived.by(() => {
-    if (!histVentanas.length) return 0;
-    const total = histVentanas.reduce((s, v) => s + (v.totales_ventana?.kcal || 0), 0);
-    return Math.round(total / histVentanas.length);
+  // Rolling 7-day window for trend
+  let rolling7 = $derived.by(() => {
+    if (!perfil) return null;
+    const me = perfil.metabolismo;
+    const pesoKg = perfil.historial_peso?.at(-1)?.peso_kg ?? 80;
+    const today = new Date();
+    const dates = [];
+    for (let i = 1; i <= 7; i++) {
+      const d = new Date(today);
+      d.setDate(d.getDate() - i);
+      dates.push(d.toISOString().split('T')[0]);
+    }
+    let totalConsumed = 0;
+    let totalSpent = 0;
+    for (const date of dates) {
+      const v = ventanas.find(vv => vv.ventana_id === date);
+      totalConsumed += v?.totales_ventana?.kcal || 0;
+      const gymSess = sessions.find(s => s.date === date);
+      let actKcal = 0;
+      if (gymSess) {
+        const det = gymKcalDetallado(gymSess, pesoKg);
+        actKcal = det.fuerza + det.cardio.reduce((sum, c) => sum + c.kcal, 0);
+      }
+      totalSpent += me.gasto_total_descanso_kcal + actKcal;
+    }
+    const days = dates.length;
+    return {
+      days,
+      avgConsumed: Math.round(totalConsumed / days),
+      avgSpent: Math.round(totalSpent / days),
+      avgDeficit: Math.round((totalSpent - totalConsumed) / days),
+    };
   });
 
-  let avgDeficit = $derived.by(() => {
-    if (!perfil || !histVentanas.length) return 0;
-    const me = perfil.metabolismo;
-    const total = histVentanas.reduce((s, v) => {
-      const isGym = sessions.some(ss => ss.date === v.ventana_id);
-      const tdee  = isGym ? me.gasto_total_gym_kcal : me.gasto_total_descanso_kcal;
-      return s + (tdee - (v.totales_ventana?.kcal || 0));
-    }, 0);
-    return Math.round(total / histVentanas.length);
-  });
+  let avgKcal = $derived(rolling7?.avgConsumed ?? 0);
+  let avgDeficit = $derived(rolling7?.avgDeficit ?? 0);
 
   let pesoMap = $derived.by(() => {
     const map = {};
@@ -166,29 +187,42 @@
         </div>
       </div>
 
-      <!-- Resumen del período -->
+      <!-- Tendencia últimos 7 días -->
       <div class="pcard">
-        <div class="pcard-title">Resumen del período registrado</div>
-        <div class="pstat-row">
-          <span class="pstat-lbl">Días con registro</span>
-          <span class="pstat-val">{histVentanas.length}</span>
-        </div>
-        <div class="pstat-row">
-          <span class="pstat-lbl">Promedio diario consumido</span>
-          <span class="pstat-val" class:green={avgKcal <= ob.kcal_objetivo_promedio} class:amber={avgKcal > ob.kcal_objetivo_promedio}>
-            {avgKcal} kcal
-          </span>
-        </div>
-        <div class="pstat-row">
-          <span class="pstat-lbl">Déficit promedio real</span>
-          <span class="pstat-val" style="color:{avgDeficit >= 0 ? 'var(--green)' : 'var(--red)'}">
-            {avgDeficit >= 0 ? '-' : '+'}{Math.abs(avgDeficit)} kcal/día
-          </span>
-        </div>
-        <div class="pstat-row">
-          <span class="pstat-lbl">Pérdida estimada del período</span>
-          <span class="pstat-val green">~{(avgDeficit * histVentanas.length / 7700).toFixed(2)} kg</span>
-        </div>
+        <div class="pcard-title">Tendencia · últimos 7 días</div>
+        {#if rolling7}
+          <div class="pstat-row">
+            <span class="pstat-lbl">Días con registro</span>
+            <span class="pstat-val">{rolling7.days} de 7</span>
+          </div>
+          <div class="pstat-row">
+            <span class="pstat-lbl">Consumo promedio</span>
+            <span class="pstat-val" class:green={avgKcal <= ob.kcal_objetivo_promedio} class:amber={avgKcal > ob.kcal_objetivo_promedio}>
+              {avgKcal} kcal/día
+            </span>
+          </div>
+          <div class="pstat-row">
+            <span class="pstat-lbl">Gasto promedio</span>
+            <span class="pstat-val">{rolling7.avgSpent} kcal/día</span>
+          </div>
+          <div class="pstat-row">
+            <span class="pstat-lbl">Déficit promedio</span>
+            <span class="pstat-val" style="color:{avgDeficit >= 0 ? 'var(--green)' : 'var(--red)'}">
+              {avgDeficit >= 0 ? '-' : '+'}{Math.abs(avgDeficit)} kcal/día
+            </span>
+          </div>
+          <div class="pstat-row">
+            <span class="pstat-lbl">Pérdida estimada semanal</span>
+            <span class="pstat-val" style="color:{avgDeficit >= 0 ? 'var(--green)' : 'var(--red)'}">
+              ~{(avgDeficit * 7 / 7700).toFixed(2)} kg
+            </span>
+          </div>
+          <div class="pstat-row" style="font-size:10px;color:var(--dim);border:none;padding-top:8px">
+            Target déficit: -{ob.deficit_target_kcal} kcal/día · El gasto incluye actividad real (gym + cardio)
+          </div>
+        {:else}
+          <p style="color:var(--dim);font-size:12px">Sin datos en los últimos 7 días</p>
+        {/if}
       </div>
     </div>
 
