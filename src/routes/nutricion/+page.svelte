@@ -1,5 +1,5 @@
 <script>
-  import { fmtDate } from '$lib/utils.js';
+  import { fmtDate, localDateStr } from '$lib/utils.js';
   import VentanaDetail from '$lib/VentanaDetail.svelte';
 
   let { data } = $props();
@@ -9,7 +9,7 @@
   // Inyecta ventana virtual para hoy si no existe en el JSON
   let ventanas = $derived.by(() => {
     const raw      = data.ventanas;
-    const todayStr = new Date().toISOString().split('T')[0];
+    const todayStr = localDateStr();
     const hasToday = raw.some(v => v.ventana_id === todayStr);
     if (hasToday) return raw;
     const virtual = {

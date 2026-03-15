@@ -21,6 +21,8 @@ const MET_CARDIO = {
   sauna:        { baja: 1.5, moderada: 1.8, alta: 1.8 },
   // Ducha fría: vasoconstricción, gasto mínimo
   ducha_fria:   { baja: 1.2, moderada: 1.2, alta: 1.2 },
+  // Sexo: MET según esfuerzo (Compendium 18210-18220)
+  sexo:         { baja: 1.3, moderada: 1.8, alta: 2.8 },
 };
 
 /**
@@ -48,6 +50,7 @@ function normalizarTipo(ejercicio) {
   if (e.includes('estira') || e.includes('stretch'))                             return 'estiramiento';
   if (e.includes('sauna') || e.includes('vapor') || e.includes('bano turco'))   return 'sauna';
   if (e.includes('ducha'))                                                        return 'ducha_fria';
+  if (e.includes('sex'))                                                          return 'sexo';
   return null;
 }
 
@@ -167,6 +170,7 @@ export function actividadLabel(tipo) {
     estiramiento: 'Estiramiento',
     sauna:        'Sauna',
     ducha_fria:   'Ducha fría',
+    sexo:         'Sexo',
   };
   return labels[tipo] ?? tipo;
 }

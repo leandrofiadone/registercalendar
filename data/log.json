@@ -1,6 +1,593 @@
 {
   "sessions": [
     {
+      "date": "2026-03-13",
+      "gimnasio": "Sportclub Libertador",
+      "ciudad": "Buenos Aires, Argentina",
+      "groups": ["Espalda-Bicep", "Piernas", "Cardio"],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Curl Bíceps Rangos Parciales",
+          "equipo": "Kettlebell",
+          "musculo_principal": "Bíceps",
+          "musculos_secundarios": ["Braquial", "Braquiorradial"],
+          "tipo": "dropset_mancuerna",
+          "sets": [
+            {
+              "set": 1,
+              "tipo": "dropset",
+              "drops": [
+                { "drop": 1, "reps": 16, "peso_kg": 10 },
+                { "drop": 2, "reps": 16, "peso_kg": 10 },
+                { "drop": 3, "reps": 16, "peso_kg": 10 }
+              ]
+            },
+            {
+              "set": 2,
+              "tipo": "dropset",
+              "drops": [
+                { "drop": 1, "reps": 16, "peso_kg": 10 },
+                { "drop": 2, "reps": 16, "peso_kg": 10 },
+                { "drop": 3, "reps": 16, "peso_kg": 10 }
+              ]
+            },
+            {
+              "set": 3,
+              "tipo": "dropset",
+              "drops": [
+                { "drop": 1, "reps": 16, "peso_kg": 10 },
+                { "drop": 2, "reps": 16, "peso_kg": 10 },
+                { "drop": 3, "reps": 16, "peso_kg": 10 }
+              ]
+            }
+          ],
+          "notas": "Técnica rangos parciales: drop 1 = mitad superior, drop 2 = mitad inferior, drop 3 = recorrido completo. Sin descanso entre drops."
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Kettlebell Around the World",
+          "equipo": "Kettlebell",
+          "musculo_principal": "Core",
+          "musculos_secundarios": ["Deltoides", "Trapecio", "Antebrazo"],
+          "tipo": "mancuerna_libre",
+          "sets": [
+            { "set": 1, "reps": 60, "peso_kg": null },
+            { "set": 2, "reps": 60, "peso_kg": null },
+            { "set": 3, "reps": 60, "peso_kg": null }
+          ],
+          "notas": "30 reps por lado por serie, alternando dirección. Peso de kettlebell no especificado."
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Leg Extension",
+          "equipo": "Máquina guiada",
+          "musculo_principal": "Cuádriceps",
+          "musculos_secundarios": [],
+          "tipo": "maquina_guiada",
+          "sets": [
+            { "set": 1, "reps": 10, "peso_kg": 105 },
+            { "set": 2, "reps": 10, "peso_kg": 105 },
+            { "set": 3, "reps": 10, "peso_kg": 105 }
+          ],
+          "notas": null
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Caminata exterior",
+          "equipo": null,
+          "hora_inicio": null,
+          "hora_fin": null,
+          "duracion_min": 34.22,
+          "distancia_km": 2.16,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": 138,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "baja",
+          "notas": "Ritmo medio 15:49 min/km. Zona Núñez/Coghlan."
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Caminata exterior",
+          "equipo": null,
+          "hora_inicio": null,
+          "hora_fin": "20:25",
+          "duracion_min": 13.2,
+          "distancia_km": 0.86,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": 51,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "baja",
+          "notas": "Ritmo medio 15:16 min/km. Zona Núñez/Saavedra."
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Natación",
+          "equipo": null,
+          "hora_inicio": null,
+          "hora_fin": null,
+          "duracion_min": 20,
+          "distancia_km": null,
+          "distancia_m": 375,
+          "largos": 15,
+          "pasos": null,
+          "kcal": 250,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "moderada",
+          "notas": "Pileta de 25m, 15 largos. Kcal estimadas por peso corporal 130kg."
+        }
+      ],
+      "nutricion_ref": null,
+      "weight_kg": null,
+      "energy": null,
+      "notes": ""
+    },
+    {
+      "date": "2026-03-12",
+      "gimnasio": "Sportclub",
+      "ciudad": "Buenos Aires, Argentina",
+      "groups": ["Pecho-Tricep", "Hombros", "Cardio"],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Pushdown de Tríceps",
+          "equipo": "Polea alta",
+          "musculo_principal": "Tríceps",
+          "musculos_secundarios": [],
+          "tipo": "maquina_cable",
+          "sets": [
+            { "set": 1, "reps": 35, "peso_kg": 50 },
+            { "set": 2, "reps": 8,  "peso_kg": 70 },
+            { "set": 3, "reps": 4,  "peso_kg": 85 }
+          ],
+          "notas": null
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Pec Deck",
+          "equipo": "Máquina Bodytone",
+          "musculo_principal": "Pectoral mayor",
+          "musculos_secundarios": ["Deltoides anterior"],
+          "tipo": "maquina_guiada",
+          "sets": [
+            { "set": 1, "reps": 10, "peso_kg": 107 },
+            { "set": 2, "reps": 6,  "peso_kg": 107 },
+            { "set": 3, "reps": 6,  "peso_kg": 107 },
+            { "set": 4, "reps": 14, "peso_kg": 65  },
+            { "set": 5, "reps": 6,  "peso_kg": 93  }
+          ],
+          "notas": null
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Shrug",
+          "equipo": "Mancuerna",
+          "musculo_principal": "Trapecio superior",
+          "musculos_secundarios": ["Elevador de la escápula"],
+          "tipo": "mancuerna_libre",
+          "sets": [
+            { "set": 1, "reps": 20, "peso_kg": 32.5 },
+            { "set": 2, "reps": 16, "peso_kg": 32.5 },
+            { "set": 3, "reps": 16, "peso_kg": 32.5 }
+          ],
+          "notas": null
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Caminata exterior",
+          "equipo": null,
+          "hora_inicio": "02:29",
+          "hora_fin": "02:44",
+          "duracion_min": 14.73,
+          "distancia_km": 0.86,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": 52,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "baja",
+          "notas": "Ritmo medio 17:12 min/km"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Caminata exterior",
+          "equipo": null,
+          "hora_inicio": "02:45",
+          "hora_fin": "02:54",
+          "duracion_min": 9.1,
+          "distancia_km": 1.15,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": 57,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "alta",
+          "notas": "Ritmo medio 07:53 min/km"
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Caminata exterior",
+          "equipo": null,
+          "hora_inicio": "02:54",
+          "hora_fin": "03:11",
+          "duracion_min": 16.33,
+          "distancia_km": 1.11,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": 72,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "baja",
+          "notas": "Ritmo medio 14:45 min/km"
+        },
+        {
+          "orden": 4,
+          "ejercicio": "Caminata",
+          "equipo": null,
+          "hora_inicio": null,
+          "hora_fin": null,
+          "duracion_min": 23,
+          "distancia_km": 1.74,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": 103,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "baja",
+          "notas": "Ritmo medio 13:15 min/km"
+        },
+        {
+          "orden": 5,
+          "ejercicio": "Caminata",
+          "equipo": null,
+          "hora_inicio": null,
+          "hora_fin": null,
+          "duracion_min": 23,
+          "distancia_km": 1.74,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": 103,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "baja",
+          "notas": "Ritmo medio 13:15 min/km"
+        },
+        {
+          "orden": 7,
+          "ejercicio": "Running exterior",
+          "equipo": null,
+          "hora_inicio": null,
+          "hora_fin": null,
+          "duracion_min": 9,
+          "distancia_km": 1.04,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": 149,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "alta",
+          "notas": "Ritmo medio 8:26 min/km"
+        },
+        {
+          "orden": 8,
+          "ejercicio": "Caminata exterior",
+          "equipo": null,
+          "hora_inicio": null,
+          "hora_fin": null,
+          "duracion_min": 22,
+          "distancia_km": 1.09,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": 123,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "baja",
+          "notas": "Ritmo medio 19:57 min/km"
+        },
+        {
+          "orden": 9,
+          "ejercicio": "Sauna",
+          "equipo": null,
+          "hora_inicio": null,
+          "hora_fin": null,
+          "duracion_min": 25,
+          "distancia_km": null,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": null,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": null,
+          "notas": null
+        }
+      ],
+      "nutricion_ref": null,
+      "weight_kg": null,
+      "energy": null,
+      "notes": "Gym (Pecho-Tricep + Hombros) + 3 caminatas nocturnas + 2 caminatas diurnas + 1 running + 1 caminata + sauna. Total: 8.73 km, ~117 min, 659 kcal cardio."
+    },
+    {
+      "date": "2026-03-11",
+      "gimnasio": "SportClub Dot",
+      "ciudad": "Buenos Aires, Argentina",
+      "groups": ["Piernas", "Espalda-Bicep"],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Leg Press",
+          "equipo": "Máquina Technogym",
+          "musculo_principal": "Cuádriceps",
+          "musculos_secundarios": ["Glúteo mayor", "Isquiotibiales"],
+          "tipo": "maquina_guiada",
+          "sets": [
+            { "set": 1, "reps": 10, "peso_kg": 40 },
+            { "set": 2, "reps": 10, "peso_kg": 140 },
+            { "set": 3, "reps": 10, "peso_kg": 140 },
+            { "set": 4, "reps": 10, "peso_kg": 140 }
+          ],
+          "notas": "Set 1 calentamiento. Peso total cargado en máquina."
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Dominadas asistidas agarre overhand medio",
+          "equipo": "Torre asistida",
+          "musculo_principal": "Dorsal ancho",
+          "musculos_secundarios": ["Romboides", "Bíceps", "Trapecio inferior"],
+          "tipo": "peso_corporal",
+          "sets": [
+            { "set": 1, "reps": 5, "peso_kg": 90 },
+            { "set": 2, "reps": 2, "peso_kg": 40 },
+            { "set": 3, "reps": 7, "peso_kg": 70 },
+            { "set": 4, "reps": 7, "peso_kg": 70 },
+            { "set": 5, "reps": 6, "peso_kg": 70 }
+          ],
+          "notas": "Máquina asistida. peso_kg = kg de asistencia restada. Peso corporal 130kg. Set 1 calentamiento (efectivo 40kg). Set 2 costó mucho (efectivo 90kg)."
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Chin-ups asistidas agarre supino",
+          "equipo": "Torre asistida",
+          "musculo_principal": "Dorsal ancho",
+          "musculos_secundarios": ["Bíceps", "Romboides"],
+          "tipo": "peso_corporal",
+          "sets": [
+            { "set": 1, "reps": 6, "peso_kg": 70 },
+            { "set": 2, "reps": 7, "peso_kg": 70 },
+            { "set": 3, "reps": 6, "peso_kg": 70 }
+          ],
+          "notas": "Máquina asistida. peso_kg = kg de asistencia restada. Barra curva interior agarre supino."
+        },
+        {
+          "orden": 4,
+          "ejercicio": "Reverse Curl en banco Scott",
+          "equipo": "Mancuerna",
+          "musculo_principal": "Braquiorradial",
+          "musculos_secundarios": ["Bíceps", "Braquial"],
+          "tipo": "mancuerna_libre",
+          "sets": [
+            { "set": 1, "reps": 20, "peso_kg": 10 },
+            { "set": 2, "reps": 16, "peso_kg": 10 },
+            { "set": 3, "reps": 13, "peso_kg": 10 }
+          ],
+          "notas": "Agarre pronado. 10kg por cada mano."
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Cinta",
+          "equipo": "Precor",
+          "hora_inicio": null,
+          "hora_fin": "18:05",
+          "duracion_min": 19,
+          "distancia_km": null,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": 42.3,
+          "velocidad_kmh": 6.6,
+          "inclinacion": 0.0,
+          "intensidad": "baja",
+          "notas": "Caminata/trote ligero. Velocidad media 6.6 km/h."
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Caminata exterior",
+          "equipo": null,
+          "hora_inicio": null,
+          "hora_fin": null,
+          "duracion_min": 33,
+          "distancia_km": 2.54,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": 154,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "baja",
+          "notas": "2 tramos ida y vuelta. Ritmo medio 12:50 min/km. Zona Coghlan."
+        }
+      ],
+      "nutricion_ref": null,
+      "weight_kg": 130,
+      "energy": null,
+      "notes": ""
+    },
+    {
+      "date": "2026-03-10",
+      "gimnasio": "Sportclub Belgrano Olazabal",
+      "ciudad": "Buenos Aires, Argentina",
+      "groups": ["Espalda-Bicep", "Cardio"],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Curl Bíceps Rangos Parciales",
+          "equipo": "Kettlebell",
+          "musculo_principal": "Bíceps",
+          "musculos_secundarios": ["Braquial", "Braquiorradial"],
+          "tipo": "dropset_mancuerna",
+          "sets": [
+            {
+              "set": 1,
+              "tipo": "dropset",
+              "drops": [
+                { "drop": 1, "reps": 16, "peso_kg": 12 },
+                { "drop": 2, "reps": 16, "peso_kg": 12 },
+                { "drop": 3, "reps": 16, "peso_kg": 12 }
+              ]
+            },
+            {
+              "set": 2,
+              "tipo": "dropset",
+              "drops": [
+                { "drop": 1, "reps": 16, "peso_kg": 12 },
+                { "drop": 2, "reps": 16, "peso_kg": 12 },
+                { "drop": 3, "reps": 16, "peso_kg": 12 }
+              ]
+            },
+            {
+              "set": 3,
+              "tipo": "dropset",
+              "drops": [
+                { "drop": 1, "reps": 16, "peso_kg": 12 },
+                { "drop": 2, "reps": 16, "peso_kg": 12 },
+                { "drop": 3, "reps": 16, "peso_kg": 12 }
+              ]
+            },
+            {
+              "set": 4,
+              "tipo": "dropset",
+              "drops": [
+                { "drop": 1, "reps": 16, "peso_kg": 12 },
+                { "drop": 2, "reps": 16, "peso_kg": 12 },
+                { "drop": 3, "reps": 16, "peso_kg": 12 }
+              ]
+            }
+          ],
+          "notas": "Técnica rangos parciales: drop 1 = mitad superior, drop 2 = mitad inferior, drop 3 = recorrido completo. Sin descanso entre drops."
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Curl Bíceps Rangos Parciales",
+          "equipo": "Kettlebell",
+          "musculo_principal": "Bíceps",
+          "musculos_secundarios": ["Braquial", "Braquiorradial"],
+          "tipo": "dropset_mancuerna",
+          "sets": [
+            {
+              "set": 1,
+              "tipo": "dropset",
+              "drops": [
+                { "drop": 1, "reps": null, "peso_kg": 16 },
+                { "drop": 2, "reps": null, "peso_kg": 16 },
+                { "drop": 3, "reps": null, "peso_kg": 16 }
+              ]
+            },
+            {
+              "set": 2,
+              "tipo": "dropset",
+              "drops": [
+                { "drop": 1, "reps": null, "peso_kg": 16 },
+                { "drop": 2, "reps": null, "peso_kg": 16 },
+                { "drop": 3, "reps": null, "peso_kg": 16 }
+              ]
+            }
+          ],
+          "notas": "2 series incompletas al intentar subir a 16kg."
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Curl Bíceps con Impulso (apoyo en pared)",
+          "equipo": "Kettlebell",
+          "musculo_principal": "Bíceps",
+          "musculos_secundarios": ["Braquial", "Braquiorradial", "Deltoides anterior"],
+          "tipo": "mancuerna_libre",
+          "sets": [
+            { "set": 1, "reps": 12, "peso_kg": 24 },
+            { "set": 2, "reps": 12, "peso_kg": 24 },
+            { "set": 3, "reps": 12, "peso_kg": 24 }
+          ],
+          "notas": "24kg por cada lado. Apoyo de mano libre en pared para estabilización. Ejecución con leve impulso."
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Caminata",
+          "equipo": null,
+          "hora_inicio": "13:00",
+          "hora_fin": null,
+          "duracion_min": 28,
+          "distancia_km": 1.78,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": 112,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "baja",
+          "notas": "Caminata de ida al gimnasio."
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Caminata",
+          "equipo": null,
+          "hora_inicio": "14:05",
+          "hora_fin": "14:29",
+          "duracion_min": 24,
+          "distancia_km": 1.64,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": 99,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "baja",
+          "notas": "Caminata de vuelta. Ritmo medio 14:33 min/km."
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Sauna",
+          "equipo": null,
+          "hora_inicio": null,
+          "hora_fin": null,
+          "duracion_min": 20,
+          "distancia_km": null,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": null,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "baja",
+          "notas": "Al finalizar el entrenamiento."
+        }
+      ],
+      "nutricion_ref": null,
+      "weight_kg": null,
+      "energy": null,
+      "notes": ""
+    },
+    {
       "date": "2026-03-09",
       "gimnasio": "Sportclub Belgrano + Sportclub Saavedra",
       "ciudad": "Buenos Aires, Argentina",

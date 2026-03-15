@@ -1,6 +1,7 @@
 <script>
   import { page } from '$app/stores';
   import FastingCounter from '$lib/FastingCounter.svelte';
+  import { localDateStr } from '$lib/utils.js';
 
   let { data, children } = $props();
 
@@ -18,7 +19,7 @@
     const dateSet = new Set(sessions.map(s => s.date));
     let count = 0;
     const d = new Date();
-    while (dateSet.has(d.toISOString().split('T')[0])) {
+    while (dateSet.has(localDateStr(d))) {
       count++;
       d.setDate(d.getDate() - 1);
     }

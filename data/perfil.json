@@ -7,7 +7,8 @@
   "protocolo": "Ayuno intermitente 16h",
 
   "historial_peso": [
-    { "fecha": "2026-03-08", "peso_kg": 130 }
+    { "fecha": "2026-03-08", "peso_kg": 130 },
+    { "fecha": "2026-03-14", "peso_kg": 127.1 }
   ],
 
   "metabolismo": {

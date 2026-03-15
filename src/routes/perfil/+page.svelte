@@ -51,6 +51,14 @@
     return Math.round(total / histVentanas.length);
   });
 
+  let pesoMap = $derived.by(() => {
+    const map = {};
+    for (const p of (perfil?.historial_peso || [])) {
+      map[p.fecha] = p.peso_kg;
+    }
+    return map;
+  });
+
   let histRows = $derived.by(() => {
     if (!perfil) return [];
     const me = perfil.metabolismo;
@@ -65,7 +73,19 @@
       const barCol  = kcal <= ob.kcal_objetivo_promedio ? 'var(--green)' : 'var(--amber)';
       const defSign = deficit >= 0 ? '-' : '+';
       const defCol  = deficit >= 0 ? 'var(--green)' : 'var(--red)';
-      return { date: v.ventana_id, kcal, pct, barCol, deficit, defSign, defCol, isGym };
+      const peso    = pesoMap[v.ventana_id] ?? null;
+      return { date: v.ventana_id, kcal, pct, barCol, deficit, defSign, defCol, isGym, peso };
+    });
+  });
+
+  let pesoHistory = $derived.by(() => {
+    if (!perfil?.historial_peso?.length) return [];
+    const sorted = [...perfil.historial_peso].sort((a, b) => a.fecha.localeCompare(b.fecha));
+    return sorted.map((p, i) => {
+      const prev = i > 0 ? sorted[i - 1] : null;
+      const delta = prev ? +(p.peso_kg - prev.peso_kg).toFixed(1) : null;
+      const dias  = prev ? Math.round((new Date(p.fecha) - new Date(prev.fecha)) / 86400000) : null;
+      return { ...p, delta, dias };
     });
   });
 </script>
@@ -181,7 +201,7 @@
         {#each histRows as row}
           <div class="hist-row">
             <span class="hist-date">
-              {fmtDate(row.date)}{#if row.isGym} <span style="font-size:9px;color:var(--accent-l)">gym</span>{/if}
+              {fmtDate(row.date)}{#if row.isGym} <span style="font-size:9px;color:var(--accent-l)">gym</span>{/if}{#if row.peso} <span class="hist-peso-badge">{row.peso}kg</span>{/if}
             </span>
             <div class="hist-bar-wrap">
               <div class="hist-bar-fill" style="width:{row.pct}%;background:{row.barCol}"></div>
@@ -195,6 +215,39 @@
         Verde = dentro del target promedio ({ob.kcal_objetivo_promedio} kcal) · Ámbar = por encima<br>
         El número al final muestra cuánto menos (verde) o más (rojo) comiste vs lo que quemaste ese día
       </div>
+    </div>
+
+    <!-- Registro de pesos -->
+    <div class="pcard">
+      <div class="pcard-title">Registro de pesos</div>
+      {#if pesoHistory.length === 0}
+        <p style="color:var(--dim);font-size:12px">Sin registros</p>
+      {:else}
+        {#each [...pesoHistory].reverse() as entry}
+          <div class="peso-row">
+            <span class="peso-row-date">{fmtDate(entry.fecha)}</span>
+            <span class="peso-row-val">{entry.peso_kg}<span class="peso-row-unit">kg</span></span>
+            {#if entry.delta !== null}
+              <span class="peso-row-delta" style="color:{entry.delta <= 0 ? 'var(--green)' : 'var(--red)'}">
+                {entry.delta > 0 ? '+' : ''}{entry.delta} kg
+              </span>
+              <span class="peso-row-dias">{entry.dias}d</span>
+            {:else}
+              <span class="peso-row-delta" style="color:var(--dim)">inicio</span>
+              <span class="peso-row-dias"></span>
+            {/if}
+          </div>
+        {/each}
+        {#if pesoHistory.length >= 2}
+          {@const first = pesoHistory[0]}
+          {@const last = pesoHistory[pesoHistory.length - 1]}
+          {@const totalDelta = +(last.peso_kg - first.peso_kg).toFixed(1)}
+          {@const totalDias = Math.round((new Date(last.fecha) - new Date(first.fecha)) / 86400000)}
+          <div class="peso-total">
+            Total: <strong style="color:{totalDelta <= 0 ? 'var(--green)' : 'var(--red)'}">{totalDelta > 0 ? '+' : ''}{totalDelta} kg</strong> en {totalDias} días
+          </div>
+        {/if}
+      {/if}
     </div>
   {/if}
 </div>
@@ -254,6 +307,28 @@
   .hist-bar-fill { height: 100%; border-radius: 3px; }
   .hist-kcal { width: 54px; text-align: right; color: var(--text); font-weight: 600; }
   .hist-deficit { width: 60px; text-align: right; font-size: 10px; }
+
+  .hist-peso-badge {
+    font-size: 8px; color: #c084fc; background: rgba(192,132,252,0.12);
+    border: 1px solid rgba(192,132,252,0.2); border-radius: 3px;
+    padding: 0 3px; font-weight: 600; margin-left: 2px;
+  }
+
+  .peso-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 7px 0; border-bottom: 1px solid var(--b1); font-size: 12px;
+  }
+  .peso-row:last-of-type { border-bottom: none; }
+  .peso-row-date { color: var(--muted); width: 80px; flex-shrink: 0; font-size: 11px; }
+  .peso-row-val { font-weight: 700; color: var(--text); font-size: 16px; }
+  .peso-row-unit { font-size: 11px; color: var(--muted); margin-left: 2px; }
+  .peso-row-delta { font-size: 11px; font-weight: 600; margin-left: auto; }
+  .peso-row-dias { font-size: 10px; color: var(--dim); width: 28px; text-align: right; }
+
+  .peso-total {
+    margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--b1);
+    font-size: 11px; color: var(--muted);
+  }
 
   .empty-state {
     height: 100%; display: flex; flex-direction: column;

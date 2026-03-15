@@ -1,5 +1,5 @@
 <script>
-  import { fmtDateLong } from '$lib/utils.js';
+  import { fmtDateLong, localDateStr } from '$lib/utils.js';
   import { mealToDate, gapHours, getFastingStage, fmtGap, getAllMealsSorted } from '$lib/fasting.js';
   import { actividadKcal, gymKcalDetallado, actividadLabel } from '$lib/activity.js';
 
@@ -67,7 +67,7 @@
     const kcalObj             = kcalBase + kcalActividad;
     const margen              = Math.round(kcalObj - t.kcal);
     const dayLabel            = gymSess ? 'día de gym' : actsExtra.length ? 'día activo' : 'día de descanso';
-    const todayStr            = new Date().toISOString().split('T')[0];
+    const todayStr            = localDateStr();
     const isToday             = ventana.ventana_id === todayStr;
     const targetCumplido      = deficitConActividad >= deficitTarget;
 
@@ -554,11 +554,23 @@
   /* Zonas de fondo (lo que QUEDA por consumir) */
   .tb-zone-green {
     position: absolute; top: 0; bottom: 0; left: 0;
-    background: rgba(74,222,128,.12);
+    background: repeating-linear-gradient(
+      -45deg,
+      rgba(74,222,128,.18) 0px,
+      rgba(74,222,128,.18) 3px,
+      rgba(74,222,128,.05) 3px,
+      rgba(74,222,128,.05) 9px
+    );
   }
   .tb-zone-gym {
     position: absolute; top: 0; bottom: 0;
-    background: rgba(74,222,128,.05);
+    background: repeating-linear-gradient(
+      -45deg,
+      rgba(22,163,74,.14) 0px,
+      rgba(22,163,74,.14) 3px,
+      rgba(22,163,74,.03) 3px,
+      rgba(22,163,74,.03) 9px
+    );
     border-left: 1px dashed rgba(74,222,128,.2);
     border-right: 1px dashed rgba(74,222,128,.2);
   }

@@ -1,3 +1,8 @@
+// Retorna YYYY-MM-DD en hora local (evita el offset UTC que desplaza el día)
+export function localDateStr(d = new Date()) {
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
 export function fmtDate(d) {
   const [y, m, day] = d.split('-');
   const M = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];

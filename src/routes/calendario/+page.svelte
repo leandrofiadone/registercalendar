@@ -162,6 +162,8 @@
           const d = info.date.toISOString().split('T')[0];
           const gymDates   = new Set(sessions.map(s => s.date));
           const nutriDates = new Set(ventanas.map(v => v.ventana_id));
+          const pesoByDate = {};
+          for (const p of (perfil?.historial_peso || [])) pesoByDate[p.fecha] = p.peso_kg;
           const frame = info.el.querySelector('.fc-daygrid-day-frame');
           if (frame) {
             if (calView === 'gym'       && gymDates.has(d))   frame.style.background = 'rgba(124,106,245,0.06)';
@@ -187,6 +189,14 @@
                 'z-index:0',
               ].join(';');
               frame.appendChild(line);
+            }
+
+            // Weight badge
+            if (pesoByDate[d] && frame) {
+              const wb = document.createElement('div');
+              wb.className = 'peso-cal-badge';
+              wb.textContent = pesoByDate[d] + ' kg';
+              frame.appendChild(wb);
             }
 
             // Moon phase badge — only label for Luna llena / Luna nueva
@@ -433,5 +443,16 @@
   :global(.moon-label) {
     font-size: 10px; color: var(--muted);
     letter-spacing: 0.02em; white-space: nowrap;
+  }
+
+  /* Weight badge */
+  :global(.peso-cal-badge) {
+    position: absolute; bottom: 4px; left: 5px;
+    font-size: 9px; font-weight: 700;
+    color: #c084fc;
+    background: rgba(192,132,252,0.1);
+    border: 1px solid rgba(192,132,252,0.2);
+    border-radius: 3px; padding: 1px 4px;
+    pointer-events: none; line-height: 1.3;
   }
 </style>
