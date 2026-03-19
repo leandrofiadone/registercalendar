@@ -20,7 +20,7 @@
 
 {#if stage}
   <div
-    class="fc"
+    class="fasting-chip"
     style="color:{stage.color};background:{stage.glow};border-color:{stage.color}33"
     title="{stage.desc} · Última ingesta: {stage.lastHora} del {stage.lastFecha}"
   >
@@ -31,7 +31,7 @@
 {/if}
 
 <style>
-  .fc {
+  .fasting-chip {
     display: flex; align-items: center; gap: 5px;
     border: 1px solid; border-radius: 6px;
     padding: 3px 10px; font-size: 11px;

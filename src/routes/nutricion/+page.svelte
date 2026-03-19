@@ -1,5 +1,6 @@
 <script>
   import { fmtDate, localDateStr } from '$lib/utils.js';
+  import { fade } from 'svelte/transition';
   import VentanaDetail from '$lib/VentanaDetail.svelte';
 
   let { data } = $props();
@@ -24,15 +25,31 @@
   });
 
   let selectedIdx = $state(0);
+  let filterText = $state('');
+
+  let filtered = $derived.by(() => {
+    const q = filterText.trim().toLowerCase();
+    if (!q) return ventanas.map((v, i) => ({ v, i }));
+    return ventanas
+      .map((v, i) => ({ v, i }))
+      .filter(({ v }) => {
+        const date = v.ventana_id;
+        const descs = (v.comidas || []).map(c => (c.descripcion || '').toLowerCase()).join(' ');
+        return date.includes(q) || descs.includes(q);
+      });
+  });
 </script>
 
 <div class="layout">
   <!-- Sidebar -->
   <div class="sidebar">
-    {#if ventanas.length === 0}
-      <div style="padding:20px;color:var(--dim);font-size:12px">Sin registros</div>
+    <div class="filter-box">
+      <input class="filter-input" type="text" placeholder="Buscar..." bind:value={filterText} />
+    </div>
+    {#if filtered.length === 0}
+      <div style="padding:20px;color:var(--dim);font-size:12px">Sin resultados</div>
     {:else}
-      {#each ventanas as v, i}
+      {#each filtered as { v, i }}
         {@const t = v.totales_ventana || {}}
         {@const nComidas = v.comidas?.length || 0}
         <button
@@ -67,13 +84,18 @@
       <div class="empty-state">
         <div class="ei">🥗</div>
         <p>Sin registros de nutrición</p>
+        <p class="es-hint">Agregá tu primera ventana en <code>data/nutricion.json</code></p>
       </div>
     {:else if ventanas[selectedIdx]}
-      <VentanaDetail ventana={ventanas[selectedIdx]} {perfil} {sessions} {ventanas} {alimentosRef} />
+      {#key selectedIdx}
+        <div in:fade={{ duration: 150 }}>
+          <VentanaDetail ventana={ventanas[selectedIdx]} {perfil} {sessions} {ventanas} {alimentosRef} />
+        </div>
+      {/key}
     {:else}
       <div class="empty-state">
         <div class="ei">🥗</div>
-        <p>Seleccioná una ventana de alimentación</p>
+        <p>Seleccioná un día de la lista</p>
       </div>
     {/if}
   </div>
@@ -92,6 +114,17 @@
     border-right: 1px solid var(--b1);
     overflow-y: auto; background: var(--s1);
   }
+
+  .filter-box { padding: 8px 10px; border-bottom: 1px solid var(--b1); }
+  .filter-input {
+    width: 100%; padding: 5px 8px;
+    background: var(--s2); border: 1px solid var(--b1);
+    border-radius: 4px; color: var(--text);
+    font-size: 11px; font-family: inherit;
+    outline: none;
+  }
+  .filter-input::placeholder { color: var(--dim); }
+  .filter-input:focus { border-color: var(--accent); }
 
   .sidebar-item {
     width: 100%;
@@ -141,4 +174,23 @@
   }
   .ei { font-size: 36px; opacity: 0.35; }
   .empty-state p { font-size: 13px; }
+  .es-hint { font-size: 11px; color: var(--dim); }
+  .es-hint code { background: var(--s2); padding: 1px 5px; border-radius: 3px; font-size: 10px; }
+
+  @media (max-width: 768px) {
+    .layout { flex-direction: column; }
+    .sidebar {
+      width: 100%; flex-shrink: 0;
+      max-height: 140px; border-right: none;
+      border-bottom: 1px solid var(--b1);
+      display: flex; overflow-x: auto; overflow-y: hidden;
+    }
+    .sidebar-item {
+      flex-shrink: 0; width: auto;
+      padding: 8px 12px; border-bottom: none;
+      border-right: 1px solid var(--b1);
+    }
+    .sidebar-item::before { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: 3px; }
+    .main { padding: 16px; }
+  }
 </style>

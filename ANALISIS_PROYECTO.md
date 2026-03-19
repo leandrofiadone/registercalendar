@@ -365,17 +365,17 @@ gimnasios        (id, nombre, ciudad, cadena)
 
 ### Impacto alto, esfuerzo medio
 5. ~~**Agregar `ref_id` a alimentos en nutricion.json**~~ — HECHO. 126/129 alimentos matcheados (97.7%). Se agregaron aliases a alimentos_ref para "Buñuelo de acelga" y "Sardinas en aceite vegetal". Quedan 3 sin match: barra de cereales Muecas, barrita de frutos secos genérica, ensalada mixta compuesta — requieren entries nuevas en alimentos_ref.
-6. **Partir VentanaDetail.svelte en sub-componentes** — Mantenibilidad
-7. **Normalizar gimnasios** con archivo de referencia
+6. ~~**Partir VentanaDetail.svelte en sub-componentes**~~ — HECHO. VentanaDetail reducido de 927 a ~270 líneas. Extraídos: CalorieBudgetBar.svelte (~100 ln), MealCard.svelte (~90 ln), MicronutrientPanel.svelte (~95 ln). MicronutrientPanel usa `ref_id` para lookup directo.
+7. ~~**Normalizar gimnasios**~~ — HECHO. Creado `data/gimnasios_ref.json` con 5 sucursales SportClub. Normalizados nombres en log.json (capitalización unificada, "Sportclub" genérico → sc_dot, "Mar del Plata" sin branch → sc_mdp_hermitage). Agregado `gimnasio_id` como FK en 9 sesiones y 7 ejercicios. Multi-gym (09/03) usa `gimnasio_ids` array. Cargado en `+layout.server.js` como `gimnasiosRef`.
 
 ### Impacto medio, esfuerzo medio
-8. **Responsive/mobile** — Si se usa desde el celular
-9. **Búsqueda/filtro en sidebars** — Necesario pronto (90+ entradas en 3 meses)
-10. **Gráficos de tendencia en perfil** — Line chart peso + bar chart déficit
+8. ~~**Responsive/mobile**~~ — HECHO. Layout global: header wrap en 2 filas + tabs como bottom-bar fija en < 768px. Sesiones y Nutrición: sidebars pasan a scroll horizontal arriba. Calendario ya tenía breakpoint mobile previo.
+9. ~~**Búsqueda/filtro en sidebars**~~ — HECHO. Input de filtro en ambas sidebars. Sesiones filtra por fecha, grupo muscular y gimnasio. Nutrición filtra por fecha y descripción de comidas.
+10. ~~**Gráficos de tendencia en perfil**~~ — HECHO. Line chart SVG de evolución de peso (polyline con puntos) y bar chart SVG de balance calórico diario (verde=déficit, rojo=exceso, línea base punteada). Sin dependencias externas.
 
 ### Impacto bajo, esfuerzo bajo (cuando haya tiempo)
-11. Agregar `"tipo": "standard"` a sets normales
-12. Bundlear FullCalendar como dependencia npm
-13. Mejorar empty states con CTAs
-14. Agregar transiciones entre vistas
-15. Accesibilidad (aria-labels)
+11. ~~Agregar `"tipo": "standard"` a sets normales~~ — HECHO. 89 sets normalizados con `"tipo": "standard"`. Total: 89 standard + 18 dropset = 107 sets con discriminador uniforme.
+12. ~~Bundlear FullCalendar como dependencia npm~~ — HECHO. Instalado `@fullcalendar/core`, `@fullcalendar/daygrid`, `@fullcalendar/list`. Eliminado CDN script tag y polling interval. Importa Calendar + plugins + locale ES directamente.
+13. ~~Mejorar empty states con CTAs~~ — HECHO. Empty states ahora muestran hints con ruta al archivo JSON correspondiente. Textos más descriptivos.
+14. ~~Agregar transiciones entre vistas~~ — HECHO. `fade` (150ms) al cambiar selección en sidebars de sesiones y nutrición vía `{#key}`.
+15. ~~Accesibilidad (aria-labels)~~ — HECHO. `aria-label` y `aria-current="page"` en tabs de navegación principal.

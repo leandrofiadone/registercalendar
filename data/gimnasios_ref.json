@@ -1,0 +1,7 @@
+[
+  { "id": "sc_dot",           "nombre": "SportClub Dot",                       "ciudad": "Buenos Aires",  "cadena": "SportClub" },
+  { "id": "sc_belgrano",      "nombre": "SportClub Belgrano",                  "ciudad": "Buenos Aires",  "cadena": "SportClub" },
+  { "id": "sc_saavedra",      "nombre": "SportClub Saavedra",                  "ciudad": "Buenos Aires",  "cadena": "SportClub" },
+  { "id": "sc_libertador",    "nombre": "SportClub Libertador",                "ciudad": "Buenos Aires",  "cadena": "SportClub" },
+  { "id": "sc_mdp_hermitage", "nombre": "SportClub Mar del Plata - Hermitage", "ciudad": "Mar del Plata", "cadena": "SportClub" }
+]

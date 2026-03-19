@@ -24,7 +24,8 @@
     },
     {
       "date": "2026-03-17",
-      "gimnasio": "Sportclub Mar Del Plata - Hermitage",
+      "gimnasio": "SportClub Mar del Plata - Hermitage",
+      "gimnasio_id": "sc_mdp_hermitage",
       "ciudad": "Mar del Plata, Argentina",
       "groups": [
         "Espalda-Bicep",
@@ -48,47 +49,56 @@
             {
               "set": 1,
               "reps": 5,
-              "peso_kg": 91
+              "peso_kg": 91,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 6,
-              "peso_kg": 68
+              "peso_kg": 68,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 6,
-              "peso_kg": 68
+              "peso_kg": 68,
+              "tipo": "standard"
             },
             {
               "set": 4,
               "reps": 6,
-              "peso_kg": 68
+              "peso_kg": 68,
+              "tipo": "standard"
             },
             {
               "set": 5,
               "reps": 6,
-              "peso_kg": 68
+              "peso_kg": 68,
+              "tipo": "standard"
             },
             {
               "set": 6,
               "reps": 6,
-              "peso_kg": 68
+              "peso_kg": 68,
+              "tipo": "standard"
             },
             {
               "set": 7,
               "reps": 8,
-              "peso_kg": 77
+              "peso_kg": 77,
+              "tipo": "standard"
             },
             {
               "set": 8,
               "reps": 6,
-              "peso_kg": 77
+              "peso_kg": 77,
+              "tipo": "standard"
             },
             {
               "set": 9,
               "reps": 6,
-              "peso_kg": 77
+              "peso_kg": 77,
+              "tipo": "standard"
             }
           ],
           "kcal": 254,
@@ -187,17 +197,20 @@
             {
               "set": 1,
               "reps": 20,
-              "peso_kg": 20
+              "peso_kg": 20,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 16,
-              "peso_kg": 24
+              "peso_kg": 24,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 16,
-              "peso_kg": 24
+              "peso_kg": 24,
+              "tipo": "standard"
             }
           ],
           "kcal": 87,
@@ -216,17 +229,20 @@
             {
               "set": 1,
               "reps": 30,
-              "peso_kg": 20
+              "peso_kg": 20,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 30,
-              "peso_kg": 20
+              "peso_kg": 20,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 30,
-              "peso_kg": 20
+              "peso_kg": 20,
+              "tipo": "standard"
             }
           ],
           "kcal": 63,
@@ -245,17 +261,20 @@
             {
               "set": 1,
               "reps": 6,
-              "peso_kg": 107
+              "peso_kg": 107,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 8,
-              "peso_kg": 86
+              "peso_kg": 86,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 10,
-              "peso_kg": 86
+              "peso_kg": 86,
+              "tipo": "standard"
             }
           ],
           "kcal": 72,
@@ -274,17 +293,20 @@
             {
               "set": 1,
               "reps": 12,
-              "peso_kg": 30
+              "peso_kg": 30,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 12,
-              "peso_kg": 30
+              "peso_kg": 30,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 12,
-              "peso_kg": 30
+              "peso_kg": 30,
+              "tipo": "standard"
             }
           ],
           "kcal": 89,
@@ -351,7 +373,8 @@
     },
     {
       "date": "2026-03-16",
-      "gimnasio": "Sportclub Mar del Plata",
+      "gimnasio": "SportClub Mar del Plata - Hermitage",
+      "gimnasio_id": "sc_mdp_hermitage",
       "ciudad": "Mar del Plata, Argentina",
       "groups": [
         "Pecho-Tricep",
@@ -372,22 +395,26 @@
             {
               "set": 1,
               "reps": 10,
-              "peso_kg": 107
+              "peso_kg": 107,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 10,
-              "peso_kg": 107
+              "peso_kg": 107,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 10,
-              "peso_kg": 107
+              "peso_kg": 107,
+              "tipo": "standard"
             },
             {
               "set": 4,
               "reps": 20,
-              "peso_kg": 59
+              "peso_kg": 59,
+              "tipo": "standard"
             }
           ],
           "kcal": 117,
@@ -404,17 +431,20 @@
             {
               "set": 1,
               "reps": 12,
-              "peso_kg": 50
+              "peso_kg": 50,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 12,
-              "peso_kg": 91
+              "peso_kg": 91,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 12,
-              "peso_kg": 91
+              "peso_kg": 91,
+              "tipo": "standard"
             }
           ],
           "kcal": 88,
@@ -499,7 +529,8 @@
     },
     {
       "date": "2026-03-14",
-      "gimnasio": "Sportclub Dot",
+      "gimnasio": "SportClub Dot",
+      "gimnasio_id": "sc_dot",
       "ciudad": "Buenos Aires, Argentina",
       "groups": [
         "Pecho-Tricep",
@@ -520,22 +551,26 @@
             {
               "set": 1,
               "reps": 6,
-              "peso_kg": 80
+              "peso_kg": 80,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 8,
-              "peso_kg": 80
+              "peso_kg": 80,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 5,
-              "peso_kg": 80
+              "peso_kg": 80,
+              "tipo": "standard"
             },
             {
               "set": 4,
               "reps": 10,
-              "peso_kg": 60
+              "peso_kg": 60,
+              "tipo": "standard"
             }
           ],
           "notas": null
@@ -551,17 +586,20 @@
             {
               "set": 1,
               "reps": 14,
-              "peso_kg": 20
+              "peso_kg": 20,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 12,
-              "peso_kg": 18
+              "peso_kg": 18,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 10,
-              "peso_kg": 21
+              "peso_kg": 21,
+              "tipo": "standard"
             }
           ],
           "notas": "Unilateral, agarre en bola, cada lado por separado"
@@ -580,17 +618,20 @@
             {
               "set": 1,
               "reps": 12,
-              "peso_kg": 68
+              "peso_kg": 68,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 4,
-              "peso_kg": 90
+              "peso_kg": 90,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 6,
-              "peso_kg": 90
+              "peso_kg": 90,
+              "tipo": "standard"
             }
           ],
           "notas": "Pesos originales en libras: 150lb, 199lb, 199lb"
@@ -611,7 +652,8 @@
     },
     {
       "date": "2026-03-13",
-      "gimnasio": "Sportclub Libertador",
+      "gimnasio": "SportClub Libertador",
+      "gimnasio_id": "sc_libertador",
       "ciudad": "Buenos Aires, Argentina",
       "groups": [
         "Espalda-Bicep",
@@ -711,17 +753,20 @@
             {
               "set": 1,
               "reps": 60,
-              "peso_kg": null
+              "peso_kg": null,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 60,
-              "peso_kg": null
+              "peso_kg": null,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 60,
-              "peso_kg": null
+              "peso_kg": null,
+              "tipo": "standard"
             }
           ],
           "notas": "30 reps por lado por serie, alternando dirección. Peso de kettlebell no especificado."
@@ -737,17 +782,20 @@
             {
               "set": 1,
               "reps": 10,
-              "peso_kg": 105
+              "peso_kg": 105,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 10,
-              "peso_kg": 105
+              "peso_kg": 105,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 10,
-              "peso_kg": 105
+              "peso_kg": 105,
+              "tipo": "standard"
             }
           ],
           "notas": null
@@ -788,7 +836,8 @@
     },
     {
       "date": "2026-03-12",
-      "gimnasio": "Sportclub",
+      "gimnasio": "SportClub Dot",
+      "gimnasio_id": "sc_dot",
       "ciudad": "Buenos Aires, Argentina",
       "groups": [
         "Pecho-Tricep",
@@ -807,17 +856,20 @@
             {
               "set": 1,
               "reps": 35,
-              "peso_kg": 50
+              "peso_kg": 50,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 8,
-              "peso_kg": 70
+              "peso_kg": 70,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 4,
-              "peso_kg": 85
+              "peso_kg": 85,
+              "tipo": "standard"
             }
           ],
           "notas": null
@@ -835,27 +887,32 @@
             {
               "set": 1,
               "reps": 10,
-              "peso_kg": 107
+              "peso_kg": 107,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 6,
-              "peso_kg": 107
+              "peso_kg": 107,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 6,
-              "peso_kg": 107
+              "peso_kg": 107,
+              "tipo": "standard"
             },
             {
               "set": 4,
               "reps": 14,
-              "peso_kg": 65
+              "peso_kg": 65,
+              "tipo": "standard"
             },
             {
               "set": 5,
               "reps": 6,
-              "peso_kg": 93
+              "peso_kg": 93,
+              "tipo": "standard"
             }
           ],
           "notas": null
@@ -873,17 +930,20 @@
             {
               "set": 1,
               "reps": 20,
-              "peso_kg": 32.5
+              "peso_kg": 32.5,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 16,
-              "peso_kg": 32.5
+              "peso_kg": 32.5,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 16,
-              "peso_kg": 32.5
+              "peso_kg": 32.5,
+              "tipo": "standard"
             }
           ],
           "notas": null
@@ -970,6 +1030,7 @@
     {
       "date": "2026-03-11",
       "gimnasio": "SportClub Dot",
+      "gimnasio_id": "sc_dot",
       "ciudad": "Buenos Aires, Argentina",
       "groups": [
         "Piernas",
@@ -990,22 +1051,26 @@
             {
               "set": 1,
               "reps": 10,
-              "peso_kg": 40
+              "peso_kg": 40,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 10,
-              "peso_kg": 140
+              "peso_kg": 140,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 10,
-              "peso_kg": 140
+              "peso_kg": 140,
+              "tipo": "standard"
             },
             {
               "set": 4,
               "reps": 10,
-              "peso_kg": 140
+              "peso_kg": 140,
+              "tipo": "standard"
             }
           ],
           "notas": "Set 1 calentamiento. Peso total cargado en máquina."
@@ -1025,27 +1090,32 @@
             {
               "set": 1,
               "reps": 5,
-              "peso_kg": 90
+              "peso_kg": 90,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 2,
-              "peso_kg": 40
+              "peso_kg": 40,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 7,
-              "peso_kg": 70
+              "peso_kg": 70,
+              "tipo": "standard"
             },
             {
               "set": 4,
               "reps": 7,
-              "peso_kg": 70
+              "peso_kg": 70,
+              "tipo": "standard"
             },
             {
               "set": 5,
               "reps": 6,
-              "peso_kg": 70
+              "peso_kg": 70,
+              "tipo": "standard"
             }
           ],
           "notas": "Máquina asistida. peso_kg = kg de asistencia restada. Peso corporal 130kg. Set 1 calentamiento (efectivo 40kg). Set 2 costó mucho (efectivo 90kg)."
@@ -1064,17 +1134,20 @@
             {
               "set": 1,
               "reps": 6,
-              "peso_kg": 70
+              "peso_kg": 70,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 7,
-              "peso_kg": 70
+              "peso_kg": 70,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 6,
-              "peso_kg": 70
+              "peso_kg": 70,
+              "tipo": "standard"
             }
           ],
           "notas": "Máquina asistida. peso_kg = kg de asistencia restada. Barra curva interior agarre supino."
@@ -1093,17 +1166,20 @@
             {
               "set": 1,
               "reps": 20,
-              "peso_kg": 10
+              "peso_kg": 10,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 16,
-              "peso_kg": 10
+              "peso_kg": 10,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 13,
-              "peso_kg": 10
+              "peso_kg": 10,
+              "tipo": "standard"
             }
           ],
           "notas": "Agarre pronado. 10kg por cada mano."
@@ -1136,7 +1212,8 @@
     },
     {
       "date": "2026-03-10",
-      "gimnasio": "Sportclub Belgrano Olazabal",
+      "gimnasio": "SportClub Belgrano",
+      "gimnasio_id": "sc_belgrano",
       "ciudad": "Buenos Aires, Argentina",
       "groups": [
         "Espalda-Bicep",
@@ -1312,17 +1389,20 @@
             {
               "set": 1,
               "reps": 12,
-              "peso_kg": 24
+              "peso_kg": 24,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 12,
-              "peso_kg": 24
+              "peso_kg": 24,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 12,
-              "peso_kg": 24
+              "peso_kg": 24,
+              "tipo": "standard"
             }
           ],
           "notas": "24kg por cada lado. Apoyo de mano libre en pared para estabilización. Ejecución con leve impulso."
@@ -1362,7 +1442,11 @@
     },
     {
       "date": "2026-03-09",
-      "gimnasio": "Sportclub Belgrano + Sportclub Saavedra",
+      "gimnasio": "SportClub Belgrano + SportClub Saavedra",
+      "gimnasio_ids": [
+        "sc_belgrano",
+        "sc_saavedra"
+      ],
       "ciudad": "Buenos Aires, Argentina",
       "groups": [
         "Pecho-Tricep",
@@ -1379,22 +1463,26 @@
             "Serrato anterior"
           ],
           "tipo": "maquina_cable",
-          "gimnasio": "Sportclub Belgrano",
+          "gimnasio": "SportClub Belgrano",
+          "gimnasio_id": "sc_belgrano",
           "sets": [
             {
               "set": 1,
               "reps": 10,
-              "peso_kg": 63
+              "peso_kg": 63,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 10,
-              "peso_kg": 63
+              "peso_kg": 63,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 10,
-              "peso_kg": 63
+              "peso_kg": 63,
+              "tipo": "standard"
             }
           ],
           "notas": null
@@ -1409,22 +1497,26 @@
             "Tríceps"
           ],
           "tipo": "mancuerna_libre",
-          "gimnasio": "Sportclub Belgrano",
+          "gimnasio": "SportClub Belgrano",
+          "gimnasio_id": "sc_belgrano",
           "sets": [
             {
               "set": 1,
               "reps": 10,
-              "peso_kg": 32
+              "peso_kg": 32,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 10,
-              "peso_kg": 32
+              "peso_kg": 32,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 8,
-              "peso_kg": 32
+              "peso_kg": 32,
+              "tipo": "standard"
             }
           ],
           "notas": "Última rep del set 2 costó. Set 3 llegó a 8 reps."
@@ -1439,22 +1531,26 @@
             "Deltoides anterior"
           ],
           "tipo": "maquina_guiada",
-          "gimnasio": "Sportclub Belgrano",
+          "gimnasio": "SportClub Belgrano",
+          "gimnasio_id": "sc_belgrano",
           "sets": [
             {
               "set": 1,
               "reps": 8,
-              "peso_kg": 47
+              "peso_kg": 47,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 10,
-              "peso_kg": 54
+              "peso_kg": 54,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 10,
-              "peso_kg": 54
+              "peso_kg": 54,
+              "tipo": "standard"
             }
           ],
           "notas": "Peso sumado al corporal (130kg). Peso total efectivo: set 1 = 177kg, sets 2-3 = 184kg."
@@ -1468,22 +1564,26 @@
             "Deltoides anterior"
           ],
           "tipo": "maquina_guiada",
-          "gimnasio": "Sportclub Saavedra",
+          "gimnasio": "SportClub Saavedra",
+          "gimnasio_id": "sc_saavedra",
           "sets": [
             {
               "set": 1,
               "reps": 8,
-              "peso_kg": 88
+              "peso_kg": 88,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 12,
-              "peso_kg": 88
+              "peso_kg": 88,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 12,
-              "peso_kg": 88
+              "peso_kg": 88,
+              "tipo": "standard"
             }
           ],
           "notas": null
@@ -1497,7 +1597,8 @@
             "Trapecio"
           ],
           "tipo": "dropset_mancuerna",
-          "gimnasio": "Sportclub Saavedra",
+          "gimnasio": "SportClub Saavedra",
+          "gimnasio_id": "sc_saavedra",
           "sets": [
             {
               "set": 1,
@@ -1572,7 +1673,8 @@
           "ejercicio": "Sauna",
           "duracion_min": 15,
           "intensidad": "baja",
-          "gimnasio": "Sportclub Belgrano",
+          "gimnasio": "SportClub Belgrano",
+          "gimnasio_id": "sc_belgrano",
           "notas": "Ducha fría/templada en el medio."
         },
         {
@@ -1587,14 +1689,16 @@
           "velocidad_kmh": 4.8,
           "inclinacion": 0,
           "intensidad": "baja",
-          "gimnasio": "Sportclub Saavedra"
+          "gimnasio": "SportClub Saavedra",
+          "gimnasio_id": "sc_saavedra"
         }
       ],
       "notes": "Dos sesiones: Belgrano (mañana, Pecho-Tricep) + Saavedra 21:04–21:33 (Pecho-Tricep + Hombros)."
     },
     {
       "date": "2026-03-07",
-      "gimnasio": "Sportclub Libertador",
+      "gimnasio": "SportClub Libertador",
+      "gimnasio_id": "sc_libertador",
       "ciudad": "Buenos Aires, Argentina",
       "groups": [
         "Espalda-Bicep"
@@ -1615,17 +1719,20 @@
             {
               "set": 1,
               "reps": 10,
-              "peso_kg": 75
+              "peso_kg": 75,
+              "tipo": "standard"
             },
             {
               "set": 2,
               "reps": 10,
-              "peso_kg": 75
+              "peso_kg": 75,
+              "tipo": "standard"
             },
             {
               "set": 3,
               "reps": 10,
-              "peso_kg": 75
+              "peso_kg": 75,
+              "tipo": "standard"
             }
           ],
           "notas": "3 series al mismo peso, volumen consistente"
@@ -1643,7 +1750,8 @@
             {
               "set": 1,
               "reps": 12,
-              "peso_kg": 22.5
+              "peso_kg": 22.5,
+              "tipo": "standard"
             }
           ],
           "notas": "Serie única, 12 reps contando ambas manos alternadas (6 por lado)"

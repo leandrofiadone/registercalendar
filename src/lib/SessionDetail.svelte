@@ -1,13 +1,8 @@
 <script>
   import { fmtDateLong } from '$lib/utils.js';
   import { gymKcalDetallado } from '$lib/activity.js';
-  import VentanaDetail from '$lib/VentanaDetail.svelte';
 
-  let { session, ventanas = [], sessions = [], perfil = null, compact = false, alimentosRef = [] } = $props();
-
-  function linkedVentana(s) {
-    return ventanas.find(v => v.ventana_id === s.date) ?? null;
-  }
+  let { session, sessions = [], perfil = null, compact = false } = $props();
 
   function pesoEnFecha(fecha) {
     const hist = perfil?.historial_peso;
@@ -184,14 +179,6 @@
     {@render cardioSection(session.cardio || [], cardioKcalMap)}
   {/if}
 
-  <!-- Nutrición vinculada -->
-  {@const v = linkedVentana(session)}
-  {#if v}
-    <div class="section">
-      <div class="sec-label">🥗 Nutrición vinculada</div>
-      <VentanaDetail ventana={v} {perfil} {sessions} {ventanas} {alimentosRef} bodyOnly />
-    </div>
-  {/if}
 
   <!-- Notas -->
   {#if session.notes}

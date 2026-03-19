@@ -1,5 +1,9 @@
 <script>
   import { onMount } from 'svelte';
+  import { Calendar } from '@fullcalendar/core';
+  import dayGridPlugin from '@fullcalendar/daygrid';
+  import listPlugin from '@fullcalendar/list';
+  import esLocale from '@fullcalendar/core/locales/es';
   import { sessionType, sessionColor } from '$lib/utils.js';
   import { getMoonPhase } from '$lib/moon.js';
   import { gymKcalDetallado } from '$lib/activity.js';
@@ -20,8 +24,7 @@
 
   let calEl;
   let fcCalendar = null;
-  let calLoading = $state(true);
-  let calError   = $state(false);
+  let calLoading = $state(false);
 
   function gymCalEvents() {
     const pesoKg = perfil?.historial_peso?.at(-1)?.peso_kg ?? 80;
@@ -101,146 +104,120 @@
   }
 
   onMount(() => {
-    const CDN_TIMEOUT = 10_000;
-    let elapsed = 0;
-    const interval = setInterval(() => {
-      elapsed += 50;
-      if (typeof window.FullCalendar === 'undefined') {
-        if (elapsed >= CDN_TIMEOUT) {
-          clearInterval(interval);
-          calLoading = false;
-          calError = true;
-          console.error('[Calendario] FullCalendar no se pudo cargar desde CDN');
+    calLoading = false;
+
+    fcCalendar = new Calendar(calEl, {
+      plugins: [dayGridPlugin, listPlugin],
+      initialView: 'dayGridMonth',
+      locale: esLocale,
+      height: '100%',
+      fixedWeekCount: false,
+      headerToolbar: {
+        left:   'prev,next today',
+        center: 'title',
+        right:  'dayGridMonth,listMonth',
+      },
+      buttonText: { today: 'Hoy', month: 'Mes', list: 'Lista' },
+      events: gymCalEvents(),
+
+      eventContent(arg) {
+        const p = arg.event.extendedProps;
+        if (p.type === 'nutri') {
+          const zoneColor = { ok: '#166534', warn: '#92400e', over: '#991b1b' }[p.zone];
+          const zoneDot   = { ok: '#4ade80', warn: '#fbbf24', over: '#f87171' }[p.zone];
+          const gymBadge  = p.hasGym ? `<span class="ev-n-gym">💪</span>` : '';
+          return { html: `<div class="ev-nutri">
+            <div class="ev-n-top">
+              <span class="ev-n-kcal">${p.kcal}</span>
+              <span class="ev-n-unit">/ ${p.kcalTarget} kcal</span>
+              ${gymBadge}
+              <span class="ev-n-dot" style="background:${zoneDot}"></span>
+            </div>
+            <div class="ev-n-macros">
+              <span class="ev-dot prot"></span>${p.prot}g
+              <span class="ev-dot gras"></span>${p.gras}g
+              <span class="ev-dot carb"></span>${p.carb}g
+            </div>
+            <div class="ev-n-bar"><div class="ev-n-bar-fill" style="width:${p.pct}%;background:${zoneColor}"></div></div>
+          </div>` };
         }
-        return;
-      }
-      clearInterval(interval);
-      calLoading = false;
+        if (p.type === 'gym') {
+          const tags = p.groups.map(g => `<span class="ev-g-tag">${g}</span>`).join('');
+          const cardio = p.hasCardio ? '<span class="ev-g-cardio">Cardio</span>' : '';
+          const kcal = p.kcal > 0 ? `<span class="ev-g-kcal">~${p.kcal} kcal</span>` : '';
+          return { html: `<div class="ev-gym">${tags}${cardio}${kcal}</div>` };
+        }
+      },
 
-      fcCalendar = new window.FullCalendar.Calendar(calEl, {
-        initialView: 'dayGridMonth',
-        locale: 'es',
-        height: '100%',
-        fixedWeekCount: false,
-        headerToolbar: {
-          left:   'prev,next today',
-          center: 'title',
-          right:  'dayGridMonth,listMonth',
-        },
-        buttonText: { today: 'Hoy', month: 'Mes', list: 'Lista' },
-        events: gymCalEvents(),
+      eventClick(info) {
+        const p = info.event.extendedProps;
+        if (p.type === 'gym') {
+          selectedVentana = null;
+          selectedSession = sessions[p.idx];
+        }
+        if (p.type === 'nutri') {
+          selectedSession = null;
+          selectedVentana = ventanas[p.vIdx];
+        }
+      },
 
-        eventContent(arg) {
-          const p = arg.event.extendedProps;
-          if (p.type === 'nutri') {
-            const zoneColor = { ok: '#166534', warn: '#92400e', over: '#991b1b' }[p.zone];
-            const zoneDot   = { ok: '#4ade80', warn: '#fbbf24', over: '#f87171' }[p.zone];
-            const gymBadge  = p.hasGym ? `<span class="ev-n-gym">💪</span>` : '';
-            return { html: `<div class="ev-nutri">
-              <div class="ev-n-top">
-                <span class="ev-n-kcal">${p.kcal}</span>
-                <span class="ev-n-unit">/ ${p.kcalTarget} kcal</span>
-                ${gymBadge}
-                <span class="ev-n-dot" style="background:${zoneDot}"></span>
-              </div>
-              <div class="ev-n-macros">
-                <span class="ev-dot prot"></span>${p.prot}g
-                <span class="ev-dot gras"></span>${p.gras}g
-                <span class="ev-dot carb"></span>${p.carb}g
-              </div>
-              <div class="ev-n-bar"><div class="ev-n-bar-fill" style="width:${p.pct}%;background:${zoneColor}"></div></div>
-            </div>` };
-          }
-          if (p.type === 'gym') {
-            const tags = p.groups.map(g => `<span class="ev-g-tag">${g}</span>`).join('');
-            const cardio = p.hasCardio ? '<span class="ev-g-cardio">Cardio</span>' : '';
-            const kcal = p.kcal > 0 ? `<span class="ev-g-kcal">~${p.kcal} kcal</span>` : '';
-            return { html: `<div class="ev-gym">${tags}${cardio}${kcal}</div>` };
-          }
-        },
+      dayCellDidMount(info) {
+        const d = info.date.toISOString().split('T')[0];
+        const gymDates   = new Set(sessions.map(s => s.date));
+        const nutriDates = new Set(ventanas.map(v => v.ventana_id));
+        const pesoByDate = {};
+        for (const p of (perfil?.historial_peso || [])) pesoByDate[p.fecha] = p.peso_kg;
+        const frame = info.el.querySelector('.fc-daygrid-day-frame');
+        if (!frame) return;
 
-        eventClick(info) {
-          const p = info.event.extendedProps;
-          if (p.type === 'gym') {
-            selectedVentana = null;
-            selectedSession = sessions[p.idx];
-          }
-          if (p.type === 'nutri') {
-            selectedSession = null;
-            selectedVentana = ventanas[p.vIdx];
-          }
-        },
+        if (calView === 'gym'       && gymDates.has(d))   frame.style.background = 'rgba(124,106,245,0.06)';
+        if (calView === 'nutricion' && nutriDates.has(d)) frame.style.background = 'rgba(245,158,11,0.06)';
 
+        if (frame.dataset.decorated) return;
+        frame.dataset.decorated = '1';
 
-        dayCellDidMount(info) {
-          const d = info.date.toISOString().split('T')[0];
-          const gymDates   = new Set(sessions.map(s => s.date));
-          const nutriDates = new Set(ventanas.map(v => v.ventana_id));
-          const pesoByDate = {};
-          for (const p of (perfil?.historial_peso || [])) pesoByDate[p.fecha] = p.peso_kg;
-          const frame = info.el.querySelector('.fc-daygrid-day-frame');
-          if (!frame) return;
+        const todayMidnight = new Date(); todayMidnight.setHours(0,0,0,0);
+        const isPast  = info.date < todayMidnight;
+        const isToday = info.date.getTime() === todayMidnight.getTime();
+        if (isPast || isToday) {
+          const line = document.createElement('div');
+          line.className = 'cal-timeline';
+          line.style.background = isPast
+            ? 'rgba(120,110,200,0.14)'
+            : 'linear-gradient(90deg,rgba(165,148,249,0.56) 0%,transparent 100%)';
+          frame.appendChild(line);
+        }
 
-          if (calView === 'gym'       && gymDates.has(d))   frame.style.background = 'rgba(124,106,245,0.06)';
-          if (calView === 'nutricion' && nutriDates.has(d)) frame.style.background = 'rgba(245,158,11,0.06)';
+        if (pesoByDate[d]) {
+          const wb = document.createElement('div');
+          wb.className = 'peso-cal-badge';
+          wb.textContent = pesoByDate[d] + ' kg';
+          frame.appendChild(wb);
+        }
 
-          // Skip if already decorated (prevents duplication on re-render)
-          if (frame.dataset.decorated) return;
-          frame.dataset.decorated = '1';
+        const moon = getMoonPhase(info.date);
+        const showLabel = moon.name === 'Luna llena' || moon.name === 'Luna nueva';
+        const badge = document.createElement('div');
+        badge.className = 'moon-badge' + (showLabel ? ' moon-key' : '');
+        badge.title = `${moon.name} (día ${Math.round(moon.age)} del ciclo)`;
+        if (showLabel) {
+          const label = document.createElement('span');
+          label.className = 'moon-label';
+          label.textContent = moon.name;
+          badge.appendChild(label);
+        }
+        const iconSpan = document.createElement('span');
+        iconSpan.textContent = moon.icon;
+        badge.appendChild(iconSpan);
+        frame.appendChild(badge);
+      },
+    });
 
-          // Timeline for past days + today
-          const todayMidnight = new Date(); todayMidnight.setHours(0,0,0,0);
-          const isPast  = info.date < todayMidnight;
-          const isToday = info.date.getTime() === todayMidnight.getTime();
-          if (isPast || isToday) {
-            const line = document.createElement('div');
-            line.className = 'cal-timeline';
-            line.style.background = isPast
-              ? 'rgba(120,110,200,0.14)'
-              : 'linear-gradient(90deg,rgba(165,148,249,0.56) 0%,transparent 100%)';
-            frame.appendChild(line);
-          }
+    fcCalendar.render();
 
-          // Weight badge
-          if (pesoByDate[d]) {
-            const wb = document.createElement('div');
-            wb.className = 'peso-cal-badge';
-            wb.textContent = pesoByDate[d] + ' kg';
-            frame.appendChild(wb);
-          }
-
-          // Moon phase badge
-          const moon = getMoonPhase(info.date);
-          const showLabel = moon.name === 'Luna llena' || moon.name === 'Luna nueva';
-          const badge = document.createElement('div');
-          badge.className = 'moon-badge' + (showLabel ? ' moon-key' : '');
-          badge.title = `${moon.name} (día ${Math.round(moon.age)} del ciclo)`;
-          if (showLabel) {
-            const label = document.createElement('span');
-            label.className = 'moon-label';
-            label.textContent = moon.name;
-            badge.appendChild(label);
-          }
-          const iconSpan = document.createElement('span');
-          iconSpan.textContent = moon.icon;
-          badge.appendChild(iconSpan);
-          frame.appendChild(badge);
-        },
-      });
-
-      fcCalendar.render();
-    }, 50);
-
-    return () => {
-      clearInterval(interval);
-      fcCalendar?.destroy();
-    };
+    return () => fcCalendar?.destroy();
   });
 </script>
-
-<svelte:head>
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
-</svelte:head>
 
 <div class="cal-layout">
   <!-- Calendar panel -->
@@ -274,14 +251,7 @@
           <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div> Ventana de alimentación</div>
         {/if}
       </div>
-      {#if calError}
-        <div class="cal-loading">
-          <div class="cal-loading-icon">⚠️</div>
-          <p>No se pudo cargar el calendario. Verificá tu conexión.</p>
-          <button class="cal-sub-btn" onclick={() => location.reload()}>Reintentar</button>
-        </div>
-      {/if}
-      <div bind:this={calEl} style="flex:1;min-height:0;{calError ? 'display:none' : ''}"></div>
+      <div bind:this={calEl} style="flex:1;min-height:0"></div>
     </div>
 
     <!-- 13 Lunas: solo se monta cuando está activo -->
@@ -303,7 +273,7 @@
     {:else}
       <div class="empty-state">
         <div class="ei">📅</div>
-        <p>Clickeá un evento</p>
+        <p>Seleccioná un evento del calendario</p>
       </div>
     {/if}
   </div>
@@ -477,15 +447,6 @@
     position: absolute; bottom: 24%; left: 0; right: 0;
     height: 1px; pointer-events: none; z-index: 0;
   }
-
-  /* Loading / error states */
-  .cal-loading {
-    flex: 1; display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 10px; color: var(--dim);
-  }
-  .cal-loading-icon { font-size: 36px; opacity: 0.35; }
-  .cal-loading p { font-size: 13px; }
 
   /* Responsive */
   @media (max-width: 768px) {

@@ -2,41 +2,12 @@
   import { page } from '$app/stores';
   import FastingCounter from '$lib/FastingCounter.svelte';
   import TrendChip from '$lib/TrendChip.svelte';
-  import { localDateStr } from '$lib/utils.js';
 
   let { data, children } = $props();
 
   let sessions = $derived(data.sessions);
   let ventanas = $derived(data.ventanas);
   let perfil   = $derived(data.perfil);
-
-  let thisMonth = $derived.by(() => {
-    const now = new Date();
-    const ym  = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
-    return sessions.filter(s => s.date.startsWith(ym)).length;
-  });
-
-  let streak = $derived.by(() => {
-    const dateSet = new Set(sessions.map(s => s.date));
-    let count = 0;
-    const d = new Date();
-    while (dateSet.has(localDateStr(d))) {
-      count++;
-      d.setDate(d.getDate() - 1);
-    }
-    return count;
-  });
-
-  let favGroup = $derived.by(() => {
-    const groupCount = {};
-    sessions.forEach(s => (s.groups || []).forEach(g => { groupCount[g] = (groupCount[g] || 0) + 1; }));
-    const favEntry = Object.entries(groupCount).sort((a, b) => b[1] - a[1])[0];
-    return favEntry?.[0] ?? null;
-  });
-
-  let totalKcal = $derived(
-    ventanas.reduce((sum, v) => sum + (v.totales_ventana?.kcal || 0), 0)
-  );
 
   let tabs = [
     { href: '/sesiones',   label: 'Sesiones',    icon: '📋' },
@@ -55,23 +26,12 @@
 <header class="header">
   <div class="logo"><span class="logo-icon">🏋️</span> Gym Tracker</div>
   <div class="stats-bar">
-    <div class="stat-chip">Sesiones <span class="v">{sessions.length}</span></div>
-    <div class="stat-chip">Mes <span class="v">{thisMonth}</span></div>
-    {#if streak > 0}
-      <div class="stat-chip">Racha <span class="v">{streak}d</span></div>
-    {/if}
-    {#if favGroup}
-      <div class="stat-chip">Top <span class="v">{favGroup}</span></div>
-    {/if}
-    {#if totalKcal > 0}
-      <div class="stat-chip">kcal log <span class="v">{Math.round(totalKcal)}</span></div>
-    {/if}
     <TrendChip {ventanas} {sessions} {perfil} />
     <FastingCounter {ventanas} />
   </div>
-  <nav class="tabs">
+  <nav class="tabs" aria-label="Navegación principal">
     {#each tabs as tab}
-      <a href={tab.href} class="tab-btn" class:active={currentPath.startsWith(tab.href)}>
+      <a href={tab.href} class="tab-btn" class:active={currentPath.startsWith(tab.href)} aria-label={tab.label} aria-current={currentPath.startsWith(tab.href) ? 'page' : undefined}>
         {tab.icon} {tab.label}
       </a>
     {/each}
@@ -138,16 +98,8 @@
   }
   .logo-icon { font-size: 17px; }
 
-  .stats-bar { display: flex; gap: 5px; flex: 1; overflow: hidden; }
+  .stats-bar { display: flex; gap: 8px; flex: 1; align-items: center; justify-content: flex-start; overflow: hidden; }
 
-  .stat-chip {
-    background: var(--s2); border: 1px solid var(--b1);
-    border-radius: 6px; padding: 3px 9px;
-    font-size: 11px; color: var(--muted);
-    display: flex; align-items: center; gap: 5px;
-    white-space: nowrap; flex-shrink: 0;
-  }
-  .stat-chip :global(.v) { color: var(--text); font-weight: 600; }
 
   .tabs { display: flex; gap: 2px; flex-shrink: 0; }
 
@@ -167,5 +119,31 @@
     height: calc(100vh - 54px);
     overflow: hidden;
     display: flex;
+  }
+
+  @media (max-width: 768px) {
+    .header {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 8px 12px 0;
+      gap: 8px;
+    }
+    .logo { font-size: 13px; }
+    .logo-icon { font-size: 15px; }
+    .stats-bar { order: 1; flex-basis: 100%; justify-content: center; gap: 6px; }
+    .tabs {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 200;
+      background: rgba(10, 10, 15, 0.96);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--b1);
+      justify-content: space-around;
+      padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+      gap: 0;
+    }
+    .tab-btn { flex-direction: column; gap: 2px; font-size: 10px; padding: 4px 8px; }
+    .app-body {
+      height: calc(100vh - 80px - 52px);
+    }
   }
 </style>

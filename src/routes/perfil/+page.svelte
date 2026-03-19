@@ -1,11 +1,39 @@
 <script>
-  import { fmtDate } from '$lib/utils.js';
+  import { fmtDate, localDateStr } from '$lib/utils.js';
   import { gymKcalDetallado, actividadKcal } from '$lib/activity.js';
 
   let { data } = $props();
   let sessions = $derived(data.sessions);
   let ventanas = $derived(data.ventanas);
   let perfil   = $derived(data.perfil);
+
+  let thisMonth = $derived.by(() => {
+    const now = new Date();
+    const ym  = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
+    return sessions.filter(s => s.date.startsWith(ym)).length;
+  });
+
+  let streak = $derived.by(() => {
+    const dateSet = new Set(sessions.map(s => s.date));
+    let count = 0;
+    const d = new Date();
+    while (dateSet.has(localDateStr(d))) {
+      count++;
+      d.setDate(d.getDate() - 1);
+    }
+    return count;
+  });
+
+  let favGroup = $derived.by(() => {
+    const groupCount = {};
+    sessions.forEach(s => (s.groups || []).forEach(g => { groupCount[g] = (groupCount[g] || 0) + 1; }));
+    const favEntry = Object.entries(groupCount).sort((a, b) => b[1] - a[1])[0];
+    return favEntry?.[0] ?? null;
+  });
+
+  let totalKcal = $derived(
+    ventanas.reduce((sum, v) => sum + (v.totales_ventana?.kcal || 0), 0)
+  );
 
   let pesoActual = $derived.by(() => {
     if (!perfil) return null;
@@ -114,6 +142,39 @@
       return { ...p, delta, dias };
     });
   });
+
+  // SVG chart data for peso evolution
+  let pesoChartPoints = $derived.by(() => {
+    if (pesoHistory.length < 2) return null;
+    const W = 400, H = 120, PX = 30, PY = 16;
+    const vals = pesoHistory.map(p => p.peso_kg);
+    const mn = Math.min(...vals) - 0.5, mx = Math.max(...vals) + 0.5;
+    const range = mx - mn || 1;
+    const pts = pesoHistory.map((p, i) => {
+      const x = PX + (i / (pesoHistory.length - 1)) * (W - PX * 2);
+      const y = PY + (1 - (p.peso_kg - mn) / range) * (H - PY * 2);
+      return { x, y, label: p.peso_kg, date: p.fecha.slice(5) };
+    });
+    return { pts, W, H, mn, mx };
+  });
+
+  // SVG chart data for deficit bars
+  let deficitChart = $derived.by(() => {
+    if (!histRows.length) return null;
+    const rows = [...histRows].reverse();
+    const W = 400, H = 100, PX = 10, PY = 10;
+    const vals = rows.map(r => r.deficit);
+    const absMax = Math.max(...vals.map(Math.abs), 100);
+    const barW = Math.min(28, (W - PX * 2) / rows.length - 2);
+    const mid = H / 2;
+    const bars = rows.map((r, i) => {
+      const x = PX + i * ((W - PX * 2) / rows.length) + ((W - PX * 2) / rows.length - barW) / 2;
+      const h = Math.abs(r.deficit) / absMax * (H / 2 - PY);
+      const y = r.deficit >= 0 ? mid - h : mid;
+      return { x, y, w: barW, h, color: r.deficit >= 0 ? 'var(--green)' : 'var(--red)', val: r.deficit, date: r.date.slice(5) };
+    });
+    return { bars, W, H, mid };
+  });
 </script>
 
 <div class="perfil-layout">
@@ -121,10 +182,26 @@
     <div class="empty-state">
       <div class="ei">👤</div>
       <p>Sin perfil configurado</p>
+      <p class="es-hint">Configurá tu perfil en <code>data/perfil.json</code></p>
     </div>
   {:else}
     {@const ob = perfil.objetivos_diarios}
     {@const me = perfil.metabolismo}
+
+    <!-- Resumen de actividad -->
+    <div class="activity-summary">
+      <div class="as-chip">Sesiones <span class="as-val">{sessions.length}</span></div>
+      <div class="as-chip">Este mes <span class="as-val">{thisMonth}</span></div>
+      {#if streak > 0}
+        <div class="as-chip">Racha <span class="as-val">{streak}d</span></div>
+      {/if}
+      {#if favGroup}
+        <div class="as-chip">Top <span class="as-val">{favGroup}</span></div>
+      {/if}
+      {#if totalKcal > 0}
+        <div class="as-chip">kcal total <span class="as-val">{Math.round(totalKcal).toLocaleString()}</span></div>
+      {/if}
+    </div>
 
     <div class="perfil-grid">
       <!-- Peso -->
@@ -231,6 +308,22 @@
       </div>
     </div>
 
+    <!-- Chart: Balance calórico -->
+    {#if deficitChart}
+      <div class="pcard">
+        <div class="pcard-title">Balance calórico diario</div>
+        <svg viewBox="0 0 {deficitChart.W} {deficitChart.H}" class="chart-svg">
+          <line x1="0" y1={deficitChart.mid} x2={deficitChart.W} y2={deficitChart.mid} stroke="var(--b2)" stroke-width="1" stroke-dasharray="4,3" />
+          {#each deficitChart.bars as bar}
+            <rect x={bar.x} y={bar.y} width={bar.w} height={Math.max(bar.h, 1)} rx="2" fill={bar.color} opacity="0.75" />
+            <text x={bar.x + bar.w / 2} y={deficitChart.H - 1} text-anchor="middle" class="chart-label">{bar.date}</text>
+          {/each}
+          <text x="2" y={deficitChart.mid - 4} class="chart-axis-label">deficit</text>
+          <text x="2" y={deficitChart.mid + 11} class="chart-axis-label">exceso</text>
+        </svg>
+      </div>
+    {/if}
+
     <!-- Historial calórico -->
     <div class="pcard">
       <div class="pcard-title">Historial calórico día a día</div>
@@ -255,6 +348,24 @@
         El número al final muestra cuánto menos (verde) o más (rojo) comiste vs lo que quemaste ese día
       </div>
     </div>
+
+    <!-- Chart: Evolución de peso -->
+    {#if pesoChartPoints}
+      <div class="pcard">
+        <div class="pcard-title">Evolución de peso</div>
+        <svg viewBox="0 0 {pesoChartPoints.W} {pesoChartPoints.H}" class="chart-svg">
+          <polyline
+            points={pesoChartPoints.pts.map(p => `${p.x},${p.y}`).join(' ')}
+            fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"
+          />
+          {#each pesoChartPoints.pts as p}
+            <circle cx={p.x} cy={p.y} r="4" fill="var(--accent)" stroke="var(--s1)" stroke-width="2" />
+            <text x={p.x} y={p.y - 10} text-anchor="middle" class="chart-val">{p.label}</text>
+            <text x={p.x} y={pesoChartPoints.H - 2} text-anchor="middle" class="chart-label">{p.date}</text>
+          {/each}
+        </svg>
+      </div>
+    {/if}
 
     <!-- Registro de pesos -->
     <div class="pcard">
@@ -296,6 +407,17 @@
     flex: 1; overflow-y: auto; padding: 28px 32px;
     display: flex; flex-direction: column; gap: 22px;
   }
+
+  .activity-summary {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .as-chip {
+    background: var(--s2); border: 1px solid var(--b1);
+    border-radius: 8px; padding: 8px 14px;
+    font-size: 12px; color: var(--muted);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .as-val { color: var(--text); font-weight: 700; font-size: 16px; }
 
   .perfil-grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px;
@@ -369,6 +491,11 @@
     font-size: 11px; color: var(--muted);
   }
 
+  .chart-svg { width: 100%; height: auto; display: block; margin: 4px 0; }
+  .chart-svg :global(.chart-label) { font-size: 8px; fill: var(--dim); }
+  .chart-svg :global(.chart-val) { font-size: 9px; fill: var(--text); font-weight: 600; }
+  .chart-svg :global(.chart-axis-label) { font-size: 7px; fill: var(--dim); }
+
   .empty-state {
     height: 100%; display: flex; flex-direction: column;
     align-items: center; justify-content: center;
@@ -376,4 +503,6 @@
   }
   .ei { font-size: 36px; opacity: 0.35; }
   .empty-state p { font-size: 13px; }
+  .es-hint { font-size: 11px; color: var(--dim); }
+  .es-hint code { background: var(--s2); padding: 1px 5px; border-radius: 3px; font-size: 10px; }
 </style>

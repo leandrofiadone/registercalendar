@@ -27,6 +27,7 @@ export function load() {
   const nutri  = safeLoadJSON('nutricion.json',     { ventanas: [] });
   const perfil = safeLoadJSON('perfil.json',        null);
   const alRef  = safeLoadJSON('alimentos_ref.json', { alimentos: [] });
+  const gymRef = safeLoadJSON('gimnasios_ref.json', []);
 
   const sessions = (log.sessions || []).filter(validateSession);
   const ventanas = (nutri.ventanas || []).filter(validateVentana);
@@ -51,6 +52,7 @@ export function load() {
     sessions: sessions.sort((a, b) => b.date.localeCompare(a.date)),
     ventanas: ventanas.sort((a, b) => b.ventana_id.localeCompare(a.ventana_id)),
     perfil,
-    alimentosRef: alRef.alimentos || []
+    alimentosRef: alRef.alimentos || [],
+    gimnasiosRef: Array.isArray(gymRef) ? gymRef : []
   };
 }
