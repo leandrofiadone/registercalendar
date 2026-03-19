@@ -1,12 +1,11 @@
 <script>
-  import { gymKcalDetallado } from '$lib/activity.js';
+  import { gymKcalDetallado, actividadKcal } from '$lib/activity.js';
 
   let { ventanas = [], sessions = [], perfil = null } = $props();
 
   let trend = $derived.by(() => {
-    if (!perfil || !ventanas.length) return null;
+    if (!perfil?.metabolismo || !ventanas.length) return null;
     const me = perfil.metabolismo;
-    const ob = perfil.objetivos_diarios;
     const pesoKg = perfil.historial_peso?.at(-1)?.peso_kg ?? 80;
 
     // Last 7 completed days (excluding today)
@@ -25,16 +24,26 @@
     for (const date of dates) {
       const v = ventanas.find(vv => vv.ventana_id === date);
       totalConsumed += v?.totales_ventana?.kcal || 0;
-      const gymSess = sessions.find(s => s.date === date);
+
       let actKcal = 0;
+      // Gym session kcal
+      const gymSess = sessions.find(s => s.date === date);
       if (gymSess) {
         const det = gymKcalDetallado(gymSess, pesoKg);
-        actKcal = det.fuerza + det.cardio.reduce((sum, c) => sum + c.kcal, 0);
+        actKcal += det.fuerza + det.cardio.reduce((sum, c) => sum + c.kcal, 0);
       }
-      totalSpent += me.gasto_total_descanso_kcal + actKcal;
+      // Extra activities (walks, yoga, etc. from ventana.actividades)
+      if (v?.actividades?.length) {
+        for (const act of v.actividades) {
+          actKcal += actividadKcal(act, pesoKg);
+        }
+      }
+
+      totalSpent += (me.gasto_total_descanso_kcal || 2776) + actKcal;
     }
 
     const days = dates.length;
+    if (!days) return null;
     const avgConsumed = Math.round(totalConsumed / days);
     const avgSpent = Math.round(totalSpent / days);
     const avgDeficit = avgSpent - avgConsumed;

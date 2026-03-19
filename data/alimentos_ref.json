@@ -1,0 +1,2026 @@
+{
+  "meta": {
+    "version": 1,
+    "fuentes": [
+      "USDA FoodData Central",
+      "ARGENFOODS",
+      "Etiquetas de producto"
+    ],
+    "campos_micro": {
+      "fibra_g": "Fibra dietética total",
+      "sodio_mg": "Sodio",
+      "potasio_mg": "Potasio",
+      "hierro_mg": "Hierro",
+      "calcio_mg": "Calcio",
+      "magnesio_mg": "Magnesio",
+      "zinc_mg": "Zinc",
+      "vit_b12_mcg": "Vitamina B12 (cobalamina)",
+      "vit_d_mcg": "Vitamina D (colecalciferol)",
+      "vit_a_mcg": "Vitamina A (retinol equiv.)",
+      "vit_c_mg": "Vitamina C (ác. ascórbico)",
+      "colesterol_mg": "Colesterol dietario",
+      "omega3_g": "Ácidos grasos omega-3 totales",
+      "omega6_g": "Ácidos grasos omega-6 totales"
+    },
+    "nota": "Valores por 100g de porción comestible. Cocidos donde se indica."
+  },
+  "alimentos": [
+    {
+      "id": "aceite_girasol",
+      "nombres": [
+        "Aceite de cocción",
+        "Aceite de girasol"
+      ],
+      "categoria": "grasas",
+      "por_100g": {
+        "kcal": 884,
+        "proteina_g": 0,
+        "grasa_g": 100,
+        "carbos_g": 0,
+        "fibra_g": 0,
+        "sodio_mg": 0,
+        "potasio_mg": 0,
+        "hierro_mg": 0,
+        "calcio_mg": 0,
+        "magnesio_mg": 0,
+        "zinc_mg": 0,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.1,
+        "omega6_g": 65.7
+      },
+      "fuente": "USDA"
+    },
+    {
+      "id": "aceitunas_verdes",
+      "nombres": [
+        "Aceitunas verdes"
+      ],
+      "categoria": "vegetales",
+      "por_100g": {
+        "kcal": 145,
+        "proteina_g": 1,
+        "grasa_g": 15.3,
+        "carbos_g": 3.8,
+        "fibra_g": 3.3,
+        "sodio_mg": 1556,
+        "potasio_mg": 42,
+        "hierro_mg": 0.5,
+        "calcio_mg": 52,
+        "magnesio_mg": 11,
+        "zinc_mg": 0.04,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 20,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.1,
+        "omega6_g": 1.3
+      },
+      "fuente": "USDA"
+    },
+    {
+      "id": "arepa_carne",
+      "nombres": [
+        "Arepa carne desmechada"
+      ],
+      "categoria": "preparaciones",
+      "por_100g": {
+        "kcal": 156,
+        "proteina_g": 8.9,
+        "grasa_g": 6.7,
+        "carbos_g": 14.2,
+        "fibra_g": 1,
+        "sodio_mg": 320,
+        "potasio_mg": 150,
+        "hierro_mg": 1.2,
+        "calcio_mg": 20,
+        "magnesio_mg": 15,
+        "zinc_mg": 1.5,
+        "vit_b12_mcg": 1,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 25,
+        "omega3_g": 0.02,
+        "omega6_g": 0.3
+      },
+      "fuente": "Estimado composición típica"
+    },
+    {
+      "id": "arroz_carnaroli_cocido",
+      "nombres": [
+        "Arroz carnaroli cocido",
+        "Arroz carnaroli muy cocido",
+        "Arroz carnaroli cocido estacionado (2 días)"
+      ],
+      "categoria": "cereales",
+      "por_100g": {
+        "kcal": 130,
+        "proteina_g": 2.7,
+        "grasa_g": 0.3,
+        "carbos_g": 28.2,
+        "fibra_g": 0.4,
+        "sodio_mg": 1,
+        "potasio_mg": 35,
+        "hierro_mg": 0.2,
+        "calcio_mg": 10,
+        "magnesio_mg": 12,
+        "zinc_mg": 0.5,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.01,
+        "omega6_g": 0.1
+      },
+      "fuente": "USDA (white rice, cooked)"
+    },
+    {
+      "id": "arroz_yamani_cocido",
+      "nombres": [
+        "Arroz yamani cocido",
+        "Arroz yamani cocido al dente"
+      ],
+      "categoria": "cereales",
+      "por_100g": {
+        "kcal": 140,
+        "proteina_g": 2.6,
+        "grasa_g": 0.9,
+        "carbos_g": 29,
+        "fibra_g": 1.8,
+        "sodio_mg": 5,
+        "potasio_mg": 43,
+        "hierro_mg": 0.4,
+        "calcio_mg": 10,
+        "magnesio_mg": 43,
+        "zinc_mg": 0.6,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.01,
+        "omega6_g": 0.35
+      },
+      "fuente": "USDA (brown rice, cooked)"
+    },
+    {
+      "id": "arvejas_enlatadas",
+      "nombres": [
+        "Arvejas La Banda (escurridas)"
+      ],
+      "categoria": "legumbres",
+      "por_100g": {
+        "kcal": 99,
+        "proteina_g": 6,
+        "grasa_g": 0.5,
+        "carbos_g": 18,
+        "fibra_g": 5.5,
+        "sodio_mg": 290,
+        "potasio_mg": 173,
+        "hierro_mg": 1.5,
+        "calcio_mg": 24,
+        "magnesio_mg": 22,
+        "zinc_mg": 0.9,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 38,
+        "vit_c_mg": 9.6,
+        "colesterol_mg": 0,
+        "omega3_g": 0.08,
+        "omega6_g": 0.2
+      },
+      "fuente": "USDA (canned peas, drained)"
+    },
+    {
+      "id": "barra_proteica",
+      "nombres": [
+        "Barra proteica",
+        "Barra proteica (packaging naranja)",
+        "Barra proteica Imagina (packaging rojo)"
+      ],
+      "categoria": "snacks",
+      "por_100g": {
+        "kcal": 363,
+        "proteina_g": 33.3,
+        "grasa_g": 12.2,
+        "carbos_g": 27.8,
+        "fibra_g": 3,
+        "sodio_mg": 250,
+        "potasio_mg": 200,
+        "hierro_mg": 2.5,
+        "calcio_mg": 150,
+        "magnesio_mg": 60,
+        "zinc_mg": 2,
+        "vit_b12_mcg": 0.5,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 15,
+        "omega3_g": 0.05,
+        "omega6_g": 0.8
+      },
+      "fuente": "Estimado promedio barras proteicas"
+    },
+    {
+      "id": "barrita_cereal",
+      "nombres": [
+        "Barrita de cereal con frutos secos"
+      ],
+      "categoria": "snacks",
+      "por_100g": {
+        "kcal": 329,
+        "proteina_g": 7.8,
+        "grasa_g": 10.9,
+        "carbos_g": 56.9,
+        "fibra_g": 4,
+        "sodio_mg": 180,
+        "potasio_mg": 200,
+        "hierro_mg": 2,
+        "calcio_mg": 40,
+        "magnesio_mg": 50,
+        "zinc_mg": 1.2,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.1,
+        "omega6_g": 3
+      },
+      "fuente": "Etiqueta + estimado"
+    },
+    {
+      "id": "biscotti",
+      "nombres": [
+        "Biscotti / cantuccini"
+      ],
+      "categoria": "snacks",
+      "por_100g": {
+        "kcal": 460,
+        "proteina_g": 10,
+        "grasa_g": 18,
+        "carbos_g": 65,
+        "fibra_g": 2,
+        "sodio_mg": 290,
+        "potasio_mg": 120,
+        "hierro_mg": 2,
+        "calcio_mg": 40,
+        "magnesio_mg": 30,
+        "zinc_mg": 0.8,
+        "vit_b12_mcg": 0.1,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 10,
+        "vit_c_mg": 0,
+        "colesterol_mg": 45,
+        "omega3_g": 0.1,
+        "omega6_g": 2.5
+      },
+      "fuente": "USDA (biscotti, almond)"
+    },
+    {
+      "id": "brownie",
+      "nombres": [
+        "Brownie casero con nuez"
+      ],
+      "categoria": "snacks",
+      "por_100g": {
+        "kcal": 420,
+        "proteina_g": 5,
+        "grasa_g": 20,
+        "carbos_g": 55,
+        "fibra_g": 2,
+        "sodio_mg": 210,
+        "potasio_mg": 160,
+        "hierro_mg": 2.5,
+        "calcio_mg": 30,
+        "magnesio_mg": 40,
+        "zinc_mg": 0.9,
+        "vit_b12_mcg": 0.1,
+        "vit_d_mcg": 0.2,
+        "vit_a_mcg": 25,
+        "vit_c_mg": 0,
+        "colesterol_mg": 50,
+        "omega3_g": 0.3,
+        "omega6_g": 4
+      },
+      "fuente": "USDA (brownie with nuts)"
+    },
+    {
+      "id": "bunuelos_acelga",
+      "nombres": [
+        "Buñuelos de acelga",
+        "Buñuelo de acelga"
+      ],
+      "categoria": "preparaciones",
+      "por_100g": {
+        "kcal": 190,
+        "proteina_g": 7,
+        "grasa_g": 9.6,
+        "carbos_g": 20,
+        "fibra_g": 1.5,
+        "sodio_mg": 350,
+        "potasio_mg": 200,
+        "hierro_mg": 1.8,
+        "calcio_mg": 80,
+        "magnesio_mg": 30,
+        "zinc_mg": 0.7,
+        "vit_b12_mcg": 0.3,
+        "vit_d_mcg": 0.3,
+        "vit_a_mcg": 250,
+        "vit_c_mg": 5,
+        "colesterol_mg": 55,
+        "omega3_g": 0.05,
+        "omega6_g": 1.2
+      },
+      "fuente": "Estimado composición típica"
+    },
+    {
+      "id": "cafe_con_leche",
+      "nombres": [
+        "Café con leche"
+      ],
+      "categoria": "bebidas",
+      "por_100g": {
+        "kcal": 22,
+        "proteina_g": 1,
+        "grasa_g": 1,
+        "carbos_g": 1.5,
+        "fibra_g": 0,
+        "sodio_mg": 40,
+        "potasio_mg": 130,
+        "hierro_mg": 0.02,
+        "calcio_mg": 60,
+        "magnesio_mg": 10,
+        "zinc_mg": 0.2,
+        "vit_b12_mcg": 0.2,
+        "vit_d_mcg": 0.5,
+        "vit_a_mcg": 15,
+        "vit_c_mg": 0,
+        "colesterol_mg": 4,
+        "omega3_g": 0.01,
+        "omega6_g": 0.03
+      },
+      "fuente": "USDA (coffee with whole milk)"
+    },
+    {
+      "id": "carne_picada_premium",
+      "nombres": [
+        "Carne picada premium"
+      ],
+      "categoria": "carnes",
+      "por_100g": {
+        "kcal": 185,
+        "proteina_g": 27,
+        "grasa_g": 8,
+        "carbos_g": 0,
+        "fibra_g": 0,
+        "sodio_mg": 72,
+        "potasio_mg": 355,
+        "hierro_mg": 2.7,
+        "calcio_mg": 12,
+        "magnesio_mg": 22,
+        "zinc_mg": 5.7,
+        "vit_b12_mcg": 2.6,
+        "vit_d_mcg": 0.1,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 82,
+        "omega3_g": 0.04,
+        "omega6_g": 0.25
+      },
+      "fuente": "USDA (ground beef 90% lean, cooked)"
+    },
+    {
+      "id": "carne_shawarma",
+      "nombres": [
+        "Carne vacuna shawarma (cortada fina, salteada)"
+      ],
+      "categoria": "carnes",
+      "por_100g": {
+        "kcal": 250,
+        "proteina_g": 25,
+        "grasa_g": 15,
+        "carbos_g": 0,
+        "fibra_g": 0,
+        "sodio_mg": 65,
+        "potasio_mg": 310,
+        "hierro_mg": 2.5,
+        "calcio_mg": 10,
+        "magnesio_mg": 20,
+        "zinc_mg": 5,
+        "vit_b12_mcg": 2.4,
+        "vit_d_mcg": 0.1,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 78,
+        "omega3_g": 0.04,
+        "omega6_g": 0.4
+      },
+      "fuente": "USDA (beef, sauteed, semi-lean)"
+    },
+    {
+      "id": "cebolla",
+      "nombres": [
+        "Cebolla"
+      ],
+      "categoria": "vegetales",
+      "por_100g": {
+        "kcal": 40,
+        "proteina_g": 1.1,
+        "grasa_g": 0.1,
+        "carbos_g": 9.3,
+        "fibra_g": 1.7,
+        "sodio_mg": 4,
+        "potasio_mg": 146,
+        "hierro_mg": 0.2,
+        "calcio_mg": 23,
+        "magnesio_mg": 10,
+        "zinc_mg": 0.2,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 7.4,
+        "colesterol_mg": 0,
+        "omega3_g": 0.01,
+        "omega6_g": 0.01
+      },
+      "fuente": "USDA"
+    },
+    {
+      "id": "champignon_cocido",
+      "nombres": [
+        "Champignon cocido a la sartén",
+        "Champignones en lata (Agaricus bisporus)",
+        "Champignones en trozos al natural (escurridos)"
+      ],
+      "categoria": "vegetales",
+      "por_100g": {
+        "kcal": 25,
+        "proteina_g": 3.1,
+        "grasa_g": 0.4,
+        "carbos_g": 3.7,
+        "fibra_g": 2.2,
+        "sodio_mg": 370,
+        "potasio_mg": 129,
+        "hierro_mg": 0.6,
+        "calcio_mg": 10,
+        "magnesio_mg": 12,
+        "zinc_mg": 0.5,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0.2,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0,
+        "omega6_g": 0.15
+      },
+      "fuente": "USDA (mushrooms, canned/cooked)"
+    },
+    {
+      "id": "chuleta_cerdo",
+      "nombres": [
+        "Chuleta de cerdo a la sartén"
+      ],
+      "categoria": "carnes",
+      "por_100g": {
+        "kcal": 250,
+        "proteina_g": 27,
+        "grasa_g": 15,
+        "carbos_g": 0,
+        "fibra_g": 0,
+        "sodio_mg": 62,
+        "potasio_mg": 362,
+        "hierro_mg": 0.9,
+        "calcio_mg": 22,
+        "magnesio_mg": 25,
+        "zinc_mg": 2.4,
+        "vit_b12_mcg": 0.7,
+        "vit_d_mcg": 0.6,
+        "vit_a_mcg": 2,
+        "vit_c_mg": 0,
+        "colesterol_mg": 82,
+        "omega3_g": 0.04,
+        "omega6_g": 1.4
+      },
+      "fuente": "USDA (pork chop, pan-fried)"
+    },
+    {
+      "id": "ciboulette",
+      "nombres": [
+        "Ciboulette"
+      ],
+      "categoria": "vegetales",
+      "por_100g": {
+        "kcal": 30,
+        "proteina_g": 3.3,
+        "grasa_g": 0.7,
+        "carbos_g": 4.4,
+        "fibra_g": 2.5,
+        "sodio_mg": 3,
+        "potasio_mg": 296,
+        "hierro_mg": 1.6,
+        "calcio_mg": 92,
+        "magnesio_mg": 42,
+        "zinc_mg": 0.6,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 218,
+        "vit_c_mg": 58,
+        "colesterol_mg": 0,
+        "omega3_g": 0.1,
+        "omega6_g": 0.07
+      },
+      "fuente": "USDA (chives, raw)"
+    },
+    {
+      "id": "cold_brew_vainilla",
+      "nombres": [
+        "Cold Brew Vainilla Deseado"
+      ],
+      "categoria": "bebidas",
+      "por_100g": {
+        "kcal": 11,
+        "proteina_g": 0.4,
+        "grasa_g": 0,
+        "carbos_g": 2.2,
+        "fibra_g": 0,
+        "sodio_mg": 5,
+        "potasio_mg": 50,
+        "hierro_mg": 0,
+        "calcio_mg": 2,
+        "magnesio_mg": 5,
+        "zinc_mg": 0,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0,
+        "omega6_g": 0
+      },
+      "fuente": "Estimado desde etiqueta"
+    },
+    {
+      "id": "costilla_cerdo",
+      "nombres": [
+        "Costilla de cerdo cocida sin hueso",
+        "Costillas de cerdo a la plancha"
+      ],
+      "categoria": "carnes",
+      "por_100g": {
+        "kcal": 290,
+        "proteina_g": 20,
+        "grasa_g": 22,
+        "carbos_g": 0,
+        "fibra_g": 0,
+        "sodio_mg": 75,
+        "potasio_mg": 265,
+        "hierro_mg": 0.9,
+        "calcio_mg": 30,
+        "magnesio_mg": 19,
+        "zinc_mg": 3.5,
+        "vit_b12_mcg": 0.8,
+        "vit_d_mcg": 0.5,
+        "vit_a_mcg": 2,
+        "vit_c_mg": 0,
+        "colesterol_mg": 95,
+        "omega3_g": 0.06,
+        "omega6_g": 2.2
+      },
+      "fuente": "USDA (pork ribs, cooked)"
+    },
+    {
+      "id": "crema_leche",
+      "nombres": [
+        "Crema de leche"
+      ],
+      "categoria": "lacteos",
+      "por_100g": {
+        "kcal": 207,
+        "proteina_g": 2.1,
+        "grasa_g": 20,
+        "carbos_g": 3.7,
+        "fibra_g": 0,
+        "sodio_mg": 34,
+        "potasio_mg": 97,
+        "hierro_mg": 0.03,
+        "calcio_mg": 65,
+        "magnesio_mg": 7,
+        "zinc_mg": 0.3,
+        "vit_b12_mcg": 0.2,
+        "vit_d_mcg": 0.3,
+        "vit_a_mcg": 200,
+        "vit_c_mg": 0.6,
+        "colesterol_mg": 66,
+        "omega3_g": 0.1,
+        "omega6_g": 0.5
+      },
+      "fuente": "USDA (heavy cream)"
+    },
+    {
+      "id": "croissant",
+      "nombres": [
+        "Croissant de manteca"
+      ],
+      "categoria": "panaderia",
+      "por_100g": {
+        "kcal": 406,
+        "proteina_g": 8,
+        "grasa_g": 21,
+        "carbos_g": 46,
+        "fibra_g": 2,
+        "sodio_mg": 424,
+        "potasio_mg": 118,
+        "hierro_mg": 2.2,
+        "calcio_mg": 37,
+        "magnesio_mg": 16,
+        "zinc_mg": 0.7,
+        "vit_b12_mcg": 0.1,
+        "vit_d_mcg": 0.1,
+        "vit_a_mcg": 100,
+        "vit_c_mg": 0,
+        "colesterol_mg": 67,
+        "omega3_g": 0.1,
+        "omega6_g": 2
+      },
+      "fuente": "USDA (croissant, butter)"
+    },
+    {
+      "id": "datiles",
+      "nombres": [
+        "Dátiles"
+      ],
+      "categoria": "frutas",
+      "por_100g": {
+        "kcal": 282,
+        "proteina_g": 2.5,
+        "grasa_g": 0.4,
+        "carbos_g": 75,
+        "fibra_g": 8,
+        "sodio_mg": 2,
+        "potasio_mg": 656,
+        "hierro_mg": 1,
+        "calcio_mg": 39,
+        "magnesio_mg": 43,
+        "zinc_mg": 0.3,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 3,
+        "vit_c_mg": 0.4,
+        "colesterol_mg": 0,
+        "omega3_g": 0,
+        "omega6_g": 0.02
+      },
+      "fuente": "USDA (dates, medjool)"
+    },
+    {
+      "id": "dulce_membrillo",
+      "nombres": [
+        "Dulce de membrillo"
+      ],
+      "categoria": "dulces",
+      "por_100g": {
+        "kcal": 250,
+        "proteina_g": 0.4,
+        "grasa_g": 0.2,
+        "carbos_g": 63,
+        "fibra_g": 1,
+        "sodio_mg": 4,
+        "potasio_mg": 65,
+        "hierro_mg": 0.5,
+        "calcio_mg": 10,
+        "magnesio_mg": 5,
+        "zinc_mg": 0.1,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 2,
+        "vit_c_mg": 1,
+        "colesterol_mg": 0,
+        "omega3_g": 0,
+        "omega6_g": 0.05
+      },
+      "fuente": "ARGENFOODS"
+    },
+    {
+      "id": "fideos_cocidos",
+      "nombres": [
+        "Fideos cocidos",
+        "Pasta seca cocida"
+      ],
+      "categoria": "cereales",
+      "por_100g": {
+        "kcal": 158,
+        "proteina_g": 5.8,
+        "grasa_g": 0.9,
+        "carbos_g": 31,
+        "fibra_g": 1.8,
+        "sodio_mg": 6,
+        "potasio_mg": 44,
+        "hierro_mg": 1.3,
+        "calcio_mg": 7,
+        "magnesio_mg": 18,
+        "zinc_mg": 0.5,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.01,
+        "omega6_g": 0.3
+      },
+      "fuente": "USDA (pasta, cooked)"
+    },
+    {
+      "id": "galletitas_avena",
+      "nombres": [
+        "Galletitas de avena (con salvado de trigo)",
+        "Galletitas de avena y cacao"
+      ],
+      "categoria": "snacks",
+      "por_100g": {
+        "kcal": 434,
+        "proteina_g": 8.5,
+        "grasa_g": 14.4,
+        "carbos_g": 68.8,
+        "fibra_g": 5,
+        "sodio_mg": 340,
+        "potasio_mg": 200,
+        "hierro_mg": 3,
+        "calcio_mg": 35,
+        "magnesio_mg": 55,
+        "zinc_mg": 1.2,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.1,
+        "omega6_g": 3.5
+      },
+      "fuente": "Etiqueta + USDA (oatmeal cookies)"
+    },
+    {
+      "id": "higado_res",
+      "nombres": [
+        "Hígado de res cocido"
+      ],
+      "categoria": "carnes",
+      "por_100g": {
+        "kcal": 175,
+        "proteina_g": 26,
+        "grasa_g": 4.7,
+        "carbos_g": 3.9,
+        "fibra_g": 0,
+        "sodio_mg": 69,
+        "potasio_mg": 313,
+        "hierro_mg": 6.5,
+        "calcio_mg": 6,
+        "magnesio_mg": 18,
+        "zinc_mg": 4.5,
+        "vit_b12_mcg": 83.1,
+        "vit_d_mcg": 1.2,
+        "vit_a_mcg": 9442,
+        "vit_c_mg": 1.3,
+        "colesterol_mg": 381,
+        "omega3_g": 0.1,
+        "omega6_g": 0.4
+      },
+      "fuente": "USDA (beef liver, pan-fried)"
+    },
+    {
+      "id": "huevo",
+      "nombres": [
+        "Huevo entero",
+        "Huevos enteros",
+        "Huevo revuelto"
+      ],
+      "categoria": "huevos",
+      "por_100g": {
+        "kcal": 155,
+        "proteina_g": 13,
+        "grasa_g": 11,
+        "carbos_g": 1.1,
+        "fibra_g": 0,
+        "sodio_mg": 124,
+        "potasio_mg": 126,
+        "hierro_mg": 1.8,
+        "calcio_mg": 56,
+        "magnesio_mg": 12,
+        "zinc_mg": 1.3,
+        "vit_b12_mcg": 0.9,
+        "vit_d_mcg": 2,
+        "vit_a_mcg": 160,
+        "vit_c_mg": 0,
+        "colesterol_mg": 373,
+        "omega3_g": 0.1,
+        "omega6_g": 1.6
+      },
+      "fuente": "USDA (whole egg, cooked)"
+    },
+    {
+      "id": "hummus_kyros",
+      "nombres": [
+        "Hummus clásico Kyros"
+      ],
+      "categoria": "legumbres",
+      "por_100g": {
+        "kcal": 253,
+        "proteina_g": 6,
+        "grasa_g": 18,
+        "carbos_g": 17.3,
+        "fibra_g": 4,
+        "sodio_mg": 430,
+        "potasio_mg": 173,
+        "hierro_mg": 2.4,
+        "calcio_mg": 49,
+        "magnesio_mg": 36,
+        "zinc_mg": 1.4,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 1,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.1,
+        "omega6_g": 3.5
+      },
+      "fuente": "Etiqueta + USDA (hummus)"
+    },
+    {
+      "id": "lechuga",
+      "nombres": [
+        "Lechuga"
+      ],
+      "categoria": "vegetales",
+      "por_100g": {
+        "kcal": 15,
+        "proteina_g": 1.4,
+        "grasa_g": 0.2,
+        "carbos_g": 2.9,
+        "fibra_g": 1.3,
+        "sodio_mg": 28,
+        "potasio_mg": 194,
+        "hierro_mg": 0.9,
+        "calcio_mg": 36,
+        "magnesio_mg": 13,
+        "zinc_mg": 0.2,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 370,
+        "vit_c_mg": 9.2,
+        "colesterol_mg": 0,
+        "omega3_g": 0.06,
+        "omega6_g": 0.02
+      },
+      "fuente": "USDA (lettuce, green leaf)"
+    },
+    {
+      "id": "lomito_fiambre",
+      "nombres": [
+        "Lomito al horno (fiambre)"
+      ],
+      "categoria": "fiambres",
+      "por_100g": {
+        "kcal": 140,
+        "proteina_g": 25,
+        "grasa_g": 4.4,
+        "carbos_g": 0,
+        "fibra_g": 0,
+        "sodio_mg": 580,
+        "potasio_mg": 300,
+        "hierro_mg": 1.5,
+        "calcio_mg": 8,
+        "magnesio_mg": 22,
+        "zinc_mg": 3,
+        "vit_b12_mcg": 1.5,
+        "vit_d_mcg": 0.1,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 60,
+        "omega3_g": 0.02,
+        "omega6_g": 0.2
+      },
+      "fuente": "USDA (roast beef, deli)"
+    },
+    {
+      "id": "manteca",
+      "nombres": [
+        "Manteca"
+      ],
+      "categoria": "grasas",
+      "por_100g": {
+        "kcal": 717,
+        "proteina_g": 0.9,
+        "grasa_g": 81,
+        "carbos_g": 0.1,
+        "fibra_g": 0,
+        "sodio_mg": 11,
+        "potasio_mg": 24,
+        "hierro_mg": 0.02,
+        "calcio_mg": 24,
+        "magnesio_mg": 2,
+        "zinc_mg": 0.1,
+        "vit_b12_mcg": 0.2,
+        "vit_d_mcg": 1.5,
+        "vit_a_mcg": 684,
+        "vit_c_mg": 0,
+        "colesterol_mg": 215,
+        "omega3_g": 0.3,
+        "omega6_g": 2.2
+      },
+      "fuente": "USDA (butter, unsalted)"
+    },
+    {
+      "id": "mayonesa",
+      "nombres": [
+        "Mayonesa"
+      ],
+      "categoria": "condimentos",
+      "por_100g": {
+        "kcal": 680,
+        "proteina_g": 1,
+        "grasa_g": 74,
+        "carbos_g": 0.6,
+        "fibra_g": 0,
+        "sodio_mg": 635,
+        "potasio_mg": 20,
+        "hierro_mg": 0.3,
+        "calcio_mg": 8,
+        "magnesio_mg": 2,
+        "zinc_mg": 0.2,
+        "vit_b12_mcg": 0.1,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 25,
+        "vit_c_mg": 0,
+        "colesterol_mg": 42,
+        "omega3_g": 4.2,
+        "omega6_g": 39
+      },
+      "fuente": "USDA (mayonnaise, full fat)"
+    },
+    {
+      "id": "melon_amarillo",
+      "nombres": [
+        "Melón amarillo"
+      ],
+      "categoria": "frutas",
+      "por_100g": {
+        "kcal": 34,
+        "proteina_g": 0.8,
+        "grasa_g": 0.2,
+        "carbos_g": 8,
+        "fibra_g": 0.8,
+        "sodio_mg": 18,
+        "potasio_mg": 228,
+        "hierro_mg": 0.2,
+        "calcio_mg": 6,
+        "magnesio_mg": 10,
+        "zinc_mg": 0.1,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 3,
+        "vit_c_mg": 18,
+        "colesterol_mg": 0,
+        "omega3_g": 0.02,
+        "omega6_g": 0.04
+      },
+      "fuente": "USDA (honeydew melon)"
+    },
+    {
+      "id": "mix_frutos_secos",
+      "nombres": [
+        "Mix Supremo (cajú, almendras y nueces)"
+      ],
+      "categoria": "snacks",
+      "por_100g": {
+        "kcal": 624,
+        "proteina_g": 18.8,
+        "grasa_g": 54.8,
+        "carbos_g": 14.2,
+        "fibra_g": 6,
+        "sodio_mg": 5,
+        "potasio_mg": 550,
+        "hierro_mg": 3.5,
+        "calcio_mg": 100,
+        "magnesio_mg": 200,
+        "zinc_mg": 3.5,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0.5,
+        "colesterol_mg": 0,
+        "omega3_g": 2,
+        "omega6_g": 12
+      },
+      "fuente": "USDA (mixed nuts, unsalted)"
+    },
+    {
+      "id": "morron_rojo",
+      "nombres": [
+        "Morrón rojo crudo"
+      ],
+      "categoria": "vegetales",
+      "por_100g": {
+        "kcal": 31,
+        "proteina_g": 1,
+        "grasa_g": 0.3,
+        "carbos_g": 6,
+        "fibra_g": 2.1,
+        "sodio_mg": 4,
+        "potasio_mg": 211,
+        "hierro_mg": 0.4,
+        "calcio_mg": 7,
+        "magnesio_mg": 12,
+        "zinc_mg": 0.3,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 157,
+        "vit_c_mg": 128,
+        "colesterol_mg": 0,
+        "omega3_g": 0.03,
+        "omega6_g": 0.04
+      },
+      "fuente": "USDA (red bell pepper)"
+    },
+    {
+      "id": "mostaza",
+      "nombres": [
+        "Mostaza"
+      ],
+      "categoria": "condimentos",
+      "por_100g": {
+        "kcal": 60,
+        "proteina_g": 3.7,
+        "grasa_g": 3.3,
+        "carbos_g": 5.3,
+        "fibra_g": 3.3,
+        "sodio_mg": 1135,
+        "potasio_mg": 138,
+        "hierro_mg": 1.5,
+        "calcio_mg": 58,
+        "magnesio_mg": 48,
+        "zinc_mg": 0.6,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 1,
+        "vit_c_mg": 0.3,
+        "colesterol_mg": 0,
+        "omega3_g": 0.3,
+        "omega6_g": 0.6
+      },
+      "fuente": "USDA (yellow mustard)"
+    },
+    {
+      "id": "pan_mr_miga",
+      "nombres": [
+        "Pan Mr Miga con semillas"
+      ],
+      "categoria": "panaderia",
+      "por_100g": {
+        "kcal": 242,
+        "proteina_g": 10.4,
+        "grasa_g": 5.2,
+        "carbos_g": 42,
+        "fibra_g": 3.8,
+        "sodio_mg": 400,
+        "potasio_mg": 180,
+        "hierro_mg": 2.5,
+        "calcio_mg": 80,
+        "magnesio_mg": 50,
+        "zinc_mg": 1.5,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.3,
+        "omega6_g": 1.8
+      },
+      "fuente": "Etiqueta + estimado (seeded bread)"
+    },
+    {
+      "id": "pan_arabe",
+      "nombres": [
+        "Pan árabe / pita shawarma"
+      ],
+      "categoria": "panaderia",
+      "por_100g": {
+        "kcal": 275,
+        "proteina_g": 9.1,
+        "grasa_g": 1.2,
+        "carbos_g": 55,
+        "fibra_g": 2.2,
+        "sodio_mg": 536,
+        "potasio_mg": 120,
+        "hierro_mg": 2.6,
+        "calcio_mg": 86,
+        "magnesio_mg": 26,
+        "zinc_mg": 0.8,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.02,
+        "omega6_g": 0.4
+      },
+      "fuente": "USDA (pita bread, white)"
+    },
+    {
+      "id": "papas_horno",
+      "nombres": [
+        "Papas al horno con hierbas"
+      ],
+      "categoria": "vegetales",
+      "por_100g": {
+        "kcal": 150,
+        "proteina_g": 2,
+        "grasa_g": 5,
+        "carbos_g": 22,
+        "fibra_g": 2,
+        "sodio_mg": 280,
+        "potasio_mg": 535,
+        "hierro_mg": 0.6,
+        "calcio_mg": 10,
+        "magnesio_mg": 25,
+        "zinc_mg": 0.3,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 9.6,
+        "colesterol_mg": 0,
+        "omega3_g": 0.02,
+        "omega6_g": 0.8
+      },
+      "fuente": "USDA (roasted potato with oil)"
+    },
+    {
+      "id": "queso_portsalut",
+      "nombres": [
+        "Queso Portsalut"
+      ],
+      "categoria": "lacteos",
+      "por_100g": {
+        "kcal": 280,
+        "proteina_g": 20,
+        "grasa_g": 22,
+        "carbos_g": 0,
+        "fibra_g": 0,
+        "sodio_mg": 560,
+        "potasio_mg": 62,
+        "hierro_mg": 0.3,
+        "calcio_mg": 520,
+        "magnesio_mg": 22,
+        "zinc_mg": 2.6,
+        "vit_b12_mcg": 1.5,
+        "vit_d_mcg": 0.5,
+        "vit_a_mcg": 180,
+        "vit_c_mg": 0,
+        "colesterol_mg": 70,
+        "omega3_g": 0.1,
+        "omega6_g": 0.5
+      },
+      "fuente": "USDA (port salut cheese)"
+    },
+    {
+      "id": "queso_cremoso",
+      "nombres": [
+        "Queso cremoso bajas calorías"
+      ],
+      "categoria": "lacteos",
+      "por_100g": {
+        "kcal": 170,
+        "proteina_g": 12,
+        "grasa_g": 10,
+        "carbos_g": 3,
+        "fibra_g": 0,
+        "sodio_mg": 450,
+        "potasio_mg": 80,
+        "hierro_mg": 0.2,
+        "calcio_mg": 400,
+        "magnesio_mg": 18,
+        "zinc_mg": 2,
+        "vit_b12_mcg": 1,
+        "vit_d_mcg": 0.3,
+        "vit_a_mcg": 100,
+        "vit_c_mg": 0,
+        "colesterol_mg": 35,
+        "omega3_g": 0.05,
+        "omega6_g": 0.3
+      },
+      "fuente": "Estimado (queso cremoso light AR)"
+    },
+    {
+      "id": "queso_parmesano",
+      "nombres": [
+        "Queso parmesano"
+      ],
+      "categoria": "lacteos",
+      "por_100g": {
+        "kcal": 431,
+        "proteina_g": 38.5,
+        "grasa_g": 29,
+        "carbos_g": 4.1,
+        "fibra_g": 0,
+        "sodio_mg": 1602,
+        "potasio_mg": 92,
+        "hierro_mg": 0.8,
+        "calcio_mg": 1184,
+        "magnesio_mg": 44,
+        "zinc_mg": 3,
+        "vit_b12_mcg": 1.2,
+        "vit_d_mcg": 0.5,
+        "vit_a_mcg": 207,
+        "vit_c_mg": 0,
+        "colesterol_mg": 88,
+        "omega3_g": 0.1,
+        "omega6_g": 0.4
+      },
+      "fuente": "USDA (parmesan, hard)"
+    },
+    {
+      "id": "queso_pimienta",
+      "nombres": [
+        "Queso pimienta negra Santa Rosa"
+      ],
+      "categoria": "lacteos",
+      "por_100g": {
+        "kcal": 340,
+        "proteina_g": 21.3,
+        "grasa_g": 27.2,
+        "carbos_g": 1,
+        "fibra_g": 0,
+        "sodio_mg": 620,
+        "potasio_mg": 80,
+        "hierro_mg": 0.4,
+        "calcio_mg": 600,
+        "magnesio_mg": 25,
+        "zinc_mg": 2.8,
+        "vit_b12_mcg": 1.2,
+        "vit_d_mcg": 0.4,
+        "vit_a_mcg": 200,
+        "vit_c_mg": 0,
+        "colesterol_mg": 80,
+        "omega3_g": 0.1,
+        "omega6_g": 0.5
+      },
+      "fuente": "Estimado (semi-hard cheese)"
+    },
+    {
+      "id": "queso_reggianito",
+      "nombres": [
+        "Queso reggianito",
+        "Reggianito rallado"
+      ],
+      "categoria": "lacteos",
+      "por_100g": {
+        "kcal": 380,
+        "proteina_g": 33,
+        "grasa_g": 27,
+        "carbos_g": 2,
+        "fibra_g": 0,
+        "sodio_mg": 1200,
+        "potasio_mg": 90,
+        "hierro_mg": 0.7,
+        "calcio_mg": 1100,
+        "magnesio_mg": 40,
+        "zinc_mg": 2.8,
+        "vit_b12_mcg": 1.5,
+        "vit_d_mcg": 0.5,
+        "vit_a_mcg": 190,
+        "vit_c_mg": 0,
+        "colesterol_mg": 85,
+        "omega3_g": 0.1,
+        "omega6_g": 0.4
+      },
+      "fuente": "ARGENFOODS (reggianito, similar parmigiano)"
+    },
+    {
+      "id": "queso_tybo",
+      "nombres": [
+        "Queso tybo"
+      ],
+      "categoria": "lacteos",
+      "por_100g": {
+        "kcal": 340,
+        "proteina_g": 24,
+        "grasa_g": 26,
+        "carbos_g": 1,
+        "fibra_g": 0,
+        "sodio_mg": 580,
+        "potasio_mg": 75,
+        "hierro_mg": 0.3,
+        "calcio_mg": 700,
+        "magnesio_mg": 28,
+        "zinc_mg": 3,
+        "vit_b12_mcg": 1.5,
+        "vit_d_mcg": 0.4,
+        "vit_a_mcg": 200,
+        "vit_c_mg": 0,
+        "colesterol_mg": 80,
+        "omega3_g": 0.1,
+        "omega6_g": 0.5
+      },
+      "fuente": "ARGENFOODS (queso tybo)"
+    },
+    {
+      "id": "salsa_bolognesa",
+      "nombres": [
+        "Salsa bolognesa Oliovita"
+      ],
+      "categoria": "salsas",
+      "por_100g": {
+        "kcal": 70,
+        "proteina_g": 3.8,
+        "grasa_g": 2.7,
+        "carbos_g": 7.7,
+        "fibra_g": 1.5,
+        "sodio_mg": 480,
+        "potasio_mg": 250,
+        "hierro_mg": 1,
+        "calcio_mg": 20,
+        "magnesio_mg": 15,
+        "zinc_mg": 0.8,
+        "vit_b12_mcg": 0.3,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 40,
+        "vit_c_mg": 5,
+        "colesterol_mg": 10,
+        "omega3_g": 0.05,
+        "omega6_g": 0.5
+      },
+      "fuente": "Etiqueta + estimado"
+    },
+    {
+      "id": "tomate",
+      "nombres": [
+        "Tomate",
+        "Tomate fresco",
+        "Tomate cherry amarillo",
+        "Tomate cherry/perita cocido",
+        "Tomates cherry asados"
+      ],
+      "categoria": "vegetales",
+      "por_100g": {
+        "kcal": 18,
+        "proteina_g": 0.9,
+        "grasa_g": 0.2,
+        "carbos_g": 3.9,
+        "fibra_g": 1.2,
+        "sodio_mg": 5,
+        "potasio_mg": 237,
+        "hierro_mg": 0.3,
+        "calcio_mg": 10,
+        "magnesio_mg": 11,
+        "zinc_mg": 0.2,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 42,
+        "vit_c_mg": 14,
+        "colesterol_mg": 0,
+        "omega3_g": 0.003,
+        "omega6_g": 0.08
+      },
+      "fuente": "USDA (tomato, raw)"
+    },
+    {
+      "id": "vacio_horno",
+      "nombres": [
+        "Vacío al horno"
+      ],
+      "categoria": "carnes",
+      "por_100g": {
+        "kcal": 245,
+        "proteina_g": 27.5,
+        "grasa_g": 15.5,
+        "carbos_g": 0,
+        "fibra_g": 0,
+        "sodio_mg": 58,
+        "potasio_mg": 340,
+        "hierro_mg": 2.3,
+        "calcio_mg": 8,
+        "magnesio_mg": 22,
+        "zinc_mg": 5.5,
+        "vit_b12_mcg": 2.5,
+        "vit_d_mcg": 0.1,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 80,
+        "omega3_g": 0.04,
+        "omega6_g": 0.5
+      },
+      "fuente": "USDA (beef flank, roasted)"
+    },
+    {
+      "id": "tapa_nalga",
+      "nombres": [
+        "Tapa de nalga cocida",
+        "Tapa de nalga a la plancha",
+        "Tapa de nalga"
+      ],
+      "categoria": "carnes",
+      "por_100g": {
+        "kcal": 175,
+        "proteina_g": 30,
+        "grasa_g": 6,
+        "carbos_g": 0,
+        "fibra_g": 0,
+        "sodio_mg": 56,
+        "potasio_mg": 350,
+        "hierro_mg": 2.4,
+        "calcio_mg": 5,
+        "magnesio_mg": 24,
+        "zinc_mg": 5,
+        "vit_b12_mcg": 2.1,
+        "vit_d_mcg": 0.1,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 72,
+        "omega3_g": 0.03,
+        "omega6_g": 0.2
+      },
+      "fuente": "USDA (beef eye of round, cooked)"
+    },
+    {
+      "id": "bomba_papa",
+      "nombres": [
+        "Bomba de papa"
+      ],
+      "categoria": "preparaciones",
+      "por_100g": {
+        "kcal": 185,
+        "proteina_g": 4,
+        "grasa_g": 9,
+        "carbos_g": 23,
+        "fibra_g": 1.5,
+        "sodio_mg": 310,
+        "potasio_mg": 280,
+        "hierro_mg": 0.5,
+        "calcio_mg": 15,
+        "magnesio_mg": 18,
+        "zinc_mg": 0.3,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 6,
+        "colesterol_mg": 15,
+        "omega3_g": 0.02,
+        "omega6_g": 1.5
+      },
+      "fuente": "Estimado composición típica (puré de papa frito)"
+    },
+    {
+      "id": "queso_roquefort",
+      "nombres": [
+        "Queso roquefort",
+        "Salsa de roquefort"
+      ],
+      "categoria": "lacteos",
+      "por_100g": {
+        "kcal": 369,
+        "proteina_g": 21.5,
+        "grasa_g": 30.6,
+        "carbos_g": 2,
+        "fibra_g": 0,
+        "sodio_mg": 1809,
+        "potasio_mg": 91,
+        "hierro_mg": 0.6,
+        "calcio_mg": 662,
+        "magnesio_mg": 30,
+        "zinc_mg": 2.1,
+        "vit_b12_mcg": 1.2,
+        "vit_d_mcg": 0.5,
+        "vit_a_mcg": 294,
+        "vit_c_mg": 0,
+        "colesterol_mg": 90,
+        "omega3_g": 0.3,
+        "omega6_g": 0.8
+      },
+      "fuente": "USDA (blue cheese / roquefort)"
+    },
+    {
+      "id": "yogur_bebible_pro",
+      "nombres": [
+        "Yogur bebible Pro+ sabor vainilla",
+        "Yogur bebible Pro+"
+      ],
+      "categoria": "lacteos",
+      "por_100g": {
+        "kcal": 71,
+        "proteina_g": 7.9,
+        "grasa_g": 1.1,
+        "carbos_g": 7.4,
+        "fibra_g": 0,
+        "sodio_mg": 55,
+        "potasio_mg": 180,
+        "hierro_mg": 0.1,
+        "calcio_mg": 140,
+        "magnesio_mg": 14,
+        "zinc_mg": 0.6,
+        "vit_b12_mcg": 0.5,
+        "vit_d_mcg": 0.1,
+        "vit_a_mcg": 10,
+        "vit_c_mg": 0,
+        "colesterol_mg": 5,
+        "omega3_g": 0.01,
+        "omega6_g": 0.03
+      },
+      "fuente": "Etiqueta Ser Pro+ + estimado micro (yogur descremado proteico)"
+    },
+    {
+      "id": "manzana_deshidratada",
+      "nombres": [
+        "Manzana deshidratada"
+      ],
+      "categoria": "frutas",
+      "por_100g": {
+        "kcal": 346,
+        "proteina_g": 1.3,
+        "grasa_g": 0.3,
+        "carbos_g": 84,
+        "fibra_g": 8.7,
+        "sodio_mg": 87,
+        "potasio_mg": 640,
+        "hierro_mg": 1.4,
+        "calcio_mg": 14,
+        "magnesio_mg": 16,
+        "zinc_mg": 0.2,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 3.9,
+        "colesterol_mg": 0,
+        "omega3_g": 0.01,
+        "omega6_g": 0.08
+      },
+      "fuente": "USDA (apples, dehydrated / dried)"
+    },
+    {
+      "id": "gelatina_sin_azucar",
+      "nombres": [
+        "Gelatina sin azúcar (preparada)",
+        "Gelatina sin azúcar",
+        "Gelatina sin azúcar preparada"
+      ],
+      "categoria": "postres",
+      "por_100g": {
+        "kcal": 5,
+        "proteina_g": 0.8,
+        "grasa_g": 0,
+        "carbos_g": 0.3,
+        "fibra_g": 0,
+        "sodio_mg": 40,
+        "potasio_mg": 1,
+        "hierro_mg": 0.02,
+        "calcio_mg": 2,
+        "magnesio_mg": 0,
+        "zinc_mg": 0.01,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0,
+        "omega6_g": 0
+      },
+      "fuente": "USDA (gelatin dessert, sugar-free, prepared)"
+    },
+    {
+      "id": "sardinas_aceite",
+      "nombres": [
+        "Sardinas en su jugo con aceite vegetal",
+        "Sardinas en aceite",
+        "Sardinas en lata",
+        "Sardinas en aceite vegetal"
+      ],
+      "categoria": "pescados",
+      "por_100g": {
+        "kcal": 208,
+        "proteina_g": 24.6,
+        "grasa_g": 11.5,
+        "carbos_g": 0,
+        "fibra_g": 0,
+        "sodio_mg": 505,
+        "potasio_mg": 397,
+        "hierro_mg": 2.9,
+        "calcio_mg": 382,
+        "magnesio_mg": 39,
+        "zinc_mg": 1.3,
+        "vit_b12_mcg": 8.9,
+        "vit_d_mcg": 4.8,
+        "vit_a_mcg": 32,
+        "vit_c_mg": 0,
+        "colesterol_mg": 142,
+        "omega3_g": 1.5,
+        "omega6_g": 3.5
+      },
+      "fuente": "USDA (sardines, canned in oil, drained)"
+    },
+    {
+      "id": "papa_hervida",
+      "nombres": [
+        "Papa hervida",
+        "Papa cocida"
+      ],
+      "categoria": "vegetales",
+      "por_100g": {
+        "kcal": 87,
+        "proteina_g": 2,
+        "grasa_g": 0.1,
+        "carbos_g": 20,
+        "fibra_g": 1.8,
+        "sodio_mg": 5,
+        "potasio_mg": 379,
+        "hierro_mg": 0.3,
+        "calcio_mg": 8,
+        "magnesio_mg": 20,
+        "zinc_mg": 0.3,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 13,
+        "colesterol_mg": 0,
+        "omega3_g": 0.01,
+        "omega6_g": 0.03
+      },
+      "fuente": "USDA (potato, boiled, without skin)"
+    },
+    {
+      "id": "zanahoria_hervida",
+      "nombres": [
+        "Zanahoria hervida",
+        "Zanahoria cocida"
+      ],
+      "categoria": "vegetales",
+      "por_100g": {
+        "kcal": 35,
+        "proteina_g": 0.8,
+        "grasa_g": 0.2,
+        "carbos_g": 8.2,
+        "fibra_g": 3,
+        "sodio_mg": 58,
+        "potasio_mg": 235,
+        "hierro_mg": 0.3,
+        "calcio_mg": 30,
+        "magnesio_mg": 10,
+        "zinc_mg": 0.2,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 852,
+        "vit_c_mg": 3.6,
+        "colesterol_mg": 0,
+        "omega3_g": 0.002,
+        "omega6_g": 0.08
+      },
+      "fuente": "USDA (carrots, boiled)"
+    },
+    {
+      "id": "barra_vitalgy_negra",
+      "nombres": [
+        "Barra negra (cacao/maní/quinoa)"
+      ],
+      "categoria": "snacks",
+      "por_100g": {
+        "kcal": 264,
+        "proteina_g": 30,
+        "grasa_g": 7,
+        "carbos_g": 20,
+        "fibra_g": 4,
+        "sodio_mg": 200,
+        "potasio_mg": 350,
+        "hierro_mg": 3,
+        "calcio_mg": 50,
+        "magnesio_mg": 80,
+        "zinc_mg": 2,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.05,
+        "omega6_g": 1.5
+      },
+      "fuente": "Estimado desde etiqueta Vitalgy Foods + USDA (protein bar with cocoa/peanut)"
+    },
+    {
+      "id": "barra_vitalgy_amarilla",
+      "nombres": [
+        "Barra amarilla (quinoa/maní/castañas)"
+      ],
+      "categoria": "snacks",
+      "por_100g": {
+        "kcal": 390,
+        "proteina_g": 18,
+        "grasa_g": 12,
+        "carbos_g": 52.5,
+        "fibra_g": 3.5,
+        "sodio_mg": 150,
+        "potasio_mg": 300,
+        "hierro_mg": 2.5,
+        "calcio_mg": 40,
+        "magnesio_mg": 70,
+        "zinc_mg": 1.5,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.08,
+        "omega6_g": 2
+      },
+      "fuente": "Estimado desde etiqueta + USDA (nut/grain bar)"
+    },
+    {
+      "id": "arroz_blanco_cocido",
+      "nombres": [
+        "Arroz blanco cocido"
+      ],
+      "categoria": "cereales",
+      "por_100g": {
+        "kcal": 130,
+        "proteina_g": 2.7,
+        "grasa_g": 0.3,
+        "carbos_g": 28.2,
+        "fibra_g": 0.4,
+        "sodio_mg": 1,
+        "potasio_mg": 35,
+        "hierro_mg": 0.2,
+        "calcio_mg": 10,
+        "magnesio_mg": 12,
+        "zinc_mg": 0.5,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.01,
+        "omega6_g": 0.1
+      },
+      "fuente": "USDA (white rice, cooked)"
+    },
+    {
+      "id": "banana",
+      "nombres": [
+        "Banana madura",
+        "Banana"
+      ],
+      "categoria": "frutas",
+      "por_100g": {
+        "kcal": 89,
+        "proteina_g": 1.1,
+        "grasa_g": 0.3,
+        "carbos_g": 22.8,
+        "fibra_g": 2.6,
+        "sodio_mg": 1,
+        "potasio_mg": 358,
+        "hierro_mg": 0.3,
+        "calcio_mg": 5,
+        "magnesio_mg": 27,
+        "zinc_mg": 0.2,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 3,
+        "vit_c_mg": 8.7,
+        "colesterol_mg": 0,
+        "omega3_g": 0.03,
+        "omega6_g": 0.05
+      },
+      "fuente": "USDA (banana, raw, ripe)"
+    },
+    {
+      "id": "barrita_zafran_naranja",
+      "nombres": [
+        "Barrita Zafrán (naranja, frutos secos)"
+      ],
+      "categoria": "snacks",
+      "por_100g": {
+        "kcal": 414,
+        "proteina_g": 10.7,
+        "grasa_g": 17.9,
+        "carbos_g": 53.6,
+        "fibra_g": 3.5,
+        "sodio_mg": 120,
+        "potasio_mg": 250,
+        "hierro_mg": 2,
+        "calcio_mg": 35,
+        "magnesio_mg": 55,
+        "zinc_mg": 1.2,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.1,
+        "omega6_g": 2.5
+      },
+      "fuente": "Estimado desde etiqueta Zafrán + USDA (fruit/nut bar)"
+    },
+    {
+      "id": "barrita_zafran_frutos_secos",
+      "nombres": [
+        "Barrita Zafrán (variedad frutos secos)"
+      ],
+      "categoria": "snacks",
+      "por_100g": {
+        "kcal": 440,
+        "proteina_g": 11.1,
+        "grasa_g": 20,
+        "carbos_g": 55.6,
+        "fibra_g": 3.5,
+        "sodio_mg": 130,
+        "potasio_mg": 260,
+        "hierro_mg": 2,
+        "calcio_mg": 40,
+        "magnesio_mg": 60,
+        "zinc_mg": 1.3,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.15,
+        "omega6_g": 3
+      },
+      "fuente": "Estimado desde etiqueta Zafrán + USDA (nut bar)"
+    },
+    {
+      "id": "bocaditos_acelga_huevo",
+      "nombres": [
+        "Bocaditos de acelga y huevo fritos x3",
+        "Bocaditos de acelga y huevo fritos",
+        "Bocaditos de acelga"
+      ],
+      "categoria": "preparaciones",
+      "por_100g": {
+        "kcal": 208,
+        "proteina_g": 8,
+        "grasa_g": 12,
+        "carbos_g": 16,
+        "fibra_g": 1.5,
+        "sodio_mg": 340,
+        "potasio_mg": 210,
+        "hierro_mg": 2,
+        "calcio_mg": 85,
+        "magnesio_mg": 30,
+        "zinc_mg": 0.8,
+        "vit_b12_mcg": 0.4,
+        "vit_d_mcg": 0.5,
+        "vit_a_mcg": 230,
+        "vit_c_mg": 5,
+        "colesterol_mg": 75,
+        "omega3_g": 0.05,
+        "omega6_g": 1.5
+      },
+      "fuente": "Estimado composición típica (acelga + huevo + harina, frito)"
+    },
+    {
+      "id": "mix_chips_banana_nueces",
+      "nombres": [
+        "Mix chips de banana con nueces, almendras y avellanas",
+        "Mix chips de banana"
+      ],
+      "categoria": "snacks",
+      "por_100g": {
+        "kcal": 606,
+        "proteina_g": 11.2,
+        "grasa_g": 50,
+        "carbos_g": 28.2,
+        "fibra_g": 5,
+        "sodio_mg": 5,
+        "potasio_mg": 480,
+        "hierro_mg": 2.5,
+        "calcio_mg": 80,
+        "magnesio_mg": 150,
+        "zinc_mg": 2.5,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 1,
+        "colesterol_mg": 0,
+        "omega3_g": 1.5,
+        "omega6_g": 10
+      },
+      "fuente": "Estimado USDA (banana chips + mixed nuts blend)"
+    },
+    {
+      "id": "not_protein_bar",
+      "nombres": [
+        "Not. Protein Bar"
+      ],
+      "categoria": "snacks",
+      "por_100g": {
+        "kcal": 371,
+        "proteina_g": 31.1,
+        "grasa_g": 13.3,
+        "carbos_g": 28.9,
+        "fibra_g": 4,
+        "sodio_mg": 280,
+        "potasio_mg": 250,
+        "hierro_mg": 3,
+        "calcio_mg": 160,
+        "magnesio_mg": 65,
+        "zinc_mg": 2,
+        "vit_b12_mcg": 0.5,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 15,
+        "omega3_g": 0.05,
+        "omega6_g": 1
+      },
+      "fuente": "Estimado desde etiqueta Not. + USDA (protein bar)"
+    },
+    {
+      "id": "pollo_con_piel",
+      "nombres": [
+        "Pollo 1/4 con piel, sin hueso",
+        "Pollo con piel"
+      ],
+      "categoria": "carnes",
+      "por_100g": {
+        "kcal": 239,
+        "proteina_g": 27.3,
+        "grasa_g": 13.6,
+        "carbos_g": 0,
+        "fibra_g": 0,
+        "sodio_mg": 82,
+        "potasio_mg": 229,
+        "hierro_mg": 1.3,
+        "calcio_mg": 15,
+        "magnesio_mg": 27,
+        "zinc_mg": 1.8,
+        "vit_b12_mcg": 0.3,
+        "vit_d_mcg": 0.2,
+        "vit_a_mcg": 48,
+        "vit_c_mg": 0,
+        "colesterol_mg": 88,
+        "omega3_g": 0.1,
+        "omega6_g": 2.5
+      },
+      "fuente": "USDA (chicken, meat and skin, cooked, roasted)"
+    },
+    {
+      "id": "roast_beef",
+      "nombres": [
+        "Roast beef (hervido y dorado)",
+        "Roast beef"
+      ],
+      "categoria": "carnes",
+      "por_100g": {
+        "kcal": 175,
+        "proteina_g": 28,
+        "grasa_g": 7,
+        "carbos_g": 0,
+        "fibra_g": 0,
+        "sodio_mg": 55,
+        "potasio_mg": 340,
+        "hierro_mg": 2.5,
+        "calcio_mg": 7,
+        "magnesio_mg": 23,
+        "zinc_mg": 5.2,
+        "vit_b12_mcg": 2.3,
+        "vit_d_mcg": 0.1,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 75,
+        "omega3_g": 0.03,
+        "omega6_g": 0.25
+      },
+      "fuente": "USDA (beef, round, roasted)"
+    },
+    {
+      "id": "zanahoria_cruda",
+      "nombres": [
+        "Zanahoria cruda",
+        "Zanahoria"
+      ],
+      "categoria": "vegetales",
+      "por_100g": {
+        "kcal": 41,
+        "proteina_g": 0.9,
+        "grasa_g": 0.2,
+        "carbos_g": 9.6,
+        "fibra_g": 2.8,
+        "sodio_mg": 69,
+        "potasio_mg": 320,
+        "hierro_mg": 0.3,
+        "calcio_mg": 33,
+        "magnesio_mg": 12,
+        "zinc_mg": 0.2,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 835,
+        "vit_c_mg": 5.9,
+        "colesterol_mg": 0,
+        "omega3_g": 0.002,
+        "omega6_g": 0.12
+      },
+      "fuente": "USDA (carrots, raw)"
+    }
+  ]
+}

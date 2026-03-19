@@ -17,8 +17,8 @@ const MET_CARDIO = {
   pilates:      { baja: 3.0, moderada: 3.5, alta: 4.0 },
   caminata:     { baja: 2.5, moderada: 3.5, alta: 4.5 },
   estiramiento: { baja: 2.0, moderada: 2.0, alta: 2.5 },
-  // Sauna: hipertermia pasiva eleva levemente el metabolismo
-  sauna:        { baja: 1.5, moderada: 1.8, alta: 1.8 },
+  // Sauna: hipertermia pasiva — Compendium of Physical Activities 1.0-1.2
+  sauna:        { baja: 1.0, moderada: 1.1, alta: 1.2 },
   // Ducha fría: vasoconstricción, gasto mínimo
   ducha_fria:   { baja: 1.2, moderada: 1.2, alta: 1.2 },
   // Sexo: MET según esfuerzo (Compendium 18210-18220)
@@ -75,16 +75,25 @@ export function cardioItemKcal(item, pesoKg) {
 
 /**
  * Estima kcal de la parte de fuerza de una sesión.
- * MET 4.5 = entrenamiento de fuerza moderado (Compendium of Physical Activities).
- * Tiempo por set: ~3 min promedio (trabajo + descanso).
- * Número único orientativo — sin monitor cardíaco el error real es ±30%.
+ * Diferencia compound vs aislación:
+ *   Compound (sentadilla, press, remo, etc.): MET 5.0, ~4.5 min/set
+ *   Aislación (curl, extensión, etc.):        MET 3.5, ~2.5 min/set
+ * Sin monitor cardíaco el error real es ±30%.
  */
+const COMPOUND_RE = /sentadilla|squat|peso muerto|deadlift|press\b|bench|militar|remo\b|row|dominad|pull.?up|hip thrust|clean|snatch|fondos|dips?\b/i;
+
 export function fuerzaKcal(session, pesoKg) {
   const ejercicios = session.fuerza ?? [];
   if (!ejercicios.length) return 0;
-  const totalSets = ejercicios.reduce((acc, ej) => acc + (ej.sets?.length ?? 0), 0);
-  const durMin    = totalSets * 3;
-  return Math.round(4.5 * pesoKg * (durMin / 60));
+  let totalKcal = 0;
+  for (const ej of ejercicios) {
+    const nSets     = ej.sets?.length ?? 0;
+    const compound  = COMPOUND_RE.test(ej.ejercicio ?? '');
+    const met       = compound ? 5.0 : 3.5;
+    const minPerSet = compound ? 4.5 : 2.5;
+    totalKcal += met * pesoKg * (nSets * minPerSet / 60);
+  }
+  return Math.round(totalKcal);
 }
 
 /**

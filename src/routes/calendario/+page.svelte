@@ -10,7 +10,8 @@
   let { data } = $props();
   let sessions = $derived(data.sessions);
   let ventanas = $derived(data.ventanas);
-  let perfil   = $derived(data.perfil);
+  let perfil       = $derived(data.perfil);
+  let alimentosRef = $derived(data.alimentosRef ?? []);
 
   let calView   = $state('gym');
   let calFormat = $state('gregoriano'); // 'gregoriano' | '13lunas'
@@ -19,6 +20,8 @@
 
   let calEl;
   let fcCalendar = null;
+  let calLoading = $state(true);
+  let calError   = $state(false);
 
   function gymCalEvents() {
     const pesoKg = perfil?.historial_peso?.at(-1)?.peso_kg ?? 80;
@@ -98,11 +101,21 @@
   }
 
   onMount(() => {
-    // FullCalendar loaded via CDN in <svelte:head>
-    // Poll until FullCalendar is available
+    const CDN_TIMEOUT = 10_000;
+    let elapsed = 0;
     const interval = setInterval(() => {
-      if (typeof window.FullCalendar === 'undefined') return;
+      elapsed += 50;
+      if (typeof window.FullCalendar === 'undefined') {
+        if (elapsed >= CDN_TIMEOUT) {
+          clearInterval(interval);
+          calLoading = false;
+          calError = true;
+          console.error('[Calendario] FullCalendar no se pudo cargar desde CDN');
+        }
+        return;
+      }
       clearInterval(interval);
+      calLoading = false;
 
       fcCalendar = new window.FullCalendar.Calendar(calEl, {
         initialView: 'dayGridMonth',
@@ -158,6 +171,7 @@
           }
         },
 
+
         dayCellDidMount(info) {
           const d = info.date.toISOString().split('T')[0];
           const gymDates   = new Set(sessions.map(s => s.date));
@@ -165,57 +179,52 @@
           const pesoByDate = {};
           for (const p of (perfil?.historial_peso || [])) pesoByDate[p.fecha] = p.peso_kg;
           const frame = info.el.querySelector('.fc-daygrid-day-frame');
-          if (frame) {
-            if (calView === 'gym'       && gymDates.has(d))   frame.style.background = 'rgba(124,106,245,0.06)';
-            if (calView === 'nutricion' && nutriDates.has(d)) frame.style.background = 'rgba(245,158,11,0.06)';
+          if (!frame) return;
 
+          if (calView === 'gym'       && gymDates.has(d))   frame.style.background = 'rgba(124,106,245,0.06)';
+          if (calView === 'nutricion' && nutriDates.has(d)) frame.style.background = 'rgba(245,158,11,0.06)';
 
-            // Línea de tiempo en días pasados + hoy
-            const todayMidnight = new Date(); todayMidnight.setHours(0,0,0,0);
-            const isPast  = info.date < todayMidnight;
-            const isToday = info.date.getTime() === todayMidnight.getTime();
-            if (isPast || isToday) {
-              const line = document.createElement('div');
-              line.style.cssText = [
-                'position:absolute',
-                'bottom:23.6%',
-                'left:0',
-                'right:0',
-                'height:1px',
-                isPast
-                  ? 'background:rgba(120,110,200,0.14)'
-                  : 'background:linear-gradient(90deg,rgba(165,148,249,0.56) 0%,transparent 100%)',
-                'pointer-events:none',
-                'z-index:0',
-              ].join(';');
-              frame.appendChild(line);
-            }
+          // Skip if already decorated (prevents duplication on re-render)
+          if (frame.dataset.decorated) return;
+          frame.dataset.decorated = '1';
 
-            // Weight badge
-            if (pesoByDate[d] && frame) {
-              const wb = document.createElement('div');
-              wb.className = 'peso-cal-badge';
-              wb.textContent = pesoByDate[d] + ' kg';
-              frame.appendChild(wb);
-            }
-
-            // Moon phase badge — only label for Luna llena / Luna nueva
-            const moon = getMoonPhase(info.date);
-            const showLabel = moon.name === 'Luna llena' || moon.name === 'Luna nueva';
-            const badge = document.createElement('div');
-            badge.className = 'moon-badge' + (showLabel ? ' moon-key' : '');
-            badge.title = `${moon.name} (día ${Math.round(moon.age)} del ciclo)`;
-            if (showLabel) {
-              const label = document.createElement('span');
-              label.className = 'moon-label';
-              label.textContent = moon.name;
-              badge.appendChild(label);
-            }
-            const iconSpan = document.createElement('span');
-            iconSpan.textContent = moon.icon;
-            badge.appendChild(iconSpan);
-            frame.appendChild(badge);
+          // Timeline for past days + today
+          const todayMidnight = new Date(); todayMidnight.setHours(0,0,0,0);
+          const isPast  = info.date < todayMidnight;
+          const isToday = info.date.getTime() === todayMidnight.getTime();
+          if (isPast || isToday) {
+            const line = document.createElement('div');
+            line.className = 'cal-timeline';
+            line.style.background = isPast
+              ? 'rgba(120,110,200,0.14)'
+              : 'linear-gradient(90deg,rgba(165,148,249,0.56) 0%,transparent 100%)';
+            frame.appendChild(line);
           }
+
+          // Weight badge
+          if (pesoByDate[d]) {
+            const wb = document.createElement('div');
+            wb.className = 'peso-cal-badge';
+            wb.textContent = pesoByDate[d] + ' kg';
+            frame.appendChild(wb);
+          }
+
+          // Moon phase badge
+          const moon = getMoonPhase(info.date);
+          const showLabel = moon.name === 'Luna llena' || moon.name === 'Luna nueva';
+          const badge = document.createElement('div');
+          badge.className = 'moon-badge' + (showLabel ? ' moon-key' : '');
+          badge.title = `${moon.name} (día ${Math.round(moon.age)} del ciclo)`;
+          if (showLabel) {
+            const label = document.createElement('span');
+            label.className = 'moon-label';
+            label.textContent = moon.name;
+            badge.appendChild(label);
+          }
+          const iconSpan = document.createElement('span');
+          iconSpan.textContent = moon.icon;
+          badge.appendChild(iconSpan);
+          frame.appendChild(badge);
         },
       });
 
@@ -265,7 +274,14 @@
           <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div> Ventana de alimentación</div>
         {/if}
       </div>
-      <div bind:this={calEl} style="flex:1;min-height:0"></div>
+      {#if calError}
+        <div class="cal-loading">
+          <div class="cal-loading-icon">⚠️</div>
+          <p>No se pudo cargar el calendario. Verificá tu conexión.</p>
+          <button class="cal-sub-btn" onclick={() => location.reload()}>Reintentar</button>
+        </div>
+      {/if}
+      <div bind:this={calEl} style="flex:1;min-height:0;{calError ? 'display:none' : ''}"></div>
     </div>
 
     <!-- 13 Lunas: solo se monta cuando está activo -->
@@ -281,9 +297,9 @@
   <!-- Detail panel -->
   <div class="cal-detail">
     {#if selectedSession}
-      <SessionDetail session={selectedSession} {ventanas} {perfil} />
+      <SessionDetail session={selectedSession} {ventanas} {perfil} {alimentosRef} />
     {:else if selectedVentana}
-      <VentanaDetail ventana={selectedVentana} {perfil} {sessions} {ventanas} />
+      <VentanaDetail ventana={selectedVentana} {perfil} {sessions} {ventanas} {alimentosRef} />
     {:else}
       <div class="empty-state">
         <div class="ei">📅</div>
@@ -454,5 +470,31 @@
     border: 1px solid rgba(192,132,252,0.2);
     border-radius: 3px; padding: 1px 4px;
     pointer-events: none; line-height: 1.3;
+  }
+
+  /* Timeline line (replaces inline styles) */
+  :global(.cal-timeline) {
+    position: absolute; bottom: 24%; left: 0; right: 0;
+    height: 1px; pointer-events: none; z-index: 0;
+  }
+
+  /* Loading / error states */
+  .cal-loading {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 10px; color: var(--dim);
+  }
+  .cal-loading-icon { font-size: 36px; opacity: 0.35; }
+  .cal-loading p { font-size: 13px; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .cal-layout { flex-direction: column; }
+    .cal-detail {
+      width: 100%; max-height: 50vh;
+      border-right: none; border-top: 1px solid var(--b1);
+    }
+    .cal-panel { padding: 10px 12px; }
+    .cal-subnav { flex-wrap: wrap; }
   }
 </style>

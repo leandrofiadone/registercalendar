@@ -1,6 +1,6 @@
 <script>
   import { fmtDate } from '$lib/utils.js';
-  import { gymKcalDetallado } from '$lib/activity.js';
+  import { gymKcalDetallado, actividadKcal } from '$lib/activity.js';
 
   let { data } = $props();
   let sessions = $derived(data.sessions);
@@ -52,11 +52,16 @@
     for (const date of dates) {
       const v = ventanas.find(vv => vv.ventana_id === date);
       totalConsumed += v?.totales_ventana?.kcal || 0;
-      const gymSess = sessions.find(s => s.date === date);
       let actKcal = 0;
+      const gymSess = sessions.find(s => s.date === date);
       if (gymSess) {
         const det = gymKcalDetallado(gymSess, pesoKg);
-        actKcal = det.fuerza + det.cardio.reduce((sum, c) => sum + c.kcal, 0);
+        actKcal += det.fuerza + det.cardio.reduce((sum, c) => sum + c.kcal, 0);
+      }
+      if (v?.actividades?.length) {
+        for (const act of v.actividades) {
+          actKcal += actividadKcal(act, pesoKg);
+        }
       }
       totalSpent += me.gasto_total_descanso_kcal + actKcal;
     }

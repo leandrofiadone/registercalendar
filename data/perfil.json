@@ -8,7 +8,11 @@
 
   "historial_peso": [
     { "fecha": "2026-03-08", "peso_kg": 130 },
-    { "fecha": "2026-03-14", "peso_kg": 127.1 }
+    { "fecha": "2026-03-09", "peso_kg": 130 },
+    { "fecha": "2026-03-11", "peso_kg": 130 },
+    { "fecha": "2026-03-14", "peso_kg": 127.1 },
+    { "fecha": "2026-03-17", "peso_kg": 127 },
+    { "fecha": "2026-03-19", "peso_kg": 126.5 }
   ],
 
   "metabolismo": {

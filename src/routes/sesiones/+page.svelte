@@ -1,22 +1,14 @@
 <script>
-  import { fmtDate } from '$lib/utils.js';
+  import { fmtDate, sessionType } from '$lib/utils.js';
   import SessionDetail from '$lib/SessionDetail.svelte';
 
   let { data } = $props();
   let sessions = $derived(data.sessions);
   let ventanas = $derived(data.ventanas);
-  let perfil   = $derived(data.perfil);
+  let perfil       = $derived(data.perfil);
+  let alimentosRef = $derived(data.alimentosRef ?? []);
 
   let selectedIdx = $state(0);
-
-  function sessionType(s) {
-    const f = s.fuerza?.length > 0;
-    const c = s.cardio?.length > 0;
-    if (f && c) return 'mixed';
-    if (f) return 'fuerza';
-    if (c) return 'cardio';
-    return 'other';
-  }
 
   function gymCount(s) {
     return new Set([
@@ -48,7 +40,7 @@
             {/each}
           {/if}
           {#if s.cardio?.length}<span class="tag tc">Cardio</span>{/if}
-          {#if s.nutricion_ref}<span class="tag ta">Nutrición</span>{/if}
+          {#if ventanas.some(v => v.ventana_id === s.date)}<span class="tag ta">Nutrición</span>{/if}
         </div>
       </button>
     {/each}
@@ -62,7 +54,7 @@
         <p>Sin sesiones registradas</p>
       </div>
     {:else if sessions[selectedIdx]}
-      <SessionDetail session={sessions[selectedIdx]} {ventanas} {sessions} {perfil} />
+      <SessionDetail session={sessions[selectedIdx]} {ventanas} {sessions} {perfil} {alimentosRef} />
     {:else}
       <div class="empty-state">
         <div class="ei">📋</div>

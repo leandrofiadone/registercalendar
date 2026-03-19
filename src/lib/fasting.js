@@ -101,8 +101,9 @@ export function getFastingStage(hours) {
 
 /** Formatea horas como "16h 30m" o "45m" */
 export function fmtGap(hours) {
-  const h = Math.floor(hours);
-  const m = Math.round((hours - h) * 60);
+  let h = Math.floor(hours);
+  let m = Math.round((hours - h) * 60);
+  if (m === 60) { h++; m = 0; }
   if (h === 0) return `${m}m`;
   if (m === 0) return `${h}h`;
   return `${h}h ${m}m`;

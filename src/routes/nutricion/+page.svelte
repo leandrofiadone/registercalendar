@@ -3,8 +3,9 @@
   import VentanaDetail from '$lib/VentanaDetail.svelte';
 
   let { data } = $props();
-  let sessions = $derived(data.sessions);
-  let perfil   = $derived(data.perfil);
+  let sessions     = $derived(data.sessions);
+  let perfil       = $derived(data.perfil);
+  let alimentosRef = $derived(data.alimentosRef ?? []);
 
   // Inyecta ventana virtual para hoy si no existe en el JSON
   let ventanas = $derived.by(() => {
@@ -68,7 +69,7 @@
         <p>Sin registros de nutrición</p>
       </div>
     {:else if ventanas[selectedIdx]}
-      <VentanaDetail ventana={ventanas[selectedIdx]} {perfil} {sessions} {ventanas} />
+      <VentanaDetail ventana={ventanas[selectedIdx]} {perfil} {sessions} {ventanas} {alimentosRef} />
     {:else}
       <div class="empty-state">
         <div class="ei">🥗</div>
