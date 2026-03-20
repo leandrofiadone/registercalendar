@@ -284,7 +284,7 @@
           </div>
         {/if}
       {/if}
-      <MealCard {comida} ventanaId={ventana.ventana_id} />
+      <MealCard {comida} ventanaId={ventana.ventana_id} {alimentosRef} />
     {/each}
   </div>
 

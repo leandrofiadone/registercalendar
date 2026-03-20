@@ -181,16 +181,17 @@
     .layout { flex-direction: column; }
     .sidebar {
       width: 100%; flex-shrink: 0;
-      max-height: 140px; border-right: none;
+      height: 72px; border-right: none;
       border-bottom: 1px solid var(--b1);
       display: flex; overflow-x: auto; overflow-y: hidden;
     }
+    .filter-box { display: none; }
     .sidebar-item {
-      flex-shrink: 0; width: auto;
+      flex-shrink: 0; width: auto; min-width: 110px;
       padding: 8px 12px; border-bottom: none;
       border-right: 1px solid var(--b1);
     }
     .sidebar-item::before { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: 3px; }
-    .main { padding: 16px; }
+    .main { padding: 16px; overflow-x: hidden; }
   }
 </style>

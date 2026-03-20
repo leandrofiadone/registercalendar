@@ -3,3 +3,5 @@ config.json
 .svelte-kit/
 build/
 .claude/
+.env
+.env.local

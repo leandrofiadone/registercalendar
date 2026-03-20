@@ -16,9 +16,12 @@ export function getAllMealsSorted(ventanas) {
   return meals.sort((a, b) => a.dt - b.dt);
 }
 
-/** Última comida registrada */
+/** Última comida registrada que ya ocurrió (no comidas futuras) */
 export function getLastMeal(ventanas) {
-  return getAllMealsSorted(ventanas).at(-1) ?? null;
+  const now = new Date();
+  return getAllMealsSorted(ventanas)
+    .filter(m => m.dt <= now)
+    .at(-1) ?? null;
 }
 
 /** Horas entre dos fechas */

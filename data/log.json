@@ -18,6 +18,15 @@
           "velocidad_kmh": 3.87,
           "intensidad": "baja",
           "notas": "Ritmo medio 15:31 min/km. App reportó 86 kcal; corregido ×1.69 por peso (127kg) = 145 kcal. Ruta: Av. Parque Roberto Goyeneche, zona Saavedra/Núñez."
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Caminata exterior",
+          "duracion_min": 16.05,
+          "distancia_km": 1.1,
+          "kcal": 64,
+          "intensidad": "baja",
+          "notas": "Ritmo medio 14:33 min/km. Zona Coghlan / Av. Parque Roberto Goyeneche, CABA."
         }
       ],
       "notes": ""

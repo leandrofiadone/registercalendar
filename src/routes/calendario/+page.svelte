@@ -122,7 +122,13 @@
 
       eventContent(arg) {
         const p = arg.event.extendedProps;
+        const mobile = window.innerWidth < 768;
+
         if (p.type === 'nutri') {
+          if (mobile) {
+            const zoneDot = { ok: '#4ade80', warn: '#fbbf24', over: '#f87171' }[p.zone];
+            return { html: `<div class="ev-nutri-m"><span class="ev-nm-kcal">${p.kcal}</span><span class="ev-nm-dot" style="background:${zoneDot}"></span></div>` };
+          }
           const zoneColor = { ok: '#166534', warn: '#92400e', over: '#991b1b' }[p.zone];
           const zoneDot   = { ok: '#4ade80', warn: '#fbbf24', over: '#f87171' }[p.zone];
           const gymBadge  = p.hasGym ? `<span class="ev-n-gym">💪</span>` : '';
@@ -142,6 +148,12 @@
           </div>` };
         }
         if (p.type === 'gym') {
+          if (mobile) {
+            const label = (p.groups[0] || (p.hasCardio ? 'Cardio' : '')).split('-')[0];
+            const extra = (p.groups.length - 1) + (p.hasCardio ? 1 : 0);
+            const moreStr = extra > 0 ? `<span class="ev-gm-more">+${extra}</span>` : '';
+            return { html: `<div class="ev-gym-m"><span class="ev-gm-lbl">${label}</span>${moreStr}</div>` };
+          }
           const tags = p.groups.map(g => `<span class="ev-g-tag">${g}</span>`).join('');
           const cardio = p.hasCardio ? '<span class="ev-g-cardio">Cardio</span>' : '';
           const kcal = p.kcal > 0 ? `<span class="ev-g-kcal">~${p.kcal} kcal</span>` : '';
@@ -264,19 +276,27 @@
     {/if}
   </div>
 
-  <!-- Detail panel -->
-  <div class="cal-detail">
-    {#if selectedSession}
-      <SessionDetail session={selectedSession} {ventanas} {perfil} {alimentosRef} />
-    {:else if selectedVentana}
-      <VentanaDetail ventana={selectedVentana} {perfil} {sessions} {ventanas} {alimentosRef} />
-    {:else}
+  <!-- Detail panel (sidebar on desktop, overlay on mobile) -->
+  {#if selectedSession || selectedVentana}
+    <div class="cal-detail">
+      <button class="cal-detail-close" onclick={() => { selectedSession = null; selectedVentana = null; }}>✕</button>
+      {#if selectedSession}
+        <SessionDetail session={selectedSession} {ventanas} {perfil} {alimentosRef} />
+      {:else if selectedVentana}
+        <VentanaDetail ventana={selectedVentana} {perfil} {sessions} {ventanas} {alimentosRef} />
+      {/if}
+    </div>
+  {/if}
+
+  <!-- Desktop empty state (hidden on mobile) -->
+  {#if !selectedSession && !selectedVentana}
+    <div class="cal-detail cal-detail-empty">
       <div class="empty-state">
         <div class="ei">📅</div>
         <p>Seleccioná un evento del calendario</p>
       </div>
-    {/if}
-  </div>
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -315,6 +335,10 @@
   .cal-detail {
     width: 340px; flex-shrink: 0; overflow-y: auto;
     padding: 20px; background: var(--s1);
+    position: relative;
+  }
+  .cal-detail-close {
+    display: none;
   }
 
   .empty-state {
@@ -448,14 +472,68 @@
     height: 1px; pointer-events: none; z-index: 0;
   }
 
+  /* Mobile event styles */
+  :global(.ev-gym-m) {
+    display: flex; align-items: center; gap: 3px;
+    padding: 2px 4px; width: 100%; overflow: hidden;
+  }
+  :global(.ev-gm-lbl) {
+    font-size: 9px; font-weight: 700;
+    color: rgba(255,255,255,.9);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    flex: 1; min-width: 0;
+  }
+  :global(.ev-gm-more) {
+    font-size: 8px; color: rgba(255,255,255,.6);
+    flex-shrink: 0; margin-left: 2px;
+  }
+  :global(.ev-nutri-m) {
+    display: flex; align-items: center; gap: 4px;
+    padding: 2px 4px; width: 100%;
+  }
+  :global(.ev-nm-kcal) {
+    font-size: 9px; font-weight: 800; color: #000; flex: 1;
+  }
+  :global(.ev-nm-dot) {
+    width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     .cal-layout { flex-direction: column; }
+    .cal-panel { padding: 6px 8px; }
+    .cal-subnav { gap: 3px; margin-bottom: 6px; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 2px; }
+    .cal-sub-btn { font-size: 10px; padding: 3px 8px; white-space: nowrap; flex-shrink: 0; }
+    .subnav-sep { display: none; }
+    .fmt-btn { margin-left: 0; }
+    .legend { display: none; }
+
+    /* Detail panel becomes a full-screen overlay on mobile */
+    .cal-detail-empty { display: none; }
     .cal-detail {
-      width: 100%; max-height: 50vh;
-      border-right: none; border-top: 1px solid var(--b1);
+      position: fixed; inset: 0; z-index: 300;
+      width: 100%; max-height: 100%;
+      background: var(--bg);
+      padding: 16px;
+      overflow-y: auto;
     }
-    .cal-panel { padding: 10px 12px; }
-    .cal-subnav { flex-wrap: wrap; }
+    .cal-detail-close {
+      display: flex; align-items: center; justify-content: center;
+      position: sticky; top: 0; left: 0;
+      margin-bottom: 12px;
+      background: var(--s2); border: 1px solid var(--b1);
+      border-radius: 6px; padding: 6px 14px;
+      font-size: 12px; color: var(--muted);
+      cursor: pointer; font-family: inherit;
+      width: 100%;
+    }
+    .cal-detail-close:hover { color: var(--text); }
+
+    :global(.fc .fc-toolbar-title) { font-size: 13px !important; }
+    :global(.fc .fc-toolbar) { gap: 4px !important; flex-wrap: wrap !important; }
+    :global(.fc .fc-button) { font-size: 10px !important; padding: 3px 7px !important; }
+    :global(.fc .fc-daygrid-day-number) { font-size: 11px !important; padding: 3px 5px !important; }
+    :global(.fc .fc-col-header-cell-cushion) { font-size: 9px !important; padding: 4px 2px !important; }
+    :global(.fc .fc-event) { padding: 0 !important; margin: 1px 2px !important; }
   }
 </style>

@@ -332,4 +332,10 @@
   .cmetric { display: flex; flex-direction: column; gap: 1px; }
   .cmetric-val { font-size: 22px; font-weight: 700; color: var(--blue); line-height: 1; }
   .cmetric-lbl { font-size: 9px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--dim); margin-top: 2px; }
+
+  @media (max-width: 768px) {
+    .cmetric-val { font-size: 18px; }
+    .cardio-metrics { gap: 14px; }
+    .gasto-lbl { font-size: 11px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  }
 </style>

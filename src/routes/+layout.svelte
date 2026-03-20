@@ -14,6 +14,7 @@
     { href: '/nutricion',  label: 'Nutrición',   icon: '🥗' },
     { href: '/calendario', label: 'Calendario',  icon: '📅' },
     { href: '/perfil',     label: 'Perfil',      icon: '👤' },
+    { href: '/ingresar',   label: 'Ingresar',    icon: '✏️' },
   ];
 
   let currentPath = $derived($page.url.pathname);

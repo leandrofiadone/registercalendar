@@ -231,6 +231,24 @@
             <div class="n-bar"><div class="n-fill" style="width:{Math.min(100,Math.round(((t.kcal||0)/2500)*100))}%"></div></div>
           </button>
         {/if}
+        <!-- Mobile-only compact indicators -->
+        {#if day.gym || day.nutri}
+          <div class="cell-dots">
+            {#if day.gym}
+              {@const c = sessionColor(day.gym)}
+              <button style="background:none;border:none;padding:0;cursor:pointer;display:flex;gap:2px;align-items:center" onclick={() => onSessionClick(day.gym)}>
+                <span class="cdot" style="background:{c}"></span>
+              </button>
+            {/if}
+            {#if day.nutri}
+              {@const t = day.nutri.totales_ventana||{}}
+              <button style="background:none;border:none;padding:0;cursor:pointer;display:flex;gap:2px;align-items:center" onclick={() => onVentanaClick(day.nutri)}>
+                <span class="cdot" style="background:var(--amber)"></span>
+                <span class="cdot-kcal">{t.kcal||''}</span>
+              </button>
+            {/if}
+          </div>
+        {/if}
       </div>
     {/snippet}
 
@@ -263,7 +281,7 @@
     cursor:pointer; font-family:inherit;
   }
   .today-btn:hover { color:var(--text); background:var(--s3); }
-  .sc-title { display:flex; align-items:baseline; gap:9px; flex:1; }
+  .sc-title { display:flex; align-items:baseline; gap:9px; flex:1; flex-wrap:wrap; }
   .sc-label { font-size:14px; font-weight:700; color:#fff; }
   .sc-range { font-size:11px; color:var(--dim); }
   .sc-today-badge {
@@ -386,4 +404,50 @@
   .nd.carb { background:var(--green); }
   .n-bar  { height:3px; background:rgba(245,158,11,.15); border-radius:2px; overflow:hidden; }
   .n-fill { height:100%; background:var(--amber); border-radius:2px; }
+
+  /* Mobile compact */
+  .cell-dots { display:none; }
+
+  @media (max-width: 768px) {
+    /* Header */
+    .sc-header { gap:8px; padding:4px 0 6px; }
+    .sc-label  { font-size:12px; }
+    .sc-range  { font-size:9px; }
+    .sc-today-badge { font-size:10px; padding:1px 6px; }
+    .nav-btn   { font-size:12px; padding:2px 8px; }
+    .today-btn { font-size:10px; padding:2px 7px; }
+
+    /* Arc */
+    .arc-wrap { padding-bottom:6px; }
+
+    /* Section labels */
+    .arc-section-label { font-size:8px; padding:5px 2px 4px; }
+
+    /* Grid cells: compact */
+    .sc-cell {
+      padding: 4px 3px;
+      min-height: 54px;
+      gap: 2px;
+    }
+    .day-num  { font-size:13px; }
+    .day-num.today-num { width:22px; height:22px; font-size:11px; }
+    .phase-ico     { font-size:11px; }
+    .phase-ico.key { font-size:14px; }
+    .phase-lbl     { font-size:7px; }
+    .full-lbl      { font-size:7px; letter-spacing:0; }
+    .today-tag-cell { font-size:7px; padding:0 3px; }
+
+    /* Replace pills with compact dots row */
+    .ev-pill { display:none; }
+    .cell-dots {
+      display:flex; gap:2px; flex-wrap:wrap; margin-top:auto;
+    }
+    .cdot {
+      width:5px; height:5px; border-radius:50%; flex-shrink:0;
+    }
+    .cdot-kcal {
+      font-size:7px; font-weight:700; color:var(--amber);
+      line-height:1; white-space:nowrap;
+    }
+  }
 </style>

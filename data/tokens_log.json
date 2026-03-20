@@ -1,0 +1,40 @@
+{
+  "requests": [
+    {
+      "ts": "2026-03-20T05:33:43.890Z",
+      "tipo": "nutricion",
+      "modo": "nuevo",
+      "modelo": "claude-haiku-4-5-20251001",
+      "imagenes": 0,
+      "msgs_hist": 1,
+      "sistema_chars": 2044,
+      "tok_in": 885,
+      "tok_out": 138,
+      "respuesta": "texto"
+    },
+    {
+      "ts": "2026-03-20T05:33:55.357Z",
+      "tipo": "nutricion",
+      "modo": "nuevo",
+      "modelo": "claude-haiku-4-5-20251001",
+      "imagenes": 0,
+      "msgs_hist": 3,
+      "sistema_chars": 2044,
+      "tok_in": 1033,
+      "tok_out": 49,
+      "respuesta": "texto"
+    },
+    {
+      "ts": "2026-03-20T05:34:05.304Z",
+      "tipo": "nutricion",
+      "modo": "nuevo",
+      "modelo": "claude-haiku-4-5-20251001",
+      "imagenes": 0,
+      "msgs_hist": 5,
+      "sistema_chars": 2044,
+      "tok_in": 1088,
+      "tok_out": 258,
+      "respuesta": "json"
+    }
+  ]
+}

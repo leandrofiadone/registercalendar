@@ -1,170 +1,225 @@
 {
   "ventanas": [
     {
-      "ventana_id": "2026-03-17",
+      "ventana_id": "2026-03-20",
       "protocolo": "ayuno_intermitente",
       "comidas": [
         {
           "tipo": "comida",
-          "hora": "00:14",
-          "fecha": "2026-03-17",
-          "descripcion": "Buñuelos de acelga x2 y bomba de papa grande",
+          "hora": "00:00",
+          "fecha": "2026-03-20",
+          "descripcion": "Arroz yamani con tandoori y tapa de nalga al horno",
           "alimentos": [
             {
-              "nombre": "Buñuelo de acelga",
-              "unidades": 2,
-              "cantidad_g": 260,
-              "coccion": "frito",
-              "kcal": 615,
-              "proteina_g": 18.2,
-              "grasa_g": 43.2,
-              "carbos_g": 41.6,
-              "notas": "~130g c/u. Absorción de aceite aumentada por fritura profunda (~22g total absorbidos).",
-              "ref_id": "bunuelos_acelga"
+              "nombre": "Arroz integral yamani",
+              "cantidad": "220g",
+              "cantidad_g": 220,
+              "coccion": "cocido",
+              "kcal": 286,
+              "proteina_g": 7.1,
+              "grasa_g": 0.8,
+              "carbos_g": 59.8,
+              "notas": "medido en crudo, cocción con tandoori",
+              "ref_id": "arroz_yamani_cocido"
             },
             {
-              "nombre": "Bomba de papa",
-              "unidades": 1,
-              "cantidad_g": 210,
-              "coccion": "frito",
-              "kcal": 389,
-              "proteina_g": 8.4,
-              "grasa_g": 18.9,
-              "carbos_g": 48.3,
-              "notas": "Porción grande estimada. Puré de papa frito.",
-              "ref_id": "bomba_papa"
+              "nombre": "Tapa de nalga",
+              "marca": "vacuna",
+              "cantidad_g": 400,
+              "peso_total_con_hueso_g": 400,
+              "hueso_estimado_g": 60,
+              "carne_neta_estimada_g": 340,
+              "coccion": "horno",
+              "kcal": 700,
+              "proteina_g": 120,
+              "grasa_g": 24,
+              "carbos_g": 0,
+              "notas": "400g, macros recalculados desde referencia USDA",
+              "ref_id": "tapa_nalga"
             }
           ],
           "totales": {
-            "kcal": 1004,
-            "proteina_g": 26.6,
-            "grasa_g": 62.1,
-            "carbos_g": 89.9,
-            "estimado": true
-          }
-        },
-        {
-          "tipo": "comida",
-          "hora": "02:09",
-          "fecha": "2026-03-17",
-          "descripcion": "Fideos con salsa de roquefort",
-          "alimentos": [
-            {
-              "nombre": "Pasta seca cocida",
-              "cantidad_g": 250,
-              "coccion": "hervido",
-              "kcal": 893,
-              "proteina_g": 30.5,
-              "grasa_g": 3.3,
-              "carbos_g": 170,
-              "notas": "250g en seco. Equivale a ~575g cocido aprox.",
-              "ref_id": "fideos_cocidos"
-            },
-            {
-              "nombre": "Queso roquefort",
-              "cantidad_g": 150,
-              "kcal": 527,
-              "proteina_g": 19.5,
-              "grasa_g": 45,
-              "carbos_g": 2.5,
-              "notas": "Derretido como salsa.",
-              "ref_id": "queso_roquefort"
-            }
-          ],
-          "totales": {
-            "kcal": 1420,
-            "proteina_g": 50,
-            "grasa_g": 48.3,
-            "carbos_g": 172.5,
+            "kcal": 986,
+            "proteina_g": 127.1,
+            "grasa_g": 24.8,
+            "carbos_g": 59.8,
             "estimado": false
           }
         },
         {
           "tipo": "snack",
-          "hora": "17:52",
-          "fecha": "2026-03-17",
-          "descripcion": "Ser Pro+ vainilla + barrita frutos secos + manzana deshidratada + gelatina s/az",
+          "hora": "02:34",
+          "fecha": "2026-03-20",
+          "descripcion": "Dulce de membrillo",
           "alimentos": [
             {
-              "nombre": "Yogur bebible Pro+ sabor vainilla",
-              "marca": "Ser",
-              "cantidad_g": 190,
-              "unidades": 1,
-              "kcal": 135,
-              "proteina_g": 15,
-              "grasa_g": 2,
-              "carbos_g": 14,
-              "ref_id": "yogur_bebible_pro"
-            },
-            {
-              "nombre": "Barrita de frutos secos (avena, maní, almendras, castañas)",
-              "cantidad_g": 45,
-              "unidades": 1,
-              "kcal": 148,
-              "proteina_g": 3.5,
-              "grasa_g": 4.9,
-              "carbos_g": 25.6
-            },
-            {
-              "nombre": "Manzana deshidratada",
-              "cantidad_g": 18,
-              "kcal": 63,
-              "proteina_g": 0.3,
-              "grasa_g": 0,
-              "carbos_g": 15,
-              "ref_id": "manzana_deshidratada"
-            },
-            {
-              "nombre": "Gelatina sin azúcar (preparada)",
-              "cantidad_g": 200,
-              "kcal": 10,
-              "proteina_g": 1.6,
-              "grasa_g": 0,
-              "carbos_g": 0.5,
-              "notas": "Estimado. Valores estándar gelatina sin azúcar preparada.",
-              "ref_id": "gelatina_sin_azucar"
+              "nombre": "Dulce de membrillo",
+              "cantidad_g": 100,
+              "kcal": 253,
+              "proteina_g": 0.4,
+              "grasa_g": 0.1,
+              "carbos_g": 63,
+              "fibra_g": 1.5,
+              "azucares_g": 60,
+              "notas": "100g netos",
+              "ref_id": "dulce_membrillo"
             }
           ],
           "totales": {
-            "kcal": 356,
-            "proteina_g": 20.4,
-            "grasa_g": 6.9,
-            "carbos_g": 55.1,
+            "kcal": 253,
+            "proteina_g": 0.4,
+            "grasa_g": 0.1,
+            "carbos_g": 63,
+            "fibra_g": 1.5,
+            "estimado": false
+          }
+        }
+      ],
+      "totales_ventana": {
+        "kcal": 1239,
+        "proteina_g": 127.5,
+        "grasa_g": 24.9,
+        "carbos_g": 122.8
+      }
+    },
+    {
+      "ventana_id": "2026-03-19",
+      "protocolo": "ayuno_intermitente",
+      "comidas": [
+        {
+          "tipo": "comida",
+          "hora": "00:15",
+          "fecha": "2026-03-19",
+          "descripcion": "Tapa de nalga al horno con arroz hervido",
+          "alimentos": [
+            {
+              "nombre": "Tapa de nalga cocida",
+              "cantidad_g": 334,
+              "coccion": "horno",
+              "kcal": 585,
+              "proteina_g": 100.2,
+              "grasa_g": 20,
+              "carbos_g": 0,
+              "notas": "Cocida al horno, peso ya cocido. Descontados 66g de grasa/arterias recortadas.",
+              "ref_id": "tapa_nalga"
+            },
+            {
+              "nombre": "Arroz blanco cocido",
+              "cantidad_g": 550,
+              "coccion": "hervido",
+              "kcal": 715,
+              "proteina_g": 14.9,
+              "grasa_g": 1.7,
+              "carbos_g": 155.1,
+              "notas": "Hervido con mucha agua. ~180-190g en seco estimado (ratio ~3:1).",
+              "ref_id": "arroz_blanco_cocido"
+            }
+          ],
+          "totales": {
+            "kcal": 1300,
+            "proteina_g": 115.1,
+            "grasa_g": 21.7,
+            "carbos_g": 155.1,
             "estimado": true
           }
         },
         {
           "tipo": "comida",
-          "hora": "20:14",
-          "fecha": "2026-03-17",
-          "descripcion": "Sardinas Gomes da Costa en su jugo con aceite vegetal",
+          "hora": "01:00",
+          "fecha": "2026-03-19",
+          "descripcion": "Arroz hervido con queso tybo",
           "alimentos": [
             {
-              "nombre": "Sardinas en su jugo con aceite vegetal",
+              "nombre": "Queso tybo",
+              "cantidad_g": 100,
+              "coccion": "sin cocción",
+              "kcal": 340,
+              "proteina_g": 24,
+              "grasa_g": 26,
+              "carbos_g": 1,
+              "notas": "Feteado de máquina.",
+              "ref_id": "queso_tybo"
+            },
+            {
+              "nombre": "Arroz blanco cocido",
+              "cantidad_g": 360,
+              "coccion": "hervido",
+              "kcal": 468,
+              "proteina_g": 9.7,
+              "grasa_g": 1.1,
+              "carbos_g": 101.5,
+              "notas": "Hervido con mucha agua. ~120g en seco estimado (ratio ~3:1).",
+              "ref_id": "arroz_blanco_cocido"
+            }
+          ],
+          "totales": {
+            "kcal": 808,
+            "proteina_g": 33.7,
+            "grasa_g": 27.1,
+            "carbos_g": 102.5,
+            "estimado": true
+          }
+        },
+        {
+          "tipo": "comida",
+          "hora": "17:35",
+          "fecha": "2026-03-19",
+          "descripcion": "Sardinas Gomes da Costa en aceite vegetal, lata entera",
+          "alimentos": [
+            {
+              "nombre": "Sardinas en aceite vegetal",
               "marca": "Gomes da Costa",
               "cantidad_g": 75,
-              "notas": "Lata completa. Peso escurrido 75g. Porción de referencia etiqueta: 60g = 115 kcal / 13g prot / 0g carbos / ~7g grasa (calculado por energía).",
+              "coccion": "conserva",
               "kcal": 143.8,
               "proteina_g": 16.3,
-              "grasa_g": 8.8,
+              "grasa_g": 11.1,
               "carbos_g": 0,
+              "notas": "Peso escurrido total 75g. Valores escalados desde porción 60g de etiqueta.",
               "ref_id": "sardinas_aceite"
             }
           ],
           "totales": {
             "kcal": 143.8,
             "proteina_g": 16.3,
-            "grasa_g": 8.8,
+            "grasa_g": 11.1,
             "carbos_g": 0,
             "estimado": false
+          }
+        },
+        {
+          "tipo": "snack",
+          "hora": "17:43",
+          "fecha": "2026-03-19",
+          "descripcion": "Barra Müecas pasas y arándanos 45g",
+          "alimentos": [
+            {
+              "nombre": "Barra de cereales pasas y arándanos",
+              "marca": "Müecas",
+              "unidades": 1,
+              "cantidad_g": 45,
+              "kcal": 188,
+              "proteina_g": 4,
+              "grasa_g": 6,
+              "carbos_g": 19,
+              "notas": "Porción completa = 1 barrita 45g. Grasa sat 0.8g. Valores de etiqueta, parcialmente ilegibles.",
+              "ref_id": "barrita_muecas_pasas_arandanos"
+            }
+          ],
+          "totales": {
+            "kcal": 188,
+            "proteina_g": 4,
+            "grasa_g": 6,
+            "carbos_g": 19,
+            "estimado": true
           }
         }
       ],
       "totales_ventana": {
-        "kcal": 2923.8,
-        "proteina_g": 113.3,
-        "grasa_g": 126.1,
-        "carbos_g": 317.5
+        "kcal": 2439.8,
+        "proteina_g": 169.1,
+        "grasa_g": 65.9,
+        "carbos_g": 276.6
       }
     },
     {
@@ -345,6 +400,174 @@
       }
     },
     {
+      "ventana_id": "2026-03-17",
+      "protocolo": "ayuno_intermitente",
+      "comidas": [
+        {
+          "tipo": "comida",
+          "hora": "00:14",
+          "fecha": "2026-03-17",
+          "descripcion": "Buñuelos de acelga x2 y bomba de papa grande",
+          "alimentos": [
+            {
+              "nombre": "Buñuelo de acelga",
+              "unidades": 2,
+              "cantidad_g": 260,
+              "coccion": "frito",
+              "kcal": 615,
+              "proteina_g": 18.2,
+              "grasa_g": 43.2,
+              "carbos_g": 41.6,
+              "notas": "~130g c/u. Absorción de aceite aumentada por fritura profunda (~22g total absorbidos).",
+              "ref_id": "bunuelos_acelga"
+            },
+            {
+              "nombre": "Bomba de papa",
+              "unidades": 1,
+              "cantidad_g": 210,
+              "coccion": "frito",
+              "kcal": 389,
+              "proteina_g": 8.4,
+              "grasa_g": 18.9,
+              "carbos_g": 48.3,
+              "notas": "Porción grande estimada. Puré de papa frito.",
+              "ref_id": "bomba_papa"
+            }
+          ],
+          "totales": {
+            "kcal": 1004,
+            "proteina_g": 26.6,
+            "grasa_g": 62.1,
+            "carbos_g": 89.9,
+            "estimado": true
+          }
+        },
+        {
+          "tipo": "comida",
+          "hora": "02:09",
+          "fecha": "2026-03-17",
+          "descripcion": "Fideos con salsa de roquefort",
+          "alimentos": [
+            {
+              "nombre": "Pasta seca cocida",
+              "cantidad_g": 250,
+              "coccion": "hervido",
+              "kcal": 893,
+              "proteina_g": 30.5,
+              "grasa_g": 3.3,
+              "carbos_g": 170,
+              "notas": "250g en seco. Equivale a ~575g cocido aprox.",
+              "ref_id": "fideos_cocidos"
+            },
+            {
+              "nombre": "Queso roquefort",
+              "cantidad_g": 150,
+              "kcal": 527,
+              "proteina_g": 19.5,
+              "grasa_g": 45,
+              "carbos_g": 2.5,
+              "notas": "Derretido como salsa.",
+              "ref_id": "queso_roquefort"
+            }
+          ],
+          "totales": {
+            "kcal": 1420,
+            "proteina_g": 50,
+            "grasa_g": 48.3,
+            "carbos_g": 172.5,
+            "estimado": false
+          }
+        },
+        {
+          "tipo": "snack",
+          "hora": "17:52",
+          "fecha": "2026-03-17",
+          "descripcion": "Ser Pro+ vainilla + barrita frutos secos + manzana deshidratada + gelatina s/az",
+          "alimentos": [
+            {
+              "nombre": "Yogur bebible Pro+ sabor vainilla",
+              "marca": "Ser",
+              "cantidad_g": 190,
+              "unidades": 1,
+              "kcal": 135,
+              "proteina_g": 15,
+              "grasa_g": 2,
+              "carbos_g": 14,
+              "ref_id": "yogur_bebible_pro"
+            },
+            {
+              "nombre": "Barrita de frutos secos (avena, maní, almendras, castañas)",
+              "cantidad_g": 45,
+              "unidades": 1,
+              "kcal": 148,
+              "proteina_g": 3.5,
+              "grasa_g": 4.9,
+              "carbos_g": 25.6,
+              "ref_id": "barrita_frutos_secos_avena"
+            },
+            {
+              "nombre": "Manzana deshidratada",
+              "cantidad_g": 18,
+              "kcal": 63,
+              "proteina_g": 0.3,
+              "grasa_g": 0,
+              "carbos_g": 15,
+              "ref_id": "manzana_deshidratada"
+            },
+            {
+              "nombre": "Gelatina sin azúcar (preparada)",
+              "cantidad_g": 200,
+              "kcal": 10,
+              "proteina_g": 1.6,
+              "grasa_g": 0,
+              "carbos_g": 0.5,
+              "notas": "Estimado. Valores estándar gelatina sin azúcar preparada.",
+              "ref_id": "gelatina_sin_azucar"
+            }
+          ],
+          "totales": {
+            "kcal": 356,
+            "proteina_g": 20.4,
+            "grasa_g": 6.9,
+            "carbos_g": 55.1,
+            "estimado": true
+          }
+        },
+        {
+          "tipo": "comida",
+          "hora": "20:14",
+          "fecha": "2026-03-17",
+          "descripcion": "Sardinas Gomes da Costa en su jugo con aceite vegetal",
+          "alimentos": [
+            {
+              "nombre": "Sardinas en su jugo con aceite vegetal",
+              "marca": "Gomes da Costa",
+              "cantidad_g": 75,
+              "notas": "Lata completa. Peso escurrido 75g. Porción de referencia etiqueta: 60g = 115 kcal / 13g prot / 0g carbos / ~7g grasa (calculado por energía).",
+              "kcal": 143.8,
+              "proteina_g": 16.3,
+              "grasa_g": 8.8,
+              "carbos_g": 0,
+              "ref_id": "sardinas_aceite"
+            }
+          ],
+          "totales": {
+            "kcal": 143.8,
+            "proteina_g": 16.3,
+            "grasa_g": 8.8,
+            "carbos_g": 0,
+            "estimado": false
+          }
+        }
+      ],
+      "totales_ventana": {
+        "kcal": 2923.8,
+        "proteina_g": 113.3,
+        "grasa_g": 126.1,
+        "carbos_g": 317.5
+      }
+    },
+    {
       "ventana_id": "2026-03-16",
       "protocolo": "ayuno_intermitente",
       "comidas": [
@@ -510,7 +733,8 @@
               "kcal": 140,
               "proteina_g": 6.5,
               "grasa_g": 1,
-              "carbos_g": 29
+              "carbos_g": 29,
+              "ref_id": "tomate"
             },
             {
               "nombre": "Bocaditos de acelga y huevo fritos x3",
@@ -1627,211 +1851,6 @@
       }
     },
     {
-      "ventana_id": "2026-03-07",
-      "protocolo": "ayuno_intermitente",
-      "ayuno_horas": 16,
-      "fecha_inicio_ventana": "2026-03-07",
-      "comidas": [
-        {
-          "tipo": "rompe_ayuno",
-          "hora": "22:18",
-          "fecha": "2026-03-07",
-          "descripcion": "Huevos revueltos con queso parmesano y champignones",
-          "alimentos": [
-            {
-              "nombre": "Queso parmesano",
-              "cantidad_g": 128,
-              "kcal": 551,
-              "proteina_g": 49,
-              "grasa_g": 37,
-              "carbos_g": 5,
-              "ref_id": "queso_parmesano"
-            },
-            {
-              "nombre": "Huevos enteros",
-              "cantidad_g": 176,
-              "unidades": 3,
-              "kcal": 273,
-              "proteina_g": 23,
-              "grasa_g": 19,
-              "carbos_g": 2,
-              "ref_id": "huevo"
-            },
-            {
-              "nombre": "Champignones en lata (Agaricus bisporus)",
-              "cantidad_g": 215,
-              "kcal": 22,
-              "proteina_g": 2,
-              "grasa_g": 0.4,
-              "carbos_g": 3,
-              "ref_id": "champignon_cocido"
-            }
-          ],
-          "totales": {
-            "kcal": 846,
-            "proteina_g": 74,
-            "grasa_g": 56.4,
-            "carbos_g": 10,
-            "estimado": false
-          }
-        }
-      ],
-      "totales_ventana": {
-        "kcal": 846,
-        "proteina_g": 74,
-        "grasa_g": 56.4,
-        "carbos_g": 10
-      }
-    },
-    {
-      "ventana_id": "2026-03-08",
-      "protocolo": "ayuno_intermitente",
-      "fecha_inicio_ventana": "2026-03-08",
-      "comidas": [
-        {
-          "tipo": "comida",
-          "hora": "02:45",
-          "fecha": "2026-03-08",
-          "descripcion": "Cold brew vainilla y arepa pequeña de carne desmechada grasosa",
-          "alimentos": [
-            {
-              "nombre": "Cold Brew Vainilla Deseado",
-              "marca": "The Vaini Brew Deseado",
-              "cantidad_ml": 269,
-              "kcal": 30,
-              "proteina_g": 1,
-              "grasa_g": 0,
-              "carbos_g": 6,
-              "ref_id": "cold_brew_vainilla"
-            },
-            {
-              "nombre": "Arepa carne desmechada",
-              "cantidad_g": 225,
-              "notas": "Sin agregados, porción pequeña, carne grasosa. Macros estimados.",
-              "kcal": 350,
-              "proteina_g": 20,
-              "grasa_g": 15,
-              "carbos_g": 32,
-              "ref_id": "arepa_carne"
-            }
-          ],
-          "totales": {
-            "kcal": 380,
-            "proteina_g": 21,
-            "grasa_g": 15,
-            "carbos_g": 38,
-            "estimado": true
-          }
-        },
-        {
-          "tipo": "comida",
-          "hora": "05:10",
-          "fecha": "2026-03-08",
-          "descripcion": "Dos costillas de cerdo a la plancha con sal marina",
-          "alimentos": [
-            {
-              "nombre": "Costillas de cerdo a la plancha",
-              "peso_total_con_hueso_g": 400,
-              "hueso_y_grasa_retirada_g": 100,
-              "carne_neta_g": 300,
-              "condimento": "sal marina",
-              "coccion": "plancha",
-              "kcal": 876,
-              "proteina_g": 60,
-              "grasa_g": 66,
-              "carbos_g": 0,
-              "ref_id": "costilla_cerdo"
-            }
-          ],
-          "totales": {
-            "kcal": 876,
-            "proteina_g": 60,
-            "grasa_g": 66,
-            "carbos_g": 0,
-            "estimado": true
-          }
-        },
-        {
-          "tipo": "comida",
-          "hora": "06:21",
-          "fecha": "2026-03-08",
-          "descripcion": "Morrón relleno con queso pimienta negra y mayo",
-          "alimentos": [
-            {
-              "nombre": "Morrón rojo crudo",
-              "cantidad_g": 100,
-              "kcal": 31,
-              "proteina_g": 1,
-              "grasa_g": 0.3,
-              "carbos_g": 6,
-              "ref_id": "morron_rojo"
-            },
-            {
-              "nombre": "Queso pimienta negra Santa Rosa",
-              "marca": "Santa Rosa",
-              "cantidad_g": 183,
-              "kcal": 622.2,
-              "proteina_g": 39,
-              "grasa_g": 49.8,
-              "carbos_g": 1.8,
-              "notas": "Macros estimados por tipo de queso barra semiduro. Peso exacto.",
-              "ref_id": "queso_pimienta"
-            },
-            {
-              "nombre": "Mayonesa",
-              "cantidad_g": 27,
-              "kcal": 184,
-              "proteina_g": 0.4,
-              "grasa_g": 20.3,
-              "carbos_g": 0.3,
-              "ref_id": "mayonesa"
-            }
-          ],
-          "totales": {
-            "kcal": 837.2,
-            "proteina_g": 40.4,
-            "grasa_g": 70.4,
-            "carbos_g": 8.1,
-            "estimado": true
-          }
-        },
-        {
-          "tipo": "comida",
-          "hora": "06:29",
-          "fecha": "2026-03-08",
-          "descripcion": "Brownie Carrefour con nuez",
-          "alimentos": [
-            {
-              "nombre": "Brownie casero con nuez",
-              "marca": "Carrefour",
-              "cantidad_g": 148,
-              "coccion": "horno",
-              "kcal": 621.6,
-              "proteina_g": 7.4,
-              "grasa_g": 29.6,
-              "carbos_g": 81.4,
-              "notas": "Sin info nutricional en etiqueta. Macros estimados por tabla brownie casero.",
-              "ref_id": "brownie"
-            }
-          ],
-          "totales": {
-            "kcal": 621.6,
-            "proteina_g": 7.4,
-            "grasa_g": 29.6,
-            "carbos_g": 81.4,
-            "estimado": true
-          }
-        }
-      ],
-      "totales_ventana": {
-        "kcal": 2714.8,
-        "proteina_g": 128.8,
-        "grasa_g": 181,
-        "carbos_g": 127.5,
-        "nota": "Macros parcialmente estimados"
-      }
-    },
-    {
       "ventana_id": "2026-03-10",
       "protocolo": "ayuno_intermitente",
       "actividades": [
@@ -2155,143 +2174,208 @@
       }
     },
     {
-      "ventana_id": "2026-03-19",
+      "ventana_id": "2026-03-08",
       "protocolo": "ayuno_intermitente",
+      "fecha_inicio_ventana": "2026-03-08",
       "comidas": [
         {
           "tipo": "comida",
-          "hora": "00:15",
-          "fecha": "2026-03-19",
-          "descripcion": "Tapa de nalga al horno con arroz hervido",
+          "hora": "02:45",
+          "fecha": "2026-03-08",
+          "descripcion": "Cold brew vainilla y arepa pequeña de carne desmechada grasosa",
           "alimentos": [
             {
-              "nombre": "Tapa de nalga cocida",
-              "cantidad_g": 334,
-              "coccion": "horno",
-              "kcal": 585,
-              "proteina_g": 100.2,
-              "grasa_g": 20,
-              "carbos_g": 0,
-              "notas": "Cocida al horno, peso ya cocido. Descontados 66g de grasa/arterias recortadas.",
-              "ref_id": "tapa_nalga"
+              "nombre": "Cold Brew Vainilla Deseado",
+              "marca": "The Vaini Brew Deseado",
+              "cantidad_ml": 269,
+              "kcal": 30,
+              "proteina_g": 1,
+              "grasa_g": 0,
+              "carbos_g": 6,
+              "ref_id": "cold_brew_vainilla"
             },
             {
-              "nombre": "Arroz blanco cocido",
-              "cantidad_g": 550,
-              "coccion": "hervido",
-              "kcal": 715,
-              "proteina_g": 14.9,
-              "grasa_g": 1.7,
-              "carbos_g": 155.1,
-              "notas": "Hervido con mucha agua. ~180-190g en seco estimado (ratio ~3:1).",
-              "ref_id": "arroz_blanco_cocido"
+              "nombre": "Arepa carne desmechada",
+              "cantidad_g": 225,
+              "notas": "Sin agregados, porción pequeña, carne grasosa. Macros estimados.",
+              "kcal": 350,
+              "proteina_g": 20,
+              "grasa_g": 15,
+              "carbos_g": 32,
+              "ref_id": "arepa_carne"
             }
           ],
           "totales": {
-            "kcal": 1300,
-            "proteina_g": 115.1,
-            "grasa_g": 21.7,
-            "carbos_g": 155.1,
+            "kcal": 380,
+            "proteina_g": 21,
+            "grasa_g": 15,
+            "carbos_g": 38,
             "estimado": true
           }
         },
         {
           "tipo": "comida",
-          "hora": "01:00",
-          "fecha": "2026-03-19",
-          "descripcion": "Arroz hervido con queso tybo",
+          "hora": "05:10",
+          "fecha": "2026-03-08",
+          "descripcion": "Dos costillas de cerdo a la plancha con sal marina",
           "alimentos": [
             {
-              "nombre": "Queso tybo",
-              "cantidad_g": 100,
-              "coccion": "sin cocción",
-              "kcal": 340,
-              "proteina_g": 24,
-              "grasa_g": 26,
-              "carbos_g": 1,
-              "notas": "Feteado de máquina.",
-              "ref_id": "queso_tybo"
-            },
-            {
-              "nombre": "Arroz blanco cocido",
-              "cantidad_g": 360,
-              "coccion": "hervido",
-              "kcal": 468,
-              "proteina_g": 9.7,
-              "grasa_g": 1.1,
-              "carbos_g": 101.5,
-              "notas": "Hervido con mucha agua. ~120g en seco estimado (ratio ~3:1).",
-              "ref_id": "arroz_blanco_cocido"
-            }
-          ],
-          "totales": {
-            "kcal": 808,
-            "proteina_g": 33.7,
-            "grasa_g": 27.1,
-            "carbos_g": 102.5,
-            "estimado": true
-          }
-        },
-        {
-          "tipo": "comida",
-          "hora": "17:35",
-          "fecha": "2026-03-19",
-          "descripcion": "Sardinas Gomes da Costa en aceite vegetal, lata entera",
-          "alimentos": [
-            {
-              "nombre": "Sardinas en aceite vegetal",
-              "marca": "Gomes da Costa",
-              "cantidad_g": 75,
-              "coccion": "conserva",
-              "kcal": 143.8,
-              "proteina_g": 16.3,
-              "grasa_g": 11.1,
+              "nombre": "Costillas de cerdo a la plancha",
+              "peso_total_con_hueso_g": 400,
+              "hueso_y_grasa_retirada_g": 100,
+              "carne_neta_g": 300,
+              "condimento": "sal marina",
+              "coccion": "plancha",
+              "kcal": 876,
+              "proteina_g": 60,
+              "grasa_g": 66,
               "carbos_g": 0,
-              "notas": "Peso escurrido total 75g. Valores escalados desde porción 60g de etiqueta.",
-              "ref_id": "sardinas_aceite"
+              "ref_id": "costilla_cerdo"
             }
           ],
           "totales": {
-            "kcal": 143.8,
-            "proteina_g": 16.3,
-            "grasa_g": 11.1,
+            "kcal": 876,
+            "proteina_g": 60,
+            "grasa_g": 66,
             "carbos_g": 0,
-            "estimado": false
+            "estimado": true
           }
         },
         {
-          "tipo": "snack",
-          "hora": "17:43",
-          "fecha": "2026-03-19",
-          "descripcion": "Barra Müecas pasas y arándanos 45g",
+          "tipo": "comida",
+          "hora": "06:21",
+          "fecha": "2026-03-08",
+          "descripcion": "Morrón relleno con queso pimienta negra y mayo",
           "alimentos": [
             {
-              "nombre": "Barra de cereales pasas y arándanos",
-              "marca": "Müecas",
-              "unidades": 1,
-              "cantidad_g": 45,
-              "kcal": 188,
-              "proteina_g": 4,
-              "grasa_g": 6,
-              "carbos_g": 19,
-              "notas": "Porción completa = 1 barrita 45g. Grasa sat 0.8g. Valores de etiqueta, parcialmente ilegibles."
+              "nombre": "Morrón rojo crudo",
+              "cantidad_g": 100,
+              "kcal": 31,
+              "proteina_g": 1,
+              "grasa_g": 0.3,
+              "carbos_g": 6,
+              "ref_id": "morron_rojo"
+            },
+            {
+              "nombre": "Queso pimienta negra Santa Rosa",
+              "marca": "Santa Rosa",
+              "cantidad_g": 183,
+              "kcal": 622.2,
+              "proteina_g": 39,
+              "grasa_g": 49.8,
+              "carbos_g": 1.8,
+              "notas": "Macros estimados por tipo de queso barra semiduro. Peso exacto.",
+              "ref_id": "queso_pimienta"
+            },
+            {
+              "nombre": "Mayonesa",
+              "cantidad_g": 27,
+              "kcal": 184,
+              "proteina_g": 0.4,
+              "grasa_g": 20.3,
+              "carbos_g": 0.3,
+              "ref_id": "mayonesa"
             }
           ],
           "totales": {
-            "kcal": 188,
-            "proteina_g": 4,
-            "grasa_g": 6,
-            "carbos_g": 19,
+            "kcal": 837.2,
+            "proteina_g": 40.4,
+            "grasa_g": 70.4,
+            "carbos_g": 8.1,
+            "estimado": true
+          }
+        },
+        {
+          "tipo": "comida",
+          "hora": "06:29",
+          "fecha": "2026-03-08",
+          "descripcion": "Brownie Carrefour con nuez",
+          "alimentos": [
+            {
+              "nombre": "Brownie casero con nuez",
+              "marca": "Carrefour",
+              "cantidad_g": 148,
+              "coccion": "horno",
+              "kcal": 621.6,
+              "proteina_g": 7.4,
+              "grasa_g": 29.6,
+              "carbos_g": 81.4,
+              "notas": "Sin info nutricional en etiqueta. Macros estimados por tabla brownie casero.",
+              "ref_id": "brownie"
+            }
+          ],
+          "totales": {
+            "kcal": 621.6,
+            "proteina_g": 7.4,
+            "grasa_g": 29.6,
+            "carbos_g": 81.4,
             "estimado": true
           }
         }
       ],
       "totales_ventana": {
-        "kcal": 2439.8,
-        "proteina_g": 169.1,
-        "grasa_g": 65.9,
-        "carbos_g": 276.6,
-        "nota": "Ventana parcial — comidas pendientes de registro"
+        "kcal": 2714.8,
+        "proteina_g": 128.8,
+        "grasa_g": 181,
+        "carbos_g": 127.5,
+        "nota": "Macros parcialmente estimados"
+      }
+    },
+    {
+      "ventana_id": "2026-03-07",
+      "protocolo": "ayuno_intermitente",
+      "ayuno_horas": 16,
+      "fecha_inicio_ventana": "2026-03-07",
+      "comidas": [
+        {
+          "tipo": "rompe_ayuno",
+          "hora": "22:18",
+          "fecha": "2026-03-07",
+          "descripcion": "Huevos revueltos con queso parmesano y champignones",
+          "alimentos": [
+            {
+              "nombre": "Queso parmesano",
+              "cantidad_g": 128,
+              "kcal": 551,
+              "proteina_g": 49,
+              "grasa_g": 37,
+              "carbos_g": 5,
+              "ref_id": "queso_parmesano"
+            },
+            {
+              "nombre": "Huevos enteros",
+              "cantidad_g": 176,
+              "unidades": 3,
+              "kcal": 273,
+              "proteina_g": 23,
+              "grasa_g": 19,
+              "carbos_g": 2,
+              "ref_id": "huevo"
+            },
+            {
+              "nombre": "Champignones en lata (Agaricus bisporus)",
+              "cantidad_g": 215,
+              "kcal": 22,
+              "proteina_g": 2,
+              "grasa_g": 0.4,
+              "carbos_g": 3,
+              "ref_id": "champignon_cocido"
+            }
+          ],
+          "totales": {
+            "kcal": 846,
+            "proteina_g": 74,
+            "grasa_g": 56.4,
+            "carbos_g": 10,
+            "estimado": false
+          }
+        }
+      ],
+      "totales_ventana": {
+        "kcal": 846,
+        "proteina_g": 74,
+        "grasa_g": 56.4,
+        "carbos_g": 10
       }
     }
   ]

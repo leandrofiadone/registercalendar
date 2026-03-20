@@ -106,4 +106,11 @@
   .tb-end-lbl  { display: flex; flex-direction: column; align-items: flex-end; margin-top: 5px; gap: 1px; }
   .tb-end-name { font-size: 9px; text-transform: uppercase; letter-spacing: .09em; color: #b45309; font-weight: 700; }
   .tb-end-val  { font-size: 20px; font-weight: 800; color: #fbbf24; font-variant-numeric: tabular-nums; line-height: 1; }
+
+  @media (max-width: 600px) {
+    .tb-bar-track { padding-bottom: 6px; }
+    .tb-marker-lbl  { display: none; }
+    .tb-base-lbl    { display: none; }
+    .tb-end-lbl     { display: none; }
+  }
 </style>

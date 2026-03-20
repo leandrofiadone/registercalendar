@@ -20,7 +20,12 @@
       "vit_c_mg": "Vitamina C (ác. ascórbico)",
       "colesterol_mg": "Colesterol dietario",
       "omega3_g": "Ácidos grasos omega-3 totales",
-      "omega6_g": "Ácidos grasos omega-6 totales"
+      "omega6_g": "Ácidos grasos omega-6 totales",
+      "vit_b6_mg": "Vitamina B6 (piridoxina)",
+      "folato_mcg": "Folato (vitamina B9)",
+      "vit_e_mg": "Vitamina E (tocoferol)",
+      "selenio_mcg": "Selenio",
+      "yodo_mcg": "Yodo"
     },
     "nota": "Valores por 100g de porción comestible. Cocidos donde se indica."
   },
@@ -50,7 +55,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0.1,
-        "omega6_g": 65.7
+        "omega6_g": 65.7,
+        "vit_b6_mg": 0,
+        "folato_mcg": 0,
+        "vit_e_mg": 41.1,
+        "selenio_mcg": 0,
+        "yodo_mcg": 0
       },
       "fuente": "USDA"
     },
@@ -78,7 +88,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0.1,
-        "omega6_g": 1.3
+        "omega6_g": 1.3,
+        "vit_b6_mg": 0.03,
+        "folato_mcg": 3,
+        "vit_e_mg": 1.7,
+        "selenio_mcg": 1,
+        "yodo_mcg": 0.5
       },
       "fuente": "USDA"
     },
@@ -106,7 +121,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 25,
         "omega3_g": 0.02,
-        "omega6_g": 0.3
+        "omega6_g": 0.3,
+        "vit_b6_mg": 0.15,
+        "folato_mcg": 20,
+        "vit_e_mg": 0.5,
+        "selenio_mcg": 12,
+        "yodo_mcg": 10
       },
       "fuente": "Estimado composición típica"
     },
@@ -136,7 +156,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0.01,
-        "omega6_g": 0.1
+        "omega6_g": 0.1,
+        "vit_b6_mg": 0.05,
+        "folato_mcg": 4,
+        "vit_e_mg": 0.1,
+        "selenio_mcg": 10,
+        "yodo_mcg": 2
       },
       "fuente": "USDA (white rice, cooked)"
     },
@@ -165,7 +190,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0.01,
-        "omega6_g": 0.35
+        "omega6_g": 0.35,
+        "vit_b6_mg": 0.09,
+        "folato_mcg": 10,
+        "vit_e_mg": 0.2,
+        "selenio_mcg": 12,
+        "yodo_mcg": 2
       },
       "fuente": "USDA (brown rice, cooked)"
     },
@@ -193,7 +223,12 @@
         "vit_c_mg": 9.6,
         "colesterol_mg": 0,
         "omega3_g": 0.08,
-        "omega6_g": 0.2
+        "omega6_g": 0.2,
+        "vit_b6_mg": 0.1,
+        "folato_mcg": 47,
+        "vit_e_mg": 0.4,
+        "selenio_mcg": 2,
+        "yodo_mcg": 2
       },
       "fuente": "USDA (canned peas, drained)"
     },
@@ -223,7 +258,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 15,
         "omega3_g": 0.05,
-        "omega6_g": 0.8
+        "omega6_g": 0.8,
+        "vit_b6_mg": 0.3,
+        "folato_mcg": 40,
+        "vit_e_mg": 4,
+        "selenio_mcg": 15,
+        "yodo_mcg": 20
       },
       "fuente": "Estimado promedio barras proteicas"
     },
@@ -251,7 +291,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0.1,
-        "omega6_g": 3
+        "omega6_g": 3,
+        "vit_b6_mg": 0.2,
+        "folato_mcg": 20,
+        "vit_e_mg": 2,
+        "selenio_mcg": 8,
+        "yodo_mcg": 10
       },
       "fuente": "Etiqueta + estimado"
     },
@@ -279,7 +324,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 45,
         "omega3_g": 0.1,
-        "omega6_g": 2.5
+        "omega6_g": 2.5,
+        "vit_b6_mg": 0.05,
+        "folato_mcg": 10,
+        "vit_e_mg": 0.5,
+        "selenio_mcg": 10,
+        "yodo_mcg": 5
       },
       "fuente": "USDA (biscotti, almond)"
     },
@@ -307,7 +357,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 50,
         "omega3_g": 0.3,
-        "omega6_g": 4
+        "omega6_g": 4,
+        "vit_b6_mg": 0.05,
+        "folato_mcg": 15,
+        "vit_e_mg": 1,
+        "selenio_mcg": 8,
+        "yodo_mcg": 5
       },
       "fuente": "USDA (brownie with nuts)"
     },
@@ -336,7 +391,12 @@
         "vit_c_mg": 5,
         "colesterol_mg": 55,
         "omega3_g": 0.05,
-        "omega6_g": 1.2
+        "omega6_g": 1.2,
+        "vit_b6_mg": 0.1,
+        "folato_mcg": 40,
+        "vit_e_mg": 0.5,
+        "selenio_mcg": 5,
+        "yodo_mcg": 5
       },
       "fuente": "Estimado composición típica"
     },
@@ -364,7 +424,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 4,
         "omega3_g": 0.01,
-        "omega6_g": 0.03
+        "omega6_g": 0.03,
+        "vit_b6_mg": 0.02,
+        "folato_mcg": 3,
+        "vit_e_mg": 0.1,
+        "selenio_mcg": 2,
+        "yodo_mcg": 15
       },
       "fuente": "USDA (coffee with whole milk)"
     },
@@ -392,7 +457,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 82,
         "omega3_g": 0.04,
-        "omega6_g": 0.25
+        "omega6_g": 0.25,
+        "vit_b6_mg": 0.35,
+        "folato_mcg": 10,
+        "vit_e_mg": 0.2,
+        "selenio_mcg": 18,
+        "yodo_mcg": 10
       },
       "fuente": "USDA (ground beef 90% lean, cooked)"
     },
@@ -420,7 +490,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 78,
         "omega3_g": 0.04,
-        "omega6_g": 0.4
+        "omega6_g": 0.4,
+        "vit_b6_mg": 0.3,
+        "folato_mcg": 8,
+        "vit_e_mg": 0.3,
+        "selenio_mcg": 20,
+        "yodo_mcg": 8
       },
       "fuente": "USDA (beef, sauteed, semi-lean)"
     },
@@ -448,7 +523,12 @@
         "vit_c_mg": 7.4,
         "colesterol_mg": 0,
         "omega3_g": 0.01,
-        "omega6_g": 0.01
+        "omega6_g": 0.01,
+        "vit_b6_mg": 0.12,
+        "folato_mcg": 19,
+        "vit_e_mg": 0.02,
+        "selenio_mcg": 0.6,
+        "yodo_mcg": 2
       },
       "fuente": "USDA"
     },
@@ -478,7 +558,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0,
-        "omega6_g": 0.15
+        "omega6_g": 0.15,
+        "vit_b6_mg": 0.09,
+        "folato_mcg": 14,
+        "vit_e_mg": 0.01,
+        "selenio_mcg": 26,
+        "yodo_mcg": 4
       },
       "fuente": "USDA (mushrooms, canned/cooked)"
     },
@@ -506,7 +591,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 82,
         "omega3_g": 0.04,
-        "omega6_g": 1.4
+        "omega6_g": 1.4,
+        "vit_b6_mg": 0.5,
+        "folato_mcg": 5,
+        "vit_e_mg": 0.3,
+        "selenio_mcg": 35,
+        "yodo_mcg": 10
       },
       "fuente": "USDA (pork chop, pan-fried)"
     },
@@ -534,7 +624,12 @@
         "vit_c_mg": 58,
         "colesterol_mg": 0,
         "omega3_g": 0.1,
-        "omega6_g": 0.07
+        "omega6_g": 0.07,
+        "vit_b6_mg": 0.1,
+        "folato_mcg": 105,
+        "vit_e_mg": 0.3,
+        "selenio_mcg": 0.9,
+        "yodo_mcg": 1
       },
       "fuente": "USDA (chives, raw)"
     },
@@ -562,7 +657,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0,
-        "omega6_g": 0
+        "omega6_g": 0,
+        "vit_b6_mg": 0.01,
+        "folato_mcg": 2,
+        "vit_e_mg": 0.02,
+        "selenio_mcg": 0.5,
+        "yodo_mcg": 5
       },
       "fuente": "Estimado desde etiqueta"
     },
@@ -591,7 +691,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 95,
         "omega3_g": 0.06,
-        "omega6_g": 2.2
+        "omega6_g": 2.2,
+        "vit_b6_mg": 0.4,
+        "folato_mcg": 5,
+        "vit_e_mg": 0.3,
+        "selenio_mcg": 30,
+        "yodo_mcg": 10
       },
       "fuente": "USDA (pork ribs, cooked)"
     },
@@ -619,7 +724,12 @@
         "vit_c_mg": 0.6,
         "colesterol_mg": 66,
         "omega3_g": 0.1,
-        "omega6_g": 0.5
+        "omega6_g": 0.5,
+        "vit_b6_mg": 0.03,
+        "folato_mcg": 4,
+        "vit_e_mg": 0.7,
+        "selenio_mcg": 1.5,
+        "yodo_mcg": 10
       },
       "fuente": "USDA (heavy cream)"
     },
@@ -647,7 +757,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 67,
         "omega3_g": 0.1,
-        "omega6_g": 2
+        "omega6_g": 2,
+        "vit_b6_mg": 0.07,
+        "folato_mcg": 30,
+        "vit_e_mg": 1.5,
+        "selenio_mcg": 12,
+        "yodo_mcg": 10
       },
       "fuente": "USDA (croissant, butter)"
     },
@@ -675,7 +790,12 @@
         "vit_c_mg": 0.4,
         "colesterol_mg": 0,
         "omega3_g": 0,
-        "omega6_g": 0.02
+        "omega6_g": 0.02,
+        "vit_b6_mg": 0.24,
+        "folato_mcg": 15,
+        "vit_e_mg": 0.05,
+        "selenio_mcg": 1.9,
+        "yodo_mcg": 1
       },
       "fuente": "USDA (dates, medjool)"
     },
@@ -703,7 +823,12 @@
         "vit_c_mg": 1,
         "colesterol_mg": 0,
         "omega3_g": 0,
-        "omega6_g": 0.05
+        "omega6_g": 0.05,
+        "vit_b6_mg": 0.05,
+        "folato_mcg": 3,
+        "vit_e_mg": 0.1,
+        "selenio_mcg": 1,
+        "yodo_mcg": 2
       },
       "fuente": "ARGENFOODS"
     },
@@ -732,7 +857,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0.01,
-        "omega6_g": 0.3
+        "omega6_g": 0.3,
+        "vit_b6_mg": 0.05,
+        "folato_mcg": 7,
+        "vit_e_mg": 0.1,
+        "selenio_mcg": 24,
+        "yodo_mcg": 3
       },
       "fuente": "USDA (pasta, cooked)"
     },
@@ -761,7 +891,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0.1,
-        "omega6_g": 3.5
+        "omega6_g": 3.5,
+        "vit_b6_mg": 0.1,
+        "folato_mcg": 15,
+        "vit_e_mg": 0.5,
+        "selenio_mcg": 12,
+        "yodo_mcg": 5
       },
       "fuente": "Etiqueta + USDA (oatmeal cookies)"
     },
@@ -789,7 +924,12 @@
         "vit_c_mg": 1.3,
         "colesterol_mg": 381,
         "omega3_g": 0.1,
-        "omega6_g": 0.4
+        "omega6_g": 0.4,
+        "vit_b6_mg": 0.9,
+        "folato_mcg": 290,
+        "vit_e_mg": 0.6,
+        "selenio_mcg": 39,
+        "yodo_mcg": 15
       },
       "fuente": "USDA (beef liver, pan-fried)"
     },
@@ -819,7 +959,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 373,
         "omega3_g": 0.1,
-        "omega6_g": 1.6
+        "omega6_g": 1.6,
+        "vit_b6_mg": 0.14,
+        "folato_mcg": 44,
+        "vit_e_mg": 1.1,
+        "selenio_mcg": 31,
+        "yodo_mcg": 53
       },
       "fuente": "USDA (whole egg, cooked)"
     },
@@ -847,7 +992,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0.1,
-        "omega6_g": 3.5
+        "omega6_g": 3.5,
+        "vit_b6_mg": 0.17,
+        "folato_mcg": 72,
+        "vit_e_mg": 1.5,
+        "selenio_mcg": 5,
+        "yodo_mcg": 2
       },
       "fuente": "Etiqueta + USDA (hummus)"
     },
@@ -875,7 +1025,12 @@
         "vit_c_mg": 9.2,
         "colesterol_mg": 0,
         "omega3_g": 0.06,
-        "omega6_g": 0.02
+        "omega6_g": 0.02,
+        "vit_b6_mg": 0.07,
+        "folato_mcg": 73,
+        "vit_e_mg": 0.4,
+        "selenio_mcg": 0.6,
+        "yodo_mcg": 3
       },
       "fuente": "USDA (lettuce, green leaf)"
     },
@@ -903,7 +1058,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 60,
         "omega3_g": 0.02,
-        "omega6_g": 0.2
+        "omega6_g": 0.2,
+        "vit_b6_mg": 0.3,
+        "folato_mcg": 5,
+        "vit_e_mg": 0.2,
+        "selenio_mcg": 15,
+        "yodo_mcg": 8
       },
       "fuente": "USDA (roast beef, deli)"
     },
@@ -931,7 +1091,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 215,
         "omega3_g": 0.3,
-        "omega6_g": 2.2
+        "omega6_g": 2.2,
+        "vit_b6_mg": 0,
+        "folato_mcg": 1,
+        "vit_e_mg": 2.3,
+        "selenio_mcg": 1,
+        "yodo_mcg": 10
       },
       "fuente": "USDA (butter, unsalted)"
     },
@@ -959,7 +1124,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 42,
         "omega3_g": 4.2,
-        "omega6_g": 39
+        "omega6_g": 39,
+        "vit_b6_mg": 0.05,
+        "folato_mcg": 4,
+        "vit_e_mg": 3.9,
+        "selenio_mcg": 3,
+        "yodo_mcg": 7
       },
       "fuente": "USDA (mayonnaise, full fat)"
     },
@@ -987,7 +1157,12 @@
         "vit_c_mg": 18,
         "colesterol_mg": 0,
         "omega3_g": 0.02,
-        "omega6_g": 0.04
+        "omega6_g": 0.04,
+        "vit_b6_mg": 0.07,
+        "folato_mcg": 21,
+        "vit_e_mg": 0.05,
+        "selenio_mcg": 0.4,
+        "yodo_mcg": 2
       },
       "fuente": "USDA (honeydew melon)"
     },
@@ -1015,7 +1190,12 @@
         "vit_c_mg": 0.5,
         "colesterol_mg": 0,
         "omega3_g": 2,
-        "omega6_g": 12
+        "omega6_g": 12,
+        "vit_b6_mg": 0.3,
+        "folato_mcg": 40,
+        "vit_e_mg": 7,
+        "selenio_mcg": 10,
+        "yodo_mcg": 2
       },
       "fuente": "USDA (mixed nuts, unsalted)"
     },
@@ -1043,7 +1223,12 @@
         "vit_c_mg": 128,
         "colesterol_mg": 0,
         "omega3_g": 0.03,
-        "omega6_g": 0.04
+        "omega6_g": 0.04,
+        "vit_b6_mg": 0.37,
+        "folato_mcg": 46,
+        "vit_e_mg": 1.6,
+        "selenio_mcg": 0.1,
+        "yodo_mcg": 2
       },
       "fuente": "USDA (red bell pepper)"
     },
@@ -1071,7 +1256,12 @@
         "vit_c_mg": 0.3,
         "colesterol_mg": 0,
         "omega3_g": 0.3,
-        "omega6_g": 0.6
+        "omega6_g": 0.6,
+        "vit_b6_mg": 0.08,
+        "folato_mcg": 13,
+        "vit_e_mg": 0.3,
+        "selenio_mcg": 30,
+        "yodo_mcg": 3
       },
       "fuente": "USDA (yellow mustard)"
     },
@@ -1099,7 +1289,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0.3,
-        "omega6_g": 1.8
+        "omega6_g": 1.8,
+        "vit_b6_mg": 0.08,
+        "folato_mcg": 30,
+        "vit_e_mg": 0.3,
+        "selenio_mcg": 22,
+        "yodo_mcg": 5
       },
       "fuente": "Etiqueta + estimado (seeded bread)"
     },
@@ -1127,7 +1322,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0.02,
-        "omega6_g": 0.4
+        "omega6_g": 0.4,
+        "vit_b6_mg": 0.1,
+        "folato_mcg": 25,
+        "vit_e_mg": 0.3,
+        "selenio_mcg": 20,
+        "yodo_mcg": 5
       },
       "fuente": "USDA (pita bread, white)"
     },
@@ -1155,7 +1355,12 @@
         "vit_c_mg": 9.6,
         "colesterol_mg": 0,
         "omega3_g": 0.02,
-        "omega6_g": 0.8
+        "omega6_g": 0.8,
+        "vit_b6_mg": 0.3,
+        "folato_mcg": 16,
+        "vit_e_mg": 0.06,
+        "selenio_mcg": 0.5,
+        "yodo_mcg": 5
       },
       "fuente": "USDA (roasted potato with oil)"
     },
@@ -1183,7 +1388,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 70,
         "omega3_g": 0.1,
-        "omega6_g": 0.5
+        "omega6_g": 0.5,
+        "vit_b6_mg": 0.05,
+        "folato_mcg": 6,
+        "vit_e_mg": 0.3,
+        "selenio_mcg": 14,
+        "yodo_mcg": 40
       },
       "fuente": "USDA (port salut cheese)"
     },
@@ -1211,7 +1421,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 35,
         "omega3_g": 0.05,
-        "omega6_g": 0.3
+        "omega6_g": 0.3,
+        "vit_b6_mg": 0.05,
+        "folato_mcg": 10,
+        "vit_e_mg": 0.3,
+        "selenio_mcg": 10,
+        "yodo_mcg": 20
       },
       "fuente": "Estimado (queso cremoso light AR)"
     },
@@ -1239,7 +1454,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 88,
         "omega3_g": 0.1,
-        "omega6_g": 0.4
+        "omega6_g": 0.4,
+        "vit_b6_mg": 0.08,
+        "folato_mcg": 7,
+        "vit_e_mg": 0.3,
+        "selenio_mcg": 17,
+        "yodo_mcg": 30
       },
       "fuente": "USDA (parmesan, hard)"
     },
@@ -1267,7 +1487,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 80,
         "omega3_g": 0.1,
-        "omega6_g": 0.5
+        "omega6_g": 0.5,
+        "vit_b6_mg": 0.05,
+        "folato_mcg": 7,
+        "vit_e_mg": 0.3,
+        "selenio_mcg": 14,
+        "yodo_mcg": 30
       },
       "fuente": "Estimado (semi-hard cheese)"
     },
@@ -1296,7 +1521,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 85,
         "omega3_g": 0.1,
-        "omega6_g": 0.4
+        "omega6_g": 0.4,
+        "vit_b6_mg": 0.08,
+        "folato_mcg": 7,
+        "vit_e_mg": 0.3,
+        "selenio_mcg": 17,
+        "yodo_mcg": 30
       },
       "fuente": "ARGENFOODS (reggianito, similar parmigiano)"
     },
@@ -1324,7 +1554,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 80,
         "omega3_g": 0.1,
-        "omega6_g": 0.5
+        "omega6_g": 0.5,
+        "vit_b6_mg": 0.05,
+        "folato_mcg": 6,
+        "vit_e_mg": 0.3,
+        "selenio_mcg": 12,
+        "yodo_mcg": 35
       },
       "fuente": "ARGENFOODS (queso tybo)"
     },
@@ -1352,7 +1587,12 @@
         "vit_c_mg": 5,
         "colesterol_mg": 10,
         "omega3_g": 0.05,
-        "omega6_g": 0.5
+        "omega6_g": 0.5,
+        "vit_b6_mg": 0.2,
+        "folato_mcg": 12,
+        "vit_e_mg": 1,
+        "selenio_mcg": 12,
+        "yodo_mcg": 8
       },
       "fuente": "Etiqueta + estimado"
     },
@@ -1384,7 +1624,12 @@
         "vit_c_mg": 14,
         "colesterol_mg": 0,
         "omega3_g": 0.003,
-        "omega6_g": 0.08
+        "omega6_g": 0.08,
+        "vit_b6_mg": 0.08,
+        "folato_mcg": 15,
+        "vit_e_mg": 0.5,
+        "selenio_mcg": 0.4,
+        "yodo_mcg": 1
       },
       "fuente": "USDA (tomato, raw)"
     },
@@ -1412,7 +1657,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 80,
         "omega3_g": 0.04,
-        "omega6_g": 0.5
+        "omega6_g": 0.5,
+        "vit_b6_mg": 0.35,
+        "folato_mcg": 8,
+        "vit_e_mg": 0.2,
+        "selenio_mcg": 20,
+        "yodo_mcg": 8
       },
       "fuente": "USDA (beef flank, roasted)"
     },
@@ -1442,7 +1692,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 72,
         "omega3_g": 0.03,
-        "omega6_g": 0.2
+        "omega6_g": 0.2,
+        "vit_b6_mg": 0.35,
+        "folato_mcg": 8,
+        "vit_e_mg": 0.2,
+        "selenio_mcg": 22,
+        "yodo_mcg": 8
       },
       "fuente": "USDA (beef eye of round, cooked)"
     },
@@ -1470,7 +1725,12 @@
         "vit_c_mg": 6,
         "colesterol_mg": 15,
         "omega3_g": 0.02,
-        "omega6_g": 1.5
+        "omega6_g": 1.5,
+        "vit_b6_mg": 0.3,
+        "folato_mcg": 14,
+        "vit_e_mg": 0.05,
+        "selenio_mcg": 0.5,
+        "yodo_mcg": 5
       },
       "fuente": "Estimado composición típica (puré de papa frito)"
     },
@@ -1499,7 +1759,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 90,
         "omega3_g": 0.3,
-        "omega6_g": 0.8
+        "omega6_g": 0.8,
+        "vit_b6_mg": 0.08,
+        "folato_mcg": 10,
+        "vit_e_mg": 0.4,
+        "selenio_mcg": 14,
+        "yodo_mcg": 25
       },
       "fuente": "USDA (blue cheese / roquefort)"
     },
@@ -1528,7 +1793,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 5,
         "omega3_g": 0.01,
-        "omega6_g": 0.03
+        "omega6_g": 0.03,
+        "vit_b6_mg": 0.06,
+        "folato_mcg": 7,
+        "vit_e_mg": 0.1,
+        "selenio_mcg": 3,
+        "yodo_mcg": 40
       },
       "fuente": "Etiqueta Ser Pro+ + estimado micro (yogur descremado proteico)"
     },
@@ -1556,7 +1826,12 @@
         "vit_c_mg": 3.9,
         "colesterol_mg": 0,
         "omega3_g": 0.01,
-        "omega6_g": 0.08
+        "omega6_g": 0.08,
+        "vit_b6_mg": 0.05,
+        "folato_mcg": 5,
+        "vit_e_mg": 0.5,
+        "selenio_mcg": 0.3,
+        "yodo_mcg": 1
       },
       "fuente": "USDA (apples, dehydrated / dried)"
     },
@@ -1586,7 +1861,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0,
-        "omega6_g": 0
+        "omega6_g": 0,
+        "vit_b6_mg": 0,
+        "folato_mcg": 0,
+        "vit_e_mg": 0,
+        "selenio_mcg": 1,
+        "yodo_mcg": 0
       },
       "fuente": "USDA (gelatin dessert, sugar-free, prepared)"
     },
@@ -1617,7 +1897,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 142,
         "omega3_g": 1.5,
-        "omega6_g": 3.5
+        "omega6_g": 3.5,
+        "vit_b6_mg": 0.35,
+        "folato_mcg": 10,
+        "vit_e_mg": 2,
+        "selenio_mcg": 47,
+        "yodo_mcg": 40
       },
       "fuente": "USDA (sardines, canned in oil, drained)"
     },
@@ -1646,7 +1931,12 @@
         "vit_c_mg": 13,
         "colesterol_mg": 0,
         "omega3_g": 0.01,
-        "omega6_g": 0.03
+        "omega6_g": 0.03,
+        "vit_b6_mg": 0.25,
+        "folato_mcg": 10,
+        "vit_e_mg": 0.05,
+        "selenio_mcg": 0.4,
+        "yodo_mcg": 4
       },
       "fuente": "USDA (potato, boiled, without skin)"
     },
@@ -1675,7 +1965,12 @@
         "vit_c_mg": 3.6,
         "colesterol_mg": 0,
         "omega3_g": 0.002,
-        "omega6_g": 0.08
+        "omega6_g": 0.08,
+        "vit_b6_mg": 0.07,
+        "folato_mcg": 14,
+        "vit_e_mg": 0.5,
+        "selenio_mcg": 0.5,
+        "yodo_mcg": 2
       },
       "fuente": "USDA (carrots, boiled)"
     },
@@ -1703,7 +1998,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0.05,
-        "omega6_g": 1.5
+        "omega6_g": 1.5,
+        "vit_b6_mg": 0.4,
+        "folato_mcg": 50,
+        "vit_e_mg": 5,
+        "selenio_mcg": 20,
+        "yodo_mcg": 15
       },
       "fuente": "Estimado desde etiqueta Vitalgy Foods + USDA (protein bar with cocoa/peanut)"
     },
@@ -1731,7 +2031,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0.08,
-        "omega6_g": 2
+        "omega6_g": 2,
+        "vit_b6_mg": 0.4,
+        "folato_mcg": 50,
+        "vit_e_mg": 5,
+        "selenio_mcg": 20,
+        "yodo_mcg": 15
       },
       "fuente": "Estimado desde etiqueta + USDA (nut/grain bar)"
     },
@@ -1759,7 +2064,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0.01,
-        "omega6_g": 0.1
+        "omega6_g": 0.1,
+        "vit_b6_mg": 0.05,
+        "folato_mcg": 4,
+        "vit_e_mg": 0.1,
+        "selenio_mcg": 9,
+        "yodo_mcg": 2
       },
       "fuente": "USDA (white rice, cooked)"
     },
@@ -1788,7 +2098,12 @@
         "vit_c_mg": 8.7,
         "colesterol_mg": 0,
         "omega3_g": 0.03,
-        "omega6_g": 0.05
+        "omega6_g": 0.05,
+        "vit_b6_mg": 0.37,
+        "folato_mcg": 20,
+        "vit_e_mg": 0.1,
+        "selenio_mcg": 1,
+        "yodo_mcg": 1
       },
       "fuente": "USDA (banana, raw, ripe)"
     },
@@ -1816,7 +2131,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0.1,
-        "omega6_g": 2.5
+        "omega6_g": 2.5,
+        "vit_b6_mg": 0.3,
+        "folato_mcg": 25,
+        "vit_e_mg": 3,
+        "selenio_mcg": 10,
+        "yodo_mcg": 10
       },
       "fuente": "Estimado desde etiqueta Zafrán + USDA (fruit/nut bar)"
     },
@@ -1844,7 +2164,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 0,
         "omega3_g": 0.15,
-        "omega6_g": 3
+        "omega6_g": 3,
+        "vit_b6_mg": 0.3,
+        "folato_mcg": 30,
+        "vit_e_mg": 4,
+        "selenio_mcg": 12,
+        "yodo_mcg": 10
       },
       "fuente": "Estimado desde etiqueta Zafrán + USDA (nut bar)"
     },
@@ -1874,7 +2199,12 @@
         "vit_c_mg": 5,
         "colesterol_mg": 75,
         "omega3_g": 0.05,
-        "omega6_g": 1.5
+        "omega6_g": 1.5,
+        "vit_b6_mg": 0.1,
+        "folato_mcg": 35,
+        "vit_e_mg": 0.5,
+        "selenio_mcg": 15,
+        "yodo_mcg": 25
       },
       "fuente": "Estimado composición típica (acelga + huevo + harina, frito)"
     },
@@ -1903,7 +2233,12 @@
         "vit_c_mg": 1,
         "colesterol_mg": 0,
         "omega3_g": 1.5,
-        "omega6_g": 10
+        "omega6_g": 10,
+        "vit_b6_mg": 0.2,
+        "folato_mcg": 15,
+        "vit_e_mg": 3,
+        "selenio_mcg": 5,
+        "yodo_mcg": 3
       },
       "fuente": "Estimado USDA (banana chips + mixed nuts blend)"
     },
@@ -1931,7 +2266,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 15,
         "omega3_g": 0.05,
-        "omega6_g": 1
+        "omega6_g": 1,
+        "vit_b6_mg": 0.4,
+        "folato_mcg": 50,
+        "vit_e_mg": 5,
+        "selenio_mcg": 18,
+        "yodo_mcg": 20
       },
       "fuente": "Estimado desde etiqueta Not. + USDA (protein bar)"
     },
@@ -1960,7 +2300,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 88,
         "omega3_g": 0.1,
-        "omega6_g": 2.5
+        "omega6_g": 2.5,
+        "vit_b6_mg": 0.6,
+        "folato_mcg": 5,
+        "vit_e_mg": 0.3,
+        "selenio_mcg": 27,
+        "yodo_mcg": 7
       },
       "fuente": "USDA (chicken, meat and skin, cooked, roasted)"
     },
@@ -1989,7 +2334,12 @@
         "vit_c_mg": 0,
         "colesterol_mg": 75,
         "omega3_g": 0.03,
-        "omega6_g": 0.25
+        "omega6_g": 0.25,
+        "vit_b6_mg": 0.35,
+        "folato_mcg": 7,
+        "vit_e_mg": 0.2,
+        "selenio_mcg": 22,
+        "yodo_mcg": 8
       },
       "fuente": "USDA (beef, round, roasted)"
     },
@@ -2018,9 +2368,122 @@
         "vit_c_mg": 5.9,
         "colesterol_mg": 0,
         "omega3_g": 0.002,
-        "omega6_g": 0.12
+        "omega6_g": 0.12,
+        "vit_b6_mg": 0.14,
+        "folato_mcg": 19,
+        "vit_e_mg": 0.7,
+        "selenio_mcg": 0.5,
+        "yodo_mcg": 2
       },
       "fuente": "USDA (carrots, raw)"
+    },
+    {
+      "id": "arroz_yamani_cocido",
+      "nombres": [
+        "Arroz integral yamani",
+        "Arroz yamani",
+        "Arroz yamani cocido"
+      ],
+      "categoria": "cereales",
+      "por_100g": {
+        "kcal": 130,
+        "proteina_g": 3.2,
+        "grasa_g": 0.4,
+        "carbos_g": 27.2,
+        "fibra_g": 1.8,
+        "sodio_mg": 1,
+        "potasio_mg": 43,
+        "hierro_mg": 0.5,
+        "calcio_mg": 10,
+        "magnesio_mg": 44,
+        "zinc_mg": 0.6,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.02,
+        "omega6_g": 0.3,
+        "vit_b6_mg": 0.09,
+        "folato_mcg": 10,
+        "vit_e_mg": 0.2,
+        "selenio_mcg": 12,
+        "yodo_mcg": 2
+      },
+      "fuente": "USDA",
+      "estimado": false
+    },
+    {
+      "id": "barrita_muecas_pasas_arandanos",
+      "nombres": [
+        "Barra de cereales pasas y arándanos",
+        "Barra Müecas pasas y arándanos",
+        "Barrita Müecas"
+      ],
+      "categoria": "snacks",
+      "marca": "Müecas",
+      "por_100g": {
+        "kcal": 418,
+        "proteina_g": 8.9,
+        "grasa_g": 13.3,
+        "carbos_g": 42.2,
+        "fibra_g": 3,
+        "sodio_mg": 80,
+        "potasio_mg": 200,
+        "hierro_mg": 1.5,
+        "calcio_mg": 40,
+        "magnesio_mg": 30,
+        "zinc_mg": 0.8,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.1,
+        "omega6_g": 1.2,
+        "vit_b6_mg": 0.1,
+        "folato_mcg": 15,
+        "vit_e_mg": 1.5,
+        "selenio_mcg": 5,
+        "yodo_mcg": 5
+      },
+      "fuente": "etiqueta",
+      "estimado": false
+    },
+    {
+      "id": "barrita_frutos_secos_avena",
+      "nombres": [
+        "Barrita de frutos secos (avena, maní, almendras, castañas)",
+        "Barrita de frutos secos"
+      ],
+      "categoria": "snacks",
+      "por_100g": {
+        "kcal": 329,
+        "proteina_g": 7.8,
+        "grasa_g": 10.9,
+        "carbos_g": 56.9,
+        "fibra_g": 4,
+        "sodio_mg": 60,
+        "potasio_mg": 280,
+        "hierro_mg": 1.8,
+        "calcio_mg": 50,
+        "magnesio_mg": 55,
+        "zinc_mg": 1.2,
+        "vit_b12_mcg": 0,
+        "vit_d_mcg": 0,
+        "vit_a_mcg": 0,
+        "vit_c_mg": 0,
+        "colesterol_mg": 0,
+        "omega3_g": 0.2,
+        "omega6_g": 2.1,
+        "vit_b6_mg": 0.15,
+        "folato_mcg": 20,
+        "vit_e_mg": 2,
+        "selenio_mcg": 8,
+        "yodo_mcg": 5
+      },
+      "fuente": "estimado_ia",
+      "estimado": true
     }
   ]
 }

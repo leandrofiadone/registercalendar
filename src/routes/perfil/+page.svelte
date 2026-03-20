@@ -3,9 +3,10 @@
   import { gymKcalDetallado, actividadKcal } from '$lib/activity.js';
 
   let { data } = $props();
-  let sessions = $derived(data.sessions);
-  let ventanas = $derived(data.ventanas);
-  let perfil   = $derived(data.perfil);
+  let sessions     = $derived(data.sessions);
+  let ventanas     = $derived(data.ventanas);
+  let perfil       = $derived(data.perfil);
+  let alimentosRef = $derived(data.alimentosRef ?? []);
 
   let thisMonth = $derived.by(() => {
     const now = new Date();
@@ -156,6 +157,105 @@
       return { x, y, label: p.peso_kg, date: p.fecha.slice(5) };
     });
     return { pts, W, H, mn, mx };
+  });
+
+  // ── Micronutrient analysis ────────────────────────────────────
+  const MICRO_RDA = {
+    fibra_g:      { rda: 38,   max: null, label: 'Fibra',      unit: 'g',   icon: '🌾' },
+    sodio_mg:     { rda: null, max: 2300, label: 'Sodio',      unit: 'mg',  icon: '🧂' },
+    potasio_mg:   { rda: 3400, max: null, label: 'Potasio',    unit: 'mg',  icon: '⚡' },
+    hierro_mg:    { rda: 8,    max: null, label: 'Hierro',     unit: 'mg',  icon: '🩸' },
+    calcio_mg:    { rda: 1000, max: null, label: 'Calcio',     unit: 'mg',  icon: '🦴' },
+    magnesio_mg:  { rda: 420,  max: null, label: 'Magnesio',   unit: 'mg',  icon: '💜' },
+    zinc_mg:      { rda: 11,   max: null, label: 'Zinc',       unit: 'mg',  icon: '🛡️' },
+    vit_b12_mcg:  { rda: 2.4,  max: null, label: 'Vit B12',   unit: 'mcg', icon: '⚡' },
+    vit_d_mcg:    { rda: 15,   max: null, label: 'Vit D',      unit: 'mcg', icon: '☀️' },
+    vit_a_mcg:    { rda: 900,  max: null, label: 'Vit A',      unit: 'mcg', icon: '👁️' },
+    vit_c_mg:     { rda: 90,   max: null, label: 'Vit C',      unit: 'mg',  icon: '🍊' },
+    colesterol_mg:{ rda: null, max: 300,  label: 'Colesterol', unit: 'mg',  icon: '🫀' },
+    omega3_g:     { rda: 1.6,  max: null, label: 'Omega-3',    unit: 'g',   icon: '🐟' },
+    omega6_g:     { rda: 17,   max: null, label: 'Omega-6',    unit: 'g',   icon: '🌻' },
+    vit_b6_mg:    { rda: 1.3,  max: null, label: 'Vit B6',     unit: 'mg',  icon: '🔬' },
+    folato_mcg:   { rda: 400,  max: null, label: 'Folato',     unit: 'mcg', icon: '🧬' },
+    vit_e_mg:     { rda: 15,   max: null, label: 'Vit E',      unit: 'mg',  icon: '🌿' },
+    selenio_mcg:  { rda: 55,   max: null, label: 'Selenio',    unit: 'mcg', icon: '⚙️' },
+    yodo_mcg:     { rda: 150,  max: null, label: 'Yodo',       unit: 'mcg', icon: '🫧' },
+  };
+
+  const MICRO_CATS_DEF = [
+    { label: '🌾 Digestión',        keys: ['fibra_g'] },
+    { label: '⚡ Electrolitos',      keys: ['potasio_mg', 'sodio_mg'] },
+    { label: '🧲 Minerales',         keys: ['calcio_mg', 'magnesio_mg', 'hierro_mg', 'zinc_mg', 'selenio_mcg', 'yodo_mcg'] },
+    { label: '💊 Vitaminas',         keys: ['vit_c_mg', 'vit_d_mcg', 'vit_e_mg', 'vit_a_mcg', 'vit_b12_mcg', 'vit_b6_mg', 'folato_mcg'] },
+    { label: '🐟 Grasas especiales', keys: ['omega3_g', 'omega6_g', 'colesterol_mg'] },
+  ];
+
+  const MICRO_KEYS_ALL = Object.keys(MICRO_RDA);
+
+  function normM(s) { return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+  function findRefM(a, refs) {
+    if (!refs.length) return null;
+    if (a.ref_id) return refs.find(r => r.id === a.ref_id) ?? null;
+    const n = normM(a.nombre);
+    return refs.find(r => r.nombres?.some(rn => {
+      const rn2 = normM(rn);
+      return n === rn2 || n.includes(rn2) || (rn2.length > n.length && rn2.includes(n));
+    })) ?? null;
+  }
+  function microSt(key, avg) {
+    const m = MICRO_RDA[key];
+    if (m.rda) {
+      const pct = avg / m.rda * 100;
+      if (pct < 50)  return { pct, cls: 'deficit', barColor: '#f87171', bar: pct };
+      if (pct < 80)  return { pct, cls: 'bajo',    barColor: '#fbbf24', bar: pct };
+      if (pct < 150) return { pct, cls: 'ok',      barColor: '#4ade80', bar: Math.min(pct, 100) };
+      return             { pct, cls: 'exceso',   barColor: '#60a5fa', bar: 100 };
+    }
+    if (m.max) {
+      const pct = avg / m.max * 100;
+      if (pct < 70)  return { pct, cls: 'ok',      barColor: '#4ade80', bar: pct };
+      if (pct < 100) return { pct, cls: 'atención', barColor: '#fbbf24', bar: pct };
+      return             { pct, cls: 'exceso',   barColor: '#f87171', bar: 100 };
+    }
+    return { pct: 0, cls: 'nd', barColor: '#475569', bar: 0 };
+  }
+
+  let microAnalysis = $derived.by(() => {
+    if (!alimentosRef.length || !ventanas.length) return null;
+    const today = new Date();
+    const todayStr = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+    const cutoff = new Date(today); cutoff.setDate(cutoff.getDate() - 14);
+    const cutoffStr = `${cutoff.getFullYear()}-${String(cutoff.getMonth()+1).padStart(2,'0')}-${String(cutoff.getDate()).padStart(2,'0')}`;
+    const relevant = ventanas.filter(v => v.ventana_id >= cutoffStr && v.ventana_id <= todayStr);
+    if (!relevant.length) return null;
+
+    const totals = {};
+    MICRO_KEYS_ALL.forEach(k => totals[k] = 0);
+    for (const v of relevant) {
+      for (const c of (v.comidas || [])) {
+        for (const a of (c.alimentos || [])) {
+          const ref = findRefM(a, alimentosRef);
+          if (!ref) continue;
+          const grams = a.cantidad_g ?? a.cantidad_g_aprox ?? a.carne_neta_estimada_g
+            ?? (a.unidades ? a.unidades * 100 : null)
+            ?? a.cantidad_ml ?? a.cantidad_ml_aprox ?? 0;
+          if (!grams) continue;
+          const factor = grams / 100;
+          for (const k of MICRO_KEYS_ALL) totals[k] += (ref.por_100g[k] ?? 0) * factor;
+        }
+      }
+    }
+    const days = relevant.length;
+    const avgs = {}, statuses = {};
+    for (const k of MICRO_KEYS_ALL) {
+      avgs[k] = totals[k] / days;
+      statuses[k] = microSt(k, avgs[k]);
+    }
+    // Nutrients with rda that are under 80%
+    const alerts = MICRO_KEYS_ALL
+      .filter(k => MICRO_RDA[k].rda && (statuses[k].cls === 'deficit' || statuses[k].cls === 'bajo'))
+      .sort((a, b) => statuses[a].pct - statuses[b].pct);
+    return { avgs, statuses, days, alerts };
   });
 
   // SVG chart data for deficit bars
@@ -367,6 +467,93 @@
       </div>
     {/if}
 
+    <!-- Micronutrientes: análisis -->
+    {#if microAnalysis}
+      {@const needWork  = MICRO_KEYS_ALL.filter(k => ['deficit','bajo'].includes(microAnalysis.statuses[k].cls)).sort((a,b) => microAnalysis.statuses[a].pct - microAnalysis.statuses[b].pct)}
+      {@const overLimit = MICRO_KEYS_ALL.filter(k => microAnalysis.statuses[k].cls === 'exceso' && MICRO_RDA[k].max)}
+      {@const wellCov   = MICRO_KEYS_ALL.filter(k => microAnalysis.statuses[k].cls === 'exceso' && MICRO_RDA[k].rda)}
+      {@const inRange   = MICRO_KEYS_ALL.filter(k => ['ok','atención'].includes(microAnalysis.statuses[k].cls))}
+      <div class="pcard">
+        <div class="pcard-title">🧬 Micronutrientes · promedio {microAnalysis.days} días</div>
+
+        {#if needWork.length}
+          <div class="msection-label warn">⚠ Por mejorar</div>
+          <div class="micro-need-grid">
+            {#each needWork as k}
+              {@const m = MICRO_RDA[k]}
+              {@const avg = microAnalysis.avgs[k]}
+              {@const st = microAnalysis.statuses[k]}
+              {@const pct = Math.round(st.pct)}
+              {@const fmtVal = avg < 10 ? avg.toFixed(1) : Math.round(avg)}
+              <div class="mneed-card">
+                <div class="mneed-top">
+                  <span class="mneed-icon">{m.icon}</span>
+                  <span class="mneed-pct" style="color:{st.barColor}">{pct}%</span>
+                </div>
+                <div class="mneed-bar-wrap">
+                  <div class="mneed-bar" style="width:{pct}%;background:{st.barColor}"></div>
+                </div>
+                <div class="mneed-name">{m.label}</div>
+                <div class="mneed-val">{fmtVal} / {m.rda}{m.unit}</div>
+              </div>
+            {/each}
+          </div>
+        {:else}
+          <div class="mok-banner">✓ Todos los nutrientes están dentro del rango recomendado</div>
+        {/if}
+
+        {#if overLimit.length}
+          <div class="msection-label overlimit">↑ Sobre el límite recomendado</div>
+          <div class="micro-need-grid">
+            {#each overLimit as k}
+              {@const m = MICRO_RDA[k]}
+              {@const avg = microAnalysis.avgs[k]}
+              {@const st = microAnalysis.statuses[k]}
+              {@const fmtVal = avg < 10 ? avg.toFixed(1) : Math.round(avg)}
+              {@const excess = Math.round(st.pct - 100)}
+              <div class="mneed-card overlimit">
+                <div class="mneed-top">
+                  <span class="mneed-icon">{m.icon}</span>
+                  <span class="mneed-pct" style="color:#f87171">+{excess}%</span>
+                </div>
+                <div class="mneed-bar-wrap">
+                  <div class="mneed-bar" style="width:100%;background:#f87171;opacity:.4"></div>
+                  <div class="mneed-bar-over" style="width:{Math.min(excess,100)}%"></div>
+                </div>
+                <div class="mneed-name">{m.label}</div>
+                <div class="mneed-val">{fmtVal} · límite {m.max}{m.unit}</div>
+              </div>
+            {/each}
+          </div>
+        {/if}
+
+        {#if inRange.length || wellCov.length}
+          <div class="msection-label ok">✓ En rango</div>
+          <div class="mchips">
+            {#each inRange as k}
+              {@const m = MICRO_RDA[k]}
+              {@const st = microAnalysis.statuses[k]}
+              <div class="mchip">
+                <span>{m.icon}</span>
+                <span class="mchip-name">{m.label}</span>
+                <span class="mchip-pct" style="color:{st.barColor}">{Math.round(st.pct)}%</span>
+              </div>
+            {/each}
+            {#each wellCov as k}
+              {@const m = MICRO_RDA[k]}
+              <div class="mchip mchip-covered">
+                <span>{m.icon}</span>
+                <span class="mchip-name">{m.label}</span>
+                <span class="mchip-check">✓</span>
+              </div>
+            {/each}
+          </div>
+        {/if}
+
+        <div class="micro-disclaimer">Referencia: RDA hombre adulto. Solo alimentos con datos disponibles.</div>
+      </div>
+    {/if}
+
     <!-- Registro de pesos -->
     <div class="pcard">
       <div class="pcard-title">Registro de pesos</div>
@@ -495,6 +682,68 @@
   .chart-svg :global(.chart-label) { font-size: 8px; fill: var(--dim); }
   .chart-svg :global(.chart-val) { font-size: 9px; fill: var(--text); font-weight: 600; }
   .chart-svg :global(.chart-axis-label) { font-size: 7px; fill: var(--dim); }
+
+  /* ── Micronutrient analysis ── */
+  /* ── Micronutrient analysis ── */
+  .msection-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em;
+    margin: 16px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--b1);
+  }
+  .msection-label:first-of-type { margin-top: 0; }
+  .msection-label.warn     { color: #fbbf24; }
+  .msection-label.ok       { color: #4ade80; }
+  .msection-label.overlimit { color: #f87171; }
+
+  .mok-banner {
+    font-size: 13px; color: #4ade80; margin-bottom: 16px; padding: 10px 14px;
+    background: rgba(74,222,128,.07); border: 1px solid rgba(74,222,128,.2); border-radius: 8px;
+  }
+
+  .micro-need-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 8px; margin-bottom: 4px;
+  }
+  .mneed-card {
+    background: var(--s2); border: 1px solid var(--b1);
+    border-radius: 9px; padding: 12px 12px 10px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .mneed-card.overlimit { border-color: rgba(248,113,113,.25); }
+  .mneed-top { display: flex; align-items: center; justify-content: space-between; }
+  .mneed-icon { font-size: 16px; }
+  .mneed-pct  { font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1; }
+  .mneed-bar-wrap {
+    height: 5px; background: var(--b2); border-radius: 3px;
+    overflow: hidden; position: relative;
+  }
+  .mneed-bar     { height: 100%; border-radius: 3px; }
+  .mneed-bar-over {
+    position: absolute; top: 0; right: 0; height: 100%;
+    background: #f87171; border-radius: 3px;
+    animation: pulse-bar 2s infinite;
+  }
+  @keyframes pulse-bar { 0%,100%{opacity:1} 50%{opacity:.4} }
+  .mneed-name { font-size: 12px; color: var(--muted); font-weight: 500; }
+  .mneed-val  { font-size: 10px; color: var(--dim); font-variant-numeric: tabular-nums; }
+
+  .mchips {
+    display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 4px;
+  }
+  .mchip {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--s2); border: 1px solid var(--b1);
+    border-radius: 7px; padding: 6px 11px;
+  }
+  .mchip-covered { opacity: 0.6; }
+  .mchip-name  { color: var(--muted); font-size: 12px; }
+  .mchip-pct   { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .mchip-check { font-size: 12px; color: #4ade80; font-weight: 700; }
+
+  .micro-disclaimer {
+    margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--b1);
+    font-size: 11px; color: var(--dim);
+  }
 
   .empty-state {
     height: 100%; display: flex; flex-direction: column;
