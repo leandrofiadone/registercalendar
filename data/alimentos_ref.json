@@ -31,6 +31,24 @@
   },
   "alimentos": [
     {
+      "id": "fideos_grimaldi_huevo",
+      "nombres": [
+        "Fideos Grimaldi al huevo",
+        "Fideos Grimaldi"
+      ],
+      "marca": "Grimaldi",
+      "categoria": "pastas",
+      "por_100g": {
+        "kcal": 370,
+        "proteina_g": 13,
+        "grasa_g": 2,
+        "carbos_g": 72.5
+      },
+      "notas": "296kcal/80g según rótulo. P/G/C estimados por tabla pasta al huevo — actualizar cuando se tenga el rótulo completo.",
+      "fuente": "etiqueta_parcial",
+      "estimado": true
+    },
+    {
       "id": "aceite_girasol",
       "nombres": [
         "Aceite de cocción",
@@ -2481,6 +2499,60 @@
         "vit_e_mg": 2,
         "selenio_mcg": 8,
         "yodo_mcg": 5
+      },
+      "fuente": "estimado_ia",
+      "estimado": true
+    },
+    {
+      "id": "galletitas_cerealitas",
+      "nombres": [
+        "Galletitas Cerealitas"
+      ],
+      "categoria": "sin_categoria",
+      "por_100g": {
+        "kcal": 429,
+        "proteina_g": 6,
+        "grasa_g": 14,
+        "carbos_g": 66.7,
+        "fibra_g": 1.5,
+        "sodio_mg": 333.3,
+        "calcio_mg": 78.4
+      },
+      "por_unidad": {
+        "gramos": 6.8
+      },
+      "fuente": "estimado_ia",
+      "estimado": true
+    },
+    {
+      "id": "aceite_de_oliva",
+      "nombres": [
+        "aceite de oliva"
+      ],
+      "categoria": "sin_categoria",
+      "por_100g": {
+        "kcal": 880,
+        "proteina_g": 0,
+        "grasa_g": 100,
+        "carbos_g": 0,
+        "omega3_g": 0.8,
+        "omega6_g": 12,
+        "vit_e_mg": 7
+      },
+      "fuente": "estimado_ia",
+      "estimado": true
+    },
+    {
+      "id": "galletitas_granix",
+      "nombres": [
+        "Galletitas Granix"
+      ],
+      "categoria": "sin_categoria",
+      "por_100g": {
+        "kcal": 405,
+        "proteina_g": 5,
+        "grasa_g": 9,
+        "carbos_g": 40.3
       },
       "fuente": "estimado_ia",
       "estimado": true

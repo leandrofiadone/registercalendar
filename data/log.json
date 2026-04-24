@@ -1,6 +1,1509 @@
 {
   "sessions": [
     {
+      "date": "2026-04-23",
+      "gimnasio": "Megatlon",
+      "groups": [
+        "Cardio",
+        "Cuadriceps",
+        "Abdominales",
+        "Biceps"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Hack Squat",
+          "equipo": "Maquina",
+          "musculo_principal": "Cuadriceps",
+          "musculos_secundarios": [
+            "Gluteos",
+            "Isquiotibiales"
+          ],
+          "tipo": "maquina",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 12,
+              "peso_kg": 140
+            },
+            {
+              "set": 2,
+              "reps": 8,
+              "peso_kg": 180
+            },
+            {
+              "set": 3,
+              "reps": 8,
+              "peso_kg": 180
+            },
+            {
+              "set": 4,
+              "reps": 10,
+              "peso_kg": 140
+            }
+          ],
+          "notas": "Piramide: calentamiento 140, top 180, back-off 140"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Abs en banco declinado",
+          "equipo": "Peso corporal",
+          "musculo_principal": "Abdominales",
+          "musculos_secundarios": [
+            "Flexores de cadera"
+          ],
+          "tipo": "peso_corporal",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 15,
+              "peso_kg": 0
+            },
+            {
+              "set": 2,
+              "reps": 10,
+              "peso_kg": 0
+            }
+          ],
+          "notas": null
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Abs cortos",
+          "equipo": "Peso corporal",
+          "musculo_principal": "Abdominales",
+          "musculos_secundarios": [],
+          "tipo": "peso_corporal",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 15,
+              "peso_kg": 0
+            }
+          ],
+          "notas": null
+        },
+        {
+          "orden": 4,
+          "ejercicio": "Curl biceps mancuerna",
+          "equipo": "Mancuernas",
+          "musculo_principal": "Biceps",
+          "musculos_secundarios": [
+            "Antebrazo"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 12,
+              "peso_kg": 30
+            },
+            {
+              "set": 2,
+              "reps": 20,
+              "peso_kg": 24
+            }
+          ],
+          "notas": "Bajada de peso en 2da serie"
+        },
+        {
+          "orden": 5,
+          "ejercicio": "Curl concentrado sentado",
+          "equipo": "Mancuerna",
+          "musculo_principal": "Biceps",
+          "musculos_secundarios": [
+            "Antebrazo"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 12,
+              "peso_kg": 14
+            },
+            {
+              "set": 2,
+              "reps": 8,
+              "peso_kg": 14
+            }
+          ],
+          "notas": null
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Soga",
+          "duracion_min": 15,
+          "intensidad": "alta",
+          "notas": "01:00 AM. 9 sets: 60/50/50/40/40/70/50/50/70 = 480 saltos. Span ~15 min con descansos. [En Casa, previo a sesion Megatlon]"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Funcional",
+          "duracion_min": 20,
+          "intensidad": "moderada",
+          "notas": "Acondicionamiento intercalado: soga (200 saltos en 3 bloques 100/60/40) + pesa rusa moderada"
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Sauna",
+          "duracion_min": 25,
+          "intensidad": "baja",
+          "notas": "Post-entrenamiento"
+        }
+      ],
+      "notas": "Sesion completa Megatlon: piernas (hack squat piramide hasta 180kg) + abs + biceps. Acondicionamiento 20min (soga 200 + pesa rusa intercalados) + sauna 25min. Previamente habia hecho soga en Casa a la 1 AM."
+    },
+    {
+      "date": "2026-04-18",
+      "gimnasio": null,
+      "ciudad": "Buenos Aires, Argentina",
+      "groups": [
+        "Cardio"
+      ],
+      "fuerza": [],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Natación",
+          "equipo": null,
+          "hora_inicio": "19:25",
+          "hora_fin": "19:45",
+          "duracion_min": 20,
+          "distancia_m": 500,
+          "largos": 20,
+          "velocidad_kmh": null,
+          "intensidad": "moderada",
+          "notas": "500m en 20min; 2 pasadas sprint máximo"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Caminata exterior",
+          "equipo": null,
+          "hora_inicio": "23:00",
+          "hora_fin": "00:11",
+          "duracion_min": 71,
+          "distancia_km": 4.02,
+          "velocidad_kmh": 3.4,
+          "intensidad": "baja",
+          "notas": "Ritmo 17:42 min/km. Vel. máx. 4.5 km/h. App reportó 295 kcal, corregido por peso ×1.67 → ~493"
+        }
+      ],
+      "notas": ""
+    },
+    {
+      "date": "2026-04-17",
+      "gimnasio": "Casa",
+      "groups": [],
+      "fuerza": [],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Caminata",
+          "duracion_min": 30,
+          "intensidad": "baja",
+          "notas": "2.3 km en 30 min — kcal reportado por usuario",
+          "kcal": 200
+        }
+      ],
+      "notas": "Caminata baja intensidad"
+    },
+    {
+      "date": "2026-04-16",
+      "gimnasio": null,
+      "ciudad": null,
+      "groups": [
+        "Pecho-Tricep",
+        "Piernas",
+        "Core"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Leg Extension",
+          "equipo": null,
+          "musculo_principal": "Cuádriceps",
+          "musculos_secundarios": [],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 10,
+              "peso_kg": 88
+            },
+            {
+              "set": 2,
+              "reps": 10,
+              "peso_kg": 88
+            },
+            {
+              "set": 3,
+              "reps": 10,
+              "peso_kg": 88
+            },
+            {
+              "set": 4,
+              "reps": 10,
+              "peso_kg": 88
+            }
+          ],
+          "notas": null
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Pec Fly",
+          "equipo": null,
+          "musculo_principal": "Pectoral mayor",
+          "musculos_secundarios": [
+            "Deltoides anterior"
+          ],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 10,
+              "peso_kg": 88
+            },
+            {
+              "set": 2,
+              "reps": 10,
+              "peso_kg": 88
+            },
+            {
+              "set": 3,
+              "reps": 10,
+              "peso_kg": 88
+            }
+          ],
+          "notas": null
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Press con mancuerna en banco",
+          "equipo": "Mancuerna",
+          "musculo_principal": "Pectoral mayor",
+          "musculos_secundarios": [
+            "Deltoides anterior",
+            "Tríceps"
+          ],
+          "tipo": "mancuerna_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 16,
+              "peso_kg": 20
+            },
+            {
+              "set": 2,
+              "reps": 16,
+              "peso_kg": 20
+            },
+            {
+              "set": 3,
+              "reps": 16,
+              "peso_kg": 20
+            }
+          ],
+          "notas": "20kg por mano"
+        },
+        {
+          "orden": 4,
+          "ejercicio": "Tríceps Jalón",
+          "equipo": "Polea alta",
+          "musculo_principal": "Tríceps",
+          "musculos_secundarios": [],
+          "tipo": "maquina_cable",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 10,
+              "peso_kg": 75
+            },
+            {
+              "set": 2,
+              "reps": 8,
+              "peso_kg": 75
+            },
+            {
+              "set": 3,
+              "reps": 8,
+              "peso_kg": 75
+            }
+          ],
+          "notas": null
+        },
+        {
+          "orden": 5,
+          "ejercicio": "Abdominales cortos",
+          "equipo": "Peso corporal",
+          "musculo_principal": "Recto abdominal",
+          "musculos_secundarios": [],
+          "tipo": "peso_corporal",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 15,
+              "peso_kg": 0
+            },
+            {
+              "set": 2,
+              "reps": 15,
+              "peso_kg": 0
+            }
+          ],
+          "notas": null
+        },
+        {
+          "orden": 6,
+          "ejercicio": "Abdominales enteros rango completo",
+          "equipo": "Peso corporal",
+          "musculo_principal": "Recto abdominal",
+          "musculos_secundarios": [
+            "Core"
+          ],
+          "tipo": "peso_corporal",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 15,
+              "peso_kg": 0
+            },
+            {
+              "set": 2,
+              "reps": 10,
+              "peso_kg": 0
+            }
+          ],
+          "notas": null
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Elíptica",
+          "equipo": null,
+          "hora_inicio": null,
+          "hora_fin": null,
+          "duracion_min": null,
+          "distancia_km": null,
+          "distancia_m": null,
+          "largos": null,
+          "pasos": null,
+          "kcal": 169,
+          "velocidad_kmh": null,
+          "inclinacion": null,
+          "intensidad": "moderada",
+          "notas": "Máquina reportó 100 kcal. Corregido ×1.69 por peso corporal (125 kg vs 75 kg default)"
+        }
+      ],
+      "kcal_quemadas": 583,
+      "weight_kg": 125,
+      "notas": "Gasto fuerza estimado ~368 kcal (MET 3.5, ~48 min activos) + EPOC ~46 kcal = ~414 kcal. Cardio corregido 169 kcal. Total sesión estimado ~583 kcal."
+    },
+    {
+      "date": "2026-04-15",
+      "gimnasio": "Casa",
+      "groups": [
+        "Full Body",
+        "Core"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Snatch con pesa rusa",
+          "equipo": "Pesa rusa 21 kg",
+          "musculo_principal": "Deltoides anterior",
+          "musculos_secundarios": [
+            "Trapecio",
+            "Glúteo",
+            "Core",
+            "Bíceps"
+          ],
+          "tipo": "mancuerna_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 5,
+              "peso_kg": 21
+            },
+            {
+              "set": 2,
+              "reps": 5,
+              "peso_kg": 21
+            }
+          ],
+          "notas": "5 reps por lado. Intensidad moderada-alta.",
+          "kcal": 150
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Ejercicios variados con pesa rusa",
+          "equipo": "Pesa rusa (<21 kg)",
+          "musculo_principal": "Full Body",
+          "musculos_secundarios": [],
+          "tipo": "mancuerna_libre",
+          "sets": [],
+          "notas": "Varios ejercicios con pesa rusa de menor carga.",
+          "kcal": 500
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Abdominales",
+          "equipo": null,
+          "musculo_principal": "Core",
+          "musculos_secundarios": [
+            "Recto abdominal",
+            "Oblicuos"
+          ],
+          "tipo": "peso_corporal",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 50,
+              "peso_kg": 0
+            }
+          ],
+          "notas": null,
+          "kcal": 50
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Saltar soga",
+          "duracion_min": 15,
+          "intensidad": "alta",
+          "notas": "350 saltos en series: 30,60,60,60,30,40,70. Inicio 13:30. Intensidad alta sostenida.",
+          "kcal": 350
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Sauna",
+          "duracion_min": 25,
+          "intensidad": "alta",
+          "notas": "Sauna seco post-sesión.",
+          "kcal": 50
+        }
+      ],
+      "notas": "Sesión ~50min. Snatch 21kg 2x5/lado + pesa rusa variada + 50 abs. 350 saltos soga. 25min sauna. Energia alta, 127kg. | Estimación total ~1000 kcal (fuerza MET-based + soga 500 + sauna 100).",
+      "kcal_quemadas": 1100
+    },
+    {
+      "date": "2026-04-14",
+      "gimnasio": "Casa",
+      "groups": [
+        "Cardio"
+      ],
+      "fuerza": [],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Saltar soga",
+          "duracion_min": 27,
+          "intensidad": "moderada",
+          "kcal": 503,
+          "notas": "895 saltos en 17 tandas (40,30,50,75,15,50,60,40,70,50,60,70,60,60,65,70,80). Soga 1kg por lado. 18:31-18:58"
+        }
+      ],
+      "notas": "Sesión soga matutina, 27 min, 895 saltos, kcal explícitas 503"
+    },
+    {
+      "date": "2026-04-13",
+      "gimnasio": "Casa",
+      "groups": [
+        "Cardio"
+      ],
+      "fuerza": [],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Sexo",
+          "duracion_min": 30,
+          "intensidad": "moderada",
+          "kcal": 195,
+          "notas": "Estimado 3 METs × 130 kg × 0.5 h"
+        }
+      ],
+      "notas": "Actividad sexual, 30 min estimados"
+    },
+    {
+      "date": "2026-04-12",
+      "gimnasio": "Casa",
+      "groups": [
+        "Cardio"
+      ],
+      "fuerza": [],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Saltar soga",
+          "duracion_min": 15,
+          "intensidad": "moderada",
+          "notas": "590 saltos en series variadas: 40, 40, 50, 25, 35, 60, 50, 50, 50, 40, 50, 40-50-60. Hora: 08:34-08:49",
+          "kcal": 300
+        }
+      ],
+      "notas": "Sesión de soga matutina, 15 min, ~590 saltos"
+    },
+    {
+      "date": "2026-04-11",
+      "gimnasio": null,
+      "groups": [
+        "Espalda-Bicep",
+        "Core"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Ejercicio no especificado",
+          "equipo": null,
+          "musculo_principal": null,
+          "musculos_secundarios": [],
+          "tipo": null,
+          "sets": [
+            {
+              "set": 1,
+              "reps": 6,
+              "peso_kg": 100
+            },
+            {
+              "set": 2,
+              "reps": 8,
+              "peso_kg": 100
+            },
+            {
+              "set": 3,
+              "reps": 8,
+              "peso_kg": 100
+            }
+          ],
+          "notas": "Ejercicio no identificado en las notas. Registrado como '6x100, 8x100, 8x100'. Confirmar nombre del ejercicio."
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Curl Bíceps Alternado con Mancuernas",
+          "equipo": "Mancuernas",
+          "musculo_principal": "Bíceps",
+          "musculos_secundarios": [
+            "Braquial",
+            "Braquiorradial",
+            "Antebrazo"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 12,
+              "peso_kg": 30
+            },
+            {
+              "set": 2,
+              "reps": 16,
+              "peso_kg": 30
+            },
+            {
+              "set": 3,
+              "reps": 14,
+              "peso_kg": 30
+            }
+          ],
+          "notas": "30 kg POR MANO (carga unilateral alternada). Reps por lado: 6/8/7 respectivamente. Totales por set: 12/16/14. Seguido de ejercicio de bíceps adicional más suave con más reps."
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Abdominales",
+          "equipo": "Peso corporal",
+          "musculo_principal": "Recto abdominal",
+          "musculos_secundarios": [
+            "Oblicuos"
+          ],
+          "tipo": "peso_corporal",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 90,
+              "peso_kg": 0
+            }
+          ],
+          "notas": null
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Salto de soga",
+          "duracion_min": 4,
+          "intensidad": "moderada",
+          "notas": "Series intercaladas: 45+45+4 tandas sin conteo+45+100+80. Total contado 315 saltos (~3-4 min)"
+        }
+      ],
+      "notas": "Sesión Espalda-Bíceps + Core. Incluye ejercicio principal 3x8 a 100kg (ejercicio a identificar)"
+    },
+    {
+      "date": "2026-04-10",
+      "gimnasio": "Casa",
+      "groups": [
+        "Full Body",
+        "Cardio"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Pesas rusas (circuito)",
+          "equipo": "Kettlebell",
+          "musculo_principal": "Full Body",
+          "musculos_secundarios": [
+            "Glúteos",
+            "Hombros",
+            "Core",
+            "Espalda"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": null
+            }
+          ],
+          "notas": "Circuito de 40 min bastante intenso"
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Kettlebell circuit",
+          "duracion_min": 40,
+          "intensidad": "alta",
+          "notas": "Bastante intenso"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Salto de soga",
+          "duracion_min": 10,
+          "intensidad": "baja",
+          "notas": "Tranqui"
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Sauna",
+          "duracion_min": 30,
+          "intensidad": "moderada",
+          "notas": null
+        }
+      ],
+      "notas": "Full body en casa: kettlebell intenso + soga + sauna"
+    },
+    {
+      "date": "2026-04-09",
+      "gimnasio": "Parque Saavedra",
+      "groups": [
+        "Cardio"
+      ],
+      "fuerza": [],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Running exterior",
+          "duracion_min": 26.75,
+          "intensidad": "moderada",
+          "notas": "Ritmo medio 8:46 min/km, 3.05 km. Calorías app: 277 × 1.69 = 468 (corrección por peso 127kg)"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Caminata",
+          "duracion_min": 25,
+          "intensidad": "baja",
+          "notas": null
+        }
+      ],
+      "notas": "Running 3.05 km en Parque Saavedra + caminata 25 min"
+    },
+    {
+      "date": "2026-04-08",
+      "gimnasio": "Megatlon",
+      "groups": [
+        "Pecho"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Sesión de Pecho",
+          "equipo": "Varios",
+          "musculo_principal": "Pecho",
+          "musculos_secundarios": [
+            "Tríceps",
+            "Hombros"
+          ],
+          "tipo": "maquina",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": null
+            }
+          ],
+          "notas": "Sesión de pecho sin detalle de ejercicios específicos"
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Sauna",
+          "duracion_min": 30,
+          "intensidad": "moderada",
+          "notas": null
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Caminata",
+          "duracion_min": 90,
+          "intensidad": "moderada",
+          "notas": null
+        }
+      ],
+      "notas": "Sesión de pecho + sauna 30 min + caminata 90 min"
+    },
+    {
+      "date": "2026-04-07",
+      "gimnasio": "Megatlon",
+      "groups": [
+        "Full Body"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Swing con Kettlebell",
+          "equipo": "Kettlebell",
+          "musculo_principal": "Glúteos",
+          "musculos_secundarios": [
+            "Isquiotibiales",
+            "Core",
+            "Hombros"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": null
+            }
+          ],
+          "notas": "Parte de circuito de 20 min con pesas rusas"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Press con Kettlebell",
+          "equipo": "Kettlebell",
+          "musculo_principal": "Hombros",
+          "musculos_secundarios": [
+            "Tríceps",
+            "Core"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": null
+            }
+          ],
+          "notas": "Parte de circuito de 20 min con pesas rusas"
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Goblet Squat",
+          "equipo": "Kettlebell",
+          "musculo_principal": "Cuádriceps",
+          "musculos_secundarios": [
+            "Glúteos",
+            "Core"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": null
+            }
+          ],
+          "notas": "Parte de circuito de 20 min con pesas rusas"
+        },
+        {
+          "orden": 4,
+          "ejercicio": "Abdominales",
+          "equipo": "Peso corporal",
+          "musculo_principal": "Abdominales",
+          "musculos_secundarios": [
+            "Core"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": null
+            }
+          ],
+          "notas": null
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Caminata",
+          "duracion_min": 80,
+          "intensidad": "baja",
+          "notas": "Caminata tranquila"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Sauna",
+          "duracion_min": 15,
+          "intensidad": "baja",
+          "notas": null
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Pesas rusas (circuito)",
+          "duracion_min": 20,
+          "intensidad": "moderada",
+          "notas": "Kettlebells + abdominales"
+        }
+      ],
+      "notas": "Caminata tranquila 80 min, sauna 15 min, circuito pesas rusas 20 min + abdominales"
+    },
+    {
+      "date": "2026-04-06",
+      "gimnasio": "Megatlon",
+      "groups": [
+        "Pecho"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Pesas rusas (varios)",
+          "equipo": "Kettlebell",
+          "musculo_principal": "Full Body",
+          "musculos_secundarios": [
+            "Hombros",
+            "Core"
+          ],
+          "tipo": "peso_libre",
+          "sets": [],
+          "notas": "Sesión suave ~20 min o menos"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Ejercicios de pecho (fuerza)",
+          "equipo": "Máquinas/cables",
+          "musculo_principal": "Pecho",
+          "musculos_secundarios": [
+            "Tríceps",
+            "Hombros"
+          ],
+          "tipo": "maquina",
+          "sets": [],
+          "notas": "~20 min de trabajo de pecho"
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Sauna",
+          "duracion_min": 30,
+          "intensidad": "baja",
+          "notas": null
+        }
+      ],
+      "notas": "Kettlebells suave ~20min, pecho fuerza ~20min, sauna 30min"
+    },
+    {
+      "date": "2026-04-05",
+      "gimnasio": "Casa",
+      "groups": [
+        "Full Body"
+      ],
+      "fuerza": [],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Soga (salto)",
+          "duracion_min": 3,
+          "intensidad": "alta",
+          "notas": null
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Calistenia básica",
+          "duracion_min": 5,
+          "intensidad": "moderada",
+          "notas": "Ejercicios básicos"
+        }
+      ],
+      "notas": "Sesión corta en casa: soga + calistenia"
+    },
+    {
+      "date": "2026-04-04",
+      "gimnasio": "SportClub Libertador",
+      "groups": [
+        "Espalda",
+        "Bíceps",
+        "Cuádriceps"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Bicep Curl",
+          "equipo": "Mancuernas",
+          "musculo_principal": "Bíceps",
+          "musculos_secundarios": [
+            "Antebrazo"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 16,
+              "peso_kg": 28
+            },
+            {
+              "set": 2,
+              "reps": 16,
+              "peso_kg": 28
+            }
+          ],
+          "notas": null
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Ejercicios de espalda (varios)",
+          "equipo": "Máquinas/cables",
+          "musculo_principal": "Espalda",
+          "musculos_secundarios": [
+            "Bíceps",
+            "Trapecio",
+            "Romboides"
+          ],
+          "tipo": "maquina",
+          "sets": [],
+          "notas": "~40 min de trabajo de espalda"
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Extensión de cuádriceps",
+          "equipo": "Máquina",
+          "musculo_principal": "Cuádriceps",
+          "musculos_secundarios": [],
+          "tipo": "maquina",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 10,
+              "peso_kg": null
+            },
+            {
+              "set": 2,
+              "reps": 10,
+              "peso_kg": null
+            },
+            {
+              "set": 3,
+              "reps": 10,
+              "peso_kg": null
+            }
+          ],
+          "notas": "Máxima carga disponible"
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Natación",
+          "duracion_min": 20,
+          "intensidad": "moderada",
+          "notas": "10 pasadas en pileta de 25m (250m total), 2-3 pasadas intensas"
+        }
+      ],
+      "notas": "Espalda + bíceps ~40min, cuádriceps máxima carga, natación 20min (10x25m)"
+    },
+    {
+      "date": "2026-04-02",
+      "gimnasio": "Megatlon",
+      "groups": [
+        "Full Body"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Pesas rusas (circuito)",
+          "equipo": "Kettlebell",
+          "musculo_principal": "Full Body",
+          "musculos_secundarios": [
+            "Hombros",
+            "Core",
+            "Glúteos"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": null
+            }
+          ],
+          "notas": "20 min intensidad moderada"
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Sauna",
+          "duracion_min": 30,
+          "intensidad": "moderada",
+          "notas": "Sauna seco"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Funcional",
+          "duracion_min": 20,
+          "intensidad": "moderada",
+          "notas": "Pesas rusas intensidad moderada"
+        }
+      ],
+      "notas": "Sauna seco 30min + pesas rusas 20min moderado."
+    },
+    {
+      "date": "2026-04-01",
+      "gimnasio": "Megatlon",
+      "groups": [
+        "Pecho",
+        "Tríceps"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Press banca Smith",
+          "equipo": "Smith",
+          "musculo_principal": "Pecho",
+          "musculos_secundarios": [
+            "Tríceps",
+            "Deltoides anterior"
+          ],
+          "tipo": "maquina",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 4,
+              "peso_kg": 90
+            },
+            {
+              "set": 2,
+              "reps": 5,
+              "peso_kg": 90
+            },
+            {
+              "set": 3,
+              "reps": 6,
+              "peso_kg": 90
+            }
+          ],
+          "notas": null
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Aperturas con mancuernas",
+          "equipo": "Mancuernas",
+          "musculo_principal": "Pecho",
+          "musculos_secundarios": [
+            "Deltoides anterior"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": null
+            },
+            {
+              "set": 2,
+              "reps": null,
+              "peso_kg": null
+            },
+            {
+              "set": 3,
+              "reps": null,
+              "peso_kg": null
+            }
+          ],
+          "notas": "Ejercicio adicional de pecho, detalles no especificados"
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Extensión de tríceps",
+          "equipo": "Cable",
+          "musculo_principal": "Tríceps",
+          "musculos_secundarios": [],
+          "tipo": "cable",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": null
+            },
+            {
+              "set": 2,
+              "reps": null,
+              "peso_kg": null
+            },
+            {
+              "set": 3,
+              "reps": null,
+              "peso_kg": null
+            }
+          ],
+          "notas": "Ejercicio de tríceps, detalles no especificados"
+        }
+      ],
+      "cardio": [],
+      "notas": "Sesión pecho/tríceps intensa 30-45 min. Press Smith 90kg + ejercicios adicionales."
+    },
+    {
+      "date": "2026-03-30",
+      "gimnasio": "Casa",
+      "groups": [
+        "Full Body",
+        "Cardio"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Kettlebell Swings / Variados",
+          "equipo": "Kettlebell",
+          "musculo_principal": "Posterior chain",
+          "musculos_secundarios": [
+            "Glúteos",
+            "Core",
+            "Hombros"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": 8
+            },
+            {
+              "set": 2,
+              "reps": null,
+              "peso_kg": 16
+            }
+          ],
+          "notas": "30 min pesas rusas, intensidad moderada, alternando 8kg y 16kg."
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Farmer's Walk",
+          "equipo": "Kettlebell",
+          "musculo_principal": "Trapecio",
+          "musculos_secundarios": [
+            "Antebrazo",
+            "Core",
+            "Piernas"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": 28,
+              "distancia_m": 200
+            }
+          ],
+          "notas": "Caminata con 28kg en cada mano, 200 metros."
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Kettlebell circuit",
+          "duracion_min": 30,
+          "intensidad": "moderada",
+          "notas": "Circuito kettlebell mixto, pesos 8-16kg"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Caminata con carga (Farmer's Walk)",
+          "duracion_min": 5,
+          "intensidad": "alta",
+          "notas": "200m con 28kg por mano (56kg total)"
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Sauna",
+          "duracion_min": 20,
+          "intensidad": "moderada",
+          "notas": "Sauna post-entrenamiento"
+        },
+        {
+          "orden": 4,
+          "ejercicio": "Caminata",
+          "duracion_min": 20,
+          "intensidad": "baja",
+          "notas": "Caminata a paso tranquilo, 20 min"
+        }
+      ],
+      "notas": "Sesión kettlebell en casa 30 min + farmer's walk 200m con 28kg/mano + sauna 20 min + caminata 20 min."
+    },
+    {
+      "date": "2026-03-28",
+      "gimnasio": "Casa",
+      "groups": [
+        "Full Body",
+        "Cardio"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Kettlebell Swings",
+          "equipo": "Kettlebell",
+          "musculo_principal": "Posterior chain",
+          "musculos_secundarios": [
+            "Glúteos",
+            "Core",
+            "Hombros"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": 8
+            },
+            {
+              "set": 2,
+              "reps": null,
+              "peso_kg": 16
+            }
+          ],
+          "notas": "Sesión continua ~30 min, alternando 8kg y 16kg. Ejercicios básicos variados. Intensidad media."
+        }
+      ],
+      "cardio": [
+        {
+          "tipo": "Kettlebell circuit",
+          "duracion_min": 30,
+          "intensidad": "media",
+          "notas": "Circuito kettlebell mixto, sin descansos largos"
+        }
+      ],
+      "notas": "Vuelta a la actividad después de ~8 días sin entrenar. Sesión liviana con kettlebell en casa."
+    },
+    {
+      "date": "2026-03-27",
+      "sin_registro": true,
+      "notas": "Sin registro. Sin actividad física reportada.",
+      "groups": [],
+      "fuerza": [],
+      "cardio": []
+    },
+    {
+      "date": "2026-03-26",
+      "sin_registro": true,
+      "notas": "Sin registro. Sin actividad física reportada.",
+      "groups": [],
+      "fuerza": [],
+      "cardio": []
+    },
+    {
+      "date": "2026-03-25",
+      "sin_registro": true,
+      "notas": "Sin registro. Actividad desconocida.",
+      "groups": [],
+      "fuerza": [],
+      "cardio": []
+    },
+    {
+      "date": "2026-03-24",
+      "sin_registro": true,
+      "notas": "Sin registro. Actividad desconocida.",
+      "groups": [],
+      "fuerza": [],
+      "cardio": []
+    },
+    {
+      "date": "2026-03-23",
+      "sin_registro": true,
+      "notas": "Sin registro. Actividad desconocida.",
+      "groups": [],
+      "fuerza": [],
+      "cardio": []
+    },
+    {
+      "date": "2026-03-22",
+      "sin_registro": true,
+      "notas": "Sin registro. Actividad desconocida.",
+      "groups": [],
+      "fuerza": [],
+      "cardio": []
+    },
+    {
+      "date": "2026-03-21",
+      "sin_registro": true,
+      "notas": "Sin registro. Actividad desconocida.",
+      "groups": [],
+      "fuerza": [],
+      "cardio": []
+    },
+    {
+      "date": "2026-03-20",
+      "gimnasio": null,
+      "ciudad": null,
+      "groups": [
+        "Pecho-Tricep",
+        "Piernas",
+        "Hombros",
+        "Cardio"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Press de Banca",
+          "equipo": "Smith Machine",
+          "musculo_principal": "Pecho",
+          "musculos_secundarios": [
+            "Triceps",
+            "Hombros"
+          ],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 8,
+              "peso_kg": 80
+            },
+            {
+              "set": 2,
+              "reps": 8,
+              "peso_kg": 80
+            },
+            {
+              "set": 3,
+              "reps": 8,
+              "peso_kg": 80
+            },
+            {
+              "set": 4,
+              "reps": 7,
+              "peso_kg": 80
+            }
+          ],
+          "notas": "Fallaste 1 rep en la última serie"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Pec Deck",
+          "equipo": "Máquina Starke",
+          "musculo_principal": "Pecho",
+          "musculos_secundarios": [
+            "Deltoides anterior"
+          ],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 12,
+              "peso_kg": 88
+            },
+            {
+              "set": 2,
+              "reps": 12,
+              "peso_kg": 88
+            },
+            {
+              "set": 3,
+              "reps": 12,
+              "peso_kg": 88
+            }
+          ],
+          "notas": null
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Calf Raise",
+          "equipo": "Máquina Starke",
+          "musculo_principal": "Pantorrilla",
+          "musculos_secundarios": [],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 14,
+              "peso_kg": 34
+            },
+            {
+              "set": 2,
+              "reps": 14,
+              "peso_kg": 34
+            },
+            {
+              "set": 3,
+              "reps": 14,
+              "peso_kg": 34
+            }
+          ],
+          "notas": null
+        },
+        {
+          "orden": 4,
+          "ejercicio": "Extensión de Tríceps Overhead",
+          "equipo": "Polea Alta",
+          "musculo_principal": "Tríceps",
+          "musculos_secundarios": [
+            "Hombros"
+          ],
+          "tipo": "maquina_cable",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 8,
+              "peso_kg": 61
+            },
+            {
+              "set": 2,
+              "reps": 14,
+              "peso_kg": 38
+            },
+            {
+              "set": 3,
+              "reps": 14,
+              "peso_kg": 38
+            }
+          ],
+          "notas": "Barra recta"
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Cinta",
+          "duracion_min": 9.82,
+          "distancia_km": 1.08,
+          "pasos": 1814,
+          "kcal": 79.2,
+          "velocidad_kmh": 6.2,
+          "inclinacion": 0,
+          "intensidad": "moderada",
+          "notas": "Bodytone Evolution Cardio. Tiempo: 9:49. Heart rate no registrado."
+        }
+      ],
+      "nutricion_ref": null,
+      "weight_kg": null,
+      "energy": null,
+      "notes": ""
+    },
+    {
       "date": "2026-03-19",
       "gimnasio": null,
       "ciudad": "Buenos Aires, Argentina",

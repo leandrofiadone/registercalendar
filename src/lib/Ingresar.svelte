@@ -1,15 +1,15 @@
 <script>
   import { tick, onMount } from 'svelte';
 
+  let { onClose } = $props();
+
   let tipo     = $state('nutricion');
-  let modo     = $state('nuevo');     // 'nuevo' | 'editar'
+  let modo     = $state('nuevo');
   let input    = $state('');
   let imagenes = $state([]);
   let enviando = $state(false);
   let mensajes = $state([]);
 
-  // Persiste estado del chat en sessionStorage para sobrevivir remount
-  // (Android Chrome desmonta la página cuando la cámara/galería toma el foco)
   const SESSION_KEY = '_ingresar_state';
 
   onMount(() => {
@@ -17,7 +17,6 @@
       const saved = sessionStorage.getItem(SESSION_KEY);
       if (saved) {
         const s = JSON.parse(saved);
-        // Restaurar mensajes (sin imgs de preview — eran solo visuales)
         if (s.mensajes?.length) mensajes = s.mensajes;
         if (s.input) input = s.input;
         if (s.tipo) tipo = s.tipo;
@@ -35,17 +34,10 @@
     } catch (_) {}
   });
 
-  // Guarda estado cada vez que cambia algo relevante
   $effect(() => {
     try {
-      // Guardar mensajes sin el campo imgs (base64 grande) para no superar límite de sessionStorage
       const mensajesSlim = mensajes.map(m => m.imgs ? { ...m, imgs: [] } : m);
-      sessionStorage.setItem(SESSION_KEY, JSON.stringify({
-        mensajes: mensajesSlim,
-        input,
-        tipo,
-        modo,
-      }));
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify({ mensajes: mensajesSlim, input, tipo, modo }));
     } catch (_) {}
   });
 
@@ -59,14 +51,14 @@
       }
     } catch (_) {}
   });
+
   let ultimoJson = $derived(
     [...mensajes].reverse().find(m => m.isJson)?.parsed ?? null
   );
 
-  // ── Modo editar ───────────────────────────────────────────────
   let fechaEditar  = $state(new Date().toISOString().split('T')[0]);
   let cargando     = $state(false);
-  let registroBase = $state(null);   // el registro original cargado
+  let registroBase = $state(null);
   let cargadoError = $state('');
 
   async function cargarRegistro() {
@@ -95,7 +87,6 @@
     if (chatEl) chatEl.scrollTop = chatEl.scrollHeight;
   }
 
-  // ── Imágenes ──────────────────────────────────────────────────
   const MAX_DIM = 1600;
   const MAX_B64 = 3_900_000;
 
@@ -122,7 +113,6 @@
     });
   }
 
-  // Procesa archivos secuencialmente para evitar race conditions en $state
   async function onFileChange(e) {
     const files = [...e.target.files];
     e.target.value = '';
@@ -145,18 +135,12 @@
     imagenes = imagenes.filter((_, idx) => idx !== i);
   }
 
-  // ── Enviar mensaje ────────────────────────────────────────────
   async function enviar() {
     const texto = input.trim();
     if (!texto && imagenes.length === 0) return;
     if (enviando) return;
 
-    // Agregar mensaje del usuario al historial visual
-    const userMsg = {
-      role: 'user',
-      content: texto,
-      imgs: imagenes.map(i => i.preview),
-    };
+    const userMsg = { role: 'user', content: texto, imgs: imagenes.map(i => i.preview) };
     mensajes = [...mensajes, userMsg];
     const imgsCopy = [...imagenes];
     input = '';
@@ -164,8 +148,6 @@
     enviando = true;
     await scrollAbajo();
 
-    // Construir historial para la API — los isJson se convierten a texto resumido
-    // para preservar la alternación estricta user/assistant que exige Anthropic
     const historialApi = mensajes.map(m => {
       if (m.isJson) {
         const p = m.parsed;
@@ -182,8 +164,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          tipo,
-          modo,
+          tipo, modo,
           historial: historialApi,
           imagenes: imgsCopy.map(({ media_type, data }) => ({ media_type, data })),
           registroExistente: modo === 'editar' ? registroBase : null,
@@ -196,32 +177,16 @@
       if (!body.ok) throw new Error(body.error || 'Error desconocido');
 
       if (body.tipo === 'json') {
-        // Corregir fecha futura (error de timezone de Claude)
         const hoy = new Date().toLocaleDateString('en-CA');
         const p = body.parsed;
         if (tipo === 'nutricion' && p.fecha > hoy) p.fecha = hoy;
         if (tipo === 'ejercicio' && p.date  > hoy) p.date  = hoy;
-
-        mensajes = [...mensajes, {
-          role: 'assistant',
-          content: '',
-          isJson: true,
-          parsed: p,
-        }];
+        mensajes = [...mensajes, { role: 'assistant', content: '', isJson: true, parsed: p }];
       } else {
-        mensajes = [...mensajes, {
-          role: 'assistant',
-          content: body.texto,
-          isJson: false,
-        }];
+        mensajes = [...mensajes, { role: 'assistant', content: body.texto, isJson: false }];
       }
     } catch (e) {
-      mensajes = [...mensajes, {
-        role: 'assistant',
-        content: `⚠ ${e.message}`,
-        isJson: false,
-        isError: true,
-      }];
+      mensajes = [...mensajes, { role: 'assistant', content: `⚠ ${e.message}`, isJson: false, isError: true }];
     }
 
     enviando = false;
@@ -229,10 +194,7 @@
   }
 
   function onKeydown(e) {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      enviar();
-    }
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); enviar(); }
   }
 
   function autoResize(e) {
@@ -241,17 +203,15 @@
     el.style.height = Math.min(el.scrollHeight, 120) + 'px';
   }
 
-  // ── Guardar ───────────────────────────────────────────────────
-  let guardando = $state(false);
-  let guardadoOk = $state(false);
-  let guardadoMsg = $state('Guardado correctamente');
+  let guardando    = $state(false);
+  let guardadoOk   = $state(false);
+  let guardadoMsg  = $state('Guardado correctamente');
   let guardadoError = $state('');
 
   async function guardar() {
     if (!ultimoJson || guardando) return;
     guardando = true;
     guardadoError = '';
-
     try {
       const res = await fetch('/api/guardar', {
         method: 'POST',
@@ -262,7 +222,7 @@
       if (!body.ok) throw new Error(body.error);
       guardadoOk = true;
       if (body.merged) guardadoMsg = 'Agregado a la sesión del día';
-      setTimeout(() => reiniciar(), 2000);
+      setTimeout(() => { reiniciar(); onClose?.(); }, 1800);
     } catch (e) {
       guardadoError = e.message;
     }
@@ -284,7 +244,6 @@
     } catch (_) {}
   }
 
-  // ── Preview helpers ───────────────────────────────────────────
   function labelTipo(t) {
     return { rompe_ayuno:'Rompe ayuno', comida:'Comida', snack:'Snack',
              cena:'Cena', pre_entreno:'Pre-entreno', post_entreno:'Post-entreno',
@@ -292,17 +251,20 @@
   }
 </script>
 
-<div class="page">
+<div class="drawer-inner">
 
-  <!-- ── Selector tipo ── -->
-  <div class="toggle-row">
-    <button class="toggle-btn" class:active={tipo==='nutricion'}
-      onclick={() => { tipo='nutricion'; reiniciar(); }}>🥗 Nutrición</button>
-    <button class="toggle-btn" class:active={tipo==='ejercicio'}
-      onclick={() => { tipo='ejercicio'; reiniciar(); }}>💪 Entrenamiento</button>
+  <!-- Header del drawer -->
+  <div class="drawer-header">
+    <div class="toggle-row">
+      <button class="toggle-btn" class:active={tipo==='nutricion'}
+        onclick={() => { tipo='nutricion'; reiniciar(); }}>🥗 Nutrición</button>
+      <button class="toggle-btn" class:active={tipo==='ejercicio'}
+        onclick={() => { tipo='ejercicio'; reiniciar(); }}>💪 Entrenamiento</button>
+    </div>
+    <button class="close-btn" onclick={onClose} aria-label="Cerrar">✕</button>
   </div>
 
-  <!-- ── Selector modo ── -->
+  <!-- Modo -->
   <div class="modo-row">
     <button class="modo-btn" class:active={modo==='nuevo'}
       onclick={() => { modo='nuevo'; reiniciar(); }}>+ Nuevo</button>
@@ -310,7 +272,7 @@
       onclick={() => { modo='editar'; reiniciar(); }}>✏ Editar existente</button>
   </div>
 
-  <!-- ── Panel editar: selector de fecha ── -->
+  <!-- Panel editar -->
   {#if modo === 'editar' && !registroBase}
     <div class="editar-panel">
       <div class="editar-row">
@@ -319,13 +281,10 @@
           {cargando ? 'Cargando…' : 'Cargar'}
         </button>
       </div>
-      {#if cargadoError}
-        <div class="error-msg">{cargadoError}</div>
-      {/if}
+      {#if cargadoError}<div class="error-msg">{cargadoError}</div>{/if}
     </div>
   {/if}
 
-  <!-- Indicador de registro cargado -->
   {#if modo === 'editar' && registroBase}
     <div class="registro-cargado">
       <span>
@@ -337,9 +296,8 @@
     </div>
   {/if}
 
-  <!-- ── Chat ── -->
+  <!-- Chat -->
   <div class="chat" bind:this={chatEl}>
-
     {#if mensajes.length === 0}
       <div class="empty-hint">
         {tipo === 'nutricion'
@@ -349,7 +307,6 @@
     {/if}
 
     {#each mensajes as msg}
-
       {#if msg.role === 'user'}
         <div class="bubble user">
           {#if msg.imgs?.length}
@@ -361,7 +318,6 @@
         </div>
 
       {:else if msg.isJson}
-        <!-- Preview card de resultado -->
         {#if tipo === 'nutricion'}
           <div class="result-card">
             <div class="result-header">
@@ -385,9 +341,7 @@
                 {/each}
               </div>
             {/if}
-            {#if msg.parsed.totales?.estimado}
-              <div class="estimado">* valores estimados</div>
-            {/if}
+            {#if msg.parsed.totales?.estimado}<div class="estimado">* valores estimados</div>{/if}
           </div>
 
         {:else}
@@ -421,7 +375,6 @@
       {:else}
         <div class="bubble assistant" class:error={msg.isError}>{msg.content}</div>
       {/if}
-
     {/each}
 
     {#if enviando}
@@ -429,15 +382,12 @@
         <span></span><span></span><span></span>
       </div>
     {/if}
-
   </div>
 
-  <!-- ── Guardar ── -->
+  <!-- Guardar -->
   {#if ultimoJson && !guardadoOk}
     <div class="guardar-row">
-      {#if guardadoError}
-        <div class="error-msg">⚠ {guardadoError}</div>
-      {/if}
+      {#if guardadoError}<div class="error-msg">⚠ {guardadoError}</div>{/if}
       <div class="guardar-btns">
         <button class="cancelar-btn" onclick={reiniciar} disabled={guardando}>✕ Cancelar</button>
         <button class="guardar-btn" onclick={guardar} disabled={guardando}>
@@ -451,7 +401,7 @@
     <div class="ok-row">✓ {guardadoMsg}</div>
   {/if}
 
-  <!-- ── Input ── -->
+  <!-- Input -->
   {#if !guardadoOk && (modo === 'nuevo' || registroBase)}
     <div class="input-area">
       {#if imagenes.length > 0}
@@ -481,9 +431,7 @@
           oninput={autoResize}
           rows="1"
         ></textarea>
-        <button class="send" onclick={enviar} disabled={enviando || (!input.trim() && imagenes.length===0)}>
-          ↑
-        </button>
+        <button class="send" onclick={enviar} disabled={enviando || (!input.trim() && imagenes.length===0)}>↑</button>
       </div>
     </div>
   {/if}
@@ -491,44 +439,92 @@
 </div>
 
 <style>
-  .page {
-    max-width: 560px; margin: 0 auto;
-    padding: 16px 16px 24px;
-    display: flex; flex-direction: column; gap: 12px;
+  .drawer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     height: 100%;
-    min-height: 0;
+    padding: 16px 16px 20px;
+    overflow: hidden;
   }
 
-  /* ── Toggle ── */
-  .toggle-row { display: flex; background: var(--s2); border: 1px solid var(--b1); border-radius: 10px; overflow: hidden; flex-shrink: 0; }
-  .toggle-btn { flex: 1; padding: 11px; background: none; border: none; color: var(--muted); font-size: 14px; font-weight: 600; cursor: pointer; transition: background .15s, color .15s; }
+  /* Header */
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .toggle-row {
+    flex: 1;
+    display: flex;
+    background: var(--s2);
+    border: 1px solid var(--b1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .toggle-btn {
+    flex: 1; padding: 10px;
+    background: none; border: none;
+    color: var(--muted); font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: background .15s, color .15s;
+  }
   .toggle-btn.active { background: var(--accent); color: #fff; }
 
-  /* ── Modo ── */
+  .close-btn {
+    width: 36px; height: 36px; flex-shrink: 0;
+    background: var(--s2); border: 1px solid var(--b1);
+    border-radius: 8px; color: var(--muted);
+    font-size: 14px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: color .15s, border-color .15s;
+  }
+  .close-btn:hover { color: var(--text); border-color: var(--b2); }
+
+  /* Modo */
   .modo-row { display: flex; gap: 6px; flex-shrink: 0; }
-  .modo-btn { flex: 1; padding: 8px; background: var(--s2); border: 1px solid var(--b1); border-radius: 8px; color: var(--muted); font-size: 12px; font-weight: 600; cursor: pointer; transition: all .15s; }
+  .modo-btn {
+    flex: 1; padding: 8px;
+    background: var(--s2); border: 1px solid var(--b1);
+    border-radius: 8px; color: var(--muted);
+    font-size: 12px; font-weight: 600; cursor: pointer;
+    transition: all .15s;
+  }
   .modo-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(124,106,245,.08); }
 
-  /* ── Editar panel ── */
+  /* Editar */
   .editar-panel { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
   .editar-row { display: flex; gap: 8px; }
-  .fecha-input { flex: 1; background: var(--s2); border: 1px solid var(--b1); border-radius: 8px; padding: 10px 12px; color: var(--text); font-size: 14px; }
+  .fecha-input {
+    flex: 1; background: var(--s2); border: 1px solid var(--b1);
+    border-radius: 8px; padding: 10px 12px; color: var(--text); font-size: 14px;
+  }
   .fecha-input:focus { outline: none; border-color: var(--accent); }
-  .cargar-btn { padding: 10px 18px; background: var(--accent); border: none; border-radius: 8px; color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; }
+  .cargar-btn {
+    padding: 10px 18px; background: var(--accent);
+    border: none; border-radius: 8px; color: #fff;
+    font-size: 13px; font-weight: 700; cursor: pointer;
+  }
   .cargar-btn:disabled { opacity: .4; cursor: default; }
 
-  .registro-cargado { display: flex; align-items: center; justify-content: space-between; background: rgba(124,106,245,.08); border: 1px solid rgba(124,106,245,.25); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--muted); flex-shrink: 0; }
+  .registro-cargado {
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(124,106,245,.08); border: 1px solid rgba(124,106,245,.25);
+    border-radius: 8px; padding: 10px 14px;
+    font-size: 12px; color: var(--muted); flex-shrink: 0;
+  }
   .cambiar-btn { background: none; border: none; color: var(--accent); font-size: 11px; cursor: pointer; }
 
-  /* ── Chat ── */
+  /* Chat */
   .chat {
-    flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column;
-    gap: 10px; padding: 4px 2px;
+    flex: 1; overflow-y: auto;
+    display: flex; flex-direction: column; gap: 10px;
+    padding: 4px 2px;
     scrollbar-width: thin; scrollbar-color: var(--b2) transparent;
+    min-height: 0;
   }
   .empty-hint { color: var(--dim); font-size: 13px; text-align: center; padding: 40px 0; }
 
-  /* ── Bubbles ── */
   .bubble {
     max-width: 85%; padding: 10px 14px; border-radius: 14px;
     font-size: 14px; line-height: 1.5; white-space: pre-wrap; word-break: break-word;
@@ -548,7 +544,6 @@
   .bubble-imgs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px; }
   .bubble-img { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; }
 
-  /* Typing indicator */
   .typing { display: flex; align-items: center; gap: 4px; padding: 12px 16px; }
   .typing span {
     width: 6px; height: 6px; border-radius: 50%; background: var(--dim);
@@ -558,7 +553,7 @@
   .typing span:nth-child(3) { animation-delay: .3s; }
   @keyframes bounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
 
-  /* ── Result card ── */
+  /* Result card */
   .result-card {
     align-self: flex-start; width: 90%;
     background: var(--s2); border: 1px solid var(--b1);
@@ -585,13 +580,13 @@
   .estimado { font-size: 10px; color: var(--dim); font-style: italic; }
   .sec-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--dim); }
 
-  /* ── Guardar ── */
+  /* Guardar */
   .guardar-row { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
   .guardar-btns { display: flex; gap: 8px; }
   .guardar-btn {
-    flex: 1; padding: 14px; background: #22c55e; border: none;
-    border-radius: 8px; color: #fff; font-size: 15px; font-weight: 700;
-    cursor: pointer; transition: opacity .15s;
+    flex: 1; padding: 14px; background: #22c55e;
+    border: none; border-radius: 8px; color: #fff;
+    font-size: 15px; font-weight: 700; cursor: pointer; transition: opacity .15s;
   }
   .guardar-btn:disabled { opacity: .4; cursor: default; }
   .cancelar-btn {
@@ -603,7 +598,7 @@
   .error-msg { font-size: 12px; color: #f87171; text-align: center; }
   .ok-row { text-align: center; font-size: 16px; font-weight: 700; color: #4ade80; padding: 12px; }
 
-  /* ── Input ── */
+  /* Input */
   .input-area {
     flex-shrink: 0; background: var(--s2); border: 1px solid var(--b1);
     border-radius: 12px; padding: 8px 10px;

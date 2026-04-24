@@ -5,23 +5,50 @@
   "sexo": "masculino",
   "objetivo": "bajar_peso",
   "protocolo": "Ayuno intermitente 16h",
-
   "historial_peso": [
-    { "fecha": "2026-03-08", "peso_kg": 130 },
-    { "fecha": "2026-03-09", "peso_kg": 130 },
-    { "fecha": "2026-03-11", "peso_kg": 130 },
-    { "fecha": "2026-03-14", "peso_kg": 127.1 },
-    { "fecha": "2026-03-17", "peso_kg": 127 },
-    { "fecha": "2026-03-19", "peso_kg": 126.5 }
+    {
+      "fecha": "2026-03-08",
+      "peso_kg": 130
+    },
+    {
+      "fecha": "2026-03-09",
+      "peso_kg": 130
+    },
+    {
+      "fecha": "2026-03-11",
+      "peso_kg": 130
+    },
+    {
+      "fecha": "2026-03-14",
+      "peso_kg": 127.1
+    },
+    {
+      "fecha": "2026-03-17",
+      "peso_kg": 127
+    },
+    {
+      "fecha": "2026-03-19",
+      "peso_kg": 126.5
+    },
+    {
+      "fecha": "2026-03-27",
+      "peso_kg": 129
+    },
+    {
+      "fecha": "2026-04-09",
+      "peso_kg": 125.5
+    },
+    {
+      "fecha": "2026-04-15",
+      "peso_kg": 126
+    }
   ],
-
   "metabolismo": {
     "metabolismo_basal_kcal": 2314,
     "gasto_total_descanso_kcal": 2776,
     "gasto_total_gym_kcal": 3355,
     "nota": "Calculado con Mifflin-St Jeor. Factor 1.2 descanso, 1.45 días de gym."
   },
-
   "objetivos_diarios": {
     "enfoque": "Déficit moderado sostenible. Target único promedio entre días activos e inactivos.",
     "kcal_objetivo_promedio": 2560,

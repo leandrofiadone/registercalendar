@@ -14,6 +14,25 @@ function appendTokenLog(entry) {
 
 const client = new Anthropic({ apiKey: ANTHROPIC_API_KEY });
 
+// Aprende gramos_por_unidad de los alimentos del JSON recibido y los guarda en alimentos_ref
+function aprenderUnidades(parsed) {
+  if (!parsed?.alimentos?.length) return;
+  const refPath = join('data', 'alimentos_ref.json');
+  try {
+    const ref = JSON.parse(readFileSync(refPath, 'utf-8'));
+    let modificado = false;
+    for (const al of parsed.alimentos) {
+      if (!al.gramos_por_unidad || !al.ref_id) continue;
+      const entrada = ref.alimentos?.find(a => a.id === al.ref_id);
+      if (!entrada) continue;
+      if (entrada.por_unidad?.gramos === al.gramos_por_unidad) continue;
+      entrada.por_unidad = { gramos: al.gramos_por_unidad };
+      modificado = true;
+    }
+    if (modificado) writeFileSync(refPath, JSON.stringify(ref, null, 2), 'utf-8');
+  } catch (_) { /* no interrumpir */ }
+}
+
 // Extrae el primer objeto JSON válido de un texto (ignora texto antes/después)
 function extractJSON(text) {
   const start = text.indexOf('{');
@@ -49,23 +68,40 @@ export async function POST({ request }) {
   } else {
     sistema = (tipo === 'nutricion' ? SISTEMA_NUTRICION : SISTEMA_EJERCICIO)
       + `\n\nFecha y hora actual: ${fecha} ${hora}.`;
+
+    // Inyectar referencia de alimentos conocidos (modo nutricion nuevo)
+    if (tipo === 'nutricion') {
+      try {
+        const ref = JSON.parse(readFileSync(join('data', 'alimentos_ref.json'), 'utf-8'));
+        if (ref.alimentos?.length) {
+          const lineas = ref.alimentos.map(a => {
+            const p = a.por_100g;
+            const macros = `${p.kcal}kcal P${p.proteina_g}g G${p.grasa_g}g C${p.carbos_g}g`;
+            const nombres = a.nombres.join(' / ');
+            const unidad = a.por_unidad?.gramos ? ` (1u=${a.por_unidad.gramos}g)` : '';
+            return `${nombres}: ${macros} /100g${unidad}`;
+          });
+          sistema += `\n\nALIMENTOS CONOCIDOS (reutilizá estos macros exactos si el usuario menciona el mismo alimento, ajustando solo la cantidad):\n${lineas.join('\n')}`;
+        }
+      } catch (_) { /* no interrumpir si falla */ }
+    }
   }
 
   // Limitar historial a los últimos 6 mensajes para reducir tokens
   const historialReciente = historial.slice(-6);
 
   // Convertir historial al formato de Anthropic
+  // Las imágenes van al último mensaje de usuario (el que acaba de enviar)
+  const lastUserIdx = historialReciente.reduce((acc, msg, i) => msg.role === 'user' ? i : acc, -1);
   const messages = historialReciente.map((msg, i) => {
-    if (msg.role === 'user' && i === 0 && imagenes.length > 0 && historial.length === historialReciente.length) {
+    if (msg.role === 'user' && i === lastUserIdx && imagenes.length > 0) {
       const content = [];
       for (const img of imagenes) {
         content.push({ type: 'image', source: { type: 'base64', media_type: img.media_type, data: img.data } });
       }
-      // Solo agregar texto si no está vacío
       if (msg.content?.trim()) content.push({ type: 'text', text: msg.content });
       return { role: 'user', content };
     }
-    // Nunca enviar mensajes con contenido vacío
     const content = msg.content?.trim() || '...';
     return { role: msg.role, content };
   });
@@ -106,6 +142,9 @@ export async function POST({ request }) {
     });
   } catch (_) { /* log failure doesn't break the request */ }
 
-  if (parsed) return json({ ok: true, tipo: 'json', parsed });
+  if (parsed) {
+    if (tipo === 'nutricion' && modo === 'nuevo') aprenderUnidades(parsed);
+    return json({ ok: true, tipo: 'json', parsed });
+  }
   return json({ ok: true, tipo: 'texto', texto: raw });
 }

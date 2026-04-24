@@ -7,6 +7,7 @@
   import { sessionType, sessionColor } from '$lib/utils.js';
   import { getMoonPhase } from '$lib/moon.js';
   import { gymKcalDetallado } from '$lib/activity.js';
+  import { getFastingStage } from '$lib/fasting.js';
   import SessionDetail from '$lib/SessionDetail.svelte';
   import VentanaDetail from '$lib/VentanaDetail.svelte';
   import Luna13Cal from '$lib/Luna13Cal.svelte';
@@ -17,7 +18,7 @@
   let perfil       = $derived(data.perfil);
   let alimentosRef = $derived(data.alimentosRef ?? []);
 
-  let calView   = $state('gym');
+  let calView   = $state('nutricion');
   let calFormat = $state('gregoriano'); // 'gregoriano' | '13lunas'
   let selectedSession = $state(null);
   let selectedVentana = $state(null);
@@ -53,6 +54,23 @@
     const tdeBase     = perfil?.metabolismo?.gasto_total_descanso_kcal ?? 2776;
     const kcalBase    = perfil?.objetivos_diarios?.kcal_dia_descanso ?? 2276;
     const deficitTarget = perfil?.objetivos_diarios?.deficit_target_kcal ?? 500;
+    const protMin     = perfil?.objetivos_diarios?.proteina_g_min ?? 160;
+
+    // Compute fasting gaps between consecutive ventanas
+    const sortedVentanas = [...ventanas].sort((a, b) => a.ventana_id.localeCompare(b.ventana_id));
+    const fastingGaps = {};
+    for (let i = 1; i < sortedVentanas.length; i++) {
+      const prev = sortedVentanas[i - 1];
+      const curr = sortedVentanas[i];
+      const prevMeals = (prev.comidas || []).filter(c => c.hora).sort((a, b) => b.hora.localeCompare(a.hora));
+      const currMeals = (curr.comidas || []).filter(c => c.hora).sort((a, b) => a.hora.localeCompare(b.hora));
+      if (prevMeals.length && currMeals.length) {
+        const lastDt = new Date(`${prev.ventana_id}T${prevMeals[0].hora}:00`);
+        const firstDt = new Date(`${curr.ventana_id}T${currMeals[0].hora}:00`);
+        const gh = (firstDt - lastDt) / 3_600_000;
+        if (gh > 1) fastingGaps[curr.ventana_id] = Math.round(gh);
+      }
+    }
 
     return ventanas.map((v, i) => {
       const t = v.totales_ventana || {};
@@ -67,20 +85,24 @@
       const consumed   = t.kcal || 0;
       const zone = consumed <= kcalTarget ? 'ok' : consumed <= maintTotal ? 'warn' : 'over';
       const pct  = Math.min(100, Math.round((consumed / kcalTarget) * 100));
+      const protOk = (t.proteina_g || 0) >= protMin;
+      const zoneBg = { ok: 'rgba(74,222,128,0.08)', warn: 'rgba(251,191,36,0.08)', over: 'rgba(248,113,113,0.08)' }[zone];
       return {
         title: '',
         date: v.ventana_id,
-        backgroundColor: '#f59e0b',
+        backgroundColor: zoneBg,
         borderColor: 'transparent',
-        textColor: '#000',
+        textColor: '#e2e8f0',
         extendedProps: {
           type: 'nutri', vIdx: i,
           kcal: consumed,
-          prot: t.proteina_g || 0,
-          gras: t.grasa_g    || 0,
-          carb: t.carbos_g   || 0,
+          prot: Math.round(t.proteina_g || 0),
+          gras: Math.round(t.grasa_g || 0),
+          carb: Math.round(t.carbos_g || 0),
           kcalTarget, zone, pct,
           hasGym: !!gymSess,
+          protOk,
+          fastGap: fastingGaps[v.ventana_id] || null,
         },
       };
     });
@@ -118,33 +140,40 @@
         right:  'dayGridMonth,listMonth',
       },
       buttonText: { today: 'Hoy', month: 'Mes', list: 'Lista' },
-      events: gymCalEvents(),
+      events: nutriCalEvents(),
 
       eventContent(arg) {
         const p = arg.event.extendedProps;
         const mobile = window.innerWidth < 768;
 
         if (p.type === 'nutri') {
+          const zoneAccent = { ok: '#4ade80', warn: '#fbbf24', over: '#f87171' }[p.zone];
+          const zoneFill   = { ok: '#16a34a', warn: '#d97706', over: '#dc2626' }[p.zone];
           if (mobile) {
-            const zoneDot = { ok: '#4ade80', warn: '#fbbf24', over: '#f87171' }[p.zone];
-            return { html: `<div class="ev-nutri-m"><span class="ev-nm-kcal">${p.kcal}</span><span class="ev-nm-dot" style="background:${zoneDot}"></span></div>` };
+            return { html: `<div class="ev-nutri-m"><span class="ev-nm-kcal">${p.kcal}</span><span class="ev-nm-dot" style="background:${zoneAccent}"></span></div>` };
           }
-          const zoneColor = { ok: '#166534', warn: '#92400e', over: '#991b1b' }[p.zone];
-          const zoneDot   = { ok: '#4ade80', warn: '#fbbf24', over: '#f87171' }[p.zone];
           const gymBadge  = p.hasGym ? `<span class="ev-n-gym">💪</span>` : '';
-          return { html: `<div class="ev-nutri">
+          const protWarn  = !p.protOk ? `<span class="ev-n-protwarn">⚠</span>` : '';
+          // Fasting badge with stage color
+          let fastBadge = '';
+          if (p.fastGap) {
+            const fs = getFastingStage(p.fastGap);
+            fastBadge = `<span class="ev-n-fast" style="color:${fs.color};background:${fs.glow}">${fs.icon} ${p.fastGap}h</span>`;
+          }
+          return { html: `<div class="ev-nutri" style="border-left-color:${zoneAccent}">
             <div class="ev-n-top">
-              <span class="ev-n-kcal">${p.kcal}</span>
-              <span class="ev-n-unit">/ ${p.kcalTarget} kcal</span>
-              ${gymBadge}
-              <span class="ev-n-dot" style="background:${zoneDot}"></span>
+              <span class="ev-n-kcal" style="color:${zoneAccent}">${p.kcal}</span>
+              <span class="ev-n-sep">/</span>
+              <span class="ev-n-target">${p.kcalTarget}</span>
+              ${gymBadge}${protWarn}
+              ${fastBadge}
             </div>
+            <div class="ev-n-bar"><div class="ev-n-bar-fill" style="width:${p.pct}%;background:${zoneFill}"></div></div>
             <div class="ev-n-macros">
-              <span class="ev-dot prot"></span>${p.prot}g
-              <span class="ev-dot gras"></span>${p.gras}g
-              <span class="ev-dot carb"></span>${p.carb}g
+              <span class="ev-mac${!p.protOk ? ' prot-low' : ''}"><span class="ev-dot prot"></span>${p.prot}p</span>
+              <span class="ev-mac"><span class="ev-dot gras"></span>${p.gras}g</span>
+              <span class="ev-mac"><span class="ev-dot carb"></span>${p.carb}c</span>
             </div>
-            <div class="ev-n-bar"><div class="ev-n-bar-fill" style="width:${p.pct}%;background:${zoneColor}"></div></div>
           </div>` };
         }
         if (p.type === 'gym') {
@@ -182,8 +211,27 @@
         const frame = info.el.querySelector('.fc-daygrid-day-frame');
         if (!frame) return;
 
-        if (calView === 'gym'       && gymDates.has(d))   frame.style.background = 'rgba(124,106,245,0.06)';
-        if (calView === 'nutricion' && nutriDates.has(d)) frame.style.background = 'rgba(245,158,11,0.06)';
+        if (calView === 'gym' && gymDates.has(d)) {
+          frame.style.background = 'rgba(124,106,245,0.06)';
+        }
+        if (calView === 'nutricion' && nutriDates.has(d)) {
+          // Tint by zone
+          const v = ventanas.find(v => v.ventana_id === d);
+          if (v) {
+            const t = v.totales_ventana || {};
+            const consumed = t.kcal || 0;
+            const pesoKg = perfil?.historial_peso?.at(-1)?.peso_kg ?? 80;
+            const tdeBase = perfil?.metabolismo?.gasto_total_descanso_kcal ?? 2776;
+            const kcalBase = perfil?.objetivos_diarios?.kcal_dia_descanso ?? 2276;
+            const gymSess = sessions.find(s => s.date === d);
+            let kcalAct = 0;
+            if (gymSess) { const det = gymKcalDetallado(gymSess, pesoKg); kcalAct = det.fuerza + det.cardio.reduce((s,c) => s+c.kcal, 0); }
+            const target = Math.round(kcalBase + kcalAct);
+            const maint = Math.round(tdeBase + kcalAct);
+            const bg = consumed <= target ? 'rgba(74,222,128,0.05)' : consumed <= maint ? 'rgba(251,191,36,0.05)' : 'rgba(248,113,113,0.05)';
+            frame.style.background = bg;
+          }
+        }
 
         if (frame.dataset.decorated) return;
         frame.dataset.decorated = '1';
@@ -208,20 +256,24 @@
         }
 
         const moon = getMoonPhase(info.date);
-        const showLabel = moon.name === 'Luna llena' || moon.name === 'Luna nueva';
-        const badge = document.createElement('div');
-        badge.className = 'moon-badge' + (showLabel ? ' moon-key' : '');
-        badge.title = `${moon.name} (día ${Math.round(moon.age)} del ciclo)`;
-        if (showLabel) {
-          const label = document.createElement('span');
-          label.className = 'moon-label';
-          label.textContent = moon.name;
-          badge.appendChild(label);
+        const isKeyPhase = moon.name === 'Luna llena' || moon.name === 'Luna nueva';
+        const hasData = gymDates.has(d) || nutriDates.has(d);
+        // Only show moon on key phases or days with data
+        if (isKeyPhase || hasData) {
+          const badge = document.createElement('div');
+          badge.className = 'moon-badge' + (isKeyPhase ? ' moon-key' : '');
+          badge.title = `${moon.name} (día ${Math.round(moon.age)} del ciclo)`;
+          if (isKeyPhase) {
+            const label = document.createElement('span');
+            label.className = 'moon-label';
+            label.textContent = moon.name;
+            badge.appendChild(label);
+          }
+          const iconSpan = document.createElement('span');
+          iconSpan.textContent = moon.icon;
+          badge.appendChild(iconSpan);
+          frame.appendChild(badge);
         }
-        const iconSpan = document.createElement('span');
-        iconSpan.textContent = moon.icon;
-        badge.appendChild(iconSpan);
-        frame.appendChild(badge);
       },
     });
 
@@ -386,8 +438,8 @@
   :global(.fc .fc-button:focus)  { background: var(--s3) !important; color: #fff !important; outline: none !important; }
   :global(.fc .fc-event) {
     border: none !important; font-size: 11px !important;
-    padding: 2px 6px !important; cursor: pointer !important;
-    border-radius: 4px !important;
+    padding: 1px 3px !important; cursor: pointer !important;
+    border-radius: 3px !important;
   }
   :global(.fc .fc-event-title)  { font-weight: 500 !important; }
   :global(.fc .fc-more-link)    { color: var(--accent-l); font-size: 10px; }
@@ -399,23 +451,46 @@
   :global(.fc .fc-list-day-text),
   :global(.fc .fc-list-day-side-text) { color: var(--text); text-decoration: none; font-size: 12px; }
 
-  /* Custom calendar event content */
-  :global(.ev-nutri) { padding: 4px 8px; width: 100%; cursor: pointer; }
-  :global(.ev-n-top)  { display: flex; align-items: center; gap: 4px; margin-bottom: 3px; }
-  :global(.ev-n-kcal) { font-size: 15px; font-weight: 800; color: #000; line-height: 1; }
-  :global(.ev-n-unit) { font-size: 9px; color: rgba(0,0,0,0.5); flex: 1; }
-  :global(.ev-n-gym)  { font-size: 10px; }
-  :global(.ev-n-dot)  { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-  :global(.ev-n-macros) {
-    display: flex; align-items: center; gap: 5px;
-    font-size: 9px; color: rgba(0,0,0,0.6); margin-bottom: 4px;
+  /* Custom calendar event content — nutrición */
+  :global(.ev-nutri) {
+    padding: 2px 5px; width: 100%; cursor: pointer;
+    border-left: 2px solid; border-radius: 2px;
+    background: rgba(255,255,255,0.03);
   }
-  :global(.ev-dot) { display: inline-block; width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
-  :global(.ev-dot.prot) { background: #1e40af; }
-  :global(.ev-dot.gras) { background: #991b1b; }
-  :global(.ev-dot.carb) { background: #065f46; }
-  :global(.ev-n-bar) { height: 3px; background: rgba(0,0,0,0.15); border-radius: 2px; overflow: hidden; }
-  :global(.ev-n-bar-fill) { height: 100%; border-radius: 2px; }
+  :global(.ev-n-top)  {
+    display: flex; align-items: baseline; gap: 2px; margin-bottom: 1px;
+    line-height: 1;
+  }
+  :global(.ev-n-kcal) {
+    font-size: 10px; font-weight: 800; line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  :global(.ev-n-sep) { font-size: 8px; color: #475569; }
+  :global(.ev-n-target) { font-size: 8px; color: #64748b; font-weight: 500; font-variant-numeric: tabular-nums; }
+  :global(.ev-n-gym) { font-size: 8px; margin-left: auto; }
+  :global(.ev-n-fast) {
+    font-size: 7px; font-weight: 700;
+    border-radius: 2px; padding: 0 2px;
+    margin-left: auto; flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  :global(.ev-n-protwarn) {
+    font-size: 7px; margin-left: 1px; opacity: 0.8;
+  }
+  :global(.ev-n-macros) {
+    display: flex; align-items: center; gap: 3px;
+    font-size: 8px; color: #94a3b8; margin-top: 1px;
+    font-variant-numeric: tabular-nums;
+  }
+  :global(.ev-mac) { display: flex; align-items: center; gap: 1px; }
+  :global(.ev-mac.prot-ok) { color: #4ade80; }
+  :global(.ev-mac.prot-low) { color: #f87171; }
+  :global(.ev-dot) { display: inline-block; width: 3px; height: 3px; border-radius: 50%; flex-shrink: 0; }
+  :global(.ev-dot.prot) { background: #60a5fa; }
+  :global(.ev-dot.gras) { background: #f87171; }
+  :global(.ev-dot.carb) { background: #34d399; }
+  :global(.ev-n-bar) { height: 2px; background: rgba(255,255,255,0.08); border-radius: 1px; overflow: hidden; }
+  :global(.ev-n-bar-fill) { height: 100%; border-radius: 1px; transition: width 0.3s; }
 
   :global(.ev-gym) { padding: 5px 8px; width: 100%; cursor: pointer; display: flex; flex-wrap: wrap; gap: 3px; align-items: center; }
   :global(.ev-g-tag) {
@@ -492,7 +567,8 @@
     padding: 2px 4px; width: 100%;
   }
   :global(.ev-nm-kcal) {
-    font-size: 9px; font-weight: 800; color: #000; flex: 1;
+    font-size: 9px; font-weight: 800; color: #e2e8f0; flex: 1;
+    font-variant-numeric: tabular-nums;
   }
   :global(.ev-nm-dot) {
     width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;

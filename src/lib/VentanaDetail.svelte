@@ -39,16 +39,23 @@
 
     if (gymSess) {
       const det = gymKcalDetallado(gymSess, pesoKg);
-      if (det.fuerza > 0) actItems.push({
-        icon: '💪', label: (gymSess.groups||[]).join(' + ') || 'Fuerza',
-        kcal: det.fuerza, estimado: true,
-      });
-      for (const c of det.cardio) actItems.push({
-        icon: c.tipo === 'sauna' ? '🧖' : c.tipo === 'natacion' ? '🏊' : '🏃',
-        label: `${c.ejercicio}${c.duracion_min ? ` ${c.duracion_min}min` : ''}`,
-        kcal: c.kcal, estimado: c.fuente === 'estimado',
-        dim: c.tipo === 'sauna' || c.tipo === 'ducha_fria',
-      });
+      if (det.fuente === 'explicito') {
+        actItems.push({
+          icon: '🏋️', label: (gymSess.groups||[]).join(' + ') || 'Gym',
+          kcal: det.total, estimado: false,
+        });
+      } else {
+        if (det.fuerza > 0) actItems.push({
+          icon: '💪', label: (gymSess.groups||[]).join(' + ') || 'Fuerza',
+          kcal: det.fuerza, estimado: true,
+        });
+        for (const c of det.cardio) actItems.push({
+          icon: c.tipo === 'sauna' ? '🧖' : c.tipo === 'natacion' ? '🏊' : '🏃',
+          label: `${c.ejercicio}${c.duracion_min ? ` ${c.duracion_min}min` : ''}`,
+          kcal: c.kcal, estimado: c.fuente === 'estimado',
+          dim: c.tipo === 'sauna' || c.tipo === 'ducha_fria',
+        });
+      }
     }
     for (const a of actsExtra) actItems.push({
       icon: '🏃', label: `${actividadLabel(a.tipo)}${a.duracion_min ? ` ${a.duracion_min}min` : ''}`,
@@ -261,7 +268,26 @@
     <div class="sec-label">🍽 Comidas</div>
     {#if prevFastGap}
       {@const gs = prevFastGap.stage}
-      <div class="gap-divider" style="color:{gs.color};border-color:{gs.color}22">
+      {@const int = gs.intensity ?? 0}
+      {@const pad = 5 + int * 10}
+      {@const fontSize = 11 + int * 5}
+      {@const borderW = 1 + Math.round(int * 2)}
+      {@const glowSpread = Math.round(int * 10)}
+      <div
+        class="gap-divider"
+        class:gap-milestone={gs.milestone}
+        class:gap-intense={int >= 0.5}
+        class:gap-extreme={int >= 0.8}
+        style="
+          color:{gs.color};
+          border-color:{gs.color}{int >= 0.5 ? '55' : '22'};
+          border-width:{borderW}px;
+          padding:{pad}px {pad + 5}px;
+          font-size:{fontSize}px;
+          background:{gs.glow};
+          box-shadow: 0 0 {glowSpread}px {gs.glow};
+        "
+      >
         <span class="gap-icon">{gs.icon}</span>
         <span class="gap-time">{fmtGap(prevFastGap.gh)}</span>
         <span class="gap-label">ayuno previo{gs.milestone ? ` · ${gs.label}` : ''}</span>
@@ -275,7 +301,26 @@
         {#if dt1 && dt2}
           {@const gh = gapHours(dt1, dt2)}
           {@const gs = getFastingStage(gh)}
-          <div class="gap-divider" style="color:{gs.color};border-color:{gs.color}22">
+          {@const int = gs.intensity ?? 0}
+          {@const pad = 5 + int * 10}
+          {@const fontSize = 11 + int * 5}
+          {@const borderW = 1 + Math.round(int * 2)}
+          {@const glowSpread = Math.round(int * 10)}
+          <div
+            class="gap-divider"
+            class:gap-milestone={gs.milestone}
+            class:gap-intense={int >= 0.5}
+            class:gap-extreme={int >= 0.8}
+            style="
+              color:{gs.color};
+              border-color:{gs.color}{int >= 0.5 ? '55' : '22'};
+              border-width:{borderW}px;
+              padding:{pad}px {pad + 5}px;
+              font-size:{fontSize}px;
+              background:{gs.glow};
+              box-shadow: 0 0 {glowSpread}px {gs.glow};
+            "
+          >
             <span class="gap-icon">{gs.icon}</span>
             <span class="gap-time">{fmtGap(gh)}</span>
             {#if gs.milestone}
@@ -345,7 +390,7 @@
   .tb-hero { display: flex; align-items: center; gap: 18px; padding: 4px 0; flex-wrap: wrap; }
   .tb-hero-left { display: flex; flex-direction: column; gap: 2px; }
   .tb-hero-num  { display: flex; align-items: baseline; gap: 5px; }
-  .tb-hero-kcal { font-size: 48px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; transition: color .3s; letter-spacing: -1px; }
+  .tb-hero-kcal { font-size: 36px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; transition: color .3s; letter-spacing: -1px; }
   .tb-hero-unit  { font-size: 15px; color: #475569; font-weight: 600; }
   .tb-hero-label { font-size: 9px; color: #475569; text-transform: uppercase; letter-spacing: .07em; }
   .tb-hero-right { display: flex; flex-direction: column; gap: 5px; }
@@ -379,7 +424,7 @@
   .pb-gi.total { color: #e2e8f0; font-weight: 700; background: rgba(255,255,255,.06); }
   .pb-result { display: flex; align-items: center; gap: 16px; font-variant-numeric: tabular-nums; flex-wrap: wrap; }
   .pb-result-main { display: flex; align-items: baseline; gap: 4px; }
-  .pb-consumed      { font-size: 32px; font-weight: 800; }
+  .pb-consumed      { font-size: 26px; font-weight: 800; }
   .pb-consumed-unit { font-size: 12px; color: #475569; font-weight: 600; }
   .pb-result-subs { display: flex; flex-direction: column; gap: 3px; }
   .pb-status      { font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums; }
@@ -400,9 +445,38 @@
     display: flex; align-items: center; gap: 6px;
     padding: 5px 10px; margin-bottom: 6px;
     border: 1px dashed; border-radius: 5px;
-    font-size: 11px; opacity: 0.8; background: transparent;
+    font-size: 11px; background: transparent;
+    transition: all 0.3s ease;
   }
-  .gap-icon { font-size: 13px; }
+  .gap-icon { font-size: 13px; transition: font-size 0.3s; }
   .gap-time { font-weight: 700; font-variant-numeric: tabular-nums; }
   .gap-label { opacity: 0.75; }
+
+  .gap-milestone {
+    border-style: solid;
+    border-radius: 8px;
+  }
+  .gap-milestone .gap-icon { font-size: 1.2em; }
+  .gap-milestone .gap-time { font-weight: 800; }
+  .gap-milestone .gap-label { opacity: 1; font-weight: 600; }
+
+  .gap-intense {
+    border-radius: 10px;
+  }
+  .gap-intense .gap-icon { font-size: 1.4em; }
+  .gap-intense .gap-time { letter-spacing: -0.02em; }
+
+  .gap-extreme {
+    border-radius: 12px;
+  }
+  .gap-extreme .gap-icon { font-size: 1.6em; }
+  .gap-extreme .gap-time { font-size: 1.1em; }
+
+  @keyframes gapPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.65; }
+  }
+  .gap-extreme {
+    animation: gapPulse 3s ease-in-out infinite;
+  }
 </style>

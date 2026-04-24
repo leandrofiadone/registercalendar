@@ -30,7 +30,7 @@
       const gymSess = sessions.find(s => s.date === date);
       if (gymSess) {
         const det = gymKcalDetallado(gymSess, pesoKg);
-        actKcal += det.fuerza + det.cardio.reduce((sum, c) => sum + c.kcal, 0);
+        actKcal += det.fuente === 'explicito' ? det.total : det.fuerza + det.cardio.reduce((sum, c) => sum + c.kcal, 0);
       }
       // Extra activities (walks, yoga, etc. from ventana.actividades)
       if (v?.actividades?.length) {

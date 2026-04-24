@@ -23,11 +23,9 @@ function validateVentana(v) {
 }
 
 export function load() {
-  const log    = safeLoadJSON('log.json',           { sessions: [] });
-  const nutri  = safeLoadJSON('nutricion.json',     { ventanas: [] });
-  const perfil = safeLoadJSON('perfil.json',        null);
-  const alRef  = safeLoadJSON('alimentos_ref.json', { alimentos: [] });
-  const gymRef = safeLoadJSON('gimnasios_ref.json', []);
+  const log    = safeLoadJSON('log.json',       { sessions: [] });
+  const nutri  = safeLoadJSON('nutricion.json', { ventanas: [] });
+  const perfil = safeLoadJSON('perfil.json',    null);
 
   const sessions = (log.sessions || []).filter(validateSession);
   const ventanas = (nutri.ventanas || []).filter(validateVentana);
@@ -39,7 +37,6 @@ export function load() {
     console.warn(`[WARN] nutricion.json: ${(nutri.ventanas || []).length - ventanas.length} ventanas con estructura inválida descartadas`);
   }
 
-  // Validar horas en comidas
   for (const v of ventanas) {
     for (const c of v.comidas) {
       if (!c.hora) {
@@ -51,8 +48,6 @@ export function load() {
   return {
     sessions: sessions.sort((a, b) => b.date.localeCompare(a.date)),
     ventanas: ventanas.sort((a, b) => b.ventana_id.localeCompare(a.ventana_id)),
-    perfil,
-    alimentosRef: alRef.alimentos || [],
-    gimnasiosRef: Array.isArray(gymRef) ? gymRef : []
+    perfil
   };
 }

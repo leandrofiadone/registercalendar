@@ -43,6 +43,7 @@ function normalizarTipo(ejercicio) {
   if (e.includes('eliptic'))                                                     return 'eliptico';
   if (e.includes('remo')  || e.includes('rowing'))                               return 'remo';
   if (e.includes('hiit')  || e.includes('interval'))                             return 'hiit';
+  if (e.includes('soga')  || e.includes('jump rope') || e.includes('saltar'))   return 'hiit';
   if (e.includes('funcional') || e.includes('crossfit'))                         return 'funcional';
   if (e.includes('yoga'))                                                         return 'yoga';
   if (e.includes('pilates'))                                                      return 'pilates';
@@ -75,24 +76,76 @@ export function cardioItemKcal(item, pesoKg) {
 
 /**
  * Estima kcal de la parte de fuerza de una sesión.
- * Diferencia compound vs aislación:
- *   Compound (sentadilla, press, remo, etc.): MET 5.0, ~4.5 min/set
- *   Aislación (curl, extensión, etc.):        MET 3.5, ~2.5 min/set
- * Sin monitor cardíaco el error real es ±30%.
+ *
+ * Modelo híbrido MET × intensidad × volumen:
+ *   Base: compound vs aislación (MET + min/set)
+ *     Compound (sentadilla, press, remo, etc.): MET 5.0, ~4.5 min/set
+ *     Aislación (curl, extensión, etc.):        MET 3.5, ~2.5 min/set
+ *
+ *   Intensidad: multiplicador por ratio peso_carga / bodyweight
+ *     ≥40% BW → ×1.6 (muy pesado)
+ *     ≥25% BW → ×1.35 (pesado)
+ *     ≥15% BW → ×1.15 (moderado)
+ *     <15% BW → ×1.0 (liviano)
+ *
+ *   Volumen: multiplicador por reps del set
+ *     ≥15 reps → ×1.10
+ *     ≥10 reps → ×1.05
+ *
+ *   Auto-detección compound: si peso del set ≥50% BW se considera compound
+ *   aunque el regex no matchee (cubre "Ejercicio no especificado" a 100 kg).
+ *
+ * Sin monitor cardíaco el error real sigue siendo ±25-30%.
  */
-const COMPOUND_RE = /sentadilla|squat|peso muerto|deadlift|press\b|bench|militar|remo\b|row|dominad|pull.?up|hip thrust|clean|snatch|fondos|dips?\b/i;
+const COMPOUND_RE = /sentadilla|squat|peso muerto|deadlift|press\b|bench|militar|remo\b|row|dominad|pull.?up|hip thrust|clean|snatch|fondos|dips?\b|farmer/i;
+
+function intensityMultiplier(ratio) {
+  if (ratio >= 0.40) return 1.60;
+  if (ratio >= 0.25) return 1.35;
+  if (ratio >= 0.15) return 1.15;
+  return 1.00;
+}
+
+function volumeMultiplier(reps) {
+  if (reps >= 15) return 1.10;
+  if (reps >= 10) return 1.05;
+  return 1.00;
+}
 
 export function fuerzaKcal(session, pesoKg) {
   const ejercicios = session.fuerza ?? [];
   if (!ejercicios.length) return 0;
   let totalKcal = 0;
+
   for (const ej of ejercicios) {
-    const nSets     = ej.sets?.length ?? 0;
-    const compound  = COMPOUND_RE.test(ej.ejercicio ?? '');
-    const met       = compound ? 5.0 : 3.5;
-    const minPerSet = compound ? 4.5 : 2.5;
-    totalKcal += met * pesoKg * (nSets * minPerSet / 60);
+    const sets          = ej.sets ?? [];
+    if (!sets.length) continue;
+
+    const nameCompound  = COMPOUND_RE.test(ej.ejercicio ?? '');
+    // Auto-detect compound si algún set tiene peso ≥50% del bodyweight
+    const maxWeight     = sets.reduce((m, s) => Math.max(m, s.peso_kg ?? 0), 0);
+    const weightCompound = maxWeight >= pesoKg * 0.5;
+    const isCompound    = nameCompound || weightCompound;
+
+    const baseMet       = isCompound ? 5.0 : 3.5;
+    const minPerSet     = isCompound ? 4.5 : 2.5;
+
+    for (const set of sets) {
+      const reps   = set.reps ?? 0;
+      const weight = set.peso_kg ?? 0;
+
+      let met = baseMet;
+      if (weight > 0 && pesoKg > 0) {
+        met *= intensityMultiplier(weight / pesoKg);
+      }
+      if (reps > 0) {
+        met *= volumeMultiplier(reps);
+      }
+
+      totalKcal += met * pesoKg * (minPerSet / 60);
+    }
   }
+
   return Math.round(totalKcal);
 }
 

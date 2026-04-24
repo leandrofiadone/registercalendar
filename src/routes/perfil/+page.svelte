@@ -85,7 +85,7 @@
       const gymSess = sessions.find(s => s.date === date);
       if (gymSess) {
         const det = gymKcalDetallado(gymSess, pesoKg);
-        actKcal += det.fuerza + det.cardio.reduce((sum, c) => sum + c.kcal, 0);
+        actKcal += det.fuente === 'explicito' ? det.total : det.fuerza + det.cardio.reduce((sum, c) => sum + c.kcal, 0);
       }
       if (v?.actividades?.length) {
         for (const act of v.actividades) {
@@ -105,6 +105,115 @@
 
   let avgKcal = $derived(rolling7?.avgConsumed ?? 0);
   let avgDeficit = $derived(rolling7?.avgDeficit ?? 0);
+
+  // Resumen semanal: agrupa datos por semana (lun-dom) y calcula promedios
+  let weeklyRows = $derived.by(() => {
+    if (!perfil) return [];
+    const me = perfil.metabolismo;
+    const ob = perfil.objetivos_diarios;
+    const pesoKg = perfil.historial_peso?.at(-1)?.peso_kg ?? 80;
+
+    // Monday (local) de una fecha YYYY-MM-DD
+    const mondayOf = (dateStr) => {
+      const d = new Date(dateStr + 'T00:00:00');
+      const day = d.getDay(); // 0=Sun
+      const diff = day === 0 ? -6 : 1 - day;
+      d.setDate(d.getDate() + diff);
+      return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    };
+    const addDays = (dateStr, n) => {
+      const d = new Date(dateStr + 'T00:00:00');
+      d.setDate(d.getDate() + n);
+      return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    };
+
+    // Construye set de todas las fechas relevantes (ventanas + sessions) y peso fechas
+    const allDates = new Set();
+    ventanas.forEach(v => v.ventana_id && allDates.add(v.ventana_id));
+    sessions.forEach(s => s.date && allDates.add(s.date));
+    if (!allDates.size) return [];
+
+    // Group by week (monday key)
+    const weeks = new Map();
+    for (const date of allDates) {
+      const wk = mondayOf(date);
+      if (!weeks.has(wk)) weeks.set(wk, []);
+      weeks.get(wk).push(date);
+    }
+
+    const sortedPesos = [...(perfil.historial_peso || [])].sort((a,b) => a.fecha.localeCompare(b.fecha));
+    const pesoBeforeOrOn = (dateStr) => {
+      let found = null;
+      for (const p of sortedPesos) {
+        if (p.fecha <= dateStr) found = p;
+        else break;
+      }
+      return found;
+    };
+
+    const todayStr = localDateStr(new Date());
+    const rows = [];
+    for (const [weekStart, dates] of weeks.entries()) {
+      const weekEnd = addDays(weekStart, 6);
+      let consumed = 0, spent = 0, daysLogged = 0;
+      // Iterate all 7 days of the week, count days with data
+      for (let i = 0; i < 7; i++) {
+        const d = addDays(weekStart, i);
+        if (d > todayStr) continue; // no futuros
+        const v = ventanas.find(vv => vv.ventana_id === d);
+        const gymSess = sessions.find(s => s.date === d);
+        if (!v && !gymSess) continue;
+        daysLogged++;
+        consumed += v?.totales_ventana?.kcal || 0;
+        let actKcal = 0;
+        if (gymSess) {
+          const det = gymKcalDetallado(gymSess, pesoKg);
+          actKcal += det.fuente === 'explicito' ? det.total : det.fuerza + det.cardio.reduce((s,c) => s + c.kcal, 0);
+        }
+        if (v?.actividades?.length) {
+          for (const act of v.actividades) actKcal += actividadKcal(act, pesoKg);
+        }
+        const tdee = gymSess ? me.gasto_total_gym_kcal : me.gasto_total_descanso_kcal;
+        spent += tdee;
+      }
+      if (daysLogged === 0) continue;
+
+      const avgC = Math.round(consumed / daysLogged);
+      const avgS = Math.round(spent / daysLogged);
+      const avgD = Math.round((spent - consumed) / daysLogged);
+      const lossKg = +(avgD * daysLogged / 7700).toFixed(2);
+
+      // Peso al principio y fin de la semana (el último registro <= cada fecha)
+      const pesoStart = pesoBeforeOrOn(weekStart);
+      const pesoEnd = pesoBeforeOrOn(weekEnd > todayStr ? todayStr : weekEnd);
+      const pesoDelta = pesoStart && pesoEnd && pesoStart.fecha !== pesoEnd.fecha
+        ? +(pesoEnd.peso_kg - pesoStart.peso_kg).toFixed(1)
+        : null;
+
+      // Color del déficit vs objetivo
+      const targetDef = ob.deficit_target_kcal;
+      let defCol = 'var(--dim)';
+      if (avgD >= targetDef * 0.8) defCol = 'var(--green)';
+      else if (avgD >= 0) defCol = 'var(--amber)';
+      else defCol = 'var(--red)';
+
+      // Label rango
+      const fmt = (s) => {
+        const [, m, d] = s.split('-');
+        return `${parseInt(d,10)}/${parseInt(m,10)}`;
+      };
+      const label = `${fmt(weekStart)} - ${fmt(weekEnd)}`;
+      const isCurrent = weekStart <= todayStr && todayStr <= weekEnd;
+
+      rows.push({
+        weekStart, weekEnd, label, daysLogged,
+        avgConsumed: avgC, avgSpent: avgS, avgDeficit: avgD,
+        lossKg, pesoDelta, defCol, isCurrent,
+      });
+    }
+    rows.sort((a,b) => b.weekStart.localeCompare(a.weekStart));
+    return rows.slice(0, 6);
+  });
 
   let pesoMap = $derived.by(() => {
     const map = {};
@@ -408,6 +517,50 @@
       </div>
     </div>
 
+    <!-- Resumen semanal -->
+    {#if weeklyRows.length}
+      <div class="pcard">
+        <div class="pcard-title">Resumen semanal · últimas {weeklyRows.length} semanas</div>
+        <div class="weekly-head">
+          <span class="wh-label">Semana</span>
+          <span class="wh-val">días</span>
+          <span class="wh-val">kcal</span>
+          <span class="wh-val">gasto</span>
+          <span class="wh-val">déficit</span>
+          <span class="wh-val">pérdida est.</span>
+          <span class="wh-val">Δ peso</span>
+        </div>
+        {#each weeklyRows as w}
+          <div class="weekly-row" class:current={w.isCurrent}>
+            <span class="wr-label">
+              {w.label}{#if w.isCurrent} <span class="wr-tag">actual</span>{/if}
+            </span>
+            <span class="wr-val">{w.daysLogged}/7</span>
+            <span class="wr-val">{w.avgConsumed}</span>
+            <span class="wr-val">{w.avgSpent}</span>
+            <span class="wr-val" style="color:{w.defCol}">
+              {w.avgDeficit >= 0 ? '-' : '+'}{Math.abs(w.avgDeficit)}
+            </span>
+            <span class="wr-val" style="color:{w.defCol}">
+              {w.lossKg > 0 ? '−' : w.lossKg < 0 ? '+' : ''}{Math.abs(w.lossKg)}kg
+            </span>
+            <span class="wr-val">
+              {#if w.pesoDelta !== null}
+                <span style="color:{w.pesoDelta <= 0 ? 'var(--green)' : 'var(--red)'}">
+                  {w.pesoDelta > 0 ? '+' : ''}{w.pesoDelta}kg
+                </span>
+              {:else}
+                <span style="color:var(--dim)">—</span>
+              {/if}
+            </span>
+          </div>
+        {/each}
+        <div style="margin-top:10px;font-size:10px;color:var(--dim);line-height:1.6">
+          Valores promedio diarios por semana · <strong>pérdida est.</strong> = déficit acumulado / 7700 kcal · <strong>Δ peso</strong> = diferencia entre el último peso registrado al cierre vs al inicio de la semana
+        </div>
+      </div>
+    {/if}
+
     <!-- Chart: Balance calórico -->
     {#if deficitChart}
       <div class="pcard">
@@ -644,6 +797,34 @@
     font-size: 11px; color: var(--muted);
   }
   .peso-goal strong { color: var(--green); }
+
+  .weekly-head, .weekly-row {
+    display: grid;
+    grid-template-columns: 1.5fr 0.6fr 0.8fr 0.8fr 0.9fr 1fr 0.9fr;
+    gap: 6px; align-items: center;
+    padding: 7px 0; border-bottom: 1px solid var(--b1);
+    font-size: 11px;
+  }
+  .weekly-head { color: var(--dim); font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; border-bottom-color: var(--b2); }
+  .weekly-row:last-of-type { border-bottom: none; }
+  .weekly-row.current { background: rgba(124,106,245,0.05); margin: 0 -8px; padding-left: 8px; padding-right: 8px; border-radius: 4px; }
+  .wh-label, .wr-label { color: var(--muted); font-weight: 500; }
+  .wr-label { color: var(--text); font-size: 11px; }
+  .wh-val, .wr-val { text-align: right; font-variant-numeric: tabular-nums; }
+  .wr-val { color: var(--text); font-weight: 600; }
+  .wr-tag {
+    font-size: 8px; color: var(--accent-l); background: rgba(124,106,245,0.12);
+    border: 1px solid rgba(124,106,245,0.3); border-radius: 3px;
+    padding: 1px 4px; font-weight: 600; margin-left: 4px; text-transform: uppercase;
+  }
+  @media (max-width: 560px) {
+    .weekly-head, .weekly-row {
+      grid-template-columns: 1.3fr 0.5fr 0.7fr 0.8fr 0.8fr;
+      font-size: 10px;
+    }
+    .weekly-head :nth-child(4), .weekly-row :nth-child(4),
+    .weekly-head :nth-child(6), .weekly-row :nth-child(6) { display: none; }
+  }
 
   .hist-row {
     display: flex; align-items: center; gap: 10px;

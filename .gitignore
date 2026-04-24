@@ -5,3 +5,4 @@ build/
 .claude/
 .env
 .env.local
+notion-mcp-server/

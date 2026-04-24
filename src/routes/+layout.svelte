@@ -2,6 +2,7 @@
   import { page } from '$app/stores';
   import FastingCounter from '$lib/FastingCounter.svelte';
   import TrendChip from '$lib/TrendChip.svelte';
+  import Ingresar from '$lib/Ingresar.svelte';
 
   let { data, children } = $props();
 
@@ -18,6 +19,7 @@
   ];
 
   let currentPath = $derived($page.url.pathname);
+  let drawerOpen = $state(false);
 </script>
 
 <svelte:head>
@@ -42,6 +44,17 @@
 <main class="app-body">
   {@render children()}
 </main>
+
+<!-- FAB -->
+<button class="fab" onclick={() => drawerOpen = true} aria-label="Ingresar dato">+</button>
+
+<!-- Drawer -->
+{#if drawerOpen}
+  <div class="drawer-backdrop" onclick={() => drawerOpen = false} role="presentation"></div>
+  <div class="drawer">
+    <Ingresar onClose={() => drawerOpen = false} />
+  </div>
+{/if}
 
 <style>
   :global(*, *::before, *::after) { box-sizing: border-box; margin: 0; padding: 0; }
@@ -122,6 +135,50 @@
     display: flex;
   }
 
+  /* FAB */
+  .fab {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    z-index: 300;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--s2);
+    border: 1px solid var(--b2);
+    color: var(--muted);
+    font-size: 22px; line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color .15s, color .15s, transform .15s;
+  }
+  .fab:hover { border-color: var(--accent); color: var(--accent-l); transform: scale(1.06); }
+  .fab:active { transform: scale(0.95); }
+
+  /* Drawer backdrop */
+  .drawer-backdrop {
+    position: fixed; inset: 0;
+    z-index: 400;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+  }
+
+  /* Drawer — desktop: panel derecho */
+  .drawer {
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    z-index: 500;
+    width: 480px;
+    background: var(--s1);
+    border-left: 1px solid var(--b1);
+    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.5);
+    display: flex; flex-direction: column;
+    animation: slideInRight .22s ease-out;
+  }
+  @keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
+  }
+
   @media (max-width: 768px) {
     .header {
       flex-wrap: wrap;
@@ -145,6 +202,31 @@
     .tab-btn { flex-direction: column; gap: 2px; font-size: 10px; padding: 4px 8px; }
     .app-body {
       height: calc(100vh - 80px - 52px);
+    }
+
+    /* FAB mobile — sube para no tapar la bottom nav */
+    .fab {
+      bottom: calc(60px + env(safe-area-inset-bottom) + 12px);
+      right: 16px;
+      width: 40px; height: 40px;
+      font-size: 20px;
+    }
+
+    /* Drawer mobile — sube desde abajo, casi pantalla completa */
+    .drawer {
+      top: auto;
+      left: 0; right: 0; bottom: 0;
+      width: 100%;
+      height: 92dvh;
+      border-left: none;
+      border-top: 1px solid var(--b1);
+      border-radius: 16px 16px 0 0;
+      box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.5);
+      animation: slideInUp .25s ease-out;
+    }
+    @keyframes slideInUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
     }
   }
 </style>

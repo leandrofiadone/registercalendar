@@ -1,0 +1,4994 @@
+{
+  "metadata": {
+    "usuario": "Lean",
+    "altura_cm": 191,
+    "edad": 37,
+    "sexo": "masculino",
+    "objetivo": "bajar_peso",
+    "protocolo": "Ayuno intermitente 16h",
+    "metabolismo": {
+      "metabolismo_basal_kcal": 2314,
+      "gasto_total_descanso_kcal": 2776,
+      "gasto_total_gym_kcal": 3355,
+      "nota": "Calculado con Mifflin-St Jeor. Factor 1.2 descanso, 1.45 días de gym."
+    },
+    "objetivos_diarios": {
+      "enfoque": "Déficit moderado sostenible. Target único promedio entre días activos e inactivos.",
+      "kcal_objetivo_promedio": 2560,
+      "kcal_dia_gym": 2850,
+      "kcal_dia_descanso": 2276,
+      "deficit_target_kcal": 500,
+      "proteina_g_min": 160,
+      "proteina_g_ideal": 190,
+      "grasa_g_min": 60,
+      "carbos_g_max": 300,
+      "nota_carbos": "Límite flexible. No es low-carb estricto, es tope orientativo para mantener foco en proteína y grasa."
+    },
+    "exportado": "2026-03-27T16:01:25",
+    "rango_datos": {
+      "desde": "2026-03-07",
+      "hasta": "2026-03-27"
+    },
+    "total_dias": 21
+  },
+  "historial_peso": [
+    {
+      "fecha": "2026-03-08",
+      "peso_kg": 130
+    },
+    {
+      "fecha": "2026-03-09",
+      "peso_kg": 130
+    },
+    {
+      "fecha": "2026-03-11",
+      "peso_kg": 130
+    },
+    {
+      "fecha": "2026-03-14",
+      "peso_kg": 127.1
+    },
+    {
+      "fecha": "2026-03-17",
+      "peso_kg": 127
+    },
+    {
+      "fecha": "2026-03-19",
+      "peso_kg": 126.5
+    },
+    {
+      "fecha": "2026-03-27",
+      "peso_kg": 129
+    }
+  ],
+  "dias": [
+    {
+      "fecha": "2026-03-27",
+      "peso_kg": 129,
+      "peso_medido": true,
+      "gym": {
+        "sin_registro": true,
+        "notas": "Sin registro. Sin actividad física reportada."
+      },
+      "nutricion": {
+        "sin_registro": true,
+        "notas": "Sin registro. Ingesta desconocida."
+      }
+    },
+    {
+      "fecha": "2026-03-26",
+      "peso_kg": 128.7,
+      "peso_medido": false,
+      "gym": {
+        "sin_registro": true,
+        "notas": "Sin registro. Sin actividad física reportada."
+      },
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 1,
+        "totales": {
+          "kcal": 780,
+          "proteina_g": 31,
+          "grasa_g": 39,
+          "carbos_g": 68
+        },
+        "comidas": [
+          {
+            "tipo": "comida",
+            "hora": "01:00",
+            "fecha": "2026-03-26",
+            "descripcion": "Hamburguesa y papas fritas",
+            "alimentos": [
+              {
+                "nombre": "Hamburguesa",
+                "cantidad_g_aprox": 200,
+                "coccion": "plancha",
+                "kcal": 550,
+                "proteina_g": 28,
+                "grasa_g": 28,
+                "carbos_g": 38,
+                "notas": "Estimado. Pan + medallón + aderezos básicos.",
+                "estimado": true,
+                "ref_id": "hamburguesa"
+              },
+              {
+                "nombre": "Papas fritas",
+                "cantidad_g_aprox": 100,
+                "coccion": "frito",
+                "kcal": 230,
+                "proteina_g": 3,
+                "grasa_g": 11,
+                "carbos_g": 30,
+                "notas": "Estimado. Porción pequeña ~100g.",
+                "estimado": true,
+                "ref_id": "papas_fritas"
+              }
+            ],
+            "totales": {
+              "kcal": 780,
+              "proteina_g": 31,
+              "grasa_g": 39,
+              "carbos_g": 68,
+              "estimado": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fecha": "2026-03-25",
+      "peso_kg": 128.4,
+      "peso_medido": false,
+      "gym": {
+        "sin_registro": true,
+        "notas": "Sin registro. Actividad desconocida."
+      },
+      "nutricion": {
+        "sin_registro": true,
+        "notas": "Sin registro. Superávit probable."
+      }
+    },
+    {
+      "fecha": "2026-03-24",
+      "peso_kg": 128.1,
+      "peso_medido": false,
+      "gym": {
+        "sin_registro": true,
+        "notas": "Sin registro. Actividad desconocida."
+      },
+      "nutricion": {
+        "sin_registro": true,
+        "notas": "Sin registro. Superávit probable."
+      }
+    },
+    {
+      "fecha": "2026-03-23",
+      "peso_kg": 127.8,
+      "peso_medido": false,
+      "gym": {
+        "sin_registro": true,
+        "notas": "Sin registro. Actividad desconocida."
+      },
+      "nutricion": {
+        "sin_registro": true,
+        "notas": "Sin registro. Superávit probable."
+      }
+    },
+    {
+      "fecha": "2026-03-22",
+      "peso_kg": 127.4,
+      "peso_medido": false,
+      "gym": {
+        "sin_registro": true,
+        "notas": "Sin registro. Actividad desconocida."
+      },
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 2,
+        "totales": {
+          "kcal": 2554,
+          "proteina_g": 93.2,
+          "grasa_g": 139.1,
+          "carbos_g": 238.8
+        },
+        "comidas": [
+          {
+            "tipo": "comida",
+            "hora": "03:00",
+            "fecha": "2026-03-22",
+            "descripcion": "Medialunas y sanguche ciabatta de jamón y queso",
+            "alimentos": [
+              {
+                "nombre": "Medialuna",
+                "unidades": 4,
+                "cantidad_g_aprox": 180,
+                "coccion": "horneado",
+                "kcal": 620,
+                "proteina_g": 12,
+                "grasa_g": 32,
+                "carbos_g": 76,
+                "notas": "Estimado. ~45g por unidad.",
+                "estimado": true,
+                "ref_id": "medialuna"
+              },
+              {
+                "nombre": "Sanguche ciabatta jamón y queso con manteca",
+                "cantidad_g_aprox": 195,
+                "coccion": "sin coccion",
+                "kcal": 560,
+                "proteina_g": 29,
+                "grasa_g": 30,
+                "carbos_g": 43,
+                "notas": "Estimado. Pan ciabatta ~80g, jamón ~60g, queso ~40g, manteca ~15g.",
+                "estimado": true,
+                "ref_id": "sanguche_ciabatta_jamon_queso"
+              }
+            ],
+            "totales": {
+              "kcal": 1180,
+              "proteina_g": 41,
+              "grasa_g": 62,
+              "carbos_g": 119,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "14:00",
+            "fecha": "2026-03-22",
+            "descripcion": "Tequeños y empanada de carne",
+            "alimentos": [
+              {
+                "nombre": "Tequeño",
+                "unidades": 12,
+                "cantidad_g_aprox": 300,
+                "coccion": "frito",
+                "kcal": 1140,
+                "proteina_g": 42,
+                "grasa_g": 66,
+                "carbos_g": 96,
+                "notas": "Estimado. ~25g por unidad, ~95 kcal c/u. Masa de harina con queso.",
+                "estimado": true,
+                "ref_id": "tequeno"
+              },
+              {
+                "nombre": "Empanada de carne",
+                "unidades": 1,
+                "cantidad_g_aprox": 85,
+                "coccion": "horno",
+                "kcal": 234,
+                "proteina_g": 10.2,
+                "grasa_g": 11.1,
+                "carbos_g": 23.8,
+                "notas": "Estimado.",
+                "estimado": true,
+                "ref_id": "empanada_carne"
+              }
+            ],
+            "totales": {
+              "kcal": 1374,
+              "proteina_g": 52.2,
+              "grasa_g": 77.1,
+              "carbos_g": 119.8,
+              "estimado": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fecha": "2026-03-21",
+      "peso_kg": 127.1,
+      "peso_medido": false,
+      "gym": {
+        "sin_registro": true,
+        "notas": "Sin registro. Actividad desconocida."
+      },
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 5,
+        "totales": {
+          "kcal": 5517.5,
+          "proteina_g": 260.2,
+          "grasa_g": 233.9,
+          "carbos_g": 487.1
+        },
+        "comidas": [
+          {
+            "tipo": "comida",
+            "hora": "02:37",
+            "fecha": "2026-03-21",
+            "descripcion": "Fideos con parmesano y crema de leche",
+            "alimentos": [
+              {
+                "nombre": "Fideos Grimaldi al huevo",
+                "marca": "Grimaldi",
+                "cantidad_g": 200,
+                "coccion": "hervido",
+                "kcal": 740,
+                "proteina_g": 26,
+                "grasa_g": 4,
+                "carbos_g": 146,
+                "notas": "200g en seco. 296kcal/80g según rótulo. Macros P/G/C estimados por tabla pasta al huevo.",
+                "estimado": true,
+                "ref_id": "fideos_grimaldi_huevo"
+              },
+              {
+                "nombre": "Queso parmesano",
+                "cantidad": 100,
+                "cantidad_g": 100,
+                "kcal": 431,
+                "proteina_g": 38.5,
+                "grasa_g": 29,
+                "carbos_g": 4.1,
+                "ref_id": "queso_parmesano"
+              },
+              {
+                "nombre": "Crema de leche",
+                "cantidad": 150,
+                "cantidad_ml": 150,
+                "kcal": 310.5,
+                "proteina_g": 3.15,
+                "grasa_g": 30,
+                "carbos_g": 5.55,
+                "ref_id": "crema_leche"
+              }
+            ],
+            "totales": {
+              "kcal": 1481.5,
+              "proteina_g": 67.65,
+              "grasa_g": 63,
+              "carbos_g": 155.65,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "20:00",
+            "fecha": "2026-03-21",
+            "descripcion": "Chuleta de cerdo a la plancha",
+            "alimentos": [
+              {
+                "nombre": "Chuleta de cerdo",
+                "cantidad_g": 400,
+                "peso_total_con_hueso_g": 400,
+                "hueso_estimado_g": 70,
+                "carne_neta_estimada_g": 330,
+                "coccion": "plancha",
+                "kcal": 710,
+                "proteina_g": 92,
+                "grasa_g": 35,
+                "carbos_g": 0,
+                "notas": "400g con hueso. Hueso ~70g, carne neta ~330g. Macros estimados USDA pork loin chop cooked.",
+                "estimado": true,
+                "ref_id": "chuleta_cerdo"
+              }
+            ],
+            "totales": {
+              "kcal": 710,
+              "proteina_g": 92,
+              "grasa_g": 35,
+              "carbos_g": 0,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "04:20",
+            "fecha": "2026-03-21",
+            "descripcion": "Galletitas Granix",
+            "alimentos": [
+              {
+                "nombre": "Galletitas Granix",
+                "kcal": 1158,
+                "proteina_g": 14.3,
+                "grasa_g": 25.74,
+                "carbos_g": 115.2,
+                "cantidad": 286,
+                "cantidad_g": 286,
+                "ref_id": "galletitas_granix"
+              }
+            ],
+            "totales": {
+              "kcal": 1158,
+              "proteina_g": 14.3,
+              "grasa_g": 25.74,
+              "carbos_g": 115.2,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "18:20",
+            "fecha": "2026-03-21",
+            "descripcion": "Tortilla de papas, buñuelos de espinaca y empanadas de carne",
+            "alimentos": [
+              {
+                "nombre": "Tortilla de papas",
+                "marca": "Bagoló - Rosticcerio",
+                "cantidad_g_aprox": 220,
+                "coccion": "plancha",
+                "kcal": 374,
+                "proteina_g": 19.8,
+                "grasa_g": 22.0,
+                "carbos_g": 26.4,
+                "notas": "Estimado. Porción estándar de tortilla española ~220g."
+              },
+              {
+                "nombre": "Buñuelo de espinaca",
+                "marca": "Bagoló - Rosticcerio",
+                "unidades": 4,
+                "cantidad_g_aprox": 180,
+                "coccion": "frito",
+                "kcal": 414,
+                "proteina_g": 12.6,
+                "grasa_g": 23.4,
+                "carbos_g": 39.6,
+                "notas": "Estimado. ~45g por buñuelo. Masa con espinaca y queso, frito."
+              },
+              {
+                "nombre": "Empanada de carne",
+                "marca": "Bagoló - Rosticcerio",
+                "unidades": 3,
+                "cantidad_g_aprox": 255,
+                "coccion": "horno",
+                "kcal": 701,
+                "proteina_g": 30.6,
+                "grasa_g": 33.2,
+                "carbos_g": 71.4,
+                "notas": "Estimado. ~85g por empanada. Relleno de carne vacuna con cebolla."
+              }
+            ],
+            "totales": {
+              "kcal": 1489,
+              "proteina_g": 63.0,
+              "grasa_g": 78.6,
+              "carbos_g": 137.4,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "21:30",
+            "fecha": "2026-03-21",
+            "descripcion": "Empanadas Bagoló - carne, choclo, cebolla y queso",
+            "alimentos": [
+              {
+                "nombre": "Empanada de carne",
+                "marca": "Bagoló - Rosticcerio",
+                "unidades": 1,
+                "cantidad_g_aprox": 85,
+                "coccion": "horno",
+                "kcal": 234,
+                "proteina_g": 10.2,
+                "grasa_g": 11.1,
+                "carbos_g": 23.8,
+                "notas": "Estimado. Mismo ref que entrada anterior.",
+                "ref_id": "empanada_carne_bagolo"
+              },
+              {
+                "nombre": "Empanada de choclo",
+                "marca": "Bagoló - Rosticcerio",
+                "unidades": 1,
+                "cantidad_g_aprox": 85,
+                "coccion": "horno",
+                "kcal": 215,
+                "proteina_g": 5.5,
+                "grasa_g": 9.0,
+                "carbos_g": 29.0,
+                "notas": "Estimado. Relleno de choclo con queso.",
+                "ref_id": "empanada_choclo_bagolo"
+              },
+              {
+                "nombre": "Empanada de cebolla y queso",
+                "marca": "Bagoló - Rosticcerio",
+                "unidades": 1,
+                "cantidad_g_aprox": 85,
+                "coccion": "horno",
+                "kcal": 230,
+                "proteina_g": 7.5,
+                "grasa_g": 11.5,
+                "carbos_g": 26.0,
+                "notas": "Estimado. Relleno de cebolla y queso.",
+                "ref_id": "empanada_cebolla_queso_bagolo"
+              }
+            ],
+            "totales": {
+              "kcal": 679,
+              "proteina_g": 23.2,
+              "grasa_g": 31.6,
+              "carbos_g": 78.8,
+              "estimado": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fecha": "2026-03-20",
+      "peso_kg": 126.8,
+      "peso_medido": false,
+      "gym": {
+        "sin_registro": false,
+        "grupos_musculares": [
+          "Pecho-Tricep",
+          "Piernas",
+          "Hombros",
+          "Cardio"
+        ],
+        "ejercicios_fuerza": 4,
+        "ejercicios_cardio": 1,
+        "detalle_fuerza": [
+          {
+            "ejercicio": "Press de Banca",
+            "musculo_principal": "Pecho",
+            "sets": 4,
+            "reps_total": 31,
+            "peso_max_kg": 80,
+            "volumen_total_kg": 2480,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 8,
+                "peso_kg": 80
+              },
+              {
+                "set": 2,
+                "reps": 8,
+                "peso_kg": 80
+              },
+              {
+                "set": 3,
+                "reps": 8,
+                "peso_kg": 80
+              },
+              {
+                "set": 4,
+                "reps": 7,
+                "peso_kg": 80
+              }
+            ]
+          },
+          {
+            "ejercicio": "Pec Deck",
+            "musculo_principal": "Pecho",
+            "sets": 3,
+            "reps_total": 36,
+            "peso_max_kg": 88,
+            "volumen_total_kg": 3168,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 12,
+                "peso_kg": 88
+              },
+              {
+                "set": 2,
+                "reps": 12,
+                "peso_kg": 88
+              },
+              {
+                "set": 3,
+                "reps": 12,
+                "peso_kg": 88
+              }
+            ]
+          },
+          {
+            "ejercicio": "Calf Raise",
+            "musculo_principal": "Pantorrilla",
+            "sets": 3,
+            "reps_total": 42,
+            "peso_max_kg": 34,
+            "volumen_total_kg": 1428,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 14,
+                "peso_kg": 34
+              },
+              {
+                "set": 2,
+                "reps": 14,
+                "peso_kg": 34
+              },
+              {
+                "set": 3,
+                "reps": 14,
+                "peso_kg": 34
+              }
+            ]
+          },
+          {
+            "ejercicio": "Extensión de Tríceps Overhead",
+            "musculo_principal": "Tríceps",
+            "sets": 3,
+            "reps_total": 36,
+            "peso_max_kg": 61,
+            "volumen_total_kg": 1552,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 8,
+                "peso_kg": 61
+              },
+              {
+                "set": 2,
+                "reps": 14,
+                "peso_kg": 38
+              },
+              {
+                "set": 3,
+                "reps": 14,
+                "peso_kg": 38
+              }
+            ]
+          }
+        ],
+        "detalle_cardio": [
+          {
+            "orden": 1,
+            "ejercicio": "Cinta",
+            "duracion_min": 9.82,
+            "distancia_km": 1.08,
+            "pasos": 1814,
+            "kcal": 79.2,
+            "velocidad_kmh": 6.2,
+            "inclinacion": 0,
+            "intensidad": "moderada",
+            "notas": "Bodytone Evolution Cardio. Tiempo: 9:49. Heart rate no registrado."
+          }
+        ],
+        "notas": null
+      },
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 8,
+        "totales": {
+          "kcal": 2687.6,
+          "proteina_g": 184.4,
+          "grasa_g": 89.5,
+          "carbos_g": 276.8
+        },
+        "comidas": [
+          {
+            "tipo": "comida",
+            "hora": "00:00",
+            "fecha": "2026-03-20",
+            "descripcion": "Arroz yamani con tandoori y tapa de nalga al horno",
+            "alimentos": [
+              {
+                "nombre": "Arroz integral yamani",
+                "cantidad": "220g",
+                "cantidad_g": 220,
+                "coccion": "cocido",
+                "kcal": 286,
+                "proteina_g": 7.1,
+                "grasa_g": 0.8,
+                "carbos_g": 59.8,
+                "notas": "medido en crudo, cocción con tandoori",
+                "ref_id": "arroz_yamani_cocido"
+              },
+              {
+                "nombre": "Tapa de nalga",
+                "marca": "vacuna",
+                "cantidad_g": 400,
+                "peso_total_con_hueso_g": 400,
+                "hueso_estimado_g": 60,
+                "carne_neta_estimada_g": 340,
+                "coccion": "horno",
+                "kcal": 700,
+                "proteina_g": 120,
+                "grasa_g": 24,
+                "carbos_g": 0,
+                "notas": "400g, macros recalculados desde referencia USDA",
+                "ref_id": "tapa_nalga"
+              }
+            ],
+            "totales": {
+              "kcal": 986,
+              "proteina_g": 127.1,
+              "grasa_g": 24.8,
+              "carbos_g": 59.8,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "02:34",
+            "fecha": "2026-03-20",
+            "descripcion": "Dulce de membrillo",
+            "alimentos": [
+              {
+                "nombre": "Dulce de membrillo",
+                "cantidad_g": 100,
+                "kcal": 253,
+                "proteina_g": 0.4,
+                "grasa_g": 0.1,
+                "carbos_g": 63,
+                "fibra_g": 1.5,
+                "azucares_g": 60,
+                "notas": "100g netos",
+                "ref_id": "dulce_membrillo"
+              }
+            ],
+            "totales": {
+              "kcal": 253,
+              "proteina_g": 0.4,
+              "grasa_g": 0.1,
+              "carbos_g": 63,
+              "fibra_g": 1.5,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "03:09",
+            "fecha": "2026-03-20",
+            "descripcion": "15 galletitas Cerealitas",
+            "alimentos": [
+              {
+                "nombre": "Galletitas Cerealitas",
+                "marca": "Cerealitas",
+                "cantidad": 102,
+                "cantidad_g": 102,
+                "kcal": 438,
+                "proteina_g": 6.1,
+                "grasa_g": 14.3,
+                "carbos_g": 68,
+                "fibra_g": 1.5,
+                "sodio_mg": 340,
+                "calcio_mg": 80,
+                "ref_id": "galletitas_cerealitas"
+              }
+            ],
+            "totales": {
+              "kcal": 438,
+              "proteina_g": 6.1,
+              "grasa_g": 14.3,
+              "carbos_g": 68,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "15:23",
+            "fecha": "2026-03-20",
+            "descripcion": "4 huevos revueltos con aceite",
+            "alimentos": [
+              {
+                "nombre": "huevo",
+                "cantidad": 182,
+                "cantidad_g": 182,
+                "coccion": "revuelto",
+                "kcal": 282,
+                "proteina_g": 23.7,
+                "grasa_g": 20.1,
+                "carbos_g": 1.8,
+                "colesterol_mg": 732,
+                "sodio_mg": 163,
+                "potasio_mg": 182,
+                "selenio_mcg": 36.4,
+                "vit_b12_mcg": 1.64,
+                "vit_d_mcg": 3.64,
+                "vit_a_mcg": 270,
+                "colina_mg": 182,
+                "ref_id": "huevo"
+              },
+              {
+                "nombre": "aceite de oliva",
+                "cantidad": 5,
+                "cantidad_ml_aprox": 5,
+                "coccion": "crudo",
+                "kcal": 44,
+                "proteina_g": 0,
+                "grasa_g": 5,
+                "carbos_g": 0,
+                "omega3_g": 0.04,
+                "omega6_g": 0.6,
+                "vit_e_mg": 0.35,
+                "ref_id": "aceite_de_oliva"
+              }
+            ],
+            "totales": {
+              "kcal": 326,
+              "proteina_g": 23.7,
+              "grasa_g": 25.1,
+              "carbos_g": 1.8,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "15:41",
+            "fecha": "2026-03-20",
+            "descripcion": "7 galletitas Cerealitas",
+            "alimentos": [
+              {
+                "nombre": "Galletitas Cerealitas",
+                "cantidad_g": 47.6,
+                "kcal": 204.2,
+                "proteina_g": 2.86,
+                "grasa_g": 6.66,
+                "carbos_g": 31.75,
+                "fibra_g": 0.71,
+                "sodio_mg": 158.7,
+                "calcio_mg": 37.3,
+                "ref_id": "galletitas_cerealitas"
+              }
+            ],
+            "totales": {
+              "kcal": 204.2,
+              "proteina_g": 2.86,
+              "grasa_g": 6.66,
+              "carbos_g": 31.75,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "15:41",
+            "fecha": "2026-03-20",
+            "descripcion": "Tomate fresco",
+            "alimentos": [
+              {
+                "nombre": "Tomate fresco",
+                "cantidad": 180,
+                "cantidad_g": 180,
+                "kcal": 32.4,
+                "proteina_g": 1.62,
+                "grasa_g": 0.36,
+                "carbos_g": 7.02,
+                "fibra_g": 1.44,
+                "sodio_mg": 27,
+                "potasio_mg": 324,
+                "hierro_mg": 0.27,
+                "calcio_mg": 18,
+                "magnesio_mg": 18,
+                "vit_c_mg": 21.6,
+                "vit_a_mcg": 135,
+                "folato_mcg": 27,
+                "ref_id": "tomate"
+              }
+            ],
+            "totales": {
+              "kcal": 32.4,
+              "proteina_g": 1.62,
+              "grasa_g": 0.36,
+              "carbos_g": 7.02,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "15:56",
+            "fecha": "2026-03-20",
+            "descripcion": "10 galletitas Cerealitas",
+            "alimentos": [
+              {
+                "nombre": "Galletitas Cerealitas",
+                "cantidad": 10,
+                "gramos_por_unidad": 6.8,
+                "kcal": 292,
+                "proteina_g": 4.1,
+                "grasa_g": 9.5,
+                "carbos_g": 45.4,
+                "ref_id": "galletitas_cerealitas"
+              }
+            ],
+            "totales": {
+              "kcal": 292,
+              "proteina_g": 4.1,
+              "grasa_g": 9.5,
+              "carbos_g": 45.4,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "22:16",
+            "fecha": "2026-03-20",
+            "descripcion": "Sardinas Gomes da Costa en su jugo con aceite vegetal (lata entera)",
+            "alimentos": [
+              {
+                "nombre": "Sardinas en su jugo con aceite vegetal",
+                "marca": "Gomes da Costa",
+                "cantidad_g": 75,
+                "notas": "Peso escurrido 75g, peso neto 125g",
+                "kcal": 156,
+                "proteina_g": 18.5,
+                "grasa_g": 8.6,
+                "carbos_g": 0,
+                "fibra_g": 0,
+                "sodio_mg": 270,
+                "omega3_g": 1.4,
+                "vit_b12_mcg": 5.4,
+                "vit_d_mcg": 4.5,
+                "calcio_mg": 230,
+                "hierro_mg": 2.4,
+                "selenio_mcg": 28,
+                "ref_id": "sardinas_aceite"
+              }
+            ],
+            "totales": {
+              "kcal": 156,
+              "proteina_g": 18.5,
+              "grasa_g": 8.6,
+              "carbos_g": 0,
+              "estimado": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fecha": "2026-03-19",
+      "peso_kg": 126.5,
+      "peso_medido": true,
+      "gym": {
+        "sin_registro": false,
+        "grupos_musculares": [
+          "Cardio"
+        ],
+        "ejercicios_fuerza": 0,
+        "ejercicios_cardio": 2,
+        "detalle_fuerza": [],
+        "detalle_cardio": [
+          {
+            "orden": 1,
+            "ejercicio": "Caminata exterior",
+            "duracion_min": 21.55,
+            "distancia_km": 1.39,
+            "kcal": 145,
+            "velocidad_kmh": 3.87,
+            "intensidad": "baja",
+            "notas": "Ritmo medio 15:31 min/km. App reportó 86 kcal; corregido ×1.69 por peso (127kg) = 145 kcal. Ruta: Av. Parque Roberto Goyeneche, zona Saavedra/Núñez."
+          },
+          {
+            "orden": 2,
+            "ejercicio": "Caminata exterior",
+            "duracion_min": 16.05,
+            "distancia_km": 1.1,
+            "kcal": 64,
+            "intensidad": "baja",
+            "notas": "Ritmo medio 14:33 min/km. Zona Coghlan / Av. Parque Roberto Goyeneche, CABA."
+          }
+        ],
+        "notas": null
+      },
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 4,
+        "totales": {
+          "kcal": 2439.8,
+          "proteina_g": 169.1,
+          "grasa_g": 65.9,
+          "carbos_g": 276.6
+        },
+        "comidas": [
+          {
+            "tipo": "comida",
+            "hora": "00:15",
+            "fecha": "2026-03-19",
+            "descripcion": "Tapa de nalga al horno con arroz hervido",
+            "alimentos": [
+              {
+                "nombre": "Tapa de nalga cocida",
+                "cantidad_g": 334,
+                "coccion": "horno",
+                "kcal": 585,
+                "proteina_g": 100.2,
+                "grasa_g": 20,
+                "carbos_g": 0,
+                "notas": "Cocida al horno, peso ya cocido. Descontados 66g de grasa/arterias recortadas.",
+                "ref_id": "tapa_nalga"
+              },
+              {
+                "nombre": "Arroz blanco cocido",
+                "cantidad_g": 550,
+                "coccion": "hervido",
+                "kcal": 715,
+                "proteina_g": 14.9,
+                "grasa_g": 1.7,
+                "carbos_g": 155.1,
+                "notas": "Hervido con mucha agua. ~180-190g en seco estimado (ratio ~3:1).",
+                "ref_id": "arroz_blanco_cocido"
+              }
+            ],
+            "totales": {
+              "kcal": 1300,
+              "proteina_g": 115.1,
+              "grasa_g": 21.7,
+              "carbos_g": 155.1,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "01:00",
+            "fecha": "2026-03-19",
+            "descripcion": "Arroz hervido con queso tybo",
+            "alimentos": [
+              {
+                "nombre": "Queso tybo",
+                "cantidad_g": 100,
+                "coccion": "sin cocción",
+                "kcal": 340,
+                "proteina_g": 24,
+                "grasa_g": 26,
+                "carbos_g": 1,
+                "notas": "Feteado de máquina.",
+                "ref_id": "queso_tybo"
+              },
+              {
+                "nombre": "Arroz blanco cocido",
+                "cantidad_g": 360,
+                "coccion": "hervido",
+                "kcal": 468,
+                "proteina_g": 9.7,
+                "grasa_g": 1.1,
+                "carbos_g": 101.5,
+                "notas": "Hervido con mucha agua. ~120g en seco estimado (ratio ~3:1).",
+                "ref_id": "arroz_blanco_cocido"
+              }
+            ],
+            "totales": {
+              "kcal": 808,
+              "proteina_g": 33.7,
+              "grasa_g": 27.1,
+              "carbos_g": 102.5,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "17:35",
+            "fecha": "2026-03-19",
+            "descripcion": "Sardinas Gomes da Costa en aceite vegetal, lata entera",
+            "alimentos": [
+              {
+                "nombre": "Sardinas en aceite vegetal",
+                "marca": "Gomes da Costa",
+                "cantidad_g": 75,
+                "coccion": "conserva",
+                "kcal": 143.8,
+                "proteina_g": 16.3,
+                "grasa_g": 11.1,
+                "carbos_g": 0,
+                "notas": "Peso escurrido total 75g. Valores escalados desde porción 60g de etiqueta.",
+                "ref_id": "sardinas_aceite"
+              }
+            ],
+            "totales": {
+              "kcal": 143.8,
+              "proteina_g": 16.3,
+              "grasa_g": 11.1,
+              "carbos_g": 0,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "17:43",
+            "fecha": "2026-03-19",
+            "descripcion": "Barra Müecas pasas y arándanos 45g",
+            "alimentos": [
+              {
+                "nombre": "Barra de cereales pasas y arándanos",
+                "marca": "Müecas",
+                "unidades": 1,
+                "cantidad_g": 45,
+                "kcal": 188,
+                "proteina_g": 4,
+                "grasa_g": 6,
+                "carbos_g": 19,
+                "notas": "Porción completa = 1 barrita 45g. Grasa sat 0.8g. Valores de etiqueta, parcialmente ilegibles.",
+                "ref_id": "barrita_muecas_pasas_arandanos"
+              }
+            ],
+            "totales": {
+              "kcal": 188,
+              "proteina_g": 4,
+              "grasa_g": 6,
+              "carbos_g": 19,
+              "estimado": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fecha": "2026-03-18",
+      "peso_kg": 126.8,
+      "peso_medido": false,
+      "gym": null,
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 3,
+        "totales": {
+          "kcal": 2504,
+          "proteina_g": 196.8,
+          "grasa_g": 99.1,
+          "carbos_g": 206.4
+        },
+        "comidas": [
+          {
+            "tipo": "comida",
+            "hora": "21:44",
+            "fecha": "2026-03-18",
+            "descripcion": "Tapa de nalga, ensalada, papa y zanahoria, crema",
+            "alimentos": [
+              {
+                "nombre": "Tapa de nalga a la plancha",
+                "cantidad_g": 370,
+                "coccion": "plancha",
+                "kcal": 685,
+                "proteina_g": 107.3,
+                "grasa_g": 25.9,
+                "carbos_g": 0,
+                "notas": "Peso crudo ~500g, cocido estimado ~370g (pérdida 25% plancha). Corte magro.",
+                "ref_id": "tapa_nalga"
+              },
+              {
+                "nombre": "Lechuga",
+                "cantidad_g": 120,
+                "coccion": "crudo",
+                "kcal": 17,
+                "proteina_g": 1.4,
+                "grasa_g": 0.2,
+                "carbos_g": 2.9,
+                "ref_id": "lechuga"
+              },
+              {
+                "nombre": "Tomate",
+                "cantidad_g": 150,
+                "coccion": "crudo",
+                "kcal": 27,
+                "proteina_g": 1.3,
+                "grasa_g": 0.3,
+                "carbos_g": 5.8,
+                "ref_id": "tomate"
+              },
+              {
+                "nombre": "Papa hervida",
+                "cantidad_g": 280,
+                "coccion": "hervido",
+                "kcal": 244,
+                "proteina_g": 5.6,
+                "grasa_g": 0.3,
+                "carbos_g": 56,
+                "notas": "400g total cocido, proporción visual ~70% papa",
+                "ref_id": "papa_hervida"
+              },
+              {
+                "nombre": "Zanahoria hervida",
+                "cantidad_g": 120,
+                "coccion": "hervido",
+                "kcal": 42,
+                "proteina_g": 1,
+                "grasa_g": 0.2,
+                "carbos_g": 9.6,
+                "notas": "Proporción visual ~30% zanahoria",
+                "ref_id": "zanahoria_hervida"
+              },
+              {
+                "nombre": "Crema de leche",
+                "cantidad_g": 100,
+                "kcal": 292,
+                "proteina_g": 2.2,
+                "grasa_g": 30,
+                "carbos_g": 3,
+                "ref_id": "crema_leche"
+              }
+            ],
+            "totales": {
+              "kcal": 1307,
+              "proteina_g": 118.8,
+              "grasa_g": 56.9,
+              "carbos_g": 77.3,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "00:25",
+            "fecha": "2026-03-18",
+            "descripcion": "Dos barritas (negra y amarilla) + gelatina sin azúcar",
+            "alimentos": [
+              {
+                "nombre": "Barra negra (cacao/maní/quinoa)",
+                "marca": "Vitalgy Foods",
+                "cantidad_g": 50,
+                "kcal": 132,
+                "proteina_g": 15,
+                "grasa_g": 3.5,
+                "carbos_g": 10,
+                "ref_id": "barra_vitalgy_negra"
+              },
+              {
+                "nombre": "Barra amarilla (quinoa/maní/castañas)",
+                "cantidad_g": 40,
+                "kcal": 156,
+                "proteina_g": 7.2,
+                "grasa_g": 4.8,
+                "carbos_g": 21,
+                "ref_id": "barra_vitalgy_amarilla"
+              },
+              {
+                "nombre": "Gelatina sin azúcar preparada",
+                "cantidad_g": 150,
+                "kcal": 10,
+                "proteina_g": 1.5,
+                "grasa_g": 0,
+                "carbos_g": 0,
+                "notas": "Sin azúcar, edulcorada artificialmente.",
+                "ref_id": "gelatina_sin_azucar"
+              }
+            ],
+            "totales": {
+              "kcal": 298,
+              "proteina_g": 23.7,
+              "grasa_g": 8.3,
+              "carbos_g": 31,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "14:31",
+            "fecha": "2026-03-18",
+            "descripcion": "Papas hervidas con tomate y queso parmesano",
+            "alimentos": [
+              {
+                "nombre": "Papa hervida",
+                "cantidad_g": 428,
+                "coccion": "hervido",
+                "kcal": 372,
+                "proteina_g": 8.6,
+                "grasa_g": 0.4,
+                "carbos_g": 85.6,
+                "ref_id": "papa_hervida"
+              },
+              {
+                "nombre": "Tomate",
+                "cantidad_g": 200,
+                "coccion": "crudo",
+                "kcal": 36,
+                "proteina_g": 1.8,
+                "grasa_g": 0.4,
+                "carbos_g": 7.8,
+                "ref_id": "tomate"
+              },
+              {
+                "nombre": "Queso parmesano",
+                "cantidad_g": 114,
+                "kcal": 491,
+                "proteina_g": 43.9,
+                "grasa_g": 33.1,
+                "carbos_g": 4.7,
+                "ref_id": "queso_parmesano"
+              }
+            ],
+            "totales": {
+              "kcal": 899,
+              "proteina_g": 54.3,
+              "grasa_g": 33.9,
+              "carbos_g": 98.1,
+              "estimado": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fecha": "2026-03-17",
+      "peso_kg": 127,
+      "peso_medido": true,
+      "gym": {
+        "sin_registro": false,
+        "grupos_musculares": [
+          "Espalda-Bicep",
+          "Piernas",
+          "Hombros",
+          "Cardio"
+        ],
+        "ejercicios_fuerza": 6,
+        "ejercicios_cardio": 6,
+        "detalle_fuerza": [
+          {
+            "ejercicio": "Dominadas Asistidas",
+            "musculo_principal": "Dorsal ancho",
+            "sets": 9,
+            "reps_total": 55,
+            "peso_max_kg": 91,
+            "volumen_total_kg": 4035,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 5,
+                "peso_kg": 91,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 6,
+                "peso_kg": 68,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 6,
+                "peso_kg": 68,
+                "tipo": "standard"
+              },
+              {
+                "set": 4,
+                "reps": 6,
+                "peso_kg": 68,
+                "tipo": "standard"
+              },
+              {
+                "set": 5,
+                "reps": 6,
+                "peso_kg": 68,
+                "tipo": "standard"
+              },
+              {
+                "set": 6,
+                "reps": 6,
+                "peso_kg": 68,
+                "tipo": "standard"
+              },
+              {
+                "set": 7,
+                "reps": 8,
+                "peso_kg": 77,
+                "tipo": "standard"
+              },
+              {
+                "set": 8,
+                "reps": 6,
+                "peso_kg": 77,
+                "tipo": "standard"
+              },
+              {
+                "set": 9,
+                "reps": 6,
+                "peso_kg": 77,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Curl Bíceps Rangos Parciales con Pesa Rusa",
+            "musculo_principal": "Bíceps",
+            "sets": 3,
+            "reps_total": 0,
+            "peso_max_kg": 0,
+            "volumen_total_kg": 0,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": 16,
+                    "peso_kg": 14
+                  },
+                  {
+                    "drop": 2,
+                    "reps": 16,
+                    "peso_kg": 14
+                  },
+                  {
+                    "drop": 3,
+                    "reps": 4,
+                    "peso_kg": 14
+                  }
+                ]
+              },
+              {
+                "set": 2,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": 16,
+                    "peso_kg": 12
+                  },
+                  {
+                    "drop": 2,
+                    "reps": 16,
+                    "peso_kg": 12
+                  },
+                  {
+                    "drop": 3,
+                    "reps": 16,
+                    "peso_kg": 12
+                  }
+                ]
+              },
+              {
+                "set": 3,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": 16,
+                    "peso_kg": 12
+                  },
+                  {
+                    "drop": 2,
+                    "reps": 16,
+                    "peso_kg": 12
+                  },
+                  {
+                    "drop": 3,
+                    "reps": 16,
+                    "peso_kg": 12
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "ejercicio": "Around the World",
+            "musculo_principal": "Deltoides",
+            "sets": 3,
+            "reps_total": 52,
+            "peso_max_kg": 24,
+            "volumen_total_kg": 1168,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 20,
+                "peso_kg": 20,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 16,
+                "peso_kg": 24,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 16,
+                "peso_kg": 24,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Elevación de Gemelos Sentado",
+            "musculo_principal": "Gastrocnemio",
+            "sets": 3,
+            "reps_total": 90,
+            "peso_max_kg": 20,
+            "volumen_total_kg": 1800,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 30,
+                "peso_kg": 20,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 30,
+                "peso_kg": 20,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 30,
+                "peso_kg": 20,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Leg Curl Sentado",
+            "musculo_principal": "Isquiotibiales",
+            "sets": 3,
+            "reps_total": 24,
+            "peso_max_kg": 107,
+            "volumen_total_kg": 2190,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 6,
+                "peso_kg": 107,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 8,
+                "peso_kg": 86,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 10,
+                "peso_kg": 86,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Curl Bíceps en Banco Scott con Barra Z",
+            "musculo_principal": "Bíceps",
+            "sets": 3,
+            "reps_total": 36,
+            "peso_max_kg": 30,
+            "volumen_total_kg": 1080,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 12,
+                "peso_kg": 30,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 12,
+                "peso_kg": 30,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 12,
+                "peso_kg": 30,
+                "tipo": "standard"
+              }
+            ]
+          }
+        ],
+        "detalle_cardio": [
+          {
+            "orden": 1,
+            "ejercicio": "Caminata exterior",
+            "duracion_min": 25,
+            "distancia_km": 1.6,
+            "kcal": 126,
+            "intensidad": "baja",
+            "notas": "Ritmo medio 15:45 min/km. Zona Mar del Plata centro / Playa Bristol."
+          },
+          {
+            "orden": 2,
+            "ejercicio": "Caminata exterior",
+            "duracion_min": 13,
+            "distancia_km": 0.71,
+            "kcal": 54,
+            "intensidad": "baja",
+            "notas": "Ritmo medio 18:16 min/km. Zona Playa Morgan Beach / Bahía Estrada."
+          },
+          {
+            "orden": 3,
+            "ejercicio": "Running exterior",
+            "duracion_min": 3,
+            "distancia_km": 0.22,
+            "kcal": 21,
+            "intensidad": "moderada",
+            "notas": "Ritmo medio 11:56 min/km. Zona Monumento Guardavidas del Norte."
+          },
+          {
+            "orden": 4,
+            "ejercicio": "Caminata exterior",
+            "duracion_min": 6,
+            "distancia_km": 0.34,
+            "kcal": 26,
+            "intensidad": "baja",
+            "notas": "Ritmo medio 16:39 min/km. Zona Playa Morgan Beach."
+          },
+          {
+            "orden": 5,
+            "ejercicio": "Running exterior",
+            "duracion_min": 4,
+            "distancia_km": 0.47,
+            "kcal": 40,
+            "intensidad": "moderada",
+            "notas": "Ritmo medio 8:04 min/km. Zona Balneario Costa del Sol."
+          },
+          {
+            "orden": 6,
+            "ejercicio": "Running exterior",
+            "duracion_min": 4,
+            "distancia_km": 0.48,
+            "kcal": 39,
+            "intensidad": "moderada",
+            "notas": "Ritmo medio 7:58 min/km. Zona Playa Constitución."
+          }
+        ],
+        "notas": null
+      },
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 4,
+        "totales": {
+          "kcal": 2923.8,
+          "proteina_g": 113.3,
+          "grasa_g": 126.1,
+          "carbos_g": 317.5
+        },
+        "comidas": [
+          {
+            "tipo": "comida",
+            "hora": "00:14",
+            "fecha": "2026-03-17",
+            "descripcion": "Buñuelos de acelga x2 y bomba de papa grande",
+            "alimentos": [
+              {
+                "nombre": "Buñuelo de acelga",
+                "unidades": 2,
+                "cantidad_g": 260,
+                "coccion": "frito",
+                "kcal": 615,
+                "proteina_g": 18.2,
+                "grasa_g": 43.2,
+                "carbos_g": 41.6,
+                "notas": "~130g c/u. Absorción de aceite aumentada por fritura profunda (~22g total absorbidos).",
+                "ref_id": "bunuelos_acelga"
+              },
+              {
+                "nombre": "Bomba de papa",
+                "unidades": 1,
+                "cantidad_g": 210,
+                "coccion": "frito",
+                "kcal": 389,
+                "proteina_g": 8.4,
+                "grasa_g": 18.9,
+                "carbos_g": 48.3,
+                "notas": "Porción grande estimada. Puré de papa frito.",
+                "ref_id": "bomba_papa"
+              }
+            ],
+            "totales": {
+              "kcal": 1004,
+              "proteina_g": 26.6,
+              "grasa_g": 62.1,
+              "carbos_g": 89.9,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "02:09",
+            "fecha": "2026-03-17",
+            "descripcion": "Fideos con salsa de roquefort",
+            "alimentos": [
+              {
+                "nombre": "Pasta seca cocida",
+                "cantidad_g": 250,
+                "coccion": "hervido",
+                "kcal": 893,
+                "proteina_g": 30.5,
+                "grasa_g": 3.3,
+                "carbos_g": 170,
+                "notas": "250g en seco. Equivale a ~575g cocido aprox.",
+                "ref_id": "fideos_cocidos"
+              },
+              {
+                "nombre": "Queso roquefort",
+                "cantidad_g": 150,
+                "kcal": 527,
+                "proteina_g": 19.5,
+                "grasa_g": 45,
+                "carbos_g": 2.5,
+                "notas": "Derretido como salsa.",
+                "ref_id": "queso_roquefort"
+              }
+            ],
+            "totales": {
+              "kcal": 1420,
+              "proteina_g": 50,
+              "grasa_g": 48.3,
+              "carbos_g": 172.5,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "17:52",
+            "fecha": "2026-03-17",
+            "descripcion": "Ser Pro+ vainilla + barrita frutos secos + manzana deshidratada + gelatina s/az",
+            "alimentos": [
+              {
+                "nombre": "Yogur bebible Pro+ sabor vainilla",
+                "marca": "Ser",
+                "cantidad_g": 190,
+                "unidades": 1,
+                "kcal": 135,
+                "proteina_g": 15,
+                "grasa_g": 2,
+                "carbos_g": 14,
+                "ref_id": "yogur_bebible_pro"
+              },
+              {
+                "nombre": "Barrita de frutos secos (avena, maní, almendras, castañas)",
+                "cantidad_g": 45,
+                "unidades": 1,
+                "kcal": 148,
+                "proteina_g": 3.5,
+                "grasa_g": 4.9,
+                "carbos_g": 25.6,
+                "ref_id": "barrita_frutos_secos_avena"
+              },
+              {
+                "nombre": "Manzana deshidratada",
+                "cantidad_g": 18,
+                "kcal": 63,
+                "proteina_g": 0.3,
+                "grasa_g": 0,
+                "carbos_g": 15,
+                "ref_id": "manzana_deshidratada"
+              },
+              {
+                "nombre": "Gelatina sin azúcar (preparada)",
+                "cantidad_g": 200,
+                "kcal": 10,
+                "proteina_g": 1.6,
+                "grasa_g": 0,
+                "carbos_g": 0.5,
+                "notas": "Estimado. Valores estándar gelatina sin azúcar preparada.",
+                "ref_id": "gelatina_sin_azucar"
+              }
+            ],
+            "totales": {
+              "kcal": 356,
+              "proteina_g": 20.4,
+              "grasa_g": 6.9,
+              "carbos_g": 55.1,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "20:14",
+            "fecha": "2026-03-17",
+            "descripcion": "Sardinas Gomes da Costa en su jugo con aceite vegetal",
+            "alimentos": [
+              {
+                "nombre": "Sardinas en su jugo con aceite vegetal",
+                "marca": "Gomes da Costa",
+                "cantidad_g": 75,
+                "notas": "Lata completa. Peso escurrido 75g. Porción de referencia etiqueta: 60g = 115 kcal / 13g prot / 0g carbos / ~7g grasa (calculado por energía).",
+                "kcal": 143.8,
+                "proteina_g": 16.3,
+                "grasa_g": 8.8,
+                "carbos_g": 0,
+                "ref_id": "sardinas_aceite"
+              }
+            ],
+            "totales": {
+              "kcal": 143.8,
+              "proteina_g": 16.3,
+              "grasa_g": 8.8,
+              "carbos_g": 0,
+              "estimado": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fecha": "2026-03-16",
+      "peso_kg": 127.0,
+      "peso_medido": false,
+      "gym": {
+        "sin_registro": false,
+        "grupos_musculares": [
+          "Pecho-Tricep",
+          "Piernas",
+          "Cardio"
+        ],
+        "ejercicios_fuerza": 2,
+        "ejercicios_cardio": 4,
+        "detalle_fuerza": [
+          {
+            "ejercicio": "Pec Fly",
+            "musculo_principal": "Pectoral mayor",
+            "sets": 4,
+            "reps_total": 50,
+            "peso_max_kg": 107,
+            "volumen_total_kg": 4390,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 10,
+                "peso_kg": 107,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 10,
+                "peso_kg": 107,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 10,
+                "peso_kg": 107,
+                "tipo": "standard"
+              },
+              {
+                "set": 4,
+                "reps": 20,
+                "peso_kg": 59,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Leg Extension",
+            "musculo_principal": "Cuádriceps",
+            "sets": 3,
+            "reps_total": 36,
+            "peso_max_kg": 91,
+            "volumen_total_kg": 2784,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 12,
+                "peso_kg": 50,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 12,
+                "peso_kg": 91,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 12,
+                "peso_kg": 91,
+                "tipo": "standard"
+              }
+            ]
+          }
+        ],
+        "detalle_cardio": [
+          {
+            "orden": 1,
+            "ejercicio": "Caminata exterior",
+            "duracion_min": 34.5,
+            "distancia_km": 2.1,
+            "kcal": 230,
+            "intensidad": "baja",
+            "notas": "Ritmo medio 16:28 min/km. Calorías app: 133 → ajustado a 230 por peso corporal (×1.73)."
+          },
+          {
+            "orden": 2,
+            "ejercicio": "Cinta",
+            "equipo": "Bodytone Evolution Cardio",
+            "duracion_min": 11.6,
+            "distancia_km": 1.2,
+            "pasos": 2004,
+            "kcal": 151,
+            "velocidad_kmh": 5.5,
+            "inclinacion": 0,
+            "intensidad": "baja",
+            "notas": "Máquina reportó 87kcal, corregido ×1.73 por peso corporal (130kg)"
+          },
+          {
+            "orden": 3,
+            "ejercicio": "Caminata exterior",
+            "hora_fin": "18:04",
+            "duracion_min": 24,
+            "distancia_km": 1.79,
+            "kcal": 197,
+            "intensidad": "baja",
+            "notas": "App reportó 114 kcal (ajustado ×1.73 por peso). Zona costera Bahía Estrada / Balneario Costa del Sol."
+          },
+          {
+            "orden": 4,
+            "ejercicio": "Caminata exterior",
+            "hora_fin": "20:00",
+            "duracion_min": 12,
+            "distancia_km": 0.99,
+            "kcal": 104,
+            "intensidad": "baja",
+            "notas": "App reportó 60 kcal (ajustado ×1.73 por peso). Zona La Perla / Av. Independencia."
+          }
+        ],
+        "notas": null
+      },
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 6,
+        "totales": {
+          "kcal": 2571.8,
+          "proteina_g": 162.9,
+          "grasa_g": 139.1,
+          "carbos_g": 169.6
+        },
+        "comidas": [
+          {
+            "tipo": "comida",
+            "hora": "00:19",
+            "fecha": "2026-03-16",
+            "descripcion": "Ensalada con roast beef hervido y dorado, mayo y zanahoria",
+            "alimentos": [
+              {
+                "nombre": "Tomate fresco",
+                "cantidad_g": 283,
+                "kcal": 50.9,
+                "proteina_g": 2.5,
+                "grasa_g": 0.6,
+                "carbos_g": 11,
+                "ref_id": "tomate"
+              },
+              {
+                "nombre": "Lechuga",
+                "cantidad_g": 67,
+                "kcal": 10.1,
+                "proteina_g": 0.9,
+                "grasa_g": 0.1,
+                "carbos_g": 1.9,
+                "ref_id": "lechuga"
+              },
+              {
+                "nombre": "Roast beef (hervido y dorado)",
+                "cantidad_g": 268,
+                "kcal": 469,
+                "proteina_g": 80.4,
+                "grasa_g": 16.1,
+                "carbos_g": 0,
+                "notas": "Valores base: tapa de nalga cocida (175 kcal/100g). Hervido y luego dorado en sartén.",
+                "ref_id": "roast_beef"
+              },
+              {
+                "nombre": "Aceite de cocción",
+                "cantidad_g": 10,
+                "kcal": 88.4,
+                "proteina_g": 0,
+                "grasa_g": 10,
+                "carbos_g": 0,
+                "notas": "Estimado ~10g para dorar en sartén",
+                "ref_id": "aceite_girasol"
+              },
+              {
+                "nombre": "Mayonesa",
+                "cantidad_g": 50,
+                "kcal": 340,
+                "proteina_g": 0.5,
+                "grasa_g": 37,
+                "carbos_g": 0.3,
+                "ref_id": "mayonesa"
+              },
+              {
+                "nombre": "Zanahoria cruda",
+                "cantidad_g": 135,
+                "kcal": 55.4,
+                "proteina_g": 1.3,
+                "grasa_g": 0.3,
+                "carbos_g": 12.9,
+                "ref_id": "zanahoria_cruda"
+              }
+            ],
+            "totales": {
+              "kcal": 1013.8,
+              "proteina_g": 85.6,
+              "grasa_g": 64.1,
+              "carbos_g": 26.1,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "01:23",
+            "fecha": "2026-03-16",
+            "descripcion": "Barrita Zafrán violeta + gelatina sin azúcar",
+            "alimentos": [
+              {
+                "nombre": "Barrita Zafrán (variedad frutos secos)",
+                "marca": "Zafrán",
+                "cantidad_g": 45,
+                "kcal": 167,
+                "proteina_g": 3.8,
+                "grasa_g": 5.5,
+                "carbos_g": 25.2,
+                "ref_id": "barrita_zafran_frutos_secos"
+              },
+              {
+                "nombre": "Gelatina sin azúcar (preparada)",
+                "cantidad_g": 400,
+                "kcal": 20,
+                "proteina_g": 4,
+                "grasa_g": 0,
+                "carbos_g": 0,
+                "notas": "Estimado. ~5 kcal/100g preparada. Valores despreciables pero incluidos.",
+                "ref_id": "gelatina_sin_azucar"
+              }
+            ],
+            "totales": {
+              "kcal": 187,
+              "proteina_g": 7.8,
+              "grasa_g": 5.5,
+              "carbos_g": 25.2,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "01:37",
+            "fecha": "2026-03-16",
+            "descripcion": "Barrita Zafrán naranja + gelatina sin azúcar",
+            "alimentos": [
+              {
+                "nombre": "Barrita Zafrán (naranja, frutos secos)",
+                "marca": "Zafrán",
+                "cantidad_g": 28,
+                "kcal": 134,
+                "proteina_g": 5.1,
+                "grasa_g": 9.4,
+                "carbos_g": 7.3,
+                "ref_id": "barrita_zafran_naranja"
+              },
+              {
+                "nombre": "Gelatina sin azúcar (preparada)",
+                "cantidad_g": 400,
+                "kcal": 20,
+                "proteina_g": 4,
+                "grasa_g": 0,
+                "carbos_g": 0,
+                "notas": "Estimado. ~5 kcal/100g preparada.",
+                "ref_id": "gelatina_sin_azucar"
+              }
+            ],
+            "totales": {
+              "kcal": 154,
+              "proteina_g": 9.1,
+              "grasa_g": 9.4,
+              "carbos_g": 7.3,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "14:50",
+            "fecha": "2026-03-16",
+            "descripcion": "Pollo 1/4 con piel + ensalada mixta + bocaditos de acelga fritos",
+            "alimentos": [
+              {
+                "nombre": "Pollo 1/4 con piel, sin hueso",
+                "cantidad_g": 180,
+                "kcal": 320,
+                "proteina_g": 38,
+                "grasa_g": 18,
+                "carbos_g": 0,
+                "ref_id": "pollo_con_piel"
+              },
+              {
+                "nombre": "Ensalada mixta (tomate cherry + chaucha + remolacha)",
+                "cantidad_g": 472,
+                "kcal": 140,
+                "proteina_g": 6.5,
+                "grasa_g": 1,
+                "carbos_g": 29,
+                "ref_id": "tomate"
+              },
+              {
+                "nombre": "Bocaditos de acelga y huevo fritos x3",
+                "cantidad_g": 130,
+                "kcal": 270,
+                "proteina_g": 8,
+                "grasa_g": 15,
+                "carbos_g": 22,
+                "ref_id": "bocaditos_acelga_huevo"
+              }
+            ],
+            "totales": {
+              "kcal": 730,
+              "proteina_g": 52.5,
+              "grasa_g": 34,
+              "carbos_g": 51,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "17:28",
+            "fecha": "2026-03-16",
+            "descripcion": "Chips banana, nueces, almendras y avellanas (pack completo)",
+            "alimentos": [
+              {
+                "nombre": "Mix chips de banana con nueces, almendras y avellanas",
+                "marca": "CONOSUR",
+                "cantidad_g": 51,
+                "kcal": 309,
+                "proteina_g": 5.7,
+                "grasa_g": 25.5,
+                "carbos_g": 14.4,
+                "notas": "3 porciones de 17g. Valores de etiqueta × 3.",
+                "ref_id": "mix_chips_banana_nueces"
+              }
+            ],
+            "totales": {
+              "kcal": 309,
+              "proteina_g": 5.7,
+              "grasa_g": 25.5,
+              "carbos_g": 14.4,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "18:00",
+            "fecha": "2026-03-16",
+            "descripcion": "2 bananas medianas pequeñas, bien maduras (post-gym)",
+            "alimentos": [
+              {
+                "nombre": "Banana madura",
+                "unidades": 2,
+                "cantidad_g": 200,
+                "kcal": 178,
+                "proteina_g": 2.2,
+                "grasa_g": 0.6,
+                "carbos_g": 45.6,
+                "notas": "~100g porción comestible c/u. Bien maduras (mayor índice glucémico).",
+                "ref_id": "banana"
+              }
+            ],
+            "totales": {
+              "kcal": 178,
+              "proteina_g": 2.2,
+              "grasa_g": 0.6,
+              "carbos_g": 45.6,
+              "estimado": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fecha": "2026-03-15",
+      "peso_kg": 127.1,
+      "peso_medido": false,
+      "gym": {
+        "sin_registro": false,
+        "grupos_musculares": [
+          "Cardio"
+        ],
+        "ejercicios_fuerza": 0,
+        "ejercicios_cardio": 2,
+        "detalle_fuerza": [],
+        "detalle_cardio": [
+          {
+            "orden": 1,
+            "ejercicio": "Running exterior",
+            "duracion_min": 7.9,
+            "distancia_km": 1.01,
+            "kcal": 142,
+            "intensidad": "alta",
+            "notas": "Ritmo medio 7:50 min/km. Calorías app (82) corregidas por peso corporal ×1.73."
+          },
+          {
+            "orden": 2,
+            "ejercicio": "Caminata exterior",
+            "duracion_min": 4.88,
+            "distancia_km": 0.3,
+            "kcal": 33,
+            "intensidad": "baja",
+            "notas": "Ritmo medio 16:31 min/km. Calorías app (19) corregidas por peso corporal ×1.73."
+          }
+        ],
+        "notas": null
+      },
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 5,
+        "totales": {
+          "kcal": 2456.3,
+          "proteina_g": 245.3,
+          "grasa_g": 108.7,
+          "carbos_g": 128.2
+        },
+        "comidas": [
+          {
+            "tipo": "comida",
+            "hora": "02:39",
+            "fecha": "2026-03-15",
+            "descripcion": "Ensalada con reggianito, arroz yamani y mayo",
+            "alimentos": [
+              {
+                "nombre": "Tomate fresco",
+                "cantidad_g": 140,
+                "kcal": 25.2,
+                "proteina_g": 1.3,
+                "grasa_g": 0.3,
+                "carbos_g": 5.5,
+                "ref_id": "tomate"
+              },
+              {
+                "nombre": "Lechuga",
+                "cantidad_g": 60,
+                "kcal": 9,
+                "proteina_g": 0.8,
+                "grasa_g": 0.1,
+                "carbos_g": 1.7,
+                "ref_id": "lechuga"
+              },
+              {
+                "nombre": "Queso reggianito",
+                "cantidad_g": 128,
+                "kcal": 499.2,
+                "proteina_g": 46.1,
+                "grasa_g": 35.8,
+                "carbos_g": 1.9,
+                "notas": "Valores estimados por tabla de referencia; sin etiqueta provista",
+                "ref_id": "queso_reggianito"
+              },
+              {
+                "nombre": "Arroz yamani cocido",
+                "cantidad_g": 300,
+                "kcal": 333,
+                "proteina_g": 7.8,
+                "grasa_g": 2.7,
+                "carbos_g": 69,
+                "notas": "Asumido cocido; si era crudo los valores se triplican aprox.",
+                "ref_id": "arroz_yamani_cocido"
+              },
+              {
+                "nombre": "Mayonesa",
+                "cantidad_g": 28,
+                "kcal": 190.4,
+                "proteina_g": 0.3,
+                "grasa_g": 21,
+                "carbos_g": 0.1,
+                "ref_id": "mayonesa"
+              }
+            ],
+            "totales": {
+              "kcal": 1056.8,
+              "proteina_g": 56.3,
+              "grasa_g": 59.9,
+              "carbos_g": 78.2,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": null,
+            "fecha": "2026-03-15",
+            "descripcion": "Tapa de nalga",
+            "alimentos": [
+              {
+                "nombre": "Tapa de nalga cocida",
+                "cantidad_g": 430,
+                "coccion": "plancha",
+                "kcal": 752.5,
+                "proteina_g": 129,
+                "grasa_g": 25.8,
+                "carbos_g": 0,
+                "notas": "334g bruto − 84g grasa/tendones = 250g + 180g extra = 430g neto. ~175 kcal/100g (USDA eye of round).",
+                "ref_id": "tapa_nalga"
+              }
+            ],
+            "totales": {
+              "kcal": 752.5,
+              "proteina_g": 129,
+              "grasa_g": 25.8,
+              "carbos_g": 0,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "04:05",
+            "fecha": "2026-03-15",
+            "descripcion": "2 barras Not. Protein Bar (90g total)",
+            "alimentos": [
+              {
+                "nombre": "Not. Protein Bar",
+                "marca": "Not.",
+                "unidades": 2,
+                "cantidad_g": 90,
+                "kcal": 310,
+                "proteina_g": 30,
+                "grasa_g": 10,
+                "carbos_g": 25,
+                "notas": "Valores de etiqueta. Porción declarada: 90g (2 barras de 45g c/u).",
+                "ref_id": "not_protein_bar"
+              }
+            ],
+            "totales": {
+              "kcal": 310,
+              "proteina_g": 30,
+              "grasa_g": 10,
+              "carbos_g": 25,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "13:49",
+            "fecha": "2026-03-15",
+            "descripcion": "1 barra Not. Protein Bar (45g)",
+            "alimentos": [
+              {
+                "nombre": "Not. Protein Bar",
+                "marca": "NotCo",
+                "unidades": 1,
+                "cantidad_g": 45,
+                "kcal": 168.5,
+                "proteina_g": 15,
+                "grasa_g": 6.5,
+                "carbos_g": 12.5,
+                "notas": "Mitad de la porción declarada (90g = 2 barras).",
+                "ref_id": "not_protein_bar"
+              }
+            ],
+            "totales": {
+              "kcal": 168.5,
+              "proteina_g": 15,
+              "grasa_g": 6.5,
+              "carbos_g": 12.5,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "17:07",
+            "fecha": "2026-03-15",
+            "descripcion": "1 barra Not. Protein Bar (45g)",
+            "alimentos": [
+              {
+                "nombre": "Not. Protein Bar",
+                "marca": "NotCo",
+                "unidades": 1,
+                "cantidad_g": 45,
+                "kcal": 168.5,
+                "proteina_g": 15,
+                "grasa_g": 6.5,
+                "carbos_g": 12.5,
+                "notas": "Mitad de la porción declarada (90g = 2 barras).",
+                "ref_id": "not_protein_bar"
+              }
+            ],
+            "totales": {
+              "kcal": 168.5,
+              "proteina_g": 15,
+              "grasa_g": 6.5,
+              "carbos_g": 12.5,
+              "estimado": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fecha": "2026-03-14",
+      "peso_kg": 127.1,
+      "peso_medido": true,
+      "gym": {
+        "sin_registro": false,
+        "grupos_musculares": [
+          "Pecho-Tricep",
+          "Espalda-Bicep"
+        ],
+        "ejercicios_fuerza": 3,
+        "ejercicios_cardio": 1,
+        "detalle_fuerza": [
+          {
+            "ejercicio": "Press de banca",
+            "musculo_principal": "Pectoral mayor",
+            "sets": 4,
+            "reps_total": 29,
+            "peso_max_kg": 80,
+            "volumen_total_kg": 2120,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 6,
+                "peso_kg": 80,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 8,
+                "peso_kg": 80,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 5,
+                "peso_kg": 80,
+                "tipo": "standard"
+              },
+              {
+                "set": 4,
+                "reps": 10,
+                "peso_kg": 60,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Extensión de tríceps sobre cabeza unilateral",
+            "musculo_principal": "Tríceps",
+            "sets": 3,
+            "reps_total": 36,
+            "peso_max_kg": 21,
+            "volumen_total_kg": 706,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 14,
+                "peso_kg": 20,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 12,
+                "peso_kg": 18,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 10,
+                "peso_kg": 21,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Lat Pulldown",
+            "musculo_principal": "Dorsal ancho",
+            "sets": 3,
+            "reps_total": 22,
+            "peso_max_kg": 90,
+            "volumen_total_kg": 1716,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 12,
+                "peso_kg": 68,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 4,
+                "peso_kg": 90,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 6,
+                "peso_kg": 90,
+                "tipo": "standard"
+              }
+            ]
+          }
+        ],
+        "detalle_cardio": [
+          {
+            "orden": 1,
+            "ejercicio": "Cinta",
+            "duracion_min": 11,
+            "distancia_km": 1.05,
+            "velocidad_kmh": 5.7,
+            "inclinacion": 0,
+            "intensidad": "baja"
+          }
+        ],
+        "notas": null
+      },
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 6,
+        "totales": {
+          "kcal": 2635.8,
+          "proteina_g": 158.3,
+          "grasa_g": 104.8,
+          "carbos_g": 256.9
+        },
+        "comidas": [
+          {
+            "tipo": "comida",
+            "hora": "03:30",
+            "fecha": "2026-03-14",
+            "descripcion": "Arroz yamani con reggianito, hummus, tomate y lechuga",
+            "alimentos": [
+              {
+                "nombre": "Queso reggianito",
+                "cantidad_g": 76,
+                "kcal": 289,
+                "proteina_g": 25.1,
+                "grasa_g": 20.5,
+                "carbos_g": 1.5,
+                "notas": "Estimado ~380 kcal/100g por tabla estándar reggianito.",
+                "ref_id": "queso_reggianito"
+              },
+              {
+                "nombre": "Tomate",
+                "cantidad_g": 175,
+                "kcal": 31.5,
+                "proteina_g": 1.6,
+                "grasa_g": 0.4,
+                "carbos_g": 6.8,
+                "ref_id": "tomate"
+              },
+              {
+                "nombre": "Lechuga",
+                "cantidad_g": 48,
+                "kcal": 7.2,
+                "proteina_g": 0.6,
+                "grasa_g": 0.1,
+                "carbos_g": 1.4,
+                "ref_id": "lechuga"
+              },
+              {
+                "nombre": "Hummus clásico Kyros",
+                "marca": "Kyros",
+                "cantidad_g": 60,
+                "kcal": 152,
+                "proteina_g": 3.6,
+                "grasa_g": 10.8,
+                "carbos_g": 10.4,
+                "notas": "Pote completo 60g. Info nutricional de etiqueta: 38 kcal / 15g.",
+                "ref_id": "hummus_kyros"
+              },
+              {
+                "nombre": "Arroz yamani cocido al dente",
+                "cantidad_g": 300,
+                "coccion": "hervido",
+                "kcal": 420,
+                "proteina_g": 9,
+                "grasa_g": 3,
+                "carbos_g": 87,
+                "notas": "Arroz integral yamani, cocido al dente. Estimado ~140 kcal/100g.",
+                "ref_id": "arroz_yamani_cocido"
+              }
+            ],
+            "totales": {
+              "kcal": 899.7,
+              "proteina_g": 39.9,
+              "grasa_g": 34.8,
+              "carbos_g": 107.1,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "03:45",
+            "fecha": "2026-03-14",
+            "descripcion": "Lomito, queso tybo y arroz yamani",
+            "alimentos": [
+              {
+                "nombre": "Lomito al horno (fiambre)",
+                "cantidad_g": 45,
+                "kcal": 63,
+                "proteina_g": 11.3,
+                "grasa_g": 2,
+                "carbos_g": 0,
+                "ref_id": "lomito_fiambre"
+              },
+              {
+                "nombre": "Queso tybo",
+                "cantidad_g": 46,
+                "kcal": 156.4,
+                "proteina_g": 11,
+                "grasa_g": 12,
+                "carbos_g": 0.5,
+                "estimado": true,
+                "ref_id": "queso_tybo"
+              },
+              {
+                "nombre": "Arroz yamani cocido",
+                "cantidad_g": 138,
+                "coccion": "hervido",
+                "kcal": 154.6,
+                "proteina_g": 3.6,
+                "grasa_g": 1.2,
+                "carbos_g": 31.7,
+                "estimado": true,
+                "ref_id": "arroz_yamani_cocido"
+              }
+            ],
+            "totales": {
+              "kcal": 374,
+              "proteina_g": 25.9,
+              "grasa_g": 15.2,
+              "carbos_g": 32.2,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "04:20",
+            "fecha": "2026-03-14",
+            "descripcion": "Galletitas de avena",
+            "alimentos": [
+              {
+                "nombre": "Galletitas de avena (con salvado de trigo)",
+                "cantidad_g": 84,
+                "kcal": 365,
+                "proteina_g": 7.1,
+                "grasa_g": 12.1,
+                "carbos_g": 57.8,
+                "ref_id": "galletitas_avena"
+              }
+            ],
+            "totales": {
+              "kcal": 365,
+              "proteina_g": 7.1,
+              "grasa_g": 12.1,
+              "carbos_g": 57.8,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": null,
+            "fecha": "2026-03-14",
+            "descripcion": "Melón amarillo",
+            "alimentos": [
+              {
+                "nombre": "Melón amarillo",
+                "cantidad_g": 334,
+                "kcal": 113.6,
+                "proteina_g": 2.7,
+                "grasa_g": 0.7,
+                "carbos_g": 26.7,
+                "notas": "Estimado ~34 kcal/100g por tabla estándar melón honeydew.",
+                "ref_id": "melon_amarillo"
+              }
+            ],
+            "totales": {
+              "kcal": 113.6,
+              "proteina_g": 2.7,
+              "grasa_g": 0.7,
+              "carbos_g": 26.7,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": null,
+            "fecha": "2026-03-14",
+            "descripcion": "Hígado de res a la plancha con mayo y mostaza",
+            "alimentos": [
+              {
+                "nombre": "Hígado de res cocido",
+                "cantidad_g": 200,
+                "coccion": "plancha",
+                "kcal": 350,
+                "proteina_g": 52,
+                "grasa_g": 8,
+                "carbos_g": 7.4,
+                "notas": "Estimado ~175 kcal/100g cocido (USDA beef liver, pan-fried).",
+                "ref_id": "higado_res"
+              },
+              {
+                "nombre": "Mayonesa",
+                "cantidad_g": 30,
+                "kcal": 204,
+                "proteina_g": 0.3,
+                "grasa_g": 22.2,
+                "carbos_g": 0.3,
+                "ref_id": "mayonesa"
+              },
+              {
+                "nombre": "Mostaza",
+                "cantidad_g": 10,
+                "kcal": 6,
+                "proteina_g": 0.4,
+                "grasa_g": 0.3,
+                "carbos_g": 0.4,
+                "ref_id": "mostaza"
+              }
+            ],
+            "totales": {
+              "kcal": 560,
+              "proteina_g": 52.7,
+              "grasa_g": 30.5,
+              "carbos_g": 8.1,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "23:49",
+            "fecha": "2026-03-14",
+            "descripcion": "Barra proteica x2 (1 naranja + 1 roja)",
+            "alimentos": [
+              {
+                "nombre": "Barra proteica (packaging naranja)",
+                "cantidad_g": 45,
+                "kcal": 168.5,
+                "proteina_g": 15,
+                "grasa_g": 6.5,
+                "carbos_g": 12.5,
+                "notas": "1 barra = mitad de porción etiqueta (90g = 2 barras). Datos de etiqueta exactos.",
+                "ref_id": "barra_proteica"
+              },
+              {
+                "nombre": "Barra proteica Imagina (packaging rojo)",
+                "cantidad_g": 45,
+                "kcal": 155,
+                "proteina_g": 15,
+                "grasa_g": 5,
+                "carbos_g": 12.5,
+                "notas": "1 barra = mitad de porción etiqueta (90g = 2 barras). Datos de etiqueta exactos.",
+                "ref_id": "barra_proteica"
+              }
+            ],
+            "totales": {
+              "kcal": 323.5,
+              "proteina_g": 30,
+              "grasa_g": 11.5,
+              "carbos_g": 25,
+              "estimado": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fecha": "2026-03-13",
+      "peso_kg": 128.1,
+      "peso_medido": false,
+      "gym": {
+        "sin_registro": false,
+        "grupos_musculares": [
+          "Espalda-Bicep",
+          "Piernas",
+          "Cardio"
+        ],
+        "ejercicios_fuerza": 3,
+        "ejercicios_cardio": 3,
+        "detalle_fuerza": [
+          {
+            "ejercicio": "Curl Bíceps Rangos Parciales",
+            "musculo_principal": "Bíceps",
+            "sets": 3,
+            "reps_total": 0,
+            "peso_max_kg": 0,
+            "volumen_total_kg": 0,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": 16,
+                    "peso_kg": 10
+                  },
+                  {
+                    "drop": 2,
+                    "reps": 16,
+                    "peso_kg": 10
+                  },
+                  {
+                    "drop": 3,
+                    "reps": 16,
+                    "peso_kg": 10
+                  }
+                ]
+              },
+              {
+                "set": 2,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": 16,
+                    "peso_kg": 10
+                  },
+                  {
+                    "drop": 2,
+                    "reps": 16,
+                    "peso_kg": 10
+                  },
+                  {
+                    "drop": 3,
+                    "reps": 16,
+                    "peso_kg": 10
+                  }
+                ]
+              },
+              {
+                "set": 3,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": 16,
+                    "peso_kg": 10
+                  },
+                  {
+                    "drop": 2,
+                    "reps": 16,
+                    "peso_kg": 10
+                  },
+                  {
+                    "drop": 3,
+                    "reps": 16,
+                    "peso_kg": 10
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "ejercicio": "Kettlebell Around the World",
+            "musculo_principal": "Core",
+            "sets": 3,
+            "reps_total": 180,
+            "peso_max_kg": 0,
+            "volumen_total_kg": 0,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 60,
+                "peso_kg": null,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 60,
+                "peso_kg": null,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 60,
+                "peso_kg": null,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Leg Extension",
+            "musculo_principal": "Cuádriceps",
+            "sets": 3,
+            "reps_total": 30,
+            "peso_max_kg": 105,
+            "volumen_total_kg": 3150,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 10,
+                "peso_kg": 105,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 10,
+                "peso_kg": 105,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 10,
+                "peso_kg": 105,
+                "tipo": "standard"
+              }
+            ]
+          }
+        ],
+        "detalle_cardio": [
+          {
+            "orden": 1,
+            "ejercicio": "Caminata exterior",
+            "duracion_min": 34.22,
+            "distancia_km": 2.16,
+            "kcal": 138,
+            "intensidad": "baja",
+            "notas": "Ritmo medio 15:49 min/km. Zona Núñez/Coghlan."
+          },
+          {
+            "orden": 2,
+            "ejercicio": "Caminata exterior",
+            "hora_fin": "20:25",
+            "duracion_min": 13.2,
+            "distancia_km": 0.86,
+            "kcal": 51,
+            "intensidad": "baja",
+            "notas": "Ritmo medio 15:16 min/km. Zona Núñez/Saavedra."
+          },
+          {
+            "orden": 3,
+            "ejercicio": "Natación",
+            "duracion_min": 20,
+            "distancia_m": 375,
+            "largos": 15,
+            "kcal": 250,
+            "intensidad": "moderada",
+            "notas": "Pileta de 25m, 15 largos. Kcal estimadas por peso corporal 130kg."
+          }
+        ],
+        "notas": null
+      },
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 6,
+        "totales": {
+          "kcal": 2594,
+          "proteina_g": 158.8,
+          "grasa_g": 119.9,
+          "carbos_g": 215.4
+        },
+        "comidas": [
+          {
+            "tipo": "comida",
+            "hora": "00:35",
+            "fecha": "2026-03-13",
+            "descripcion": "Shawarma de carne con hummus Kyros",
+            "alimentos": [
+              {
+                "nombre": "Carne vacuna shawarma (cortada fina, salteada)",
+                "cantidad_g": 250,
+                "coccion": "plancha",
+                "kcal": 625,
+                "proteina_g": 62.5,
+                "grasa_g": 37.5,
+                "carbos_g": 0,
+                "notas": "Carne semi-grasa típica de shawarma, estimada por foto",
+                "ref_id": "carne_shawarma"
+              },
+              {
+                "nombre": "Pan árabe / pita shawarma",
+                "cantidad_g": 74,
+                "kcal": 203.5,
+                "proteina_g": 6.7,
+                "grasa_g": 0.9,
+                "carbos_g": 40.7,
+                "ref_id": "pan_arabe"
+              },
+              {
+                "nombre": "Hummus clásico Kyros",
+                "marca": "Kyros",
+                "cantidad_g": 60,
+                "kcal": 152,
+                "proteina_g": 3.6,
+                "grasa_g": 10.8,
+                "carbos_g": 10.4,
+                "notas": "Pote completo 60g. Info nutricional de etiqueta: 38 kcal / 15g",
+                "ref_id": "hummus_kyros"
+              },
+              {
+                "nombre": "Tomate cherry/perita cocido",
+                "cantidad_g": 40,
+                "coccion": "plancha",
+                "kcal": 7.2,
+                "proteina_g": 0.4,
+                "grasa_g": 0.1,
+                "carbos_g": 1.6,
+                "ref_id": "tomate"
+              },
+              {
+                "nombre": "Cebolla",
+                "cantidad_g": 20,
+                "coccion": "plancha",
+                "kcal": 8,
+                "proteina_g": 0.2,
+                "grasa_g": 0,
+                "carbos_g": 1.9,
+                "ref_id": "cebolla"
+              },
+              {
+                "nombre": "Aceite de cocción",
+                "cantidad_g": 10,
+                "kcal": 88.4,
+                "proteina_g": 0,
+                "grasa_g": 10,
+                "carbos_g": 0,
+                "ref_id": "aceite_girasol"
+              }
+            ],
+            "totales": {
+              "kcal": 1084.1,
+              "proteina_g": 73.4,
+              "grasa_g": 59.3,
+              "carbos_g": 54.6,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "01:21",
+            "fecha": "2026-03-13",
+            "descripcion": "Barrita de cereal con dátiles",
+            "alimentos": [
+              {
+                "nombre": "Barrita de cereal con frutos secos",
+                "cantidad_g": 45,
+                "unidades": 1,
+                "kcal": 148,
+                "proteina_g": 3.5,
+                "grasa_g": 4.9,
+                "carbos_g": 25.6,
+                "notas": "Datos de etiqueta. Porción 45g.",
+                "ref_id": "barrita_cereal"
+              },
+              {
+                "nombre": "Dátiles",
+                "cantidad_g": 18,
+                "kcal": 50.8,
+                "proteina_g": 0.5,
+                "grasa_g": 0.1,
+                "carbos_g": 13.5,
+                "ref_id": "datiles"
+              }
+            ],
+            "totales": {
+              "kcal": 198.8,
+              "proteina_g": 4,
+              "grasa_g": 5,
+              "carbos_g": 39.1,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": null,
+            "fecha": "2026-03-13",
+            "descripcion": "Pan Mr Miga con queso cremoso y tomate",
+            "alimentos": [
+              {
+                "nombre": "Pan Mr Miga con semillas",
+                "marca": "Mr Miga",
+                "cantidad_g": 100,
+                "kcal": 242,
+                "proteina_g": 10.4,
+                "grasa_g": 5.2,
+                "carbos_g": 42,
+                "fibra_g": 3.8,
+                "notas": "Valores de etiqueta (porción 50g) x2.",
+                "ref_id": "pan_mr_miga"
+              },
+              {
+                "nombre": "Queso cremoso bajas calorías",
+                "cantidad_g": 150,
+                "kcal": 255,
+                "proteina_g": 18,
+                "grasa_g": 15,
+                "carbos_g": 4.5,
+                "notas": "Estimado ~170 kcal/100g, sin etiqueta exacta.",
+                "ref_id": "queso_cremoso"
+              },
+              {
+                "nombre": "Tomate",
+                "cantidad_g": 200,
+                "kcal": 36,
+                "proteina_g": 1.8,
+                "grasa_g": 0.4,
+                "carbos_g": 7.8,
+                "ref_id": "tomate"
+              }
+            ],
+            "totales": {
+              "kcal": 533,
+              "proteina_g": 30.2,
+              "grasa_g": 20.6,
+              "carbos_g": 54.3,
+              "fibra_g": 3.8,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": null,
+            "fecha": "2026-03-13",
+            "descripcion": "Huevo revuelto",
+            "alimentos": [
+              {
+                "nombre": "Huevo revuelto",
+                "cantidad_g": 173,
+                "coccion": "revuelto",
+                "kcal": 258,
+                "proteina_g": 17.3,
+                "grasa_g": 19,
+                "carbos_g": 2.8,
+                "notas": "Estimado USDA scrambled eggs ~149 kcal/100g.",
+                "ref_id": "huevo"
+              }
+            ],
+            "totales": {
+              "kcal": 258,
+              "proteina_g": 17.3,
+              "grasa_g": 19,
+              "carbos_g": 2.8,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": null,
+            "fecha": "2026-03-13",
+            "descripcion": "Barrita de cereal con dátiles",
+            "alimentos": [
+              {
+                "nombre": "Barrita de cereal con frutos secos",
+                "cantidad_g": 45,
+                "unidades": 1,
+                "kcal": 148,
+                "proteina_g": 3.5,
+                "grasa_g": 4.9,
+                "carbos_g": 25.6,
+                "notas": "Datos de etiqueta. Porción 45g.",
+                "ref_id": "barrita_cereal"
+              },
+              {
+                "nombre": "Dátiles",
+                "cantidad_g": 16,
+                "kcal": 45.1,
+                "proteina_g": 0.4,
+                "grasa_g": 0.1,
+                "carbos_g": 12,
+                "ref_id": "datiles"
+              }
+            ],
+            "totales": {
+              "kcal": 193.1,
+              "proteina_g": 3.9,
+              "grasa_g": 5,
+              "carbos_g": 37.6,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "23:54",
+            "fecha": "2026-03-13",
+            "descripcion": "2 barras proteicas (90g total)",
+            "alimentos": [
+              {
+                "nombre": "Barra proteica",
+                "cantidad_g": 90,
+                "unidades": 2,
+                "kcal": 327,
+                "proteina_g": 30,
+                "grasa_g": 11,
+                "carbos_g": 27,
+                "notas": "Valores exactos de etiqueta por porción de 90g (2 barras de 45g)",
+                "ref_id": "barra_proteica"
+              }
+            ],
+            "totales": {
+              "kcal": 327,
+              "proteina_g": 30,
+              "grasa_g": 11,
+              "carbos_g": 27,
+              "estimado": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fecha": "2026-03-12",
+      "peso_kg": 129.0,
+      "peso_medido": false,
+      "gym": {
+        "sin_registro": false,
+        "grupos_musculares": [
+          "Pecho-Tricep",
+          "Hombros",
+          "Cardio"
+        ],
+        "ejercicios_fuerza": 3,
+        "ejercicios_cardio": 8,
+        "detalle_fuerza": [
+          {
+            "ejercicio": "Pushdown de Tríceps",
+            "musculo_principal": "Tríceps",
+            "sets": 3,
+            "reps_total": 47,
+            "peso_max_kg": 85,
+            "volumen_total_kg": 2650,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 35,
+                "peso_kg": 50,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 8,
+                "peso_kg": 70,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 4,
+                "peso_kg": 85,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Pec Deck",
+            "musculo_principal": "Pectoral mayor",
+            "sets": 5,
+            "reps_total": 42,
+            "peso_max_kg": 107,
+            "volumen_total_kg": 3822,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 10,
+                "peso_kg": 107,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 6,
+                "peso_kg": 107,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 6,
+                "peso_kg": 107,
+                "tipo": "standard"
+              },
+              {
+                "set": 4,
+                "reps": 14,
+                "peso_kg": 65,
+                "tipo": "standard"
+              },
+              {
+                "set": 5,
+                "reps": 6,
+                "peso_kg": 93,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Shrug",
+            "musculo_principal": "Trapecio superior",
+            "sets": 3,
+            "reps_total": 52,
+            "peso_max_kg": 32.5,
+            "volumen_total_kg": 1690.0,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 20,
+                "peso_kg": 32.5,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 16,
+                "peso_kg": 32.5,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 16,
+                "peso_kg": 32.5,
+                "tipo": "standard"
+              }
+            ]
+          }
+        ],
+        "detalle_cardio": [
+          {
+            "orden": 1,
+            "ejercicio": "Caminata exterior",
+            "hora_inicio": "02:29",
+            "hora_fin": "02:44",
+            "duracion_min": 14.73,
+            "distancia_km": 0.86,
+            "kcal": 52,
+            "intensidad": "baja",
+            "notas": "Ritmo medio 17:12 min/km"
+          },
+          {
+            "orden": 2,
+            "ejercicio": "Caminata exterior",
+            "hora_inicio": "02:45",
+            "hora_fin": "02:54",
+            "duracion_min": 9.1,
+            "distancia_km": 1.15,
+            "kcal": 57,
+            "intensidad": "alta",
+            "notas": "Ritmo medio 07:53 min/km"
+          },
+          {
+            "orden": 3,
+            "ejercicio": "Caminata exterior",
+            "hora_inicio": "02:54",
+            "hora_fin": "03:11",
+            "duracion_min": 16.33,
+            "distancia_km": 1.11,
+            "kcal": 72,
+            "intensidad": "baja",
+            "notas": "Ritmo medio 14:45 min/km"
+          },
+          {
+            "orden": 4,
+            "ejercicio": "Caminata",
+            "duracion_min": 23,
+            "distancia_km": 1.74,
+            "kcal": 103,
+            "intensidad": "baja",
+            "notas": "Ritmo medio 13:15 min/km"
+          },
+          {
+            "orden": 5,
+            "ejercicio": "Caminata",
+            "duracion_min": 23,
+            "distancia_km": 1.74,
+            "kcal": 103,
+            "intensidad": "baja",
+            "notas": "Ritmo medio 13:15 min/km"
+          },
+          {
+            "orden": 7,
+            "ejercicio": "Running exterior",
+            "duracion_min": 9,
+            "distancia_km": 1.04,
+            "kcal": 149,
+            "intensidad": "alta",
+            "notas": "Ritmo medio 8:26 min/km"
+          },
+          {
+            "orden": 8,
+            "ejercicio": "Caminata exterior",
+            "duracion_min": 22,
+            "distancia_km": 1.09,
+            "kcal": 123,
+            "intensidad": "baja",
+            "notas": "Ritmo medio 19:57 min/km"
+          },
+          {
+            "orden": 9,
+            "ejercicio": "Sauna",
+            "duracion_min": 25
+          }
+        ],
+        "notas": null
+      },
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 5,
+        "totales": {
+          "kcal": 3241.4,
+          "proteina_g": 201.5,
+          "grasa_g": 151.6,
+          "carbos_g": 264.6
+        },
+        "comidas": [
+          {
+            "tipo": "comida",
+            "hora": "03:30",
+            "fecha": "2026-03-12",
+            "descripcion": "Vacío al horno bien cocido",
+            "alimentos": [
+              {
+                "nombre": "Vacío al horno",
+                "cantidad_g": 533,
+                "coccion": "horno",
+                "kcal": 1306.4,
+                "proteina_g": 146.4,
+                "grasa_g": 82.6,
+                "carbos_g": 0,
+                "notas": "Corte argentino vacío, bien cocido. Estimado ~280 kcal/100g cocido. 343g + 220g − 30g grasa retirada.",
+                "ref_id": "vacio_horno"
+              }
+            ],
+            "totales": {
+              "kcal": 1306.4,
+              "proteina_g": 146.4,
+              "grasa_g": 82.6,
+              "carbos_g": 0,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "04:31",
+            "fecha": "2026-03-12",
+            "descripcion": "Tomate cherry amarillo, champignon a la sartén con manteca, ciboulette y arroz carnaroli estacionado",
+            "alimentos": [
+              {
+                "nombre": "Tomate cherry amarillo",
+                "cantidad_g": 110,
+                "kcal": 25,
+                "proteina_g": 1.1,
+                "grasa_g": 0.2,
+                "carbos_g": 5,
+                "ref_id": "tomate"
+              },
+              {
+                "nombre": "Champignon cocido a la sartén",
+                "cantidad_g": 200,
+                "coccion": "sartén",
+                "kcal": 50,
+                "proteina_g": 6.2,
+                "grasa_g": 0.8,
+                "carbos_g": 7.4,
+                "ref_id": "champignon_cocido"
+              },
+              {
+                "nombre": "Manteca",
+                "cantidad_g": 10,
+                "coccion": "sartén",
+                "kcal": 72,
+                "proteina_g": 0,
+                "grasa_g": 8.1,
+                "carbos_g": 0,
+                "ref_id": "manteca"
+              },
+              {
+                "nombre": "Ciboulette",
+                "cantidad_g": 30,
+                "kcal": 9,
+                "proteina_g": 1,
+                "grasa_g": 0.2,
+                "carbos_g": 1.3,
+                "ref_id": "ciboulette"
+              },
+              {
+                "nombre": "Arroz carnaroli cocido estacionado (2 días)",
+                "cantidad_g": 390,
+                "coccion": "hervido + refrigerado 48h",
+                "kcal": 482,
+                "proteina_g": 10.5,
+                "grasa_g": 1.2,
+                "carbos_g": 95,
+                "notas": "Almidón resistente por refrigeración 48h. ~13% del almidón no biodisponible. Base ~130 kcal/100g ajustado a ~123 kcal/100g. GI reducido.",
+                "ref_id": "arroz_carnaroli_cocido"
+              }
+            ],
+            "totales": {
+              "kcal": 638,
+              "proteina_g": 18.8,
+              "grasa_g": 10.5,
+              "carbos_g": 108.7,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "04:51",
+            "fecha": "2026-03-12",
+            "descripcion": "Dulce de membrillo con queso Portsalut",
+            "alimentos": [
+              {
+                "nombre": "Dulce de membrillo",
+                "cantidad_g": 50,
+                "kcal": 125,
+                "proteina_g": 0.2,
+                "grasa_g": 0.1,
+                "carbos_g": 31.5,
+                "ref_id": "dulce_membrillo"
+              },
+              {
+                "nombre": "Queso Portsalut",
+                "cantidad_g": 40,
+                "kcal": 112,
+                "proteina_g": 8,
+                "grasa_g": 8.8,
+                "carbos_g": 0,
+                "ref_id": "queso_portsalut"
+              }
+            ],
+            "totales": {
+              "kcal": 237,
+              "proteina_g": 8.2,
+              "grasa_g": 8.9,
+              "carbos_g": 31.5,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "08:00",
+            "fecha": "2026-03-12",
+            "descripcion": "Dulce de membrillo con queso Portsalut",
+            "alimentos": [
+              {
+                "nombre": "Dulce de membrillo",
+                "cantidad_g": 96,
+                "kcal": 240,
+                "proteina_g": 0.4,
+                "grasa_g": 0.2,
+                "carbos_g": 60.5,
+                "ref_id": "dulce_membrillo"
+              },
+              {
+                "nombre": "Queso Portsalut",
+                "cantidad_g": 75,
+                "kcal": 210,
+                "proteina_g": 15,
+                "grasa_g": 16.5,
+                "carbos_g": 0,
+                "ref_id": "queso_portsalut"
+              }
+            ],
+            "totales": {
+              "kcal": 450,
+              "proteina_g": 15.4,
+              "grasa_g": 16.7,
+              "carbos_g": 60.5,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "19:33",
+            "fecha": "2026-03-12",
+            "descripcion": "Buñuelos de acelga con papas al horno y tomates",
+            "alimentos": [
+              {
+                "nombre": "Buñuelos de acelga",
+                "cantidad_g": 120,
+                "coccion": "horno",
+                "kcal": 228,
+                "proteina_g": 8.4,
+                "grasa_g": 11.5,
+                "carbos_g": 24,
+                "notas": "3 unidades. Acelga, harina, huevo, queso. Aspecto horneado.",
+                "ref_id": "bunuelos_acelga"
+              },
+              {
+                "nombre": "Papas al horno con hierbas",
+                "cantidad_g": 155,
+                "coccion": "horno",
+                "kcal": 232,
+                "proteina_g": 3.1,
+                "grasa_g": 7.8,
+                "carbos_g": 34.1,
+                "ref_id": "papas_horno"
+              },
+              {
+                "nombre": "Tomates cherry asados",
+                "cantidad_g": 85,
+                "coccion": "horno",
+                "kcal": 26,
+                "proteina_g": 0.9,
+                "grasa_g": 0.3,
+                "carbos_g": 5.1,
+                "ref_id": "tomate"
+              },
+              {
+                "nombre": "Aceitunas verdes",
+                "unidades": 3,
+                "cantidad_g": 15,
+                "kcal": 22,
+                "proteina_g": 0.1,
+                "grasa_g": 2.2,
+                "carbos_g": 0.5,
+                "ref_id": "aceitunas_verdes"
+              },
+              {
+                "nombre": "Mayonesa",
+                "cantidad_g": 15,
+                "kcal": 102,
+                "proteina_g": 0.2,
+                "grasa_g": 11.1,
+                "carbos_g": 0.2,
+                "notas": "Visible debajo de los tomates.",
+                "ref_id": "mayonesa"
+              }
+            ],
+            "totales": {
+              "kcal": 610,
+              "proteina_g": 12.7,
+              "grasa_g": 32.9,
+              "carbos_g": 63.9,
+              "estimado": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fecha": "2026-03-11",
+      "peso_kg": 130,
+      "peso_medido": true,
+      "gym": {
+        "sin_registro": false,
+        "grupos_musculares": [
+          "Piernas",
+          "Espalda-Bicep"
+        ],
+        "ejercicios_fuerza": 4,
+        "ejercicios_cardio": 2,
+        "detalle_fuerza": [
+          {
+            "ejercicio": "Leg Press",
+            "musculo_principal": "Cuádriceps",
+            "sets": 4,
+            "reps_total": 40,
+            "peso_max_kg": 140,
+            "volumen_total_kg": 4600,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 10,
+                "peso_kg": 40,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 10,
+                "peso_kg": 140,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 10,
+                "peso_kg": 140,
+                "tipo": "standard"
+              },
+              {
+                "set": 4,
+                "reps": 10,
+                "peso_kg": 140,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Dominadas asistidas agarre overhand medio",
+            "musculo_principal": "Dorsal ancho",
+            "sets": 5,
+            "reps_total": 27,
+            "peso_max_kg": 90,
+            "volumen_total_kg": 1930,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 5,
+                "peso_kg": 90,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 2,
+                "peso_kg": 40,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 7,
+                "peso_kg": 70,
+                "tipo": "standard"
+              },
+              {
+                "set": 4,
+                "reps": 7,
+                "peso_kg": 70,
+                "tipo": "standard"
+              },
+              {
+                "set": 5,
+                "reps": 6,
+                "peso_kg": 70,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Chin-ups asistidas agarre supino",
+            "musculo_principal": "Dorsal ancho",
+            "sets": 3,
+            "reps_total": 19,
+            "peso_max_kg": 70,
+            "volumen_total_kg": 1330,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 6,
+                "peso_kg": 70,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 7,
+                "peso_kg": 70,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 6,
+                "peso_kg": 70,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Reverse Curl en banco Scott",
+            "musculo_principal": "Braquiorradial",
+            "sets": 3,
+            "reps_total": 49,
+            "peso_max_kg": 10,
+            "volumen_total_kg": 490,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 20,
+                "peso_kg": 10,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 16,
+                "peso_kg": 10,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 13,
+                "peso_kg": 10,
+                "tipo": "standard"
+              }
+            ]
+          }
+        ],
+        "detalle_cardio": [
+          {
+            "orden": 1,
+            "ejercicio": "Cinta",
+            "equipo": "Precor",
+            "hora_fin": "18:05",
+            "duracion_min": 19,
+            "kcal": 42.3,
+            "velocidad_kmh": 6.6,
+            "inclinacion": 0,
+            "intensidad": "baja",
+            "notas": "Caminata/trote ligero. Velocidad media 6.6 km/h."
+          },
+          {
+            "orden": 2,
+            "ejercicio": "Caminata exterior",
+            "duracion_min": 33,
+            "distancia_km": 2.54,
+            "kcal": 154,
+            "intensidad": "baja",
+            "notas": "2 tramos ida y vuelta. Ritmo medio 12:50 min/km. Zona Coghlan."
+          }
+        ],
+        "notas": null
+      },
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 3,
+        "totales": {
+          "kcal": 2730.3,
+          "proteina_g": 192.3,
+          "grasa_g": 129.5,
+          "carbos_g": 178.6
+        },
+        "comidas": [
+          {
+            "tipo": "comida",
+            "hora": "00:25",
+            "fecha": "2026-03-11",
+            "descripcion": "Carne picada premium a la plancha con arroz carnaroli y mostaza",
+            "alimentos": [
+              {
+                "nombre": "Carne picada premium",
+                "cantidad_g": 343,
+                "coccion": "plancha",
+                "kcal": 634.6,
+                "proteina_g": 92.6,
+                "grasa_g": 27.4,
+                "carbos_g": 0,
+                "notas": "Estimado ~185 kcal/100g cocida (magra premium, ~8g grasa/100g).",
+                "ref_id": "carne_picada_premium"
+              },
+              {
+                "nombre": "Arroz carnaroli cocido",
+                "cantidad_g": 430,
+                "coccion": "hervido",
+                "kcal": 559,
+                "proteina_g": 11.6,
+                "grasa_g": 1.3,
+                "carbos_g": 120.4,
+                "notas": "Estimado ~130 kcal/100g cocido, misma referencia que 10/03.",
+                "ref_id": "arroz_carnaroli_cocido"
+              },
+              {
+                "nombre": "Mostaza",
+                "cantidad_g": 27,
+                "kcal": 16.2,
+                "proteina_g": 1.1,
+                "grasa_g": 0.9,
+                "carbos_g": 1.1,
+                "ref_id": "mostaza"
+              }
+            ],
+            "totales": {
+              "kcal": 1209.8,
+              "proteina_g": 105.3,
+              "grasa_g": 29.6,
+              "carbos_g": 121.5,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "01:05",
+            "fecha": "2026-03-11",
+            "descripcion": "Galletitas avena y cacao Mondelez (83g)",
+            "alimentos": [
+              {
+                "nombre": "Galletitas de avena y cacao",
+                "marca": "Mondelez",
+                "cantidad_g": 83,
+                "kcal": 360.5,
+                "proteina_g": 7,
+                "grasa_g": 11.9,
+                "carbos_g": 57.1,
+                "notas": "Valores calculados desde etiqueta: 139 kcal / 32g. Factor 2.594x.",
+                "ref_id": "galletitas_avena"
+              }
+            ],
+            "totales": {
+              "kcal": 360.5,
+              "proteina_g": 7,
+              "grasa_g": 11.9,
+              "carbos_g": 57.1,
+              "estimado": false
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": null,
+            "fecha": "2026-03-11",
+            "descripcion": "Costilla de cerdo cocida sin hueso",
+            "alimentos": [
+              {
+                "nombre": "Costilla de cerdo cocida sin hueso",
+                "cantidad_g": 400,
+                "coccion": "cocida",
+                "kcal": 1160,
+                "proteina_g": 80,
+                "grasa_g": 88,
+                "carbos_g": 0,
+                "notas": "Peso neto sin hueso. Estimado ~290 kcal/100g, misma referencia que 08/03.",
+                "ref_id": "costilla_cerdo"
+              }
+            ],
+            "totales": {
+              "kcal": 1160,
+              "proteina_g": 80,
+              "grasa_g": 88,
+              "carbos_g": 0,
+              "estimado": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fecha": "2026-03-10",
+      "peso_kg": 130.0,
+      "peso_medido": false,
+      "gym": {
+        "sin_registro": false,
+        "grupos_musculares": [
+          "Espalda-Bicep",
+          "Cardio"
+        ],
+        "ejercicios_fuerza": 3,
+        "ejercicios_cardio": 3,
+        "detalle_fuerza": [
+          {
+            "ejercicio": "Curl Bíceps Rangos Parciales",
+            "musculo_principal": "Bíceps",
+            "sets": 4,
+            "reps_total": 0,
+            "peso_max_kg": 0,
+            "volumen_total_kg": 0,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": 16,
+                    "peso_kg": 12
+                  },
+                  {
+                    "drop": 2,
+                    "reps": 16,
+                    "peso_kg": 12
+                  },
+                  {
+                    "drop": 3,
+                    "reps": 16,
+                    "peso_kg": 12
+                  }
+                ]
+              },
+              {
+                "set": 2,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": 16,
+                    "peso_kg": 12
+                  },
+                  {
+                    "drop": 2,
+                    "reps": 16,
+                    "peso_kg": 12
+                  },
+                  {
+                    "drop": 3,
+                    "reps": 16,
+                    "peso_kg": 12
+                  }
+                ]
+              },
+              {
+                "set": 3,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": 16,
+                    "peso_kg": 12
+                  },
+                  {
+                    "drop": 2,
+                    "reps": 16,
+                    "peso_kg": 12
+                  },
+                  {
+                    "drop": 3,
+                    "reps": 16,
+                    "peso_kg": 12
+                  }
+                ]
+              },
+              {
+                "set": 4,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": 16,
+                    "peso_kg": 12
+                  },
+                  {
+                    "drop": 2,
+                    "reps": 16,
+                    "peso_kg": 12
+                  },
+                  {
+                    "drop": 3,
+                    "reps": 16,
+                    "peso_kg": 12
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "ejercicio": "Curl Bíceps Rangos Parciales",
+            "musculo_principal": "Bíceps",
+            "sets": 2,
+            "reps_total": 0,
+            "peso_max_kg": 0,
+            "volumen_total_kg": 0,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": null,
+                    "peso_kg": 16
+                  },
+                  {
+                    "drop": 2,
+                    "reps": null,
+                    "peso_kg": 16
+                  },
+                  {
+                    "drop": 3,
+                    "reps": null,
+                    "peso_kg": 16
+                  }
+                ]
+              },
+              {
+                "set": 2,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": null,
+                    "peso_kg": 16
+                  },
+                  {
+                    "drop": 2,
+                    "reps": null,
+                    "peso_kg": 16
+                  },
+                  {
+                    "drop": 3,
+                    "reps": null,
+                    "peso_kg": 16
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "ejercicio": "Curl Bíceps con Impulso (apoyo en pared)",
+            "musculo_principal": "Bíceps",
+            "sets": 3,
+            "reps_total": 36,
+            "peso_max_kg": 24,
+            "volumen_total_kg": 864,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 12,
+                "peso_kg": 24,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 12,
+                "peso_kg": 24,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 12,
+                "peso_kg": 24,
+                "tipo": "standard"
+              }
+            ]
+          }
+        ],
+        "detalle_cardio": [
+          {
+            "orden": 1,
+            "ejercicio": "Caminata",
+            "hora_inicio": "13:00",
+            "duracion_min": 28,
+            "distancia_km": 1.78,
+            "kcal": 112,
+            "intensidad": "baja",
+            "notas": "Caminata de ida al gimnasio."
+          },
+          {
+            "orden": 2,
+            "ejercicio": "Caminata",
+            "hora_inicio": "14:05",
+            "hora_fin": "14:29",
+            "duracion_min": 24,
+            "distancia_km": 1.64,
+            "kcal": 99,
+            "intensidad": "baja",
+            "notas": "Caminata de vuelta. Ritmo medio 14:33 min/km."
+          },
+          {
+            "orden": 3,
+            "ejercicio": "Sauna",
+            "duracion_min": 20,
+            "intensidad": "baja",
+            "notas": "Al finalizar el entrenamiento."
+          }
+        ],
+        "notas": null
+      },
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 4,
+        "totales": {
+          "kcal": 2720.8,
+          "proteina_g": 216.4,
+          "grasa_g": 126.3,
+          "carbos_g": 161
+        },
+        "comidas": [
+          {
+            "tipo": "comida",
+            "hora": "01:01",
+            "fecha": "2026-03-10",
+            "descripcion": "Carne picada premium a la plancha",
+            "alimentos": [
+              {
+                "nombre": "Carne picada premium",
+                "cantidad_g": 330,
+                "coccion": "plancha",
+                "kcal": 610.5,
+                "proteina_g": 89.1,
+                "grasa_g": 26.4,
+                "carbos_g": 0,
+                "notas": "Estimado ~185 kcal/100g cocida (magra premium, ~8g grasa/100g).",
+                "ref_id": "carne_picada_premium"
+              }
+            ],
+            "totales": {
+              "kcal": 610.5,
+              "proteina_g": 89.1,
+              "grasa_g": 26.4,
+              "carbos_g": 0,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "02:20",
+            "fecha": "2026-03-10",
+            "descripcion": "Arroz carnaroli con champignones y crema de leche",
+            "alimentos": [
+              {
+                "nombre": "Champignones en trozos al natural (escurridos)",
+                "marca": "nana",
+                "cantidad_g": 230,
+                "kcal": 36.8,
+                "proteina_g": 4.6,
+                "grasa_g": 0,
+                "carbos_g": 3.7,
+                "notas": "Valores exactos de etiqueta. 230g = peso escurrido total del envase.",
+                "ref_id": "champignon_cocido"
+              },
+              {
+                "nombre": "Arroz carnaroli muy cocido",
+                "cantidad_g": 500,
+                "coccion": "hervido",
+                "kcal": 650,
+                "proteina_g": 13.5,
+                "grasa_g": 1.5,
+                "carbos_g": 140,
+                "notas": "Estimado por valores estándar de arroz blanco cocido. Sin etiqueta.",
+                "ref_id": "arroz_carnaroli_cocido"
+              },
+              {
+                "nombre": "Crema de leche",
+                "marca": "La Serenísima",
+                "cantidad_g": 77,
+                "kcal": 159.1,
+                "proteina_g": 0,
+                "grasa_g": 15.4,
+                "carbos_g": 0,
+                "notas": "Valores exactos de etiqueta. 77g ≈ 77ml (densidad ~1). Base: 31 kcal / 3g grasa por 15ml.",
+                "ref_id": "crema_leche"
+              },
+              {
+                "nombre": "Dátiles",
+                "cantidad_g": 20,
+                "kcal": 56.4,
+                "proteina_g": 0.5,
+                "grasa_g": 0.1,
+                "carbos_g": 15,
+                "notas": "Estimado por tabla estándar (~282 kcal/100g).",
+                "ref_id": "datiles"
+              }
+            ],
+            "totales": {
+              "kcal": 902.3,
+              "proteina_g": 18.6,
+              "grasa_g": 17,
+              "carbos_g": 158.7,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "rompe_ayuno",
+            "hora": "09:23",
+            "fecha": "2026-03-10",
+            "descripcion": "3 huevos revueltos con manteca",
+            "alimentos": [
+              {
+                "nombre": "Huevo entero",
+                "unidades": 3,
+                "cantidad_g": 165,
+                "coccion": "revuelto",
+                "kcal": 256,
+                "proteina_g": 21.5,
+                "grasa_g": 18.2,
+                "carbos_g": 1.7,
+                "notas": "Los 400g reportados probablemente incluyen el plato sin tarar. Macros calculados sobre 3 huevos (165g).",
+                "ref_id": "huevo"
+              },
+              {
+                "nombre": "Manteca",
+                "cantidad_g": 20,
+                "coccion": "plancha",
+                "kcal": 143,
+                "proteina_g": 0.2,
+                "grasa_g": 16.2,
+                "carbos_g": 0,
+                "ref_id": "manteca"
+              }
+            ],
+            "totales": {
+              "kcal": 399,
+              "proteina_g": 21.7,
+              "grasa_g": 34.4,
+              "carbos_g": 1.7,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": null,
+            "fecha": "2026-03-10",
+            "descripcion": "Chuleta de cerdo a la sartén con mostaza",
+            "alimentos": [
+              {
+                "nombre": "Chuleta de cerdo a la sartén",
+                "cantidad_g": 320,
+                "coccion": "sartén",
+                "notas": "Peso neto sin hueso. Estimado ~250 kcal/100g cocida.",
+                "kcal": 800,
+                "proteina_g": 86.4,
+                "grasa_g": 48,
+                "carbos_g": 0,
+                "ref_id": "chuleta_cerdo"
+              },
+              {
+                "nombre": "Mostaza",
+                "cantidad_g": 15,
+                "notas": "1 cucharada.",
+                "kcal": 9,
+                "proteina_g": 0.6,
+                "grasa_g": 0.5,
+                "carbos_g": 0.6,
+                "ref_id": "mostaza"
+              }
+            ],
+            "totales": {
+              "kcal": 809,
+              "proteina_g": 87,
+              "grasa_g": 48.5,
+              "carbos_g": 0.6,
+              "estimado": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fecha": "2026-03-09",
+      "peso_kg": 130,
+      "peso_medido": true,
+      "gym": {
+        "sin_registro": false,
+        "grupos_musculares": [
+          "Pecho-Tricep",
+          "Hombros"
+        ],
+        "ejercicios_fuerza": 5,
+        "ejercicios_cardio": 2,
+        "detalle_fuerza": [
+          {
+            "ejercicio": "Aperturas en cable (inclinado)",
+            "musculo_principal": "Pectoral mayor",
+            "sets": 3,
+            "reps_total": 30,
+            "peso_max_kg": 63,
+            "volumen_total_kg": 1890,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 10,
+                "peso_kg": 63,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 10,
+                "peso_kg": 63,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 10,
+                "peso_kg": 63,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Press de pecho inclinado",
+            "musculo_principal": "Pectoral mayor",
+            "sets": 3,
+            "reps_total": 28,
+            "peso_max_kg": 32,
+            "volumen_total_kg": 896,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 10,
+                "peso_kg": 32,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 10,
+                "peso_kg": 32,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 8,
+                "peso_kg": 32,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Dips en máquina",
+            "musculo_principal": "Pectoral menor",
+            "sets": 3,
+            "reps_total": 28,
+            "peso_max_kg": 54,
+            "volumen_total_kg": 1456,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 8,
+                "peso_kg": 47,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 10,
+                "peso_kg": 54,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 10,
+                "peso_kg": 54,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Pec Fly",
+            "musculo_principal": "Pectoral mayor",
+            "sets": 3,
+            "reps_total": 32,
+            "peso_max_kg": 88,
+            "volumen_total_kg": 2816,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 8,
+                "peso_kg": 88,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 12,
+                "peso_kg": 88,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 12,
+                "peso_kg": 88,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Vuelo Lateral de Hombros",
+            "musculo_principal": "Deltoides lateral",
+            "sets": 3,
+            "reps_total": 0,
+            "peso_max_kg": 0,
+            "volumen_total_kg": 0,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": 13,
+                    "peso_kg": 12
+                  },
+                  {
+                    "drop": 2,
+                    "reps": 8,
+                    "peso_kg": 9
+                  },
+                  {
+                    "drop": 3,
+                    "reps": 8,
+                    "peso_kg": 7
+                  }
+                ]
+              },
+              {
+                "set": 2,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": 13,
+                    "peso_kg": 12
+                  },
+                  {
+                    "drop": 2,
+                    "reps": 8,
+                    "peso_kg": 9
+                  },
+                  {
+                    "drop": 3,
+                    "reps": 8,
+                    "peso_kg": 7
+                  }
+                ]
+              },
+              {
+                "set": 3,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": 13,
+                    "peso_kg": 12
+                  },
+                  {
+                    "drop": 2,
+                    "reps": 8,
+                    "peso_kg": 9
+                  },
+                  {
+                    "drop": 3,
+                    "reps": 8,
+                    "peso_kg": 7
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "detalle_cardio": [
+          {
+            "orden": 1,
+            "ejercicio": "Sauna",
+            "duracion_min": 15,
+            "intensidad": "baja",
+            "gimnasio": "SportClub Belgrano",
+            "gimnasio_id": "sc_belgrano",
+            "notas": "Ducha fría/templada en el medio."
+          },
+          {
+            "orden": 2,
+            "ejercicio": "Cinta",
+            "equipo": "Bodytone Evolution Cardio",
+            "hora_fin": "21:33",
+            "duracion_min": 6,
+            "distancia_km": 0.6,
+            "pasos": 1014,
+            "kcal": 80,
+            "velocidad_kmh": 4.8,
+            "inclinacion": 0,
+            "intensidad": "baja",
+            "gimnasio": "SportClub Saavedra",
+            "gimnasio_id": "sc_saavedra"
+          }
+        ],
+        "notas": null
+      },
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 3,
+        "totales": {
+          "kcal": 2931.6,
+          "proteina_g": 142.5,
+          "grasa_g": 111.9,
+          "carbos_g": 345.1
+        },
+        "comidas": [
+          {
+            "tipo": "snack",
+            "hora": "00:07",
+            "fecha": "2026-03-09",
+            "descripcion": "Mix de frutos secos Happy Snack + reggianito",
+            "alimentos": [
+              {
+                "nombre": "Mix Supremo (cajú, almendras y nueces)",
+                "marca": "The Happy Snack",
+                "cantidad_g": 50,
+                "kcal": 311.8,
+                "proteina_g": 9.4,
+                "grasa_g": 27.4,
+                "carbos_g": 7.1,
+                "notas": "Bolsa completa 50g. Valores calculados desde etiqueta: 106kcal/17g.",
+                "ref_id": "mix_frutos_secos"
+              },
+              {
+                "nombre": "Queso reggianito",
+                "cantidad_g": 70,
+                "kcal": 266,
+                "proteina_g": 23.1,
+                "grasa_g": 18.9,
+                "carbos_g": 1.4,
+                "notas": "Valores estimados por tabla estándar reggianito (~380kcal/100g).",
+                "ref_id": "queso_reggianito"
+              }
+            ],
+            "totales": {
+              "kcal": 577.8,
+              "proteina_g": 32.5,
+              "grasa_g": 46.3,
+              "carbos_g": 8.5,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "00:47",
+            "fecha": "2026-03-09",
+            "descripcion": "Fideos con salsa bolognesa, arvejas y reggianito rallado",
+            "alimentos": [
+              {
+                "nombre": "Salsa bolognesa Oliovita",
+                "marca": "Oliovita",
+                "cantidad_g": 320,
+                "kcal": 224,
+                "proteina_g": 12.3,
+                "grasa_g": 8.5,
+                "carbos_g": 24.5,
+                "ref_id": "salsa_bolognesa"
+              },
+              {
+                "nombre": "Arvejas La Banda (escurridas)",
+                "marca": "La Banda",
+                "cantidad_g": 200,
+                "kcal": 198,
+                "proteina_g": 12,
+                "grasa_g": 1,
+                "carbos_g": 36,
+                "ref_id": "arvejas_enlatadas"
+              },
+              {
+                "nombre": "Reggianito rallado",
+                "cantidad_g": 100,
+                "kcal": 380,
+                "proteina_g": 33,
+                "grasa_g": 28,
+                "carbos_g": 0,
+                "notas": "Sin etiqueta visible. Valores estimados por tabla de referencia estándar.",
+                "ref_id": "queso_reggianito"
+              },
+              {
+                "nombre": "Fideos cocidos",
+                "cantidad_g": 700,
+                "kcal": 1124.8,
+                "proteina_g": 42.6,
+                "grasa_g": 7,
+                "carbos_g": 228,
+                "notas": "Calculado desde etiqueta producto seco (296 kcal/80g). 700g cocido ≈ 304g seco (factor cocción 2.3x).",
+                "ref_id": "fideos_cocidos"
+              }
+            ],
+            "totales": {
+              "kcal": 1926.8,
+              "proteina_g": 99.9,
+              "grasa_g": 44.5,
+              "carbos_g": 288.5,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "snack",
+            "hora": "19:03",
+            "fecha": "2026-03-09",
+            "descripcion": "Café con leche, croissant y biscotti",
+            "alimentos": [
+              {
+                "nombre": "Café con leche",
+                "cantidad_ml": 250,
+                "kcal": 54,
+                "proteina_g": 2.6,
+                "grasa_g": 2.6,
+                "carbos_g": 3.8,
+                "ref_id": "cafe_con_leche"
+              },
+              {
+                "nombre": "Croissant de manteca",
+                "cantidad_g": 75,
+                "kcal": 304,
+                "proteina_g": 6,
+                "grasa_g": 15.8,
+                "carbos_g": 34.5,
+                "ref_id": "croissant"
+              },
+              {
+                "nombre": "Biscotti / cantuccini",
+                "cantidad_g": 15,
+                "kcal": 69,
+                "proteina_g": 1.5,
+                "grasa_g": 2.7,
+                "carbos_g": 9.8,
+                "ref_id": "biscotti"
+              }
+            ],
+            "totales": {
+              "kcal": 427,
+              "proteina_g": 10.1,
+              "grasa_g": 21.1,
+              "carbos_g": 48.1,
+              "estimado": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fecha": "2026-03-08",
+      "peso_kg": 130,
+      "peso_medido": true,
+      "gym": null,
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 4,
+        "totales": {
+          "kcal": 2714.8,
+          "proteina_g": 128.8,
+          "grasa_g": 181,
+          "carbos_g": 127.5
+        },
+        "comidas": [
+          {
+            "tipo": "comida",
+            "hora": "02:45",
+            "fecha": "2026-03-08",
+            "descripcion": "Cold brew vainilla y arepa pequeña de carne desmechada grasosa",
+            "alimentos": [
+              {
+                "nombre": "Cold Brew Vainilla Deseado",
+                "marca": "The Vaini Brew Deseado",
+                "cantidad_ml": 269,
+                "kcal": 30,
+                "proteina_g": 1,
+                "grasa_g": 0,
+                "carbos_g": 6,
+                "ref_id": "cold_brew_vainilla"
+              },
+              {
+                "nombre": "Arepa carne desmechada",
+                "cantidad_g": 225,
+                "notas": "Sin agregados, porción pequeña, carne grasosa. Macros estimados.",
+                "kcal": 350,
+                "proteina_g": 20,
+                "grasa_g": 15,
+                "carbos_g": 32,
+                "ref_id": "arepa_carne"
+              }
+            ],
+            "totales": {
+              "kcal": 380,
+              "proteina_g": 21,
+              "grasa_g": 15,
+              "carbos_g": 38,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "05:10",
+            "fecha": "2026-03-08",
+            "descripcion": "Dos costillas de cerdo a la plancha con sal marina",
+            "alimentos": [
+              {
+                "nombre": "Costillas de cerdo a la plancha",
+                "peso_total_con_hueso_g": 400,
+                "hueso_y_grasa_retirada_g": 100,
+                "carne_neta_g": 300,
+                "condimento": "sal marina",
+                "coccion": "plancha",
+                "kcal": 876,
+                "proteina_g": 60,
+                "grasa_g": 66,
+                "carbos_g": 0,
+                "ref_id": "costilla_cerdo"
+              }
+            ],
+            "totales": {
+              "kcal": 876,
+              "proteina_g": 60,
+              "grasa_g": 66,
+              "carbos_g": 0,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "06:21",
+            "fecha": "2026-03-08",
+            "descripcion": "Morrón relleno con queso pimienta negra y mayo",
+            "alimentos": [
+              {
+                "nombre": "Morrón rojo crudo",
+                "cantidad_g": 100,
+                "kcal": 31,
+                "proteina_g": 1,
+                "grasa_g": 0.3,
+                "carbos_g": 6,
+                "ref_id": "morron_rojo"
+              },
+              {
+                "nombre": "Queso pimienta negra Santa Rosa",
+                "marca": "Santa Rosa",
+                "cantidad_g": 183,
+                "kcal": 622.2,
+                "proteina_g": 39,
+                "grasa_g": 49.8,
+                "carbos_g": 1.8,
+                "notas": "Macros estimados por tipo de queso barra semiduro. Peso exacto.",
+                "ref_id": "queso_pimienta"
+              },
+              {
+                "nombre": "Mayonesa",
+                "cantidad_g": 27,
+                "kcal": 184,
+                "proteina_g": 0.4,
+                "grasa_g": 20.3,
+                "carbos_g": 0.3,
+                "ref_id": "mayonesa"
+              }
+            ],
+            "totales": {
+              "kcal": 837.2,
+              "proteina_g": 40.4,
+              "grasa_g": 70.4,
+              "carbos_g": 8.1,
+              "estimado": true
+            }
+          },
+          {
+            "tipo": "comida",
+            "hora": "06:29",
+            "fecha": "2026-03-08",
+            "descripcion": "Brownie Carrefour con nuez",
+            "alimentos": [
+              {
+                "nombre": "Brownie casero con nuez",
+                "marca": "Carrefour",
+                "cantidad_g": 148,
+                "coccion": "horno",
+                "kcal": 621.6,
+                "proteina_g": 7.4,
+                "grasa_g": 29.6,
+                "carbos_g": 81.4,
+                "notas": "Sin info nutricional en etiqueta. Macros estimados por tabla brownie casero.",
+                "ref_id": "brownie"
+              }
+            ],
+            "totales": {
+              "kcal": 621.6,
+              "proteina_g": 7.4,
+              "grasa_g": 29.6,
+              "carbos_g": 81.4,
+              "estimado": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fecha": "2026-03-07",
+      "peso_kg": 130,
+      "peso_medido": false,
+      "gym": {
+        "sin_registro": false,
+        "grupos_musculares": [
+          "Espalda-Bicep"
+        ],
+        "ejercicios_fuerza": 3,
+        "ejercicios_cardio": 2,
+        "detalle_fuerza": [
+          {
+            "ejercicio": "Lat Pulldown",
+            "musculo_principal": "Dorsal ancho",
+            "sets": 3,
+            "reps_total": 30,
+            "peso_max_kg": 75,
+            "volumen_total_kg": 2250,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 10,
+                "peso_kg": 75,
+                "tipo": "standard"
+              },
+              {
+                "set": 2,
+                "reps": 10,
+                "peso_kg": 75,
+                "tipo": "standard"
+              },
+              {
+                "set": 3,
+                "reps": 10,
+                "peso_kg": 75,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Curl Bíceps",
+            "musculo_principal": "Bíceps",
+            "sets": 1,
+            "reps_total": 12,
+            "peso_max_kg": 22.5,
+            "volumen_total_kg": 270.0,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "reps": 12,
+                "peso_kg": 22.5,
+                "tipo": "standard"
+              }
+            ]
+          },
+          {
+            "ejercicio": "Curl Bíceps Dropset",
+            "musculo_principal": "Bíceps",
+            "sets": 3,
+            "reps_total": 0,
+            "peso_max_kg": 0,
+            "volumen_total_kg": 0,
+            "detalle_sets": [
+              {
+                "set": 1,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": 10,
+                    "peso_kg": 25
+                  },
+                  {
+                    "drop": 2,
+                    "reps": 10,
+                    "peso_kg": 20
+                  }
+                ]
+              },
+              {
+                "set": 2,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": 10,
+                    "peso_kg": 25
+                  },
+                  {
+                    "drop": 2,
+                    "reps": 6,
+                    "peso_kg": 20
+                  },
+                  {
+                    "drop": 3,
+                    "reps": 8,
+                    "peso_kg": 10
+                  }
+                ]
+              },
+              {
+                "set": 3,
+                "tipo": "dropset",
+                "drops": [
+                  {
+                    "drop": 1,
+                    "reps": 10,
+                    "peso_kg": 25
+                  },
+                  {
+                    "drop": 2,
+                    "reps": 6,
+                    "peso_kg": 20
+                  },
+                  {
+                    "drop": 3,
+                    "reps": 8,
+                    "peso_kg": 10
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "detalle_cardio": [
+          {
+            "orden": 1,
+            "ejercicio": "Natación",
+            "equipo": "Pileta 25 metros",
+            "hora_inicio": "19:28",
+            "hora_fin": "19:46",
+            "duracion_min": 18,
+            "distancia_m": 300,
+            "largos": 12,
+            "intensidad": "moderada",
+            "notas": "12 largos en pileta de 25m = 300m totales"
+          },
+          {
+            "orden": 2,
+            "ejercicio": "Cinta",
+            "equipo": "Bodytone Evolution Cardio",
+            "duracion_min": 1.8,
+            "distancia_km": 0.27,
+            "pasos": 461,
+            "kcal": 20.1,
+            "velocidad_kmh": 3.6,
+            "inclinacion": 0,
+            "intensidad": "baja",
+            "notas": "Vuelta a la calma al finalizar la sesión"
+          }
+        ],
+        "notas": null
+      },
+      "nutricion": {
+        "sin_registro": false,
+        "comidas_count": 1,
+        "totales": {
+          "kcal": 846,
+          "proteina_g": 74,
+          "grasa_g": 56.4,
+          "carbos_g": 10
+        },
+        "comidas": [
+          {
+            "tipo": "rompe_ayuno",
+            "hora": "22:18",
+            "fecha": "2026-03-07",
+            "descripcion": "Huevos revueltos con queso parmesano y champignones",
+            "alimentos": [
+              {
+                "nombre": "Queso parmesano",
+                "cantidad_g": 128,
+                "kcal": 551,
+                "proteina_g": 49,
+                "grasa_g": 37,
+                "carbos_g": 5,
+                "ref_id": "queso_parmesano"
+              },
+              {
+                "nombre": "Huevos enteros",
+                "cantidad_g": 176,
+                "unidades": 3,
+                "kcal": 273,
+                "proteina_g": 23,
+                "grasa_g": 19,
+                "carbos_g": 2,
+                "ref_id": "huevo"
+              },
+              {
+                "nombre": "Champignones en lata (Agaricus bisporus)",
+                "cantidad_g": 215,
+                "kcal": 22,
+                "proteina_g": 2,
+                "grasa_g": 0.4,
+                "carbos_g": 3,
+                "ref_id": "champignon_cocido"
+              }
+            ],
+            "totales": {
+              "kcal": 846,
+              "proteina_g": 74,
+              "grasa_g": 56.4,
+              "carbos_g": 10,
+              "estimado": false
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

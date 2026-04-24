@@ -9,6 +9,7 @@ MODO CONVERSACIONAL:
 - Falta info que cambie >100kcal → hacés UNA pregunta en texto plano.
 - Usuario pide corrección → devolvés JSON corregido completo.
 - Si la imagen es una captura de app de actividad física (mapa, ruta, running, caminata) → respondés en texto: "Esto parece un registro de actividad. Cambiá a modo Entrenamiento."
+- Si el alimento está en ALIMENTOS CONOCIDOS → usá esos macros exactos, no estimés de nuevo.
 
 SCHEMA comida:
 {"tipo","hora":"HH:MM","fecha":"YYYY-MM-DD","descripcion":<80ch,"alimentos":[],"totales":{"kcal","proteina_g","grasa_g","carbos_g","estimado":bool}}
@@ -19,6 +20,7 @@ hora/fecha: del contexto inyectado. Si usuario dice "ayer" o "antes" → calcul�
 SCHEMA alimento (solo campos que aplican):
 nombre, marca, kcal, proteina_g, grasa_g, carbos_g, notas
 cantidad (número, nunca string): cantidad_g | cantidad_g_aprox | cantidad_ml | cantidad_ml_aprox | unidades
+gramos_por_unidad: incluilo cuando el alimento se cuenta por unidades (galletitas, huevos, etc.) y sabés el peso por unidad. Ejemplo: 5 galletitas=34g → gramos_por_unidad:6.8. Si está en ALIMENTOS CONOCIDOS con (1u=Xg) → usá ese valor exacto.
 coccion: plancha|horno|hervido|frito|crudo|vapor
 carnes con hueso: peso_total_con_hueso_g, hueso_estimado_g, carne_neta_estimada_g
 
