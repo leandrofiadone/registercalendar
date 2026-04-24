@@ -7933,6 +7933,60 @@
         "carbos_g": 181,
         "estimado": true
       }
+    },
+    {
+      "ventana_id": "2026-04-24",
+      "protocolo": "ayuno_intermitente",
+      "comidas": [
+        {
+          "tipo": "comida",
+          "hora": "01:55",
+          "fecha": "2026-04-24",
+          "descripcion": "1 palta y media chica + 4 rapiditas chicas",
+          "alimentos": [
+            {
+              "nombre": "Palta",
+              "cantidad_g_aprox": 225,
+              "coccion": null,
+              "kcal": 360,
+              "proteina_g": 4.5,
+              "grasa_g": 33,
+              "carbos_g": 20,
+              "notas": "1.5 paltas chicas (~150g c/u)",
+              "estimado": true,
+              "ref_id": "palta",
+              "cantidad": 1.5
+            },
+            {
+              "nombre": "Rapiditas chicas",
+              "cantidad_g_aprox": 120,
+              "coccion": null,
+              "kcal": 360,
+              "proteina_g": 10,
+              "grasa_g": 8,
+              "carbos_g": 60,
+              "notas": "4 unidades chicas (~30g c/u)",
+              "estimado": true,
+              "ref_id": "rapiditas_chicas",
+              "cantidad": 4
+            }
+          ],
+          "totales": {
+            "kcal": 720,
+            "proteina_g": 14.5,
+            "grasa_g": 41,
+            "carbos_g": 80,
+            "estimado": true
+          }
+        }
+      ],
+      "totales_ventana": {
+        "kcal": 720,
+        "proteina_g": 14.5,
+        "grasa_g": 41,
+        "carbos_g": 80,
+        "estimado": true
+      }
     }
   ]
 }

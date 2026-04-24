@@ -104,15 +104,21 @@
 <style>
   .layout {
     display: flex;
-    flex: 1;
-    height: 100%;
-    overflow: hidden;
+    width: 100%;
+    min-height: 70vh;
+    gap: 1rem;
   }
 
   .sidebar {
-    width: 216px; flex-shrink: 0;
-    border-right: 1px solid var(--b1);
-    overflow-y: auto; background: var(--s1);
+    width: 240px; flex-shrink: 0;
+    border: 1px solid var(--b1);
+    border-radius: 8px;
+    background: var(--s1);
+    align-self: flex-start;
+    max-height: calc(100vh - 12rem);
+    overflow-y: auto;
+    position: sticky;
+    top: 1rem;
   }
 
   .filter-box { padding: 8px 10px; border-bottom: 1px solid var(--b1); }
@@ -164,7 +170,9 @@
   .tag.ta { background: rgba(245,158,11,.12); color: var(--amber); border-color: rgba(245,158,11,.25); }
 
   .main {
-    flex: 1; overflow-y: auto; padding: 26px 30px;
+    flex: 1;
+    min-width: 0;
+    padding: 0 0.25rem;
   }
 
   .empty-state {
@@ -178,11 +186,13 @@
   .es-hint code { background: var(--s2); padding: 1px 5px; border-radius: 3px; font-size: 10px; }
 
   @media (max-width: 768px) {
-    .layout { flex-direction: column; }
+    .layout { flex-direction: column; gap: 0.5rem; }
     .sidebar {
+      position: static;
       width: 100%; flex-shrink: 0;
-      height: 72px; border-right: none;
-      border-bottom: 1px solid var(--b1);
+      height: 72px;
+      border-radius: 6px;
+      max-height: 72px;
       display: flex; overflow-x: auto; overflow-y: hidden;
     }
     .filter-box { display: none; }
@@ -192,6 +202,6 @@
       border-right: 1px solid var(--b1);
     }
     .sidebar-item::before { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: 3px; }
-    .main { padding: 16px; overflow-x: hidden; }
+    .main { padding: 0; overflow-x: hidden; }
   }
 </style>

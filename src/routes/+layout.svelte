@@ -11,11 +11,10 @@
   let perfil   = $derived(data.perfil);
 
   let tabs = [
-    { href: '/sesiones',   label: 'Sesiones',    icon: '📋' },
-    { href: '/nutricion',  label: 'Nutrición',   icon: '🥗' },
-    { href: '/calendario', label: 'Calendario',  icon: '📅' },
-    { href: '/perfil',     label: 'Perfil',      icon: '👤' },
-    { href: '/ingresar',   label: 'Ingresar',    icon: '✏️' },
+    { href: '/sesiones',   label: 'sesiones'    },
+    { href: '/nutricion',  label: 'nutrición'   },
+    { href: '/calendario', label: 'calendario'  },
+    { href: '/perfil',     label: 'perfil'      },
   ];
 
   let currentPath = $derived($page.url.pathname);
@@ -26,207 +25,279 @@
   <title>Gym Tracker</title>
 </svelte:head>
 
-<header class="header">
-  <div class="logo"><span class="logo-icon">🏋️</span> Gym Tracker</div>
-  <div class="stats-bar">
+<div class="shell">
+  <header class="top">
+    <a href="/" class="brand">GYM&nbsp;TRACKER</a>
+    <nav class="nav" aria-label="Navegación principal">
+      {#each tabs as tab, i}
+        {#if i > 0}<span class="sep">·</span>{/if}
+        <a
+          href={tab.href}
+          class="nav-link"
+          class:active={currentPath.startsWith(tab.href)}
+          aria-current={currentPath.startsWith(tab.href) ? 'page' : undefined}
+        >{tab.label}</a>
+      {/each}
+    </nav>
+    <button class="add-btn" onclick={() => drawerOpen = true} aria-label="Ingresar dato">
+      + ingresar
+    </button>
+  </header>
+
+  <div class="status-strip">
     <TrendChip {ventanas} {sessions} {perfil} />
     <FastingCounter {ventanas} />
   </div>
-  <nav class="tabs" aria-label="Navegación principal">
-    {#each tabs as tab}
-      <a href={tab.href} class="tab-btn" class:active={currentPath.startsWith(tab.href)} aria-label={tab.label} aria-current={currentPath.startsWith(tab.href) ? 'page' : undefined}>
-        {tab.icon} {tab.label}
-      </a>
-    {/each}
-  </nav>
-</header>
 
-<main class="app-body">
-  {@render children()}
-</main>
+  <main class="page">
+    {@render children()}
+  </main>
 
-<!-- FAB -->
-<button class="fab" onclick={() => drawerOpen = true} aria-label="Ingresar dato">+</button>
+  <footer class="bottom">
+    <span class="foot-l">Gym Tracker · bitácora personal</span>
+    <span class="foot-r">
+      <a href="/sesiones" class:active={currentPath.startsWith('/sesiones')}>ses</a>
+      <a href="/nutricion" class:active={currentPath.startsWith('/nutricion')}>nut</a>
+      <a href="/calendario" class:active={currentPath.startsWith('/calendario')}>cal</a>
+      <a href="/perfil" class:active={currentPath.startsWith('/perfil')}>per</a>
+    </span>
+  </footer>
+</div>
 
-<!-- Drawer -->
 {#if drawerOpen}
   <div class="drawer-backdrop" onclick={() => drawerOpen = false} role="presentation"></div>
-  <div class="drawer">
+  <aside class="drawer">
     <Ingresar onClose={() => drawerOpen = false} />
-  </div>
+  </aside>
 {/if}
 
 <style>
   :global(*, *::before, *::after) { box-sizing: border-box; margin: 0; padding: 0; }
 
   :global(:root) {
-    --bg: #0a0a0f;
-    --s1: #111118;
-    --s2: #17171f;
-    --s3: #1e1e28;
-    --b1: #22222e;
-    --b2: #2d2d3e;
-    --text: #dcdcec;
-    --muted: #707088;
-    --dim: #404055;
-    --accent: #7c6af5;
-    --accent-l: #a594f9;
-    --blue: #3b82f6;
-    --blue-l: #93c5fd;
-    --green: #10b981;
-    --green-l: #6ee7b7;
-    --amber: #f59e0b;
-    --red: #ef4444;
+    /* GitHub dark palette */
+    --bg: #0d1117;
+    --s1: #161b22;
+    --s2: #1c2333;
+    --s3: #1c2333;
+    --b1: #30363d;
+    --b2: #484f58;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --dim: #6e7681;
+    --accent: #bc8cff;
+    --accent-l: #d2b8ff;
+    --blue: #58a6ff;
+    --blue-l: #a6c8ff;
+    --green: #3fb950;
+    --green-l: #56d364;
+    --amber: #d29922;
+    --red: #f85149;
+
+    /* Semánticos */
+    --kcal: #f0883e;
+    --prot: var(--green);
+    --fat:  var(--amber);
+    --carb: var(--blue);
+    --good: var(--green);
+    --warn: var(--amber);
+    --bad:  var(--red);
+    --surface-1: var(--s1);
+    --surface-2: var(--s2);
+    --border-1:  var(--b1);
+    --border-2:  var(--b2);
+
+    /* Fuentes por rol */
+    --font-display: 'Space Grotesk', 'SF Pro Display', ui-sans-serif, system-ui, sans-serif;
+    --font-body:    'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-mono:    'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  }
+
+  :global(html, body) {
+    background: var(--bg);
+    color: var(--text);
   }
 
   :global(body) {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
+    font-family: var(--font-body);
     min-height: 100vh;
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
   }
 
-  :global(::-webkit-scrollbar) { width: 4px; height: 4px; }
-  :global(::-webkit-scrollbar-track) { background: transparent; }
-  :global(::-webkit-scrollbar-thumb) { background: var(--b2); border-radius: 2px; }
+  :global(h1, h2, h3) { font-family: var(--font-display); font-weight: 600; }
 
-  .header {
-    position: sticky; top: 0; z-index: 200;
-    background: rgba(10, 10, 15, 0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--b1);
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    height: 54px;
-  }
-
-  .logo {
-    font-size: 14px; font-weight: 700; color: #fff;
-    letter-spacing: -0.02em;
-    display: flex; align-items: center; gap: 7px;
-    flex-shrink: 0; white-space: nowrap;
-  }
-  .logo-icon { font-size: 17px; }
-
-  .stats-bar { display: flex; gap: 8px; flex: 1; align-items: center; justify-content: flex-start; overflow: hidden; }
-
-
-  .tabs { display: flex; gap: 2px; flex-shrink: 0; }
-
-  .tab-btn {
-    padding: 5px 14px;
-    border: 1px solid transparent; border-radius: 6px;
-    background: none; color: var(--muted);
-    font-size: 12px; cursor: pointer;
-    transition: all 0.12s; font-family: inherit;
-    display: flex; align-items: center; gap: 5px;
-    text-decoration: none;
-  }
-  .tab-btn:hover { background: var(--s2); color: var(--text); }
-  .tab-btn.active { background: var(--s3); border-color: var(--b2); color: #fff; }
-
-  .app-body {
-    height: calc(100vh - 54px);
-    overflow: hidden;
-    display: flex;
-  }
-
-  /* FAB */
-  .fab {
-    position: fixed;
-    bottom: 24px; right: 24px;
-    z-index: 300;
-    width: 44px; height: 44px;
-    border-radius: 50%;
-    background: var(--s2);
-    border: 1px solid var(--b2);
+  :global(h2.section) {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
     color: var(--muted);
-    font-size: 22px; line-height: 1;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    display: flex; align-items: center; justify-content: center;
-    transition: border-color .15s, color .15s, transform .15s;
+    border-bottom: 1px solid var(--b1);
+    padding-bottom: 0.45rem;
+    margin: 2.5rem 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
   }
-  .fab:hover { border-color: var(--accent); color: var(--accent-l); transform: scale(1.06); }
-  .fab:active { transform: scale(0.95); }
 
-  /* Drawer backdrop */
+  :global(.num) {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+
+  :global(.mono) { font-family: var(--font-mono); }
+
+  :global(a) { color: var(--text); text-decoration: none; }
+
+  :global(::-webkit-scrollbar) { width: 6px; height: 6px; }
+  :global(::-webkit-scrollbar-track) { background: transparent; }
+  :global(::-webkit-scrollbar-thumb) { background: var(--b1); border-radius: 3px; }
+  :global(::-webkit-scrollbar-thumb:hover) { background: var(--b2); }
+
+  /* ── Shell ───────────────────────────────── */
+  .shell {
+    width: 100%;
+    padding: 1.75rem 2.5rem 5rem;
+    min-height: 100vh;
+  }
+  /* Pantallas muy anchas: dejamos crecer pero con un tope útil */
+  @media (min-width: 1600px) {
+    .shell { padding-left: 3.5rem; padding-right: 3.5rem; }
+  }
+
+  /* TOP bar: brand · nav · action */
+  .top {
+    display: flex; align-items: baseline; gap: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--b1);
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .brand {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    color: var(--text);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .nav {
+    display: flex; align-items: baseline; gap: 0.35rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    flex: 1;
+  }
+  .nav-link {
+    color: var(--muted);
+    padding: 0.1rem 0.15rem;
+    border-bottom: 1px solid transparent;
+    transition: color .12s, border-color .12s;
+  }
+  .nav-link:hover { color: var(--text); }
+  .nav-link.active {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+  }
+  .sep { color: var(--dim); font-size: 0.9rem; user-select: none; }
+
+  .add-btn {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid var(--b1);
+    border-radius: 4px;
+    padding: 0.35rem 0.7rem;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: border-color .12s, color .12s, background .12s;
+  }
+  .add-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(188, 140, 255, 0.06);
+  }
+
+  /* Status strip (ex header chips, ahora primera fila de página) */
+  .status-strip {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .page {
+    min-height: 50vh;
+  }
+
+  .bottom {
+    margin-top: 4rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--b1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .foot-r { display: flex; gap: 0.75rem; }
+  .foot-r a { color: var(--dim); }
+  .foot-r a:hover { color: var(--text); }
+  .foot-r a.active { color: var(--accent); }
+
+  /* Drawer */
   .drawer-backdrop {
     position: fixed; inset: 0;
     z-index: 400;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(2px);
+    background: rgba(0, 0, 0, 0.72);
   }
-
-  /* Drawer — desktop: panel derecho */
   .drawer {
     position: fixed;
     top: 0; right: 0; bottom: 0;
     z-index: 500;
-    width: 480px;
+    width: 460px;
     background: var(--s1);
     border-left: 1px solid var(--b1);
-    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.5);
     display: flex; flex-direction: column;
     animation: slideInRight .22s ease-out;
   }
   @keyframes slideInRight {
-    from { transform: translateX(100%); opacity: 0; }
-    to   { transform: translateX(0);    opacity: 1; }
+    from { transform: translateX(100%); }
+    to   { transform: translateX(0); }
   }
 
   @media (max-width: 768px) {
-    .header {
-      flex-wrap: wrap;
-      height: auto;
-      padding: 8px 12px 0;
-      gap: 8px;
+    .shell { padding: 1.25rem 1rem 5rem; }
+    .top {
+      gap: 0.75rem 1rem;
+      padding-bottom: 0.9rem;
+      margin-bottom: 0.9rem;
     }
-    .logo { font-size: 13px; }
-    .logo-icon { font-size: 15px; }
-    .stats-bar { order: 1; flex-basis: 100%; justify-content: center; gap: 6px; }
-    .tabs {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      z-index: 200;
-      background: rgba(10, 10, 15, 0.96);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid var(--b1);
-      justify-content: space-around;
-      padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
-      gap: 0;
-    }
-    .tab-btn { flex-direction: column; gap: 2px; font-size: 10px; padding: 4px 8px; }
-    .app-body {
-      height: calc(100vh - 80px - 52px);
-    }
+    .brand { font-size: 0.74rem; }
+    .nav { font-size: 0.82rem; flex-basis: 100%; order: 2; flex-wrap: wrap; }
+    .add-btn { font-size: 0.7rem; padding: 0.3rem 0.55rem; order: 1; margin-left: auto; }
+    .status-strip { margin-bottom: 1.5rem; }
+    .bottom { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
 
-    /* FAB mobile — sube para no tapar la bottom nav */
-    .fab {
-      bottom: calc(60px + env(safe-area-inset-bottom) + 12px);
-      right: 16px;
-      width: 40px; height: 40px;
-      font-size: 20px;
-    }
-
-    /* Drawer mobile — sube desde abajo, casi pantalla completa */
     .drawer {
-      top: auto;
-      left: 0; right: 0; bottom: 0;
+      top: auto; left: 0; right: 0; bottom: 0;
       width: 100%;
       height: 92dvh;
       border-left: none;
       border-top: 1px solid var(--b1);
-      border-radius: 16px 16px 0 0;
-      box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.5);
+      border-radius: 12px 12px 0 0;
       animation: slideInUp .25s ease-out;
     }
     @keyframes slideInUp {
-      from { transform: translateY(100%); opacity: 0; }
-      to   { transform: translateY(0);    opacity: 1; }
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0); }
     }
   }
 </style>

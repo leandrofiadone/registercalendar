@@ -132,7 +132,7 @@
       plugins: [dayGridPlugin, listPlugin],
       initialView: 'dayGridMonth',
       locale: esLocale,
-      height: '100%',
+      height: 'auto',
       fixedWeekCount: false,
       headerToolbar: {
         left:   'prev,next today',
@@ -308,14 +308,14 @@
     <div style="display:{calFormat === 'gregoriano' ? 'contents' : 'none'}">
       <div class="legend">
         {#if calView === 'gym'}
-          <div class="legend-item"><div class="legend-dot" style="background:#7c6af5"></div> Fuerza</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div> Cardio</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#10b981"></div> Fuerza + Cardio</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div> Fuerza</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--carb)"></div> Cardio</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--good)"></div> Fuerza + Cardio</div>
         {:else}
-          <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div> Ventana de alimentación</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--kcal)"></div> Ventana de alimentación</div>
         {/if}
       </div>
-      <div bind:this={calEl} style="flex:1;min-height:0"></div>
+      <div bind:this={calEl} class="fc-host"></div>
     </div>
 
     <!-- 13 Lunas: solo se monta cuando está activo -->
@@ -327,42 +327,92 @@
       />
     {/if}
   </div>
+</div>
 
-  <!-- Detail panel (sidebar on desktop, overlay on mobile) -->
-  {#if selectedSession || selectedVentana}
-    <div class="cal-detail">
-      <button class="cal-detail-close" onclick={() => { selectedSession = null; selectedVentana = null; }}>✕</button>
+<!-- Detail drawer overlay (sólo cuando hay selección) -->
+{#if selectedSession || selectedVentana}
+  <div class="cal-drawer-backdrop" onclick={() => { selectedSession = null; selectedVentana = null; }} role="presentation"></div>
+  <aside class="cal-drawer">
+    <button class="cal-drawer-close" onclick={() => { selectedSession = null; selectedVentana = null; }} aria-label="Cerrar">✕</button>
+    <div class="cal-drawer-body">
       {#if selectedSession}
         <SessionDetail session={selectedSession} {ventanas} {perfil} {alimentosRef} />
       {:else if selectedVentana}
         <VentanaDetail ventana={selectedVentana} {perfil} {sessions} {ventanas} {alimentosRef} />
       {/if}
     </div>
-  {/if}
-
-  <!-- Desktop empty state (hidden on mobile) -->
-  {#if !selectedSession && !selectedVentana}
-    <div class="cal-detail cal-detail-empty">
-      <div class="empty-state">
-        <div class="ei">📅</div>
-        <p>Seleccioná un evento del calendario</p>
-      </div>
-    </div>
-  {/if}
-</div>
+  </aside>
+{/if}
 
 <style>
   .cal-layout {
-    display: flex;
-    flex: 1;
-    height: 100%;
-    overflow: hidden;
+    width: 100%;
   }
 
   .cal-panel {
-    flex: 1; padding: 18px 20px; overflow: hidden;
-    background: var(--bg); border-right: 1px solid var(--b1);
+    width: 100%;
+    background: var(--bg);
     display: flex; flex-direction: column;
+  }
+
+  .fc-host {
+    width: 100%;
+    background: var(--s1);
+    border: 1px solid var(--b1);
+    border-radius: 8px;
+    padding: 0.75rem;
+  }
+
+  /* Detail drawer — overlay derecha, no afecta grid del calendario */
+  .cal-drawer-backdrop {
+    position: fixed; inset: 0; z-index: 400;
+    background: rgba(0, 0, 0, 0.72);
+  }
+  .cal-drawer {
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    z-index: 500;
+    width: min(520px, 92vw);
+    background: var(--s1);
+    border-left: 1px solid var(--b1);
+    display: flex; flex-direction: column;
+    animation: slideInRightCal .22s ease-out;
+  }
+  .cal-drawer-body {
+    flex: 1; overflow-y: auto;
+    padding: 1rem 1.25rem 2rem;
+  }
+  .cal-drawer-close {
+    position: absolute; top: 0.6rem; right: 0.6rem;
+    z-index: 10;
+    width: 30px; height: 30px;
+    background: transparent;
+    border: 1px solid var(--b1);
+    border-radius: 4px;
+    color: var(--muted);
+    font-size: 14px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono);
+  }
+  .cal-drawer-close:hover { color: var(--text); border-color: var(--b2); }
+  @keyframes slideInRightCal {
+    from { transform: translateX(100%); }
+    to   { transform: translateX(0); }
+  }
+  @media (max-width: 768px) {
+    .cal-drawer {
+      top: auto; left: 0; right: 0; bottom: 0;
+      width: 100%;
+      height: 92dvh;
+      border-left: none;
+      border-top: 1px solid var(--b1);
+      border-radius: 12px 12px 0 0;
+      animation: slideInUpCal .25s ease-out;
+    }
+    @keyframes slideInUpCal {
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0); }
+    }
   }
 
   .cal-subnav {
@@ -384,25 +434,8 @@
   .legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--muted); }
   .legend-dot  { width: 8px; height: 8px; border-radius: 50%; }
 
-  .cal-detail {
-    width: 340px; flex-shrink: 0; overflow-y: auto;
-    padding: 20px; background: var(--s1);
-    position: relative;
-  }
-  .cal-detail-close {
-    display: none;
-  }
-
-  .empty-state {
-    height: 100%; display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 10px; color: var(--dim);
-  }
-  .ei { font-size: 36px; opacity: 0.35; }
-  .empty-state p { font-size: 13px; }
-
   /* FullCalendar dark theme overrides */
-  :global(.fc) { flex: 1; min-height: 0; font-family: inherit; font-size: 12px; }
+  :global(.fc) { font-family: inherit; font-size: 12px; }
   :global(.fc .fc-toolbar) { margin-bottom: 12px; }
   :global(.fc .fc-toolbar-title) { color: var(--text); font-size: 14px; font-weight: 600; }
   :global(.fc-theme-standard .fc-scrollgrid) { border-color: #35354a; }
@@ -576,34 +609,13 @@
 
   /* Responsive */
   @media (max-width: 768px) {
-    .cal-layout { flex-direction: column; }
-    .cal-panel { padding: 6px 8px; }
+    .cal-panel { padding: 0; }
+    .fc-host { padding: 0.35rem; border-radius: 6px; }
     .cal-subnav { gap: 3px; margin-bottom: 6px; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 2px; }
     .cal-sub-btn { font-size: 10px; padding: 3px 8px; white-space: nowrap; flex-shrink: 0; }
     .subnav-sep { display: none; }
     .fmt-btn { margin-left: 0; }
     .legend { display: none; }
-
-    /* Detail panel becomes a full-screen overlay on mobile */
-    .cal-detail-empty { display: none; }
-    .cal-detail {
-      position: fixed; inset: 0; z-index: 300;
-      width: 100%; max-height: 100%;
-      background: var(--bg);
-      padding: 16px;
-      overflow-y: auto;
-    }
-    .cal-detail-close {
-      display: flex; align-items: center; justify-content: center;
-      position: sticky; top: 0; left: 0;
-      margin-bottom: 12px;
-      background: var(--s2); border: 1px solid var(--b1);
-      border-radius: 6px; padding: 6px 14px;
-      font-size: 12px; color: var(--muted);
-      cursor: pointer; font-family: inherit;
-      width: 100%;
-    }
-    .cal-detail-close:hover { color: var(--text); }
 
     :global(.fc .fc-toolbar-title) { font-size: 13px !important; }
     :global(.fc .fc-toolbar) { gap: 4px !important; flex-wrap: wrap !important; }

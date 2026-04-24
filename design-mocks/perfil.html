@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Perfil — Mock DESIGN.md</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Geist:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d1117;
+  --s1:#161b22;
+  --s2:#1c2333;
+  --b1:#30363d;
+  --b2:#484f58;
+  --text:#e6edf3;
+  --muted:#8b949e;
+  --dim:#6e7681;
+  --accent:#bc8cff;
+  --kcal:#f0883e;
+  --prot:#3fb950;
+  --fat:#d29922;
+  --carb:#58a6ff;
+  --good:#3fb950;
+  --warn:#d29922;
+  --bad:#f85149;
+  --font-display:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --font-body:'Geist',ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+body{
+  font-family:var(--font-body);
+  background:var(--bg);color:var(--text);
+  padding:2rem;max-width:1100px;margin:0 auto;
+  line-height:1.55;font-size:15px;
+  -webkit-font-smoothing:antialiased;
+}
+.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+.mono{font-family:var(--font-mono)}
+
+/* Header página */
+h1{font-family:var(--font-display);font-size:2rem;font-weight:600;margin-bottom:.15rem;letter-spacing:-0.02em}
+.sub{font-family:var(--font-mono);color:var(--dim);font-size:.75rem;margin-bottom:2rem;letter-spacing:.02em}
+
+/* Section header — firma visual */
+h2{
+  font-family:var(--font-mono);
+  font-size:.72rem;font-weight:500;color:var(--muted);
+  border-bottom:1px solid var(--b1);
+  padding-bottom:.45rem;margin:2.5rem 0 1rem;
+  text-transform:uppercase;letter-spacing:.12em;
+}
+
+/* Stat grid (hero metrics) */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:1rem}
+.stat-grid.three{grid-template-columns:repeat(3,1fr)}
+.stat-item{
+  background:var(--s1);border:1px solid var(--b1);border-radius:8px;
+  padding:.9rem;text-align:center;
+}
+.stat-item .num-hero{font-family:var(--font-display);font-size:1.85rem;font-weight:600;line-height:1.05;letter-spacing:-0.02em}
+.stat-item .unit{font-family:var(--font-mono);font-size:.55em;color:var(--muted);font-weight:400;margin-left:.2em;letter-spacing:0}
+.stat-item .label{font-family:var(--font-mono);font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.45rem}
+.stat-item .sub-label{font-family:var(--font-mono);font-size:.68rem;color:var(--dim);margin-top:.25rem;letter-spacing:.02em}
+
+/* Color by macro/state — forced */
+.c-kcal{color:var(--kcal)}
+.c-prot{color:var(--prot)}
+.c-fat{color:var(--fat)}
+.c-carb{color:var(--carb)}
+.c-good{color:var(--good)}
+.c-warn{color:var(--warn)}
+.c-bad{color:var(--bad)}
+.c-accent{color:var(--accent)}
+
+/* Tabla densa */
+table{width:100%;border-collapse:collapse;font-size:.84rem;margin-bottom:.5rem}
+th{
+  text-align:left;padding:.5rem .6rem;
+  border-bottom:2px solid var(--b1);
+  color:var(--muted);font-family:var(--font-mono);font-size:.66rem;
+  text-transform:uppercase;letter-spacing:.08em;font-weight:500;
+}
+th.r,td.r{text-align:right}
+td{padding:.45rem .5rem;border-bottom:1px solid var(--b1)}
+tr:hover td{background:var(--s1)}
+tr.current td{background:rgba(188,140,255,.06)}
+.total-row td{font-weight:700;border-top:2px solid var(--b1);border-bottom:none}
+
+/* Chip / pill (mínimos) */
+.chip{
+  display:inline-block;padding:.1rem .35rem;
+  border-radius:4px;font-size:.65rem;
+  background:rgba(188,140,255,.15);color:var(--accent);
+  text-transform:uppercase;letter-spacing:.03em;
+}
+.chip.gym{background:rgba(88,166,255,.12);color:var(--carb)}
+.chip.good{background:rgba(63,185,80,.12);color:var(--good)}
+.chip.bad{background:rgba(248,81,73,.12);color:var(--bad)}
+
+/* Peso chart box */
+.chart-box{
+  background:var(--s1);border:1px solid var(--b1);border-radius:8px;
+  padding:1rem;margin-bottom:1rem;
+}
+.chart-box svg{display:block;width:100%;height:auto}
+.chart-hdr{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem}
+.chart-title{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+
+/* Bar inline dentro de tabla */
+.bar-wrap{
+  display:flex;align-items:center;gap:.5rem;
+}
+.bar-track{
+  flex:1;height:6px;background:var(--bg);
+  border:1px solid var(--b1);border-radius:2px;overflow:hidden;
+  min-width:80px;
+}
+.bar-fill{height:100%;transition:width .2s}
+
+/* Micros grid */
+.micro-cat{margin-bottom:1rem}
+.micro-cat-hdr{
+  font-size:.7rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.03em;
+  margin-bottom:.4rem;padding-bottom:.2rem;
+  border-bottom:1px solid var(--b1);
+}
+.micro-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.5rem}
+.micro-item{
+  background:var(--s1);border:1px solid var(--b1);border-radius:6px;
+  padding:.6rem .7rem;
+}
+.micro-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem}
+.micro-name{font-size:.78rem;font-weight:600;color:var(--text)}
+.micro-pct{font-size:.72rem;color:var(--muted)}
+.micro-val{font-size:.72rem;color:var(--dim);margin-bottom:.3rem}
+
+/* Deltas */
+.delta-up{color:var(--bad)}  /* peso subió = malo */
+.delta-dn{color:var(--good)} /* peso bajó = bueno */
+.delta-neu{color:var(--muted)}
+
+/* Footer */
+footer{
+  margin-top:3rem;padding-top:.8rem;
+  border-top:1px solid var(--b1);
+  font-size:.7rem;color:var(--dim);text-align:center;
+}
+</style>
+</head>
+<body>
+
+<h1>Perfil</h1>
+<p class="sub">Lean · 37M · 191cm · Buenos Aires · ayuno intermitente 16h</p>
+
+<!-- HERO STATS -->
+<div class="stat-grid">
+  <div class="stat-item">
+    <div class="num-hero num c-accent">126<span class="unit">kg</span></div>
+    <div class="label">Peso actual</div>
+    <div class="sub-label">15/04 · <span class="delta-dn">−0.8 vs anterior</span></div>
+  </div>
+  <div class="stat-item">
+    <div class="num-hero num c-kcal">2286<span class="unit">kcal</span></div>
+    <div class="label">Consumo prom 7d</div>
+    <div class="sub-label">Target descanso 2276</div>
+  </div>
+  <div class="stat-item">
+    <div class="num-hero num c-good">−487<span class="unit">kcal</span></div>
+    <div class="label">Déficit prom 7d</div>
+    <div class="sub-label">Target 500 · 97%</div>
+  </div>
+  <div class="stat-item">
+    <div class="num-hero num c-accent">11</div>
+    <div class="label">Sesiones este mes</div>
+    <div class="sub-label">Racha 3 días</div>
+  </div>
+</div>
+
+<!-- PESO -->
+<h2>Evolución de peso</h2>
+<div class="chart-box">
+  <div class="chart-hdr">
+    <span class="chart-title">Últimos registros</span>
+    <span class="num" style="color:var(--muted);font-size:.72rem">min 125.2 · max 131.0</span>
+  </div>
+  <svg viewBox="0 0 600 140" preserveAspectRatio="none">
+    <!-- grid baseline -->
+    <line x1="30" y1="120" x2="580" y2="120" stroke="#30363d" stroke-width="1"/>
+    <!-- area fill -->
+    <path d="M 30 30 L 130 45 L 230 60 L 330 55 L 430 80 L 530 95 L 580 100 L 580 120 L 30 120 Z"
+          fill="rgba(188,140,255,0.08)"/>
+    <!-- line -->
+    <polyline fill="none" stroke="#bc8cff" stroke-width="1.5"
+              points="30,30 130,45 230,60 330,55 430,80 530,95 580,100"/>
+    <!-- points -->
+    <circle cx="30"  cy="30"  r="2.5" fill="#bc8cff"/>
+    <circle cx="130" cy="45"  r="2.5" fill="#bc8cff"/>
+    <circle cx="230" cy="60"  r="2.5" fill="#bc8cff"/>
+    <circle cx="330" cy="55"  r="2.5" fill="#bc8cff"/>
+    <circle cx="430" cy="80"  r="2.5" fill="#bc8cff"/>
+    <circle cx="530" cy="95"  r="2.5" fill="#bc8cff"/>
+    <circle cx="580" cy="100" r="2.5" fill="#bc8cff"/>
+    <!-- labels -->
+    <text x="30"  y="25"  fill="#8b949e" font-size="9" text-anchor="middle" font-family="inherit">131.0</text>
+    <text x="580" y="95"  fill="#8b949e" font-size="9" text-anchor="end"    font-family="inherit">126.0</text>
+  </svg>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th class="r">Peso</th>
+      <th class="r">Δ</th>
+      <th class="r">Días</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>2026-04-15</td><td class="r num c-accent">126.0</td><td class="r num delta-dn">−0.8</td><td class="r num">7</td></tr>
+    <tr><td>2026-04-08</td><td class="r num c-accent">126.8</td><td class="r num delta-dn">−1.2</td><td class="r num">7</td></tr>
+    <tr><td>2026-04-01</td><td class="r num c-accent">128.0</td><td class="r num delta-dn">−1.5</td><td class="r num">8</td></tr>
+    <tr><td>2026-03-24</td><td class="r num c-accent">129.5</td><td class="r num delta-dn">−1.5</td><td class="r num">8</td></tr>
+    <tr><td>2026-03-16</td><td class="r num c-accent">131.0</td><td class="r num delta-neu">—</td><td class="r num">—</td></tr>
+  </tbody>
+</table>
+
+<!-- RESUMEN SEMANAL -->
+<h2>Resumen semanal</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Semana</th>
+      <th class="r">Días</th>
+      <th class="r">Consumo</th>
+      <th class="r">Gasto</th>
+      <th class="r">Déficit</th>
+      <th class="r">Kg (proy)</th>
+      <th class="r">Kg (real)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="current">
+      <td>20/4 - 26/4 <span class="chip">actual</span></td>
+      <td class="r num">4</td>
+      <td class="r num c-kcal">2198</td>
+      <td class="r num">2765</td>
+      <td class="r num c-good">−567</td>
+      <td class="r num c-good">−0.29</td>
+      <td class="r num delta-neu">—</td>
+    </tr>
+    <tr>
+      <td>13/4 - 19/4</td>
+      <td class="r num">7</td>
+      <td class="r num c-kcal">2312</td>
+      <td class="r num">2810</td>
+      <td class="r num c-good">−498</td>
+      <td class="r num c-good">−0.45</td>
+      <td class="r num delta-dn">−0.8</td>
+    </tr>
+    <tr>
+      <td>6/4 - 12/4</td>
+      <td class="r num">7</td>
+      <td class="r num c-kcal">2405</td>
+      <td class="r num">2790</td>
+      <td class="r num c-warn">−385</td>
+      <td class="r num c-warn">−0.35</td>
+      <td class="r num delta-dn">−1.2</td>
+    </tr>
+    <tr>
+      <td>30/3 - 5/4</td>
+      <td class="r num">7</td>
+      <td class="r num c-kcal">2650</td>
+      <td class="r num">2780</td>
+      <td class="r num c-warn">−130</td>
+      <td class="r num c-warn">−0.12</td>
+      <td class="r num delta-dn">−0.3</td>
+    </tr>
+    <tr>
+      <td>23/3 - 29/3</td>
+      <td class="r num">6</td>
+      <td class="r num c-kcal">2890</td>
+      <td class="r num">2800</td>
+      <td class="r num c-bad">+90</td>
+      <td class="r num c-bad">+0.08</td>
+      <td class="r num delta-up">+0.4</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- HISTORIAL VENTANAS -->
+<h2>Últimas ventanas</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Tipo</th>
+      <th class="r">Peso</th>
+      <th class="r">Kcal</th>
+      <th style="width:40%">Barra vs target</th>
+      <th class="r">Déficit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>23/4</td>
+      <td><span class="chip gym">gym</span></td>
+      <td class="r num">—</td>
+      <td class="r num c-kcal">1930</td>
+      <td>
+        <div class="bar-wrap">
+          <div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--good)"></div></div>
+          <span class="num" style="font-size:.7rem;color:var(--muted);min-width:34px;text-align:right">67%</span>
+        </div>
+      </td>
+      <td class="r num c-good">−920</td>
+    </tr>
+    <tr>
+      <td>22/4</td>
+      <td></td>
+      <td class="r num">—</td>
+      <td class="r num c-kcal">2085</td>
+      <td>
+        <div class="bar-wrap">
+          <div class="bar-track"><div class="bar-fill" style="width:73%;background:var(--good)"></div></div>
+          <span class="num" style="font-size:.7rem;color:var(--muted);min-width:34px;text-align:right">73%</span>
+        </div>
+      </td>
+      <td class="r num c-good">−191</td>
+    </tr>
+    <tr>
+      <td>21/4</td>
+      <td></td>
+      <td class="r num">—</td>
+      <td class="r num c-kcal">2420</td>
+      <td>
+        <div class="bar-wrap">
+          <div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--warn)"></div></div>
+          <span class="num" style="font-size:.7rem;color:var(--muted);min-width:34px;text-align:right">85%</span>
+        </div>
+      </td>
+      <td class="r num c-warn">+144</td>
+    </tr>
+    <tr>
+      <td>20/4</td>
+      <td></td>
+      <td class="r num">—</td>
+      <td class="r num c-kcal">2180</td>
+      <td>
+        <div class="bar-wrap">
+          <div class="bar-track"><div class="bar-fill" style="width:76%;background:var(--good)"></div></div>
+          <span class="num" style="font-size:.7rem;color:var(--muted);min-width:34px;text-align:right">76%</span>
+        </div>
+      </td>
+      <td class="r num c-good">−96</td>
+    </tr>
+    <tr>
+      <td>19/4</td>
+      <td><span class="chip gym">gym</span></td>
+      <td class="r num">—</td>
+      <td class="r num c-kcal">2720</td>
+      <td>
+        <div class="bar-wrap">
+          <div class="bar-track"><div class="bar-fill" style="width:95%;background:var(--warn)"></div></div>
+          <span class="num" style="font-size:.7rem;color:var(--muted);min-width:34px;text-align:right">95%</span>
+        </div>
+      </td>
+      <td class="r num c-good">−130</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- MICRONUTRIENTES -->
+<h2>Micronutrientes — promedio 14d</h2>
+
+<div class="micro-cat">
+  <div class="micro-cat-hdr">Digestión</div>
+  <div class="micro-grid">
+    <div class="micro-item">
+      <div class="micro-top"><span class="micro-name">Fibra</span><span class="micro-pct num c-good">92%</span></div>
+      <div class="micro-val num">35.0 / 38 g</div>
+      <div class="bar-track"><div class="bar-fill" style="width:92%;background:var(--good)"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="micro-cat">
+  <div class="micro-cat-hdr">Electrolitos</div>
+  <div class="micro-grid">
+    <div class="micro-item">
+      <div class="micro-top"><span class="micro-name">Potasio</span><span class="micro-pct num c-warn">68%</span></div>
+      <div class="micro-val num">2310 / 3400 mg</div>
+      <div class="bar-track"><div class="bar-fill" style="width:68%;background:var(--warn)"></div></div>
+    </div>
+    <div class="micro-item">
+      <div class="micro-top"><span class="micro-name">Sodio</span><span class="micro-pct num c-warn">105%</span></div>
+      <div class="micro-val num">2415 / 2300 mg <span style="color:var(--dim)">max</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--warn)"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="micro-cat">
+  <div class="micro-cat-hdr">Minerales</div>
+  <div class="micro-grid">
+    <div class="micro-item">
+      <div class="micro-top"><span class="micro-name">Calcio</span><span class="micro-pct num c-good">88%</span></div>
+      <div class="micro-val num">880 / 1000 mg</div>
+      <div class="bar-track"><div class="bar-fill" style="width:88%;background:var(--good)"></div></div>
+    </div>
+    <div class="micro-item">
+      <div class="micro-top"><span class="micro-name">Magnesio</span><span class="micro-pct num c-bad">42%</span></div>
+      <div class="micro-val num">176 / 420 mg</div>
+      <div class="bar-track"><div class="bar-fill" style="width:42%;background:var(--bad)"></div></div>
+    </div>
+    <div class="micro-item">
+      <div class="micro-top"><span class="micro-name">Hierro</span><span class="micro-pct num c-good">155%</span></div>
+      <div class="micro-val num">12.4 / 8 mg</div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--carb)"></div></div>
+    </div>
+    <div class="micro-item">
+      <div class="micro-top"><span class="micro-name">Zinc</span><span class="micro-pct num c-good">95%</span></div>
+      <div class="micro-val num">10.5 / 11 mg</div>
+      <div class="bar-track"><div class="bar-fill" style="width:95%;background:var(--good)"></div></div>
+    </div>
+    <div class="micro-item">
+      <div class="micro-top"><span class="micro-name">Selenio</span><span class="micro-pct num c-good">110%</span></div>
+      <div class="micro-val num">60 / 55 mcg</div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--good)"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="micro-cat">
+  <div class="micro-cat-hdr">Vitaminas</div>
+  <div class="micro-grid">
+    <div class="micro-item">
+      <div class="micro-top"><span class="micro-name">Vit C</span><span class="micro-pct num c-good">120%</span></div>
+      <div class="micro-val num">108 / 90 mg</div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--good)"></div></div>
+    </div>
+    <div class="micro-item">
+      <div class="micro-top"><span class="micro-name">Vit D</span><span class="micro-pct num c-bad">35%</span></div>
+      <div class="micro-val num">5.3 / 15 mcg</div>
+      <div class="bar-track"><div class="bar-fill" style="width:35%;background:var(--bad)"></div></div>
+    </div>
+    <div class="micro-item">
+      <div class="micro-top"><span class="micro-name">Vit B12</span><span class="micro-pct num c-good">380%</span></div>
+      <div class="micro-val num">9.1 / 2.4 mcg</div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--carb)"></div></div>
+    </div>
+    <div class="micro-item">
+      <div class="micro-top"><span class="micro-name">Folato</span><span class="micro-pct num c-warn">72%</span></div>
+      <div class="micro-val num">288 / 400 mcg</div>
+      <div class="bar-track"><div class="bar-fill" style="width:72%;background:var(--warn)"></div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  DESIGN.md aplicado · GitHub dark palette · 0 emojis · 0 gradients · 0 shadows · tabular-nums
+</footer>
+
+</body>
+</html>

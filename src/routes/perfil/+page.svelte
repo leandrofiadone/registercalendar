@@ -386,553 +386,617 @@
   });
 </script>
 
-<div class="perfil-layout">
-  {#if !perfil}
-    <div class="empty-state">
-      <div class="ei">👤</div>
-      <p>Sin perfil configurado</p>
-      <p class="es-hint">Configurá tu perfil en <code>data/perfil.json</code></p>
-    </div>
-  {:else}
-    {@const ob = perfil.objetivos_diarios}
-    {@const me = perfil.metabolismo}
+{#if !perfil}
+  <div class="empty">
+    <p>Sin perfil configurado</p>
+    <p class="empty-hint">Configurá tu perfil en <code>data/perfil.json</code></p>
+  </div>
+{:else}
+  {@const ob = perfil.objetivos_diarios}
+  {@const me = perfil.metabolismo}
 
-    <!-- Resumen de actividad -->
-    <div class="activity-summary">
-      <div class="as-chip">Sesiones <span class="as-val">{sessions.length}</span></div>
-      <div class="as-chip">Este mes <span class="as-val">{thisMonth}</span></div>
-      {#if streak > 0}
-        <div class="as-chip">Racha <span class="as-val">{streak}d</span></div>
-      {/if}
-      {#if favGroup}
-        <div class="as-chip">Top <span class="as-val">{favGroup}</span></div>
-      {/if}
-      {#if totalKcal > 0}
-        <div class="as-chip">kcal total <span class="as-val">{Math.round(totalKcal).toLocaleString()}</span></div>
-      {/if}
-    </div>
+  <h1>Perfil</h1>
+  <p class="page-sub">{perfil.nombre ?? 'Lean'} · {perfil.edad}{perfil.sexo ? perfil.sexo[0].toUpperCase() : ''} · {perfil.altura_cm}cm · Buenos Aires · {perfil.protocolo}</p>
 
-    <div class="perfil-grid">
-      <!-- Peso -->
-      <div class="pcard">
-        <div class="pcard-title">Peso</div>
-        {#if pesoActual}
-          <div class="peso-big">{pesoActual.peso_kg}<span class="peso-unit">kg</span></div>
-          <div class="peso-sub">Registrado el {fmtDate(pesoActual.fecha)}</div>
+  <!-- HERO STATS -->
+  <div class="stat-grid four">
+    <div class="stat-item">
+      {#if pesoActual}
+        <div class="num num-hero c-accent">{pesoActual.peso_kg}<span class="unit">kg</span></div>
+        <div class="label">Peso actual</div>
+        <div class="sub-label">
+          {fmtDate(pesoActual.fecha)}
           {#if pesoDelta !== null}
-            <div class="peso-sub" style="margin-top:4px;color:{+pesoDelta <= 0 ? 'var(--green)' : 'var(--red)'}">
-              {+pesoDelta > 0 ? '+' : ''}{pesoDelta} kg desde el registro anterior
-            </div>
+            · <span class={+pesoDelta <= 0 ? 'c-good' : 'c-bad'}>{+pesoDelta > 0 ? '+' : '−'}{Math.abs(+pesoDelta)}kg</span>
           {/if}
-          <div class="peso-goal">Objetivo: <strong>bajar peso</strong> preservando músculo</div>
-        {:else}
-          <p style="color:var(--dim);font-size:12px">Sin registros</p>
-        {/if}
-      </div>
-
-      <!-- Datos físicos -->
-      <div class="pcard">
-        <div class="pcard-title">Datos físicos</div>
-        <div class="pstat-row"><span class="pstat-lbl">Altura</span><span class="pstat-val">{perfil.altura_cm} cm</span></div>
-        <div class="pstat-row"><span class="pstat-lbl">Edad</span><span class="pstat-val">{perfil.edad} años</span></div>
-        <div class="pstat-row"><span class="pstat-lbl">Protocolo</span><span class="pstat-val hi">{perfil.protocolo}</span></div>
-        <div class="pstat-row">
-          <span class="pstat-lbl">Metabolismo en reposo</span>
-          <span class="pstat-val">{me.metabolismo_basal_kcal} kcal</span>
         </div>
-        <div class="pstat-row">
-          <span class="pstat-lbl">Gasto real día de gym</span>
-          <span class="pstat-val">{me.gasto_total_gym_kcal} kcal</span>
-        </div>
-        <div class="pstat-row">
-          <span class="pstat-lbl">Gasto real día sin gym</span>
-          <span class="pstat-val">{me.gasto_total_descanso_kcal} kcal</span>
-        </div>
-      </div>
-
-      <!-- Qué comer por día -->
-      <div class="pcard">
-        <div class="pcard-title">Qué comer por día</div>
-        <div class="pstat-row">
-          <span class="pstat-lbl">Target promedio diario</span>
-          <span class="pstat-val amber">{ob.kcal_objetivo_promedio} kcal</span>
-        </div>
-        <div class="pstat-row" style="font-size:10px;color:var(--dim);padding-bottom:8px">
-          <span>(día de gym: {ob.kcal_dia_gym} · día sin gym: {ob.kcal_dia_descanso})</span>
-        </div>
-        <div class="pstat-row">
-          <span class="pstat-lbl">Comer menos que el gasto</span>
-          <span class="pstat-val green">−{ob.deficit_target_kcal} kcal/día</span>
-        </div>
-        <div class="pstat-row">
-          <span class="pstat-lbl">Proteína mínima</span>
-          <span class="pstat-val">{ob.proteina_g_min}g</span>
-        </div>
-        <div class="pstat-row">
-          <span class="pstat-lbl">Proteína ideal</span>
-          <span class="pstat-val hi">{ob.proteina_g_ideal}g</span>
-        </div>
-        <div class="pstat-row">
-          <span class="pstat-lbl">Carbohidratos (tope orientativo)</span>
-          <span class="pstat-val">{ob.carbos_g_max}g</span>
-        </div>
-      </div>
-
-      <!-- Tendencia últimos 7 días -->
-      <div class="pcard">
-        <div class="pcard-title">Tendencia · últimos 7 días</div>
-        {#if rolling7}
-          <div class="pstat-row">
-            <span class="pstat-lbl">Días con registro</span>
-            <span class="pstat-val">{rolling7.days} de 7</span>
-          </div>
-          <div class="pstat-row">
-            <span class="pstat-lbl">Consumo promedio</span>
-            <span class="pstat-val" class:green={avgKcal <= ob.kcal_objetivo_promedio} class:amber={avgKcal > ob.kcal_objetivo_promedio}>
-              {avgKcal} kcal/día
-            </span>
-          </div>
-          <div class="pstat-row">
-            <span class="pstat-lbl">Gasto promedio</span>
-            <span class="pstat-val">{rolling7.avgSpent} kcal/día</span>
-          </div>
-          <div class="pstat-row">
-            <span class="pstat-lbl">Déficit promedio</span>
-            <span class="pstat-val" style="color:{avgDeficit >= 0 ? 'var(--green)' : 'var(--red)'}">
-              {avgDeficit >= 0 ? '-' : '+'}{Math.abs(avgDeficit)} kcal/día
-            </span>
-          </div>
-          <div class="pstat-row">
-            <span class="pstat-lbl">Pérdida estimada semanal</span>
-            <span class="pstat-val" style="color:{avgDeficit >= 0 ? 'var(--green)' : 'var(--red)'}">
-              ~{(avgDeficit * 7 / 7700).toFixed(2)} kg
-            </span>
-          </div>
-          <div class="pstat-row" style="font-size:10px;color:var(--dim);border:none;padding-top:8px">
-            Target déficit: -{ob.deficit_target_kcal} kcal/día · El gasto incluye actividad real (gym + cardio)
-          </div>
-        {:else}
-          <p style="color:var(--dim);font-size:12px">Sin datos en los últimos 7 días</p>
-        {/if}
-      </div>
+      {:else}
+        <div class="num num-hero">—</div>
+        <div class="label">Sin registros</div>
+      {/if}
     </div>
 
-    <!-- Resumen semanal -->
-    {#if weeklyRows.length}
-      <div class="pcard">
-        <div class="pcard-title">Resumen semanal · últimas {weeklyRows.length} semanas</div>
-        <div class="weekly-head">
-          <span class="wh-label">Semana</span>
-          <span class="wh-val">días</span>
-          <span class="wh-val">kcal</span>
-          <span class="wh-val">gasto</span>
-          <span class="wh-val">déficit</span>
-          <span class="wh-val">pérdida est.</span>
-          <span class="wh-val">Δ peso</span>
-        </div>
-        {#each weeklyRows as w}
-          <div class="weekly-row" class:current={w.isCurrent}>
-            <span class="wr-label">
-              {w.label}{#if w.isCurrent} <span class="wr-tag">actual</span>{/if}
-            </span>
-            <span class="wr-val">{w.daysLogged}/7</span>
-            <span class="wr-val">{w.avgConsumed}</span>
-            <span class="wr-val">{w.avgSpent}</span>
-            <span class="wr-val" style="color:{w.defCol}">
-              {w.avgDeficit >= 0 ? '-' : '+'}{Math.abs(w.avgDeficit)}
-            </span>
-            <span class="wr-val" style="color:{w.defCol}">
-              {w.lossKg > 0 ? '−' : w.lossKg < 0 ? '+' : ''}{Math.abs(w.lossKg)}kg
-            </span>
-            <span class="wr-val">
-              {#if w.pesoDelta !== null}
-                <span style="color:{w.pesoDelta <= 0 ? 'var(--green)' : 'var(--red)'}">
-                  {w.pesoDelta > 0 ? '+' : ''}{w.pesoDelta}kg
-                </span>
-              {:else}
-                <span style="color:var(--dim)">—</span>
-              {/if}
-            </span>
-          </div>
-        {/each}
-        <div style="margin-top:10px;font-size:10px;color:var(--dim);line-height:1.6">
-          Valores promedio diarios por semana · <strong>pérdida est.</strong> = déficit acumulado / 7700 kcal · <strong>Δ peso</strong> = diferencia entre el último peso registrado al cierre vs al inicio de la semana
-        </div>
-      </div>
-    {/if}
-
-    <!-- Chart: Balance calórico -->
-    {#if deficitChart}
-      <div class="pcard">
-        <div class="pcard-title">Balance calórico diario</div>
-        <svg viewBox="0 0 {deficitChart.W} {deficitChart.H}" class="chart-svg">
-          <line x1="0" y1={deficitChart.mid} x2={deficitChart.W} y2={deficitChart.mid} stroke="var(--b2)" stroke-width="1" stroke-dasharray="4,3" />
-          {#each deficitChart.bars as bar}
-            <rect x={bar.x} y={bar.y} width={bar.w} height={Math.max(bar.h, 1)} rx="2" fill={bar.color} opacity="0.75" />
-            <text x={bar.x + bar.w / 2} y={deficitChart.H - 1} text-anchor="middle" class="chart-label">{bar.date}</text>
-          {/each}
-          <text x="2" y={deficitChart.mid - 4} class="chart-axis-label">deficit</text>
-          <text x="2" y={deficitChart.mid + 11} class="chart-axis-label">exceso</text>
-        </svg>
-      </div>
-    {/if}
-
-    <!-- Historial calórico -->
-    <div class="pcard">
-      <div class="pcard-title">Historial calórico día a día</div>
-      {#if histRows.length === 0}
-        <p style="color:var(--dim);font-size:12px">Sin datos</p>
-      {:else}
-        {#each histRows as row}
-          <div class="hist-row">
-            <span class="hist-date">
-              {fmtDate(row.date)}{#if row.isGym} <span style="font-size:9px;color:var(--accent-l)">gym</span>{/if}{#if row.peso} <span class="hist-peso-badge">{row.peso}kg</span>{/if}
-            </span>
-            <div class="hist-bar-wrap">
-              <div class="hist-bar-fill" style="width:{row.pct}%;background:{row.barCol}"></div>
-            </div>
-            <span class="hist-kcal">{row.kcal} kcal</span>
-            <span class="hist-deficit" style="color:{row.defCol}">{row.defSign}{Math.abs(row.deficit)}</span>
-          </div>
-        {/each}
-      {/if}
-      <div style="margin-top:12px;font-size:10px;color:var(--dim);line-height:1.6">
-        Verde = dentro del target promedio ({ob.kcal_objetivo_promedio} kcal) · Ámbar = por encima<br>
-        El número al final muestra cuánto menos (verde) o más (rojo) comiste vs lo que quemaste ese día
-      </div>
+    <div class="stat-item">
+      <div class="num num-hero c-kcal">{avgKcal || '—'}<span class="unit">kcal</span></div>
+      <div class="label">Consumo prom 7d</div>
+      <div class="sub-label">Target {ob.kcal_objetivo_promedio}</div>
     </div>
 
-    <!-- Chart: Evolución de peso -->
-    {#if pesoChartPoints}
-      <div class="pcard">
-        <div class="pcard-title">Evolución de peso</div>
-        <svg viewBox="0 0 {pesoChartPoints.W} {pesoChartPoints.H}" class="chart-svg">
-          <polyline
-            points={pesoChartPoints.pts.map(p => `${p.x},${p.y}`).join(' ')}
-            fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"
-          />
-          {#each pesoChartPoints.pts as p}
-            <circle cx={p.x} cy={p.y} r="4" fill="var(--accent)" stroke="var(--s1)" stroke-width="2" />
-            <text x={p.x} y={p.y - 10} text-anchor="middle" class="chart-val">{p.label}</text>
-            <text x={p.x} y={pesoChartPoints.H - 2} text-anchor="middle" class="chart-label">{p.date}</text>
+    <div class="stat-item">
+      <div class="num num-hero" class:c-good={avgDeficit >= ob.deficit_target_kcal * 0.8} class:c-warn={avgDeficit >= 0 && avgDeficit < ob.deficit_target_kcal * 0.8} class:c-bad={avgDeficit < 0}>
+        {avgDeficit >= 0 ? '−' : '+'}{Math.abs(avgDeficit)}<span class="unit">kcal</span>
+      </div>
+      <div class="label">Déficit prom 7d</div>
+      <div class="sub-label">Target −{ob.deficit_target_kcal} · {rolling7?.days ?? 0}/7 d</div>
+    </div>
+
+    <div class="stat-item">
+      <div class="num num-hero c-accent">{thisMonth}</div>
+      <div class="label">Sesiones este mes</div>
+      <div class="sub-label">
+        {#if streak > 0}Racha {streak}d{:else}Sin racha{/if}
+        {#if favGroup} · Top {favGroup}{/if}
+      </div>
+    </div>
+  </div>
+
+  <!-- DATOS FÍSICOS + OBJETIVOS -->
+  <h2 class="section">Datos y objetivos</h2>
+  <div class="two-col">
+    <div class="field-list">
+      <div class="field-row"><span>Altura</span><span class="num">{perfil.altura_cm} cm</span></div>
+      <div class="field-row"><span>Edad</span><span class="num">{perfil.edad} años</span></div>
+      <div class="field-row"><span>Protocolo</span><span class="c-accent">{perfil.protocolo}</span></div>
+      <div class="field-row"><span>Metabolismo basal</span><span class="num">{me.metabolismo_basal_kcal} <em>kcal</em></span></div>
+      <div class="field-row"><span>Gasto día gym</span><span class="num">{me.gasto_total_gym_kcal} <em>kcal</em></span></div>
+      <div class="field-row"><span>Gasto día sin gym</span><span class="num">{me.gasto_total_descanso_kcal} <em>kcal</em></span></div>
+    </div>
+    <div class="field-list">
+      <div class="field-row"><span>Target promedio</span><span class="num c-kcal">{ob.kcal_objetivo_promedio} <em>kcal</em></span></div>
+      <div class="field-row"><span>Día gym / descanso</span><span class="num">{ob.kcal_dia_gym} / {ob.kcal_dia_descanso}</span></div>
+      <div class="field-row"><span>Déficit objetivo</span><span class="num c-good">−{ob.deficit_target_kcal} <em>kcal/día</em></span></div>
+      <div class="field-row"><span>Proteína mín / ideal</span><span class="num c-prot">{ob.proteina_g_min} / {ob.proteina_g_ideal} <em>g</em></span></div>
+      <div class="field-row"><span>Carbos tope</span><span class="num c-carb">{ob.carbos_g_max} <em>g</em></span></div>
+      <div class="field-row"><span>Objetivo</span><span>bajar peso preservando músculo</span></div>
+    </div>
+  </div>
+
+  <!-- RESUMEN SEMANAL -->
+  {#if weeklyRows.length}
+    <h2 class="section">Resumen semanal</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Semana</th>
+            <th class="r">Días</th>
+            <th class="r">Consumo</th>
+            <th class="r">Gasto</th>
+            <th class="r">Déficit</th>
+            <th class="r">Kg (proy)</th>
+            <th class="r">Kg (real)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each weeklyRows as w}
+            <tr class:current={w.isCurrent}>
+              <td>
+                {w.label}{#if w.isCurrent} <span class="chip">actual</span>{/if}
+              </td>
+              <td class="r num">{w.daysLogged}/7</td>
+              <td class="r num c-kcal">{w.avgConsumed}</td>
+              <td class="r num">{w.avgSpent}</td>
+              <td class="r num" style="color:{w.defCol}">{w.avgDeficit >= 0 ? '−' : '+'}{Math.abs(w.avgDeficit)}</td>
+              <td class="r num" style="color:{w.defCol}">{w.lossKg > 0 ? '−' : w.lossKg < 0 ? '+' : ''}{Math.abs(w.lossKg)}kg</td>
+              <td class="r num">
+                {#if w.pesoDelta !== null}
+                  <span class={w.pesoDelta <= 0 ? 'c-good' : 'c-bad'}>{w.pesoDelta > 0 ? '+' : '−'}{Math.abs(w.pesoDelta)}kg</span>
+                {:else}
+                  <span class="c-dim">—</span>
+                {/if}
+              </td>
+            </tr>
           {/each}
-        </svg>
-      </div>
-    {/if}
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">Promedios diarios por semana · kg proy = déficit / 7700 · kg real = delta entre último peso registrado de la semana vs el anterior</p>
+  {/if}
 
-    <!-- Micronutrientes: análisis -->
-    {#if microAnalysis}
-      {@const needWork  = MICRO_KEYS_ALL.filter(k => ['deficit','bajo'].includes(microAnalysis.statuses[k].cls)).sort((a,b) => microAnalysis.statuses[a].pct - microAnalysis.statuses[b].pct)}
-      {@const overLimit = MICRO_KEYS_ALL.filter(k => microAnalysis.statuses[k].cls === 'exceso' && MICRO_RDA[k].max)}
-      {@const wellCov   = MICRO_KEYS_ALL.filter(k => microAnalysis.statuses[k].cls === 'exceso' && MICRO_RDA[k].rda)}
-      {@const inRange   = MICRO_KEYS_ALL.filter(k => ['ok','atención'].includes(microAnalysis.statuses[k].cls))}
-      <div class="pcard">
-        <div class="pcard-title">🧬 Micronutrientes · promedio {microAnalysis.days} días</div>
-
-        {#if needWork.length}
-          <div class="msection-label warn">⚠ Por mejorar</div>
-          <div class="micro-need-grid">
-            {#each needWork as k}
-              {@const m = MICRO_RDA[k]}
-              {@const avg = microAnalysis.avgs[k]}
-              {@const st = microAnalysis.statuses[k]}
-              {@const pct = Math.round(st.pct)}
-              {@const fmtVal = avg < 10 ? avg.toFixed(1) : Math.round(avg)}
-              <div class="mneed-card">
-                <div class="mneed-top">
-                  <span class="mneed-icon">{m.icon}</span>
-                  <span class="mneed-pct" style="color:{st.barColor}">{pct}%</span>
-                </div>
-                <div class="mneed-bar-wrap">
-                  <div class="mneed-bar" style="width:{pct}%;background:{st.barColor}"></div>
-                </div>
-                <div class="mneed-name">{m.label}</div>
-                <div class="mneed-val">{fmtVal} / {m.rda}{m.unit}</div>
-              </div>
-            {/each}
-          </div>
-        {:else}
-          <div class="mok-banner">✓ Todos los nutrientes están dentro del rango recomendado</div>
-        {/if}
-
-        {#if overLimit.length}
-          <div class="msection-label overlimit">↑ Sobre el límite recomendado</div>
-          <div class="micro-need-grid">
-            {#each overLimit as k}
-              {@const m = MICRO_RDA[k]}
-              {@const avg = microAnalysis.avgs[k]}
-              {@const st = microAnalysis.statuses[k]}
-              {@const fmtVal = avg < 10 ? avg.toFixed(1) : Math.round(avg)}
-              {@const excess = Math.round(st.pct - 100)}
-              <div class="mneed-card overlimit">
-                <div class="mneed-top">
-                  <span class="mneed-icon">{m.icon}</span>
-                  <span class="mneed-pct" style="color:#f87171">+{excess}%</span>
-                </div>
-                <div class="mneed-bar-wrap">
-                  <div class="mneed-bar" style="width:100%;background:#f87171;opacity:.4"></div>
-                  <div class="mneed-bar-over" style="width:{Math.min(excess,100)}%"></div>
-                </div>
-                <div class="mneed-name">{m.label}</div>
-                <div class="mneed-val">{fmtVal} · límite {m.max}{m.unit}</div>
-              </div>
-            {/each}
-          </div>
-        {/if}
-
-        {#if inRange.length || wellCov.length}
-          <div class="msection-label ok">✓ En rango</div>
-          <div class="mchips">
-            {#each inRange as k}
-              {@const m = MICRO_RDA[k]}
-              {@const st = microAnalysis.statuses[k]}
-              <div class="mchip">
-                <span>{m.icon}</span>
-                <span class="mchip-name">{m.label}</span>
-                <span class="mchip-pct" style="color:{st.barColor}">{Math.round(st.pct)}%</span>
-              </div>
-            {/each}
-            {#each wellCov as k}
-              {@const m = MICRO_RDA[k]}
-              <div class="mchip mchip-covered">
-                <span>{m.icon}</span>
-                <span class="mchip-name">{m.label}</span>
-                <span class="mchip-check">✓</span>
-              </div>
-            {/each}
-          </div>
-        {/if}
-
-        <div class="micro-disclaimer">Referencia: RDA hombre adulto. Solo alimentos con datos disponibles.</div>
-      </div>
-    {/if}
-
-    <!-- Registro de pesos -->
-    <div class="pcard">
-      <div class="pcard-title">Registro de pesos</div>
-      {#if pesoHistory.length === 0}
-        <p style="color:var(--dim);font-size:12px">Sin registros</p>
-      {:else}
-        {#each [...pesoHistory].reverse() as entry}
-          <div class="peso-row">
-            <span class="peso-row-date">{fmtDate(entry.fecha)}</span>
-            <span class="peso-row-val">{entry.peso_kg}<span class="peso-row-unit">kg</span></span>
-            {#if entry.delta !== null}
-              <span class="peso-row-delta" style="color:{entry.delta <= 0 ? 'var(--green)' : 'var(--red)'}">
-                {entry.delta > 0 ? '+' : ''}{entry.delta} kg
-              </span>
-              <span class="peso-row-dias">{entry.dias}d</span>
-            {:else}
-              <span class="peso-row-delta" style="color:var(--dim)">inicio</span>
-              <span class="peso-row-dias"></span>
-            {/if}
-          </div>
+  <!-- BALANCE DIARIO CHART -->
+  {#if deficitChart}
+    <h2 class="section">Balance calórico diario</h2>
+    <div class="chart-box">
+      <svg viewBox="0 0 {deficitChart.W} {deficitChart.H}" class="chart-svg">
+        <line x1="0" y1={deficitChart.mid} x2={deficitChart.W} y2={deficitChart.mid} stroke="var(--b1)" stroke-width="1" stroke-dasharray="3,3" />
+        {#each deficitChart.bars as bar}
+          <rect x={bar.x} y={bar.y} width={bar.w} height={Math.max(bar.h, 1)} fill={bar.color} opacity="0.85" />
+          <text x={bar.x + bar.w / 2} y={deficitChart.H - 1} text-anchor="middle" class="chart-label">{bar.date}</text>
         {/each}
-        {#if pesoHistory.length >= 2}
-          {@const first = pesoHistory[0]}
-          {@const last = pesoHistory[pesoHistory.length - 1]}
-          {@const totalDelta = +(last.peso_kg - first.peso_kg).toFixed(1)}
-          {@const totalDias = Math.round((new Date(last.fecha) - new Date(first.fecha)) / 86400000)}
-          <div class="peso-total">
-            Total: <strong style="color:{totalDelta <= 0 ? 'var(--green)' : 'var(--red)'}">{totalDelta > 0 ? '+' : ''}{totalDelta} kg</strong> en {totalDias} días
-          </div>
-        {/if}
-      {/if}
+        <text x="2" y={deficitChart.mid - 4} class="chart-axis">déficit</text>
+        <text x="2" y={deficitChart.mid + 11} class="chart-axis">exceso</text>
+      </svg>
     </div>
   {/if}
-</div>
+
+  <!-- HISTORIAL VENTANAS -->
+  <h2 class="section">Historial día a día</h2>
+  {#if histRows.length === 0}
+    <p class="empty-inline">Sin datos</p>
+  {:else}
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th class="r">Peso</th>
+            <th class="r">Kcal</th>
+            <th style="width:38%">Barra vs target</th>
+            <th class="r">Δ Kcal</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each histRows as row}
+            <tr>
+              <td>{fmtDate(row.date)}</td>
+              <td>{#if row.isGym}<span class="chip carb">gym</span>{/if}</td>
+              <td class="r num">{row.peso ? row.peso + 'kg' : '—'}</td>
+              <td class="r num c-kcal">{row.kcal}</td>
+              <td>
+                <div class="bar-wrap">
+                  <div class="bar-track"><div class="bar-fill" style="width:{row.pct}%;background:{row.barCol}"></div></div>
+                  <span class="num bar-pct">{row.pct}%</span>
+                </div>
+              </td>
+              <td class="r num" style="color:{row.defCol}">{row.defSign}{Math.abs(row.deficit)}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">Verde = dentro de target {ob.kcal_objetivo_promedio} kcal · Ámbar = por encima · Δ Kcal = cuánto menos (−) o más (+) comiste vs gastaste</p>
+  {/if}
+
+  <!-- EVOLUCIÓN DE PESO -->
+  {#if pesoChartPoints}
+    <h2 class="section">Evolución de peso</h2>
+    <div class="chart-box">
+      <div class="chart-hdr">
+        <span class="chart-title">Últimos registros</span>
+        <span class="num c-dim">min {pesoChartPoints.mn.toFixed(1)} · max {pesoChartPoints.mx.toFixed(1)}</span>
+      </div>
+      <svg viewBox="0 0 {pesoChartPoints.W} {pesoChartPoints.H}" class="chart-svg">
+        <polyline
+          points={pesoChartPoints.pts.map(p => p.x + ',' + p.y).join(' ')}
+          fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linejoin="round"
+        />
+        {#each pesoChartPoints.pts as p}
+          <circle cx={p.x} cy={p.y} r="2.5" fill="var(--accent)" />
+          <text x={p.x} y={p.y - 8} text-anchor="middle" class="chart-val">{p.label}</text>
+          <text x={p.x} y={pesoChartPoints.H - 2} text-anchor="middle" class="chart-label">{p.date}</text>
+        {/each}
+      </svg>
+    </div>
+  {/if}
+
+  <!-- REGISTRO DE PESOS -->
+  <h2 class="section">Registro de pesos</h2>
+  {#if pesoHistory.length === 0}
+    <p class="empty-inline">Sin registros</p>
+  {:else}
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th class="r">Peso</th>
+            <th class="r">Δ</th>
+            <th class="r">Días</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each [...pesoHistory].reverse() as entry}
+            <tr>
+              <td>{fmtDate(entry.fecha)}</td>
+              <td class="r num c-accent">{entry.peso_kg}</td>
+              <td class="r num">
+                {#if entry.delta !== null}
+                  <span class={entry.delta <= 0 ? 'c-good' : 'c-bad'}>{entry.delta > 0 ? '+' : '−'}{Math.abs(entry.delta)}</span>
+                {:else}
+                  <span class="c-dim">inicio</span>
+                {/if}
+              </td>
+              <td class="r num">{entry.dias !== null ? entry.dias + 'd' : '—'}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </div>
+    {#if pesoHistory.length >= 2}
+      {@const first = pesoHistory[0]}
+      {@const last = pesoHistory[pesoHistory.length - 1]}
+      {@const totalDelta = +(last.peso_kg - first.peso_kg).toFixed(1)}
+      {@const totalDias = Math.round((new Date(last.fecha) - new Date(first.fecha)) / 86400000)}
+      <p class="caption">
+        Total: <strong class={totalDelta <= 0 ? 'c-good' : 'c-bad'}>{totalDelta > 0 ? '+' : '−'}{Math.abs(totalDelta)} kg</strong> en {totalDias} días
+      </p>
+    {/if}
+  {/if}
+
+  <!-- MICRONUTRIENTES -->
+  {#if microAnalysis}
+    {@const needWork  = MICRO_KEYS_ALL.filter(k => ['deficit','bajo'].includes(microAnalysis.statuses[k].cls)).sort((a,b) => microAnalysis.statuses[a].pct - microAnalysis.statuses[b].pct)}
+    {@const overLimit = MICRO_KEYS_ALL.filter(k => microAnalysis.statuses[k].cls === 'exceso' && MICRO_RDA[k].max)}
+    {@const wellCov   = MICRO_KEYS_ALL.filter(k => microAnalysis.statuses[k].cls === 'exceso' && MICRO_RDA[k].rda)}
+    {@const inRange   = MICRO_KEYS_ALL.filter(k => ['ok','atención'].includes(microAnalysis.statuses[k].cls))}
+
+    <h2 class="section">Micronutrientes — prom {microAnalysis.days}d</h2>
+
+    {#if needWork.length}
+      <div class="micro-sublabel c-warn">Por mejorar</div>
+      <div class="micro-grid">
+        {#each needWork as k}
+          {@const m = MICRO_RDA[k]}
+          {@const avg = microAnalysis.avgs[k]}
+          {@const st = microAnalysis.statuses[k]}
+          {@const pct = Math.round(st.pct)}
+          {@const fmtVal = avg < 10 ? avg.toFixed(1) : Math.round(avg)}
+          <div class="micro-item">
+            <div class="micro-top">
+              <span class="micro-name">{m.label}</span>
+              <span class="micro-pct num" style="color:{st.barColor}">{pct}%</span>
+            </div>
+            <div class="micro-val num">{fmtVal} / {m.rda} {m.unit}</div>
+            <div class="bar-track"><div class="bar-fill" style="width:{pct}%;background:{st.barColor}"></div></div>
+          </div>
+        {/each}
+      </div>
+    {:else}
+      <p class="micro-ok">✓ Todos dentro de rango</p>
+    {/if}
+
+    {#if overLimit.length}
+      <div class="micro-sublabel c-bad">Sobre límite</div>
+      <div class="micro-grid">
+        {#each overLimit as k}
+          {@const m = MICRO_RDA[k]}
+          {@const avg = microAnalysis.avgs[k]}
+          {@const st = microAnalysis.statuses[k]}
+          {@const fmtVal = avg < 10 ? avg.toFixed(1) : Math.round(avg)}
+          {@const excess = Math.round(st.pct - 100)}
+          <div class="micro-item">
+            <div class="micro-top">
+              <span class="micro-name">{m.label}</span>
+              <span class="micro-pct num c-bad">+{excess}%</span>
+            </div>
+            <div class="micro-val num">{fmtVal} · máx {m.max} {m.unit}</div>
+            <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--bad)"></div></div>
+          </div>
+        {/each}
+      </div>
+    {/if}
+
+    {#if inRange.length || wellCov.length}
+      <div class="micro-sublabel c-good">En rango</div>
+      <div class="micro-grid">
+        {#each inRange as k}
+          {@const m = MICRO_RDA[k]}
+          {@const st = microAnalysis.statuses[k]}
+          {@const pct = Math.round(st.pct)}
+          <div class="micro-item compact">
+            <div class="micro-top">
+              <span class="micro-name">{m.label}</span>
+              <span class="micro-pct num" style="color:{st.barColor}">{pct}%</span>
+            </div>
+          </div>
+        {/each}
+        {#each wellCov as k}
+          {@const m = MICRO_RDA[k]}
+          {@const st = microAnalysis.statuses[k]}
+          {@const pct = Math.round(st.pct)}
+          <div class="micro-item compact covered">
+            <div class="micro-top">
+              <span class="micro-name">{m.label}</span>
+              <span class="micro-pct num c-carb">{pct}%</span>
+            </div>
+          </div>
+        {/each}
+      </div>
+    {/if}
+
+    <p class="caption">Ref: RDA hombre adulto · solo alimentos con datos disponibles</p>
+  {/if}
+{/if}
 
 <style>
-  .perfil-layout {
-    flex: 1; overflow-y: auto; padding: 28px 32px;
-    display: flex; flex-direction: column; gap: 22px;
+  h1 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+  }
+  .page-sub {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--dim);
+    margin-bottom: 2rem;
+    letter-spacing: 0.02em;
   }
 
-  .activity-summary {
-    display: flex; gap: 8px; flex-wrap: wrap;
-  }
-  .as-chip {
-    background: var(--s2); border: 1px solid var(--b1);
-    border-radius: 8px; padding: 8px 14px;
-    font-size: 12px; color: var(--muted);
-    display: flex; align-items: center; gap: 6px;
-  }
-  .as-val { color: var(--text); font-weight: 700; font-size: 16px; }
-
-  .perfil-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px;
-  }
-
-  .pcard {
-    background: var(--s1); border: 1px solid var(--b1);
-    border-radius: 10px; padding: 18px 20px;
-  }
-  .pcard-title {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--dim); margin-bottom: 14px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .pcard-title::after { content: ''; flex: 1; height: 1px; background: var(--b1); }
-
-  .pstat-row {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding: 5px 0; border-bottom: 1px solid var(--b1);
-    font-size: 12px;
-  }
-  .pstat-row:last-child { border-bottom: none; }
-  .pstat-lbl { color: var(--muted); }
-  .pstat-val { font-weight: 600; color: var(--text); }
-  .pstat-val.hi    { color: var(--accent-l); }
-  .pstat-val.green { color: var(--green); }
-  .pstat-val.amber { color: var(--amber); }
-
-  .peso-big {
-    font-size: 52px; font-weight: 800; color: #fff;
-    line-height: 1; letter-spacing: -0.03em;
-  }
-  .peso-unit { font-size: 18px; color: var(--muted); margin-left: 4px; }
-  .peso-sub  { font-size: 11px; color: var(--dim); margin-top: 6px; }
-  .peso-goal {
-    margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--b1);
-    font-size: 11px; color: var(--muted);
-  }
-  .peso-goal strong { color: var(--green); }
-
-  .weekly-head, .weekly-row {
+  /* Stat hero grid */
+  .stat-grid {
     display: grid;
-    grid-template-columns: 1.5fr 0.6fr 0.8fr 0.8fr 0.9fr 1fr 0.9fr;
-    gap: 6px; align-items: center;
-    padding: 7px 0; border-bottom: 1px solid var(--b1);
-    font-size: 11px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+    margin-bottom: 1rem;
   }
-  .weekly-head { color: var(--dim); font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; border-bottom-color: var(--b2); }
-  .weekly-row:last-of-type { border-bottom: none; }
-  .weekly-row.current { background: rgba(124,106,245,0.05); margin: 0 -8px; padding-left: 8px; padding-right: 8px; border-radius: 4px; }
-  .wh-label, .wr-label { color: var(--muted); font-weight: 500; }
-  .wr-label { color: var(--text); font-size: 11px; }
-  .wh-val, .wr-val { text-align: right; font-variant-numeric: tabular-nums; }
-  .wr-val { color: var(--text); font-weight: 600; }
-  .wr-tag {
-    font-size: 8px; color: var(--accent-l); background: rgba(124,106,245,0.12);
-    border: 1px solid rgba(124,106,245,0.3); border-radius: 3px;
-    padding: 1px 4px; font-weight: 600; margin-left: 4px; text-transform: uppercase;
+  .stat-item {
+    background: var(--s1);
+    border: 1px solid var(--b1);
+    border-radius: 8px;
+    padding: 1rem 0.9rem;
+    text-align: center;
   }
-  @media (max-width: 560px) {
-    .weekly-head, .weekly-row {
-      grid-template-columns: 1.3fr 0.5fr 0.7fr 0.8fr 0.8fr;
-      font-size: 10px;
-    }
-    .weekly-head :nth-child(4), .weekly-row :nth-child(4),
-    .weekly-head :nth-child(6), .weekly-row :nth-child(6) { display: none; }
+  .num-hero {
+    font-family: var(--font-display);
+    font-size: 1.85rem;
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
   }
-
-  .hist-row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 6px 0; border-bottom: 1px solid var(--b1); font-size: 11px;
+  .num-hero .unit {
+    font-family: var(--font-mono);
+    font-size: 0.55em;
+    font-weight: 400;
+    color: var(--muted);
+    margin-left: 0.2em;
+    letter-spacing: 0;
   }
-  .hist-row:last-of-type { border-bottom: none; }
-  .hist-date { color: var(--muted); width: 72px; flex-shrink: 0; }
-  .hist-bar-wrap { flex: 1; height: 6px; background: var(--b2); border-radius: 3px; overflow: hidden; }
-  .hist-bar-fill { height: 100%; border-radius: 3px; }
-  .hist-kcal { width: 54px; text-align: right; color: var(--text); font-weight: 600; }
-  .hist-deficit { width: 60px; text-align: right; font-size: 10px; }
-
-  .hist-peso-badge {
-    font-size: 8px; color: #c084fc; background: rgba(192,132,252,0.12);
-    border: 1px solid rgba(192,132,252,0.2); border-radius: 3px;
-    padding: 0 3px; font-weight: 600; margin-left: 2px;
+  .stat-item .label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.45rem;
   }
-
-  .peso-row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 7px 0; border-bottom: 1px solid var(--b1); font-size: 12px;
-  }
-  .peso-row:last-of-type { border-bottom: none; }
-  .peso-row-date { color: var(--muted); width: 80px; flex-shrink: 0; font-size: 11px; }
-  .peso-row-val { font-weight: 700; color: var(--text); font-size: 16px; }
-  .peso-row-unit { font-size: 11px; color: var(--muted); margin-left: 2px; }
-  .peso-row-delta { font-size: 11px; font-weight: 600; margin-left: auto; }
-  .peso-row-dias { font-size: 10px; color: var(--dim); width: 28px; text-align: right; }
-
-  .peso-total {
-    margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--b1);
-    font-size: 11px; color: var(--muted);
+  .stat-item .sub-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--dim);
+    margin-top: 0.25rem;
+    letter-spacing: 0.02em;
   }
 
-  .chart-svg { width: 100%; height: auto; display: block; margin: 4px 0; }
-  .chart-svg :global(.chart-label) { font-size: 8px; fill: var(--dim); }
-  .chart-svg :global(.chart-val) { font-size: 9px; fill: var(--text); font-weight: 600; }
-  .chart-svg :global(.chart-axis-label) { font-size: 7px; fill: var(--dim); }
-
-  /* ── Micronutrient analysis ── */
-  /* ── Micronutrient analysis ── */
-  .msection-label {
-    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em;
-    margin: 16px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--b1);
-  }
-  .msection-label:first-of-type { margin-top: 0; }
-  .msection-label.warn     { color: #fbbf24; }
-  .msection-label.ok       { color: #4ade80; }
-  .msection-label.overlimit { color: #f87171; }
-
-  .mok-banner {
-    font-size: 13px; color: #4ade80; margin-bottom: 16px; padding: 10px 14px;
-    background: rgba(74,222,128,.07); border: 1px solid rgba(74,222,128,.2); border-radius: 8px;
-  }
-
-  .micro-need-grid {
+  /* Field rows en two-col */
+  .two-col {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    gap: 8px; margin-bottom: 4px;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 3rem;
   }
-  .mneed-card {
-    background: var(--s2); border: 1px solid var(--b1);
-    border-radius: 9px; padding: 12px 12px 10px;
-    display: flex; flex-direction: column; gap: 6px;
+  .field-list { display: flex; flex-direction: column; }
+  .field-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--b1);
+    font-size: 0.88rem;
   }
-  .mneed-card.overlimit { border-color: rgba(248,113,113,.25); }
-  .mneed-top { display: flex; align-items: center; justify-content: space-between; }
-  .mneed-icon { font-size: 16px; }
-  .mneed-pct  { font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1; }
-  .mneed-bar-wrap {
-    height: 5px; background: var(--b2); border-radius: 3px;
-    overflow: hidden; position: relative;
+  .field-row:last-child { border-bottom: none; }
+  .field-row > span:first-child {
+    color: var(--muted);
+    font-family: var(--font-body);
   }
-  .mneed-bar     { height: 100%; border-radius: 3px; }
-  .mneed-bar-over {
-    position: absolute; top: 0; right: 0; height: 100%;
-    background: #f87171; border-radius: 3px;
-    animation: pulse-bar 2s infinite;
+  .field-row > span:last-child {
+    color: var(--text);
+    font-weight: 500;
   }
-  @keyframes pulse-bar { 0%,100%{opacity:1} 50%{opacity:.4} }
-  .mneed-name { font-size: 12px; color: var(--muted); font-weight: 500; }
-  .mneed-val  { font-size: 10px; color: var(--dim); font-variant-numeric: tabular-nums; }
-
-  .mchips {
-    display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 4px;
-  }
-  .mchip {
-    display: flex; align-items: center; gap: 6px;
-    background: var(--s2); border: 1px solid var(--b1);
-    border-radius: 7px; padding: 6px 11px;
-  }
-  .mchip-covered { opacity: 0.6; }
-  .mchip-name  { color: var(--muted); font-size: 12px; }
-  .mchip-pct   { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
-  .mchip-check { font-size: 12px; color: #4ade80; font-weight: 700; }
-
-  .micro-disclaimer {
-    margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--b1);
-    font-size: 11px; color: var(--dim);
+  .field-row em {
+    font-style: normal;
+    color: var(--dim);
+    font-size: 0.82em;
+    margin-left: 0.15em;
   }
 
-  .empty-state {
-    height: 100%; display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 10px; color: var(--dim);
+  /* Table */
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
   }
-  .ei { font-size: 36px; opacity: 0.35; }
-  .empty-state p { font-size: 13px; }
-  .es-hint { font-size: 11px; color: var(--dim); }
-  .es-hint code { background: var(--s2); padding: 1px 5px; border-radius: 3px; font-size: 10px; }
+  th {
+    text-align: left;
+    padding: 0.5rem 0.6rem;
+    border-bottom: 2px solid var(--b1);
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  th.r, td.r { text-align: right; }
+  td {
+    padding: 0.55rem 0.6rem;
+    border-bottom: 1px solid var(--b1);
+    vertical-align: middle;
+  }
+  tr:hover td { background: var(--s1); }
+  tr.current td { background: rgba(188, 140, 255, 0.06); }
+
+  /* Chip */
+  .chip {
+    display: inline-block;
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    background: rgba(188, 140, 255, 0.14);
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .chip.carb { background: rgba(88, 166, 255, 0.14); color: var(--carb); }
+
+  /* Bar inline (tabla) */
+  .bar-wrap { display: flex; align-items: center; gap: 0.5rem; }
+  .bar-track {
+    flex: 1;
+    height: 5px;
+    background: var(--bg);
+    border: 1px solid var(--b1);
+    border-radius: 2px;
+    overflow: hidden;
+    min-width: 70px;
+  }
+  .bar-fill { height: 100%; transition: width 0.2s; }
+  .bar-pct {
+    font-size: 0.7rem;
+    color: var(--muted);
+    min-width: 36px;
+    text-align: right;
+  }
+
+  /* Chart box */
+  .chart-box {
+    background: var(--s1);
+    border: 1px solid var(--b1);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  .chart-hdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+  }
+  .chart-title {
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .chart-svg { width: 100%; height: auto; display: block; }
+  .chart-svg :global(.chart-label) {
+    font-size: 8px;
+    fill: var(--dim);
+    font-family: var(--font-mono);
+  }
+  .chart-svg :global(.chart-val) {
+    font-size: 9px;
+    fill: var(--text);
+    font-family: var(--font-mono);
+    font-weight: 500;
+  }
+  .chart-svg :global(.chart-axis) {
+    font-size: 7px;
+    fill: var(--dim);
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Color classes */
+  .c-kcal   { color: var(--kcal); }
+  .c-prot   { color: var(--prot); }
+  .c-fat    { color: var(--fat); }
+  .c-carb   { color: var(--carb); }
+  .c-good   { color: var(--good); }
+  .c-warn   { color: var(--warn); }
+  .c-bad    { color: var(--bad); }
+  .c-accent { color: var(--accent); }
+  .c-dim    { color: var(--dim); }
+
+  /* Caption / footnote */
+  .caption {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--dim);
+    margin-top: 0.5rem;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+
+  /* Micros */
+  .micro-sublabel {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 1.5rem 0 0.6rem;
+  }
+  .micro-sublabel:first-of-type { margin-top: 0; }
+  .micro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0.5rem;
+  }
+  .micro-item {
+    background: var(--s1);
+    border: 1px solid var(--b1);
+    border-radius: 6px;
+    padding: 0.6rem 0.7rem;
+  }
+  .micro-item.compact { padding: 0.45rem 0.6rem; }
+  .micro-item.covered { opacity: 0.65; }
+  .micro-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.3rem;
+  }
+  .micro-item.compact .micro-top { margin-bottom: 0; }
+  .micro-name {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .micro-pct {
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+  .micro-val {
+    font-size: 0.7rem;
+    color: var(--dim);
+    margin-bottom: 0.35rem;
+    letter-spacing: 0.01em;
+  }
+  .micro-ok {
+    color: var(--good);
+    font-size: 0.85rem;
+    margin: 0.5rem 0;
+  }
+
+  /* Empty */
+  .empty {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: var(--dim);
+  }
+  .empty-hint { font-size: 0.82rem; margin-top: 0.4rem; }
+  .empty-hint code {
+    background: var(--s1);
+    border: 1px solid var(--b1);
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+  .empty-inline { color: var(--dim); font-size: 0.85rem; padding: 0.8rem 0; }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 1.6rem; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+    .num-hero { font-size: 1.5rem; }
+    table { font-size: 0.78rem; }
+    th, td { padding: 0.4rem 0.4rem; }
+  }
 </style>
