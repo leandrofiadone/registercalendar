@@ -1,6 +1,1038 @@
 {
   "sessions": [
     {
+      "date": "2026-07-04",
+      "gimnasio": "Fitness King Cabildo",
+      "groups": [
+        "Pecho",
+        "Triceps"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Press de pecho con barra",
+          "equipo": "Barra",
+          "musculo_principal": "Pecho",
+          "musculos_secundarios": [
+            "Triceps",
+            "Hombro anterior"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": null
+            },
+            {
+              "set": 2,
+              "reps": null,
+              "peso_kg": null
+            },
+            {
+              "set": 3,
+              "reps": null,
+              "peso_kg": null
+            }
+          ],
+          "notas": "Intensidad alta, 40 min sesion"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Aperturas en máquina (peck deck)",
+          "equipo": "Máquina",
+          "musculo_principal": "Pecho",
+          "musculos_secundarios": [
+            "Hombro anterior"
+          ],
+          "tipo": "maquina",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": null
+            },
+            {
+              "set": 2,
+              "reps": null,
+              "peso_kg": null
+            },
+            {
+              "set": 3,
+              "reps": null,
+              "peso_kg": null
+            }
+          ],
+          "notas": null
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Extensiones de tríceps en polea",
+          "equipo": "Polea",
+          "musculo_principal": "Tríceps",
+          "musculos_secundarios": [],
+          "tipo": "cable",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": null
+            },
+            {
+              "set": 2,
+              "reps": null,
+              "peso_kg": null
+            },
+            {
+              "set": 3,
+              "reps": null,
+              "peso_kg": null
+            }
+          ],
+          "notas": null
+        },
+        {
+          "orden": 4,
+          "ejercicio": "Press francés (skull crusher)",
+          "equipo": "Barra",
+          "musculo_principal": "Tríceps",
+          "musculos_secundarios": [],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": null
+            },
+            {
+              "set": 2,
+              "reps": null,
+              "peso_kg": null
+            },
+            {
+              "set": 3,
+              "reps": null,
+              "peso_kg": null
+            }
+          ],
+          "notas": null
+        }
+      ],
+      "cardio": [],
+      "notas": "Sesión de 40 minutos, intensidad alta. Pecho y tríceps.",
+      "duracion_min": 40
+    },
+    {
+      "date": "2026-06-01",
+      "gimnasio": "Fitness King Cabildo",
+      "groups": [
+        "Pecho-Tricep"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Chest Press",
+          "equipo": "Máquina Gorilla plate-loaded banco plano",
+          "musculo_principal": "Pectoral mayor",
+          "musculos_secundarios": [
+            "Deltoides anterior",
+            "Tríceps"
+          ],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 10,
+              "peso_kg": 15
+            },
+            {
+              "set": 2,
+              "reps": 10,
+              "peso_kg": 30
+            }
+          ],
+          "notas": "Peso por lado. Salteado con Chest Press reclinado Gorilla, Super Vertical Chest Press Gorilla y Super French Press Machine Gorilla."
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Chest Press Reclinado",
+          "equipo": "Máquina Gorilla plate-loaded reclinada",
+          "musculo_principal": "Pectoral mayor",
+          "musculos_secundarios": [
+            "Deltoides anterior",
+            "Tríceps"
+          ],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 12,
+              "peso_kg": 10
+            },
+            {
+              "set": 2,
+              "reps": 15,
+              "peso_kg": 15
+            }
+          ],
+          "notas": "Peso por lado. Salteado con otras máquinas Gorilla."
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Super Vertical Chest Press",
+          "equipo": "Máquina Gorilla Super Vertical Chest Press",
+          "musculo_principal": "Pectoral mayor",
+          "musculos_secundarios": [
+            "Deltoides anterior",
+            "Tríceps"
+          ],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 10,
+              "peso_kg": 40
+            },
+            {
+              "set": 2,
+              "reps": 6,
+              "peso_kg": 60
+            }
+          ],
+          "notas": "Peso por lado. Salteado con otras máquinas Gorilla."
+        },
+        {
+          "orden": 4,
+          "ejercicio": "Super French Press",
+          "equipo": "Máquina Gorilla Super French Press",
+          "musculo_principal": "Tríceps",
+          "musculos_secundarios": [],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 10,
+              "peso_kg": 7.5
+            },
+            {
+              "set": 2,
+              "reps": 6,
+              "peso_kg": 7.5
+            },
+            {
+              "set": 3,
+              "reps": 10,
+              "peso_kg": 7.5
+            }
+          ],
+          "notas": "Peso por lado."
+        }
+      ],
+      "cardio": [],
+      "notas": ""
+    },
+    {
+      "date": "2026-05-31",
+      "gimnasio": "Fitness King Cabildo",
+      "groups": [
+        "Piernas",
+        "Core"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Leg Press",
+          "equipo": "Máquina Heavy Strength",
+          "musculo_principal": "Cuádriceps",
+          "musculos_secundarios": [
+            "Glúteo mayor",
+            "Isquiotibiales"
+          ],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 12,
+              "peso_kg": 40
+            },
+            {
+              "set": 2,
+              "reps": 10,
+              "peso_kg": 80
+            },
+            {
+              "set": 3,
+              "reps": 10,
+              "peso_kg": 140
+            },
+            {
+              "set": 4,
+              "reps": 10,
+              "peso_kg": 140
+            }
+          ],
+          "notas": "Peso en kg por lado (40/80/140 kg total por lado). Primera vez usando esta máquina."
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Hack Squat",
+          "equipo": "Máquina Gorilla",
+          "musculo_principal": "Cuádriceps",
+          "musculos_secundarios": [
+            "Glúteo mayor",
+            "Isquiotibiales"
+          ],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 10,
+              "peso_kg": 40
+            },
+            {
+              "set": 2,
+              "reps": 10,
+              "peso_kg": 40
+            }
+          ],
+          "notas": "20 kg por lado. Mucho esfuerzo, hace mucho tiempo sin trabajar piernas."
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Hip Adduction",
+          "equipo": "Máquina Gorilla",
+          "musculo_principal": "Aductores",
+          "musculos_secundarios": [
+            "Glúteo menor"
+          ],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 12,
+              "peso_kg": 54.4
+            },
+            {
+              "set": 2,
+              "reps": 10,
+              "peso_kg": 63.5
+            },
+            {
+              "set": 3,
+              "reps": 20,
+              "peso_kg": 63.5
+            },
+            {
+              "set": 4,
+              "reps": 20,
+              "peso_kg": 63.5
+            }
+          ],
+          "notas": "Escala en libras: 120/140 lbs. Convertido a kg aproximado."
+        },
+        {
+          "orden": 4,
+          "ejercicio": "Hip Abduction",
+          "equipo": "Máquina Gorilla",
+          "musculo_principal": "Abductores",
+          "musculos_secundarios": [
+            "Glúteo medio",
+            "Glúteo menor"
+          ],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 23,
+              "peso_kg": 38.5
+            },
+            {
+              "set": 2,
+              "reps": 20,
+              "peso_kg": 38.5
+            },
+            {
+              "set": 3,
+              "reps": 25,
+              "peso_kg": 38.5
+            }
+          ],
+          "notas": "Escala en libras: 85 lbs. Convertido a kg aproximado."
+        },
+        {
+          "orden": 5,
+          "ejercicio": "Calf Raise Sentado",
+          "equipo": "Máquina Gorilla",
+          "musculo_principal": "Gastrocnemio",
+          "musculos_secundarios": [
+            "Sóleo"
+          ],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 30,
+              "peso_kg": 45.4
+            },
+            {
+              "set": 2,
+              "reps": 20,
+              "peso_kg": 90.7
+            },
+            {
+              "set": 3,
+              "reps": 15,
+              "peso_kg": 90.7
+            }
+          ],
+          "notas": "Escala en libras: 100/200 lbs. Convertido a kg aproximado."
+        },
+        {
+          "orden": 6,
+          "ejercicio": "Leg Curl Sentado",
+          "equipo": "Máquina Gorilla",
+          "musculo_principal": "Isquiotibiales",
+          "musculos_secundarios": [
+            "Gastrocnemio"
+          ],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 20,
+              "peso_kg": 31.8
+            },
+            {
+              "set": 2,
+              "reps": 10,
+              "peso_kg": 45.4
+            },
+            {
+              "set": 3,
+              "reps": 10,
+              "peso_kg": 45.4
+            }
+          ],
+          "notas": "Escala en libras: 70/100 lbs. Convertido a kg aproximado."
+        },
+        {
+          "orden": 7,
+          "ejercicio": "Curl Bíceps",
+          "equipo": "Z-bar Gorilla",
+          "musculo_principal": "Bíceps",
+          "musculos_secundarios": [
+            "Braquial",
+            "Braquiorradial"
+          ],
+          "tipo": "dropset_barra_recta",
+          "sets": [
+            {
+              "set": 1,
+              "tipo": "dropset",
+              "drops": [
+                {
+                  "drop": 1,
+                  "reps": 7,
+                  "peso_kg": 50
+                },
+                {
+                  "drop": 2,
+                  "reps": 10,
+                  "peso_kg": 25
+                },
+                {
+                  "drop": 3,
+                  "reps": 12,
+                  "peso_kg": 20
+                }
+              ]
+            },
+            {
+              "set": 2,
+              "tipo": "dropset",
+              "drops": [
+                {
+                  "drop": 1,
+                  "reps": 6,
+                  "peso_kg": 50
+                },
+                {
+                  "drop": 2,
+                  "reps": 12,
+                  "peso_kg": 25
+                },
+                {
+                  "drop": 3,
+                  "reps": 12,
+                  "peso_kg": 20
+                }
+              ]
+            }
+          ],
+          "notas": "Z-bar incluye barra ~10 kg. Pesos totales: 40+10=50 kg, 15+10=25 kg, 10+10=20 kg. Técnica comprometida con balanceo en las reps de mayor peso."
+        }
+      ],
+      "cardio": [],
+      "nutricion_ref": null,
+      "weight_kg": 128.4,
+      "energy": null,
+      "notes": "Primera sesión de piernas en mucho tiempo. Gym Fitness King Cabildo, primera visita. Máquinas Gorilla con escala en libras (adduction, abduction, calf raise, leg curl)."
+    },
+    {
+      "date": "2026-05-30",
+      "gimnasio": "Fitness King (Cabildo + Lavalle)",
+      "groups": [
+        "Espalda-Bicep",
+        "Piernas"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Lat Pulldown",
+          "equipo": "Máquina Gorilla - barra curva agarre ancho",
+          "musculo_principal": "Dorsal ancho",
+          "musculos_secundarios": [
+            "Romboides",
+            "Bíceps",
+            "Redondo mayor"
+          ],
+          "tipo": "maquina_cable",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 12,
+              "peso_kg": 31.75
+            },
+            {
+              "set": 2,
+              "reps": 10,
+              "peso_kg": 90.72
+            },
+            {
+              "set": 3,
+              "reps": 4,
+              "peso_kg": 108.86
+            },
+            {
+              "set": 4,
+              "reps": 4,
+              "peso_kg": 108.86
+            }
+          ],
+          "notas": "Cabildo. Pesos en libras: cal 70/trabajo 200/pesado 240 lbs. Convertido a kg."
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Remo en máquina inclinado",
+          "equipo": "Máquina Gorilla - carga libre",
+          "musculo_principal": "Dorsal ancho",
+          "musculos_secundarios": [
+            "Romboides",
+            "Bíceps",
+            "Trapecio medio"
+          ],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 10,
+              "peso_kg": 20
+            },
+            {
+              "set": 2,
+              "reps": 10,
+              "peso_kg": 40
+            },
+            {
+              "set": 3,
+              "reps": 10,
+              "peso_kg": 40
+            },
+            {
+              "set": 4,
+              "reps": 10,
+              "peso_kg": 40
+            }
+          ],
+          "notas": "Cabildo. Peso por lado. Set 1 calentamiento."
+        },
+        {
+          "orden": 3,
+          "ejercicio": "Extensión de cuádriceps unilateral",
+          "equipo": "Máquina Gorilla - discos por lado",
+          "musculo_principal": "Cuádriceps",
+          "musculos_secundarios": [],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 15,
+              "peso_kg": 10
+            },
+            {
+              "set": 2,
+              "reps": 12,
+              "peso_kg": 10
+            },
+            {
+              "set": 3,
+              "reps": 10,
+              "peso_kg": 10
+            }
+          ],
+          "notas": "Cabildo. Peso por lado. Incomodidad rodilla derecha — revisar técnica/posición silla."
+        },
+        {
+          "orden": 4,
+          "ejercicio": "Curl Bíceps",
+          "equipo": "Mancuerna",
+          "musculo_principal": "Bíceps",
+          "musculos_secundarios": [
+            "Braquial",
+            "Braquiorradial"
+          ],
+          "tipo": "mancuerna_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 12,
+              "peso_kg": 5
+            },
+            {
+              "set": 2,
+              "reps": 16,
+              "peso_kg": 13.75
+            },
+            {
+              "set": 3,
+              "reps": 16,
+              "peso_kg": 13.75
+            },
+            {
+              "set": 4,
+              "reps": 16,
+              "peso_kg": 13.75
+            }
+          ],
+          "notas": "Cabildo. Set 1 calent rotación. Sets 2-4: 27.5 kg total (13.75 kg por lado)."
+        },
+        {
+          "orden": 5,
+          "ejercicio": "Remo en máquina leverage",
+          "equipo": "Máquina Gorilla - Leverage Row agarre neutro bilateral",
+          "musculo_principal": "Dorsal ancho",
+          "musculos_secundarios": [
+            "Romboides",
+            "Bíceps",
+            "Trapecio medio"
+          ],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 10,
+              "peso_kg": 20
+            },
+            {
+              "set": 2,
+              "reps": 10,
+              "peso_kg": 40
+            },
+            {
+              "set": 3,
+              "reps": 10,
+              "peso_kg": 40
+            }
+          ],
+          "notas": "Lavalle. Peso por lado. Set 1 calent. Hammer grip."
+        },
+        {
+          "orden": 6,
+          "ejercicio": "Extensión de cuádriceps unilateral",
+          "equipo": "Máquina Gorilla - Leg Extension carga libre",
+          "musculo_principal": "Cuádriceps",
+          "musculos_secundarios": [],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 10,
+              "peso_kg": 20
+            },
+            {
+              "set": 2,
+              "reps": 10,
+              "peso_kg": 20
+            },
+            {
+              "set": 3,
+              "reps": 10,
+              "peso_kg": 20
+            }
+          ],
+          "notas": "Lavalle. Peso por lado."
+        },
+        {
+          "orden": 7,
+          "ejercicio": "Super High Row",
+          "equipo": "Máquina Gorilla - Super High Row carga libre",
+          "musculo_principal": "Dorsal ancho",
+          "musculos_secundarios": [
+            "Romboides",
+            "Trapecio medio",
+            "Deltoides posterior"
+          ],
+          "tipo": "maquina_guiada",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 12,
+              "peso_kg": 20
+            },
+            {
+              "set": 2,
+              "reps": 8,
+              "peso_kg": 40
+            },
+            {
+              "set": 3,
+              "reps": 8,
+              "peso_kg": 40
+            }
+          ],
+          "notas": "Lavalle. Peso por lado. Set 1 calent. Starting load máquina: 10 kg."
+        },
+        {
+          "orden": 8,
+          "ejercicio": "Curl concentrado unilateral",
+          "equipo": "Mancuerna",
+          "musculo_principal": "Bíceps",
+          "musculos_secundarios": [
+            "Braquial"
+          ],
+          "tipo": "mancuerna_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 10,
+              "peso_kg": 17.5
+            },
+            {
+              "set": 2,
+              "reps": 8,
+              "peso_kg": 17.5
+            },
+            {
+              "set": 3,
+              "reps": 8,
+              "peso_kg": 17.5
+            }
+          ],
+          "notas": "Lavalle. Unilateral sentado. Ejecución floja últimos sets."
+        }
+      ],
+      "cardio": [],
+      "notas": "Día doble: dos sesiones Fitness King (Cabildo + Lavalle), Espalda-Bicep + Piernas. 8 ejercicios totales."
+    },
+    {
+      "date": "2026-05-24",
+      "gimnasio": "Casa",
+      "groups": [
+        "Cardio"
+      ],
+      "fuerza": [],
+      "cardio": [
+        {
+          "ejercicio": "Salto de soga",
+          "duracion_min": 10,
+          "intensidad": "alta",
+          "notas": "10 series intervalos 18:58–19:08, ~520 saltos totales (80+40+50×8)",
+          "orden": 1
+        }
+      ],
+      "notas": "Salto de soga HIIT intervalos (~520 saltos / 10 min)"
+    },
+    {
+      "date": "2026-05-22",
+      "gimnasio": "Casa",
+      "groups": [
+        "Cardio"
+      ],
+      "fuerza": [],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Salto de soga",
+          "duracion_min": 15,
+          "intensidad": "alta",
+          "notas": "15 min continuos intensos a las 23 hs"
+        },
+        {
+          "ejercicio": "Caminata",
+          "duracion_min": 40,
+          "intensidad": "moderada",
+          "notas": "Caminata 40 min",
+          "orden": 2
+        }
+      ],
+      "notas": "Salto de soga 15 min intenso 23 hs | Caminata 40 min"
+    },
+    {
+      "date": "2026-05-20",
+      "gimnasio": "Casa",
+      "groups": [
+        "Cardio",
+        "Pecho",
+        "Triceps"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Press de banco plano",
+          "equipo": "Barra",
+          "musculo_principal": "Pecho",
+          "musculos_secundarios": [
+            "Triceps",
+            "Hombro anterior"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 5,
+              "peso_kg": 80
+            },
+            {
+              "set": 2,
+              "reps": 6,
+              "peso_kg": 80
+            },
+            {
+              "set": 3,
+              "reps": 6,
+              "peso_kg": 80
+            },
+            {
+              "set": 4,
+              "reps": 12,
+              "peso_kg": 40
+            },
+            {
+              "set": 5,
+              "reps": 12,
+              "peso_kg": 40
+            }
+          ],
+          "notas": "Barra olímpica 20kg. Drop set final a 40kg."
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Triceps (ejercicios varios)",
+          "equipo": null,
+          "musculo_principal": "Triceps",
+          "musculos_secundarios": [],
+          "tipo": null,
+          "sets": [],
+          "notas": "Parte del bloque de 40 min post-banco. Sin detalle de sets/peso."
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Salto a la soga",
+          "duracion_min": 20,
+          "intensidad": "alta",
+          "notas": "Intenso con pausas"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "soga",
+          "duracion_min": 15,
+          "intensidad": "alta",
+          "notas": "Salto de soga, parte del bloque de 40 min post-banco"
+        }
+      ],
+      "notas": "Soga 20min intenso con pausas | Sesión pecho + bloque 40 min (soga, tríceps, otros ejercicios). Press banco: 3 series pesadas 80kg + drop set 40kg."
+    },
+    {
+      "date": "2026-05-18",
+      "gimnasio": "Casa",
+      "groups": [
+        "Full Body"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Pesa rusa (kettlebell) - circuito",
+          "equipo": "Kettlebell",
+          "musculo_principal": "Full Body",
+          "musculos_secundarios": [
+            "Gluteos",
+            "Espalda",
+            "Hombros",
+            "Core"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": null,
+              "peso_kg": null
+            }
+          ],
+          "notas": "bloque 50min junto a salto de soga + extra de pesa rusa, bastante intenso"
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Salto de soga",
+          "duracion_min": 50,
+          "intensidad": "alta",
+          "notas": "circuito combinado con pesa rusa, bastante intenso"
+        },
+        {
+          "orden": 2,
+          "ejercicio": "Sauna seco",
+          "duracion_min": 15,
+          "intensidad": "alta",
+          "notas": "sauna seco fuerte"
+        }
+      ],
+      "notas": "Pesa rusa + salto de soga 50min bastante intenso + sauna seco 15min fuerte"
+    },
+    {
+      "date": "2026-05-10",
+      "gimnasio": "Casa",
+      "groups": [
+        "Cardio"
+      ],
+      "fuerza": [],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Salto soga",
+          "duracion_min": 15,
+          "intensidad": "moderada",
+          "notas": ""
+        }
+      ],
+      "notas": ""
+    },
+    {
+      "date": "2026-05-08",
+      "gimnasio": "Casa",
+      "groups": [
+        "Cardio"
+      ],
+      "fuerza": [],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Salto soga",
+          "duracion_min": 15,
+          "intensidad": "alta",
+          "notas": "con peso (chaleco/pesas)"
+        }
+      ],
+      "notas": ""
+    },
+    {
+      "date": "2026-05-07",
+      "gimnasio": "Calle",
+      "groups": [
+        "Cardio"
+      ],
+      "fuerza": [],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Caminata",
+          "duracion_min": 45,
+          "intensidad": "moderada",
+          "notas": "minimo 45 min"
+        }
+      ],
+      "notas": "Caminata"
+    },
+    {
+      "date": "2026-05-06",
+      "gimnasio": "Casa",
+      "groups": [
+        "Pecho"
+      ],
+      "fuerza": [
+        {
+          "orden": 1,
+          "ejercicio": "Press de banca",
+          "equipo": "Barra",
+          "musculo_principal": "Pecho",
+          "musculos_secundarios": [
+            "Triceps",
+            "Hombros"
+          ],
+          "tipo": "peso_libre",
+          "sets": [
+            {
+              "set": 1,
+              "reps": 4,
+              "peso_kg": 80
+            },
+            {
+              "set": 2,
+              "reps": 4,
+              "peso_kg": 80
+            },
+            {
+              "set": 3,
+              "reps": 4,
+              "peso_kg": 80
+            },
+            {
+              "set": 4,
+              "reps": 6,
+              "peso_kg": 80
+            },
+            {
+              "set": 5,
+              "reps": 6,
+              "peso_kg": 60
+            }
+          ],
+          "notas": "Barra 20kg + discos. Top set 80kg, back-off 60kg"
+        }
+      ],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "Caminata",
+          "duracion_min": 45,
+          "intensidad": "moderada",
+          "notas": "minimo 45 min"
+        }
+      ],
+      "notas": "Pecho con barra"
+    },
+    {
+      "date": "2026-04-24",
+      "gimnasio": "Casa",
+      "groups": [
+        "Movilidad",
+        "Full Body"
+      ],
+      "fuerza": [],
+      "cardio": [
+        {
+          "orden": 1,
+          "ejercicio": "yoga",
+          "duracion_min": 20,
+          "intensidad": "moderada",
+          "notas": "Práctica de Ashtanga yoga"
+        }
+      ],
+      "notas": "Práctica de Ashtanga yoga 20 minutos"
+    },
+    {
       "date": "2026-04-23",
       "gimnasio": "Megatlon",
       "groups": [

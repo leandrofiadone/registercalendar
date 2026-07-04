@@ -7,6 +7,7 @@
   let sessions     = $derived(data.sessions);
   let perfil       = $derived(data.perfil);
   let alimentosRef = $derived(data.alimentosRef ?? []);
+  let vdr          = $derived(data.vdr ?? null);
 
   // Inyecta ventana virtual para hoy si no existe en el JSON
   let ventanas = $derived.by(() => {
@@ -89,7 +90,7 @@
     {:else if ventanas[selectedIdx]}
       {#key selectedIdx}
         <div in:fade={{ duration: 150 }}>
-          <VentanaDetail ventana={ventanas[selectedIdx]} {perfil} {sessions} {ventanas} {alimentosRef} />
+          <VentanaDetail ventana={ventanas[selectedIdx]} {perfil} {sessions} {ventanas} {alimentosRef} {vdr} />
         </div>
       {/key}
     {:else}

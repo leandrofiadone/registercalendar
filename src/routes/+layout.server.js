@@ -26,6 +26,7 @@ export function load() {
   const log    = safeLoadJSON('log.json',       { sessions: [] });
   const nutri  = safeLoadJSON('nutricion.json', { ventanas: [] });
   const perfil = safeLoadJSON('perfil.json',    null);
+  const vdr    = safeLoadJSON('vdr.json',       null);
 
   const sessions = (log.sessions || []).filter(validateSession);
   const ventanas = (nutri.ventanas || []).filter(validateVentana);
@@ -48,6 +49,7 @@ export function load() {
   return {
     sessions: sessions.sort((a, b) => b.date.localeCompare(a.date)),
     ventanas: ventanas.sort((a, b) => b.ventana_id.localeCompare(a.ventana_id)),
-    perfil
+    perfil,
+    vdr
   };
 }

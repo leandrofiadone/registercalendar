@@ -17,6 +17,7 @@
   let ventanas = $derived(data.ventanas);
   let perfil       = $derived(data.perfil);
   let alimentosRef = $derived(data.alimentosRef ?? []);
+  let vdr          = $derived(data.vdr ?? null);
 
   let calView   = $state('nutricion');
   let calFormat = $state('gregoriano'); // 'gregoriano' | '13lunas'
@@ -52,7 +53,7 @@
   function nutriCalEvents() {
     const pesoKg      = perfil?.historial_peso?.at(-1)?.peso_kg ?? 80;
     const tdeBase     = perfil?.metabolismo?.gasto_total_descanso_kcal ?? 2776;
-    const kcalBase    = perfil?.objetivos_diarios?.kcal_dia_descanso ?? 2276;
+    const kcalBase    = perfil?.objetivos_diarios?.kcal_dia_base ?? perfil?.objetivos_diarios?.kcal_dia_descanso ?? 2276;
     const deficitTarget = perfil?.objetivos_diarios?.deficit_target_kcal ?? 500;
     const protMin     = perfil?.objetivos_diarios?.proteina_g_min ?? 160;
 
@@ -222,7 +223,7 @@
             const consumed = t.kcal || 0;
             const pesoKg = perfil?.historial_peso?.at(-1)?.peso_kg ?? 80;
             const tdeBase = perfil?.metabolismo?.gasto_total_descanso_kcal ?? 2776;
-            const kcalBase = perfil?.objetivos_diarios?.kcal_dia_descanso ?? 2276;
+            const kcalBase = perfil?.objetivos_diarios?.kcal_dia_base ?? perfil?.objetivos_diarios?.kcal_dia_descanso ?? 2276;
             const gymSess = sessions.find(s => s.date === d);
             let kcalAct = 0;
             if (gymSess) { const det = gymKcalDetallado(gymSess, pesoKg); kcalAct = det.fuerza + det.cardio.reduce((s,c) => s+c.kcal, 0); }
@@ -338,7 +339,7 @@
       {#if selectedSession}
         <SessionDetail session={selectedSession} {ventanas} {perfil} {alimentosRef} />
       {:else if selectedVentana}
-        <VentanaDetail ventana={selectedVentana} {perfil} {sessions} {ventanas} {alimentosRef} />
+        <VentanaDetail ventana={selectedVentana} {perfil} {sessions} {ventanas} {alimentosRef} {vdr} />
       {/if}
     </div>
   </aside>

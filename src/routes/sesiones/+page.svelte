@@ -29,6 +29,7 @@
       ...(s.cardio||[]).map(c => c.gimnasio),
     ].filter(Boolean)).size;
   }
+
 </script>
 
 <div class="layout">
@@ -45,17 +46,16 @@
         class:active={selectedIdx === i}
         onclick={() => selectedIdx = i}
       >
-        <div class="date">
-          {fmtDate(s.date)}
-          {#if gyms > 1}<span class="multi-gym-badge">{gyms} sesiones</span>{/if}
+        <div class="si-top">
+          <span class="date">{fmtDate(s.date)}</span>
+          {#if gyms > 1}<span class="multi-gym-badge">{gyms}×</span>{/if}
         </div>
         <div class="si-tags">
           {#if s.fuerza?.length}
-            {#each (s.groups || ['Fuerza']) as g}
-              <span class="tag tf">{g}</span>
-            {/each}
+            {#each (s.groups || ['Fuerza']) as g}<span class="tag tf">{g}</span>{/each}
+          {:else if s.cardio?.length}
+            <span class="tag tc">Cardio</span>
           {/if}
-          {#if s.cardio?.length}<span class="tag tc">Cardio</span>{/if}
         </div>
       </button>
     {/each}
@@ -118,11 +118,11 @@
   .sidebar-item {
     width: 100%;
     text-align: left;
-    padding: 11px 15px; cursor: pointer;
+    padding: 7px 12px; cursor: pointer;
     border-bottom: 1px solid var(--b1);
     border-top: none; border-left: none; border-right: none;
     transition: background 0.1s;
-    position: relative; padding-left: 17px;
+    position: relative; padding-left: 15px;
     background: transparent; color: inherit;
     font-family: inherit; font-size: inherit;
   }
@@ -138,16 +138,17 @@
   .sidebar-item:hover  { background: var(--s2); }
   .sidebar-item.active { background: var(--s3); }
 
-  .date { font-size: 12px; font-weight: 600; color: #bbb; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .si-top { display: flex; align-items: center; gap: 6px; }
+  .date { font-size: 11.5px; font-weight: 600; color: #bbb; }
   .multi-gym-badge {
-    font-size: 8px; font-weight: 600; color: var(--accent-l);
+    font-size: 8px; font-weight: 500; color: var(--accent-l);
     background: rgba(124,106,245,.12); border: 1px solid rgba(124,106,245,.25);
-    border-radius: 3px; padding: 0 5px; font-weight: 500;
+    border-radius: 3px; padding: 0 4px;
   }
-  .si-tags { display: flex; flex-wrap: wrap; gap: 3px; }
+  .si-tags { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 4px; }
 
   .tag {
-    font-size: 10px; padding: 1px 6px; border-radius: 3px;
+    font-size: 9px; padding: 1px 5px; border-radius: 3px;
     background: var(--s3); color: var(--dim); border: 1px solid var(--b2);
   }
   .tag.tf { background: rgba(124,106,245,.12); color: var(--accent-l); border-color: rgba(124,106,245,.25); }

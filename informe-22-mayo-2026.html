@@ -1,0 +1,1307 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Informe — 22 de mayo 2026 · Gym Tracker</title>
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 20mm 22mm 20mm;
+    @bottom-right {
+      content: counter(page) " / " counter(pages);
+      font-family: 'Georgia', serif;
+      font-size: 9pt;
+      color: #8a847a;
+    }
+    @bottom-left {
+      content: "Informe personal · 22 / 05 / 2026";
+      font-family: 'Georgia', serif;
+      font-size: 9pt;
+      color: #8a847a;
+    }
+  }
+
+  :root {
+    --ink: #2a2622;
+    --soft: #5a5247;
+    --dim: #8a847a;
+    --paper: #fdfaf4;
+    --cream: #f5efe2;
+    --line: #d8d0c2;
+    --accent: #9b6b3f;
+    --accent-soft: #c9986a;
+    --green: #6b8e4e;
+    --green-soft: #d2dec3;
+    --amber: #b8893f;
+    --amber-soft: #f0e2c4;
+    --red: #a85a3f;
+    --red-soft: #ecd3c8;
+    --blue: #4d6b8a;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Georgia', 'Cambria', serif;
+    font-size: 11pt;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .cover {
+    page-break-after: always;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+  }
+  .cover-mark {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 9pt;
+    letter-spacing: 0.32em;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-bottom: 1.5em;
+  }
+  .cover h1 {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 42pt;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0 0 0.4em 0;
+  }
+  .cover h1 em {
+    font-style: italic;
+    font-family: 'Georgia', serif;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .cover .lead {
+    font-family: 'Georgia', serif;
+    font-size: 14pt;
+    color: var(--soft);
+    max-width: 28em;
+    line-height: 1.55;
+    margin: 0.5em 0 2em 0;
+    font-style: italic;
+  }
+  .cover .meta {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 9pt;
+    letter-spacing: 0.18em;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-top: 3em;
+  }
+  .cover .rule {
+    width: 80px;
+    height: 1px;
+    background: var(--accent);
+    margin: 1.5em 0;
+  }
+
+  section {
+    page-break-after: always;
+  }
+  section.no-break {
+    page-break-after: auto;
+  }
+
+  .kicker {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 8.5pt;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.6em;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 24pt;
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0 0 1em 0;
+  }
+  h2 em {
+    font-style: italic;
+    font-family: 'Georgia', serif;
+    color: var(--accent);
+  }
+
+  h3 {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 13pt;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 1.6em 0 0.45em 0;
+    letter-spacing: 0.005em;
+  }
+  h3::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 1px;
+    background: var(--accent);
+    vertical-align: middle;
+    margin-right: 0.6em;
+  }
+
+  h4 {
+    font-family: 'Georgia', serif;
+    font-size: 11.5pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 1.1em 0 0.3em 0;
+  }
+
+  p {
+    margin: 0 0 0.85em 0;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  p.lede {
+    font-size: 12.5pt;
+    line-height: 1.55;
+    color: var(--soft);
+    font-style: italic;
+    margin-bottom: 1.4em;
+    text-align: left;
+  }
+
+  blockquote {
+    margin: 1.2em 0 1.2em 0;
+    padding: 0.4em 0 0.4em 1.1em;
+    border-left: 2px solid var(--accent);
+    color: var(--soft);
+    font-style: italic;
+    font-size: 11pt;
+  }
+
+  ul, ol { margin: 0.4em 0 1em 1.3em; padding: 0; }
+  li { margin: 0.32em 0; }
+  ul li::marker { color: var(--accent); }
+
+  strong { color: var(--ink); font-weight: 700; }
+
+  .num {
+    font-family: 'Helvetica', sans-serif;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 1em 0 1.4em 0;
+  }
+  .stat {
+    border: 1px solid var(--line);
+    background: var(--cream);
+    padding: 14px 14px 12px 14px;
+    border-radius: 4px;
+  }
+  .stat .big {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 22pt;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat .unit {
+    font-size: 11pt;
+    color: var(--dim);
+    margin-left: 2px;
+  }
+  .stat .label {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 7.5pt;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-top: 0.6em;
+  }
+  .stat .sub {
+    font-family: 'Georgia', serif;
+    font-size: 9pt;
+    color: var(--soft);
+    margin-top: 0.25em;
+    font-style: italic;
+  }
+  .stat.accent { border-color: var(--accent-soft); background: #f5e7d5; }
+  .stat.green  { border-color: var(--green-soft); background: #e6ecdb; }
+  .stat.green .big { color: var(--green); }
+  .stat.amber  { border-color: var(--amber-soft); background: #f4e9d2; }
+  .stat.amber .big { color: var(--amber); }
+  .stat.red    { border-color: var(--red-soft); background: #f0d9cf; }
+  .stat.red .big { color: var(--red); }
+  .stat.accent .big { color: var(--accent); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.6em 0 1.2em 0;
+    font-size: 10pt;
+  }
+  th {
+    text-align: left;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--dim);
+    border-bottom: 1px solid var(--line);
+    padding: 0.5em 0.6em;
+    font-weight: 600;
+  }
+  th.r, td.r { text-align: right; }
+  td {
+    padding: 0.5em 0.6em;
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: 0; }
+
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: var(--cream);
+    padding: 14px 18px;
+    margin: 1.2em 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout.green { border-left-color: var(--green); background: #ebf0dd; }
+  .callout.amber { border-left-color: var(--amber); background: #f5ecd5; }
+  .callout.blue  { border-left-color: var(--blue); background: #e1e9f1; }
+  .callout.red   { border-left-color: var(--red); background: #f2dccf; }
+  .callout h4 { margin-top: 0; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin: 1em 0;
+  }
+
+  .bar-row {
+    margin: 0.5em 0;
+  }
+  .bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 9pt;
+    color: var(--soft);
+    margin-bottom: 0.25em;
+  }
+  .bar-track {
+    height: 10px;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    background: var(--accent);
+  }
+  .bar-fill.green { background: var(--green); }
+  .bar-fill.amber { background: var(--amber); }
+  .bar-fill.red   { background: var(--red); }
+
+  .chart-wrap {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 14px 16px 18px 16px;
+    margin: 1em 0 1.4em 0;
+  }
+  .chart-title {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 8.5pt;
+    letter-spacing: 0.16em;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-bottom: 0.5em;
+  }
+  .chart-svg { width: 100%; height: auto; display: block; }
+  .chart-svg text {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 7pt;
+    fill: var(--dim);
+  }
+  .chart-svg .val { fill: var(--ink); font-size: 7.5pt; }
+
+  .tag {
+    display: inline-block;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    padding: 1px 7px;
+    border-radius: 3px;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 8.5pt;
+    color: var(--soft);
+    margin: 0 3px 2px 0;
+  }
+  .tag.warm { background: #f5e7d5; border-color: var(--accent-soft); color: var(--accent); }
+  .tag.green { background: var(--green-soft); border-color: var(--green); color: var(--green); }
+  .tag.red { background: var(--red-soft); border-color: var(--red); color: var(--red); }
+
+  .footnote {
+    font-family: 'Georgia', serif;
+    font-size: 9pt;
+    color: var(--dim);
+    font-style: italic;
+    margin-top: 0.4em;
+  }
+
+  .imp {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 14px 16px;
+    margin: 0.7em 0;
+    background: var(--paper);
+    page-break-inside: avoid;
+  }
+  .imp .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.45em;
+  }
+  .imp .title {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 11.5pt;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .imp .impact {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .imp .impact.high  { color: var(--accent); }
+  .imp .impact.med   { color: var(--amber); }
+  .imp .impact.low   { color: var(--dim); }
+  .imp p { margin: 0.3em 0; font-size: 10.5pt; }
+  .imp .why {
+    font-style: italic;
+    color: var(--soft);
+    font-size: 10pt;
+    margin-top: 0.5em;
+  }
+
+  .toc {
+    margin: 1em 0;
+  }
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px dotted var(--line);
+    padding: 0.45em 0;
+  }
+  .toc-item .num-toc {
+    font-family: 'Helvetica', sans-serif;
+    color: var(--dim);
+    font-size: 9pt;
+    width: 28px;
+  }
+  .toc-item .title {
+    font-family: 'Georgia', serif;
+    flex: 1;
+    padding: 0 12px;
+  }
+  .toc-item .pg {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 9pt;
+    color: var(--dim);
+  }
+
+  .sp { height: 0.8em; }
+
+  @media print {
+    body { background: var(--paper); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ PORTADA ═══════════════════════════════ -->
+<section class="cover">
+  <div class="cover-mark">Bitácora personal · Gym Tracker</div>
+  <h1>Una <em>balanza honesta</em><br>no es una balanza enojada.</h1>
+  <div class="rule"></div>
+  <p class="lead">
+    Lo que la pesada del 22 de mayo está diciendo, leído con calma. Una mirada
+    sobre las tres semanas que pasaron entre el piso del 1 de mayo (123,3 kg) y
+    hoy (128,4 kg), y cómo volver al carril sin dramatismo.
+  </p>
+  <div class="meta">Para Lean &nbsp;·&nbsp; 22 / 05 / 2026 &nbsp;·&nbsp; Buenos Aires</div>
+</section>
+
+<!-- ═══════════════════════════════ CARTA INICIAL ═══════════════════════════════ -->
+<section>
+  <div class="kicker">Antes de empezar</div>
+  <h2>"Subí <em>un montón</em>" — y qué significa eso, en serio.</h2>
+
+  <p class="lede">
+    Lo dijiste vos: te pesaste y subiste un montón. La balanza marca 128,4. La
+    sensación es de derrumbe. La realidad es bastante más matizada.
+  </p>
+
+  <p>
+    El informe anterior, dos días atrás, terminaba con un mensaje optimista. Tenía
+    razón con los datos que había en ese momento: del 8 de marzo al 8 de mayo
+    venías bajando a ritmo correcto, con días de gloria culinaria incluidos. Hoy
+    la fotografía cambió, no porque el cuerpo te haya traicionado, sino porque
+    <strong>catorce días sin pesarse</strong> es exactamente el tiempo que tarda
+    en acumularse una desviación que ya estaba escrita en los registros nutricionales
+    y de gym. La balanza no apareció con un dato nuevo. Apareció con la suma de
+    lo que ya estaba pasando.
+  </p>
+
+  <p>
+    Este documento mira esa suma despacio. Separa <strong>cuánto del rebote es
+    grasa real</strong> y cuánto es agua, glucógeno, sal y contenido intestinal.
+    Lee mayo entero con los números crudos, no con la nostalgia del 1 de mayo.
+    Y propone un plan corto, sin culpa, para los próximos treinta días.
+  </p>
+
+  <h3>Cómo está organizado</h3>
+
+  <div class="toc">
+    <div class="toc-item"><span class="num-toc">I.</span><span class="title">La curva, ampliada — qué pasó en estas tres semanas</span><span class="pg">pág. 3</span></div>
+    <div class="toc-item"><span class="num-toc">II.</span><span class="title">La verdad del rebote — agua, glucógeno y grasa real</span><span class="pg">pág. 5</span></div>
+    <div class="toc-item"><span class="num-toc">III.</span><span class="title">Mayo nutricional — lo que el log muestra sin filtro</span><span class="pg">pág. 7</span></div>
+    <div class="toc-item"><span class="num-toc">IV.</span><span class="title">Mayo gimnasio — el dato más concreto y la palanca obvia</span><span class="pg">pág. 9</span></div>
+    <div class="toc-item"><span class="num-toc">V.</span><span class="title">Por qué esto no es un fracaso — pesar es información, no veredicto</span><span class="pg">pág. 11</span></div>
+    <div class="toc-item"><span class="num-toc">VI.</span><span class="title">Plan concreto de 30 días — sin drásticos, sin culpa</span><span class="pg">pág. 12</span></div>
+    <div class="toc-item"><span class="num-toc">VII.</span><span class="title">Si tocaras solo una cosa esta semana</span><span class="pg">pág. 14</span></div>
+  </div>
+
+  <div class="callout amber">
+    <h4>Una sola frase para llevarte si no leés nada más</h4>
+    <p>
+      De los <strong>+5,1 kg</strong> respecto al piso del 1 de mayo, alrededor de
+      <strong>1,3 kg son grasa real</strong> y el resto es agua, glucógeno y
+      contenido digestivo. La causa no es misteriosa: tres semanas con consumo
+      promedio de <strong>3.052 kcal/día</strong> y solo siete sesiones de gym.
+      Es reversible, está medido, y la palanca para girarlo está identificada.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PARTE I: LA CURVA AMPLIADA ═══════════════════════════════ -->
+<section>
+  <div class="kicker">Parte I &nbsp;·&nbsp; La curva, ampliada</div>
+  <h2>Lo que <em>tres semanas</em> agregaron al gráfico.</h2>
+
+  <p class="lede">
+    Mismo gráfico que viste el martes, con un punto más al final. Ese punto cambia
+    la lectura, pero no la reescribe. Importa verlo en contexto, no aislado.
+  </p>
+
+  <div class="stats">
+    <div class="stat red">
+      <div class="big num">+5,1<span class="unit">kg</span></div>
+      <div class="label">Desde el piso del 1/5</div>
+      <div class="sub">En 21 días</div>
+    </div>
+    <div class="stat amber">
+      <div class="big num">+3,4<span class="unit">kg</span></div>
+      <div class="label">Desde el último pesaje</div>
+      <div class="sub">14 días sin balanza</div>
+    </div>
+    <div class="stat accent">
+      <div class="big num">−1,6<span class="unit">kg</span></div>
+      <div class="label">Vs arranque (8/3)</div>
+      <div class="sub">75 días de proceso</div>
+    </div>
+    <div class="stat amber">
+      <div class="big num">128,4<span class="unit">kg</span></div>
+      <div class="label">Pesada de hoy</div>
+      <div class="sub">22 de mayo</div>
+    </div>
+  </div>
+
+  <h3>La curva completa, con el punto nuevo</h3>
+
+  <div class="chart-wrap">
+    <div class="chart-title">Evolución de peso · 8 de marzo a 22 de mayo 2026</div>
+    <svg class="chart-svg" viewBox="0 0 700 220" preserveAspectRatio="none">
+      <line x1="40" y1="40" x2="690" y2="40" stroke="#d8d0c2" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="40" y1="100" x2="690" y2="100" stroke="#d8d0c2" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="40" y1="160" x2="690" y2="160" stroke="#d8d0c2" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <text x="32" y="44" text-anchor="end">131</text>
+      <text x="32" y="104" text-anchor="end">126,4</text>
+      <text x="32" y="164" text-anchor="end">123</text>
+
+      <!-- target line at 125 -->
+      <line x1="40" y1="140" x2="690" y2="140" stroke="#9b6b3f" stroke-width="0.8" stroke-dasharray="6,4" opacity="0.45"/>
+      <text x="688" y="136" text-anchor="end" fill="#9b6b3f" opacity="0.7">objetivo intermedio 125</text>
+
+      <!-- weight curve: 14 points across 75 days -->
+      <!-- Dates: 3/8,3/9,3/11,3/14,3/17,3/19,3/27,4/9,4/15,4/28,5/1,5/6,5/8,5/22 -->
+      <!-- Days: 0,1,3,6,9,11,19,32,38,51,54,59,61,75 -->
+      <!-- Weight: 130,130,130,127.1,127,126.5,129,125.5,126,125,123.3,124.1,125,128.4 -->
+      <!-- y = 40 + (131-w)*16.67: 130->57, 127.1->105, 127->107, 126.5->115, 129->73, 125.5->132, 126->123, 125->140, 123.3->168, 124.1->155, 128.4->83 -->
+      <!-- x = 40 + (day/75)*650: 0->40, 1->49, 3->66, 6->92, 9->118, 11->135, 19->205, 32->317, 38->369, 51->482, 54->508, 59->551, 61->569, 75->690 -->
+      <polyline
+        points="40,57 49,57 66,57 92,105 118,107 135,115 205,73 317,132 369,123 482,140 508,168 551,155 569,140 690,83"
+        fill="none" stroke="#9b6b3f" stroke-width="1.6" stroke-linejoin="round"/>
+
+      <!-- gap visualization for the missing 14 days -->
+      <rect x="569" y="36" width="121" height="158" fill="#a85a3f" opacity="0.06"/>
+
+      <g fill="#9b6b3f">
+        <circle cx="40" cy="57" r="3"/>
+        <circle cx="92" cy="105" r="3"/>
+        <circle cx="135" cy="115" r="3"/>
+        <circle cx="205" cy="73" r="3"/>
+        <circle cx="317" cy="132" r="3"/>
+        <circle cx="369" cy="123" r="3"/>
+        <circle cx="482" cy="140" r="3"/>
+        <circle cx="508" cy="168" r="3"/>
+        <circle cx="569" cy="140" r="3"/>
+      </g>
+      <circle cx="690" cy="83" r="4.5" fill="#a85a3f"/>
+
+      <g class="val">
+        <text x="40" y="50" text-anchor="middle">130</text>
+        <text x="205" y="66" text-anchor="middle">129</text>
+        <text x="508" y="180" text-anchor="middle" fill="#6b8e4e">123,3 (piso)</text>
+        <text x="660" y="78" text-anchor="middle" fill="#a85a3f">128,4 hoy</text>
+      </g>
+
+      <g>
+        <text x="40" y="208" text-anchor="middle">8/3</text>
+        <text x="205" y="208" text-anchor="middle">27/3</text>
+        <text x="317" y="208" text-anchor="middle">9/4</text>
+        <text x="482" y="208" text-anchor="middle">28/4</text>
+        <text x="569" y="208" text-anchor="middle">8/5</text>
+        <text x="690" y="208" text-anchor="middle" fill="#a85a3f">22/5</text>
+        <text x="630" y="218" text-anchor="middle" fill="#a85a3f" font-size="6pt" opacity="0.7">— gap de 14 días —</text>
+      </g>
+    </svg>
+  </div>
+
+  <h3>Lo primero que hay que separar</h3>
+
+  <p>
+    El tramo del 1 de mayo (123,3) al 22 de mayo (128,4) es lo que pesa en la
+    sensación. Pero hay tres lecturas distintas dentro del mismo dato:
+  </p>
+
+  <ul>
+    <li><strong>Vs. el piso del 1 de mayo (−5,1 kg):</strong> es la lectura más dolorosa pero la menos representativa. El 1/5 fue un día anómalo bajo, probablemente con poca retención de agua, glucógeno bajo después de un período sin carbos altos. No era tu "peso real" estabilizado; era el extremo de la oscilación natural.</li>
+    <li><strong>Vs. el último pesaje del 8 de mayo (+3,4 kg):</strong> esto sí es interpretable como bandera. Catorce días donde el cuerpo procesó las kcal acumuladas y los gramos de carbos que se sumaron al glucógeno. Cuando lo desglosamos en la sección II vas a ver que la mitad de esto es agua.</li>
+    <li><strong>Vs. el arranque del proceso (−1,6 kg):</strong> el dato más honesto. En 75 días bajaste poco más de un kilo y medio. Es modesto, pero <strong>sigue siendo negativo</strong>. No volviste a foja cero.</li>
+  </ul>
+
+  <div class="callout">
+    <h4>El número que importa</h4>
+    <p>
+      No es 128,4 ni −5,1. Es la <strong>tendencia que se construye en las próximas
+      dos pesadas</strong>. Si la del próximo lunes está en 127 o 126, lo que hoy
+      parece catástrofe se reconstruye como una oscilación grande. Si la próxima
+      sigue subiendo, ahí sí es momento de revisar el plan. Hoy es demasiado pronto
+      para sacar conclusión: una pesada después de catorce días no es
+      tendencia, es un punto.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PARTE II: AGUA VS GRASA ═══════════════════════════════ -->
+<section>
+  <div class="kicker">Parte II &nbsp;·&nbsp; La verdad del rebote</div>
+  <h2>Cuánto de eso es <em>grasa real</em>, en serio.</h2>
+
+  <p class="lede">
+    La balanza no distingue entre tejido adiposo y agua de glucógeno. Esta sección
+    hace la cuenta que ella no hace.
+  </p>
+
+  <h3>El método</h3>
+
+  <p>
+    La forma honesta de desglosar un rebote es por termodinámica: cuántas kcal de
+    superávit acumuló el cuerpo en ese período, y dividir por <strong>7.700 kcal
+    por kilo de grasa</strong> (el factor universal aceptado). Lo que sobra del
+    aumento total es agua + glucógeno + contenido digestivo.
+  </p>
+
+  <h3>La cuenta, paso a paso</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Concepto</th>
+        <th class="r">Valor</th>
+        <th>Comentario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Kcal promedio mayo (1–22)</td>
+        <td class="r num">3.052</td>
+        <td>21 días con registro nutricional completo</td>
+      </tr>
+      <tr>
+        <td>Target promedio (mix gym/descanso)</td>
+        <td class="r num">2.560</td>
+        <td>El target oficial de tu perfil</td>
+      </tr>
+      <tr>
+        <td>Excedente diario promedio</td>
+        <td class="r num">+492</td>
+        <td>Por encima del target todos los días, en promedio</td>
+      </tr>
+      <tr>
+        <td>Excedente acumulado en 21 días</td>
+        <td class="r num">+10.330 kcal</td>
+        <td>El extra total de mayo</td>
+      </tr>
+      <tr>
+        <td><strong>Grasa real estimada</strong></td>
+        <td class="r num"><strong>≈ 1,3 kg</strong></td>
+        <td>10.330 ÷ 7.700</td>
+      </tr>
+      <tr>
+        <td>Aumento real observado en balanza</td>
+        <td class="r num">+5,1 kg</td>
+        <td>Desde piso (1/5) a hoy</td>
+      </tr>
+      <tr>
+        <td><strong>Agua + glucógeno + tránsito</strong></td>
+        <td class="r num"><strong>≈ 3,8 kg</strong></td>
+        <td>5,1 menos 1,3</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="two-col">
+    <div>
+      <h4>De dónde sale toda esa agua</h4>
+      <p>
+        Cada gramo de glucógeno almacenado en músculo e hígado arrastra
+        <strong>tres gramos de agua</strong>. Una persona de tu peso tiene capacidad
+        para almacenar entre 400 y 600 g de glucógeno cuando está bien cargada
+        (vs. depletada). Eso solo, <strong>son 1,2 a 1,8 kg de agua + carbos</strong>.
+      </p>
+      <p>
+        Sumá retención por sodio (las comidas de las últimas semanas tienen
+        cantimpalo, queso, pizza, empanadas — todas altas en sal), contenido
+        intestinal por los volúmenes de fideos y pan, y tenés explicado el resto.
+      </p>
+    </div>
+    <div>
+      <h4>Por qué el 1/5 fue tan bajo</h4>
+      <p>
+        El piso de 123,3 del 1 de mayo probablemente coincidió con el final de
+        un período de carbos más bajos, deshidratación normal post-ayuno, y un
+        intestino vacío. Era un mínimo real de balanza pero no era tu
+        <strong>peso de estado estacionario</strong>.
+      </p>
+      <p>
+        Si ese día hubieras estado totalmente cargado de glucógeno y bien
+        hidratado, la balanza probablemente habría marcado 125,5–126. <strong>Esa
+        es tu "línea base" comparable</strong>, no el 123,3.
+      </p>
+    </div>
+  </div>
+
+  <h3>Repensado con esa línea base</h3>
+
+  <p>
+    Si en lugar de comparar contra el 1/5 (extremo bajo) compararas contra una
+    línea base estabilizada de ~126, el rebote real grasa sería de <strong>poco
+    más de un kilo</strong>. Es ruido medible y muy reversible, no
+    una recaída estructural. El cuerpo no inventó cinco kilos de tejido en tres
+    semanas: la termodinámica no lo permite.
+  </p>
+
+  <div class="callout green">
+    <h4>La buena noticia escondida</h4>
+    <p>
+      Si volvés en serio a déficit durante diez días <strong>la mayor parte de
+      este rebote se evapora literalmente</strong>. Los 3,8 kg de agua y glucógeno
+      se van rápido cuando el cuerpo vuelve a usar reservas. La grasa real (~1,3 kg)
+      tarda más, unas dos a tres semanas a déficit moderado. Pero la sensación de
+      "subí cinco kilos" deja de existir en pocos días.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PARTE III: NUTRICION MAYO ═══════════════════════════════ -->
+<section>
+  <div class="kicker">Parte III &nbsp;·&nbsp; Mayo nutricional</div>
+  <h2>Lo que <em>realmente</em> pasó en la mesa.</h2>
+
+  <p class="lede">
+    Veintiún días con datos completos. Es un mes loggeado de punta a punta, y eso
+    es valioso. Lo que muestran esos datos es claro y se puede leer sin filtros.
+  </p>
+
+  <div class="stats">
+    <div class="stat amber">
+      <div class="big num">3.052<span class="unit">kcal</span></div>
+      <div class="label">Promedio diario mayo</div>
+      <div class="sub">+492 sobre target</div>
+    </div>
+    <div class="stat accent">
+      <div class="big num">142<span class="unit">g</span></div>
+      <div class="label">Proteína promedio</div>
+      <div class="sub">89% del mínimo (160 g)</div>
+    </div>
+    <div class="stat amber">
+      <div class="big num">6</div>
+      <div class="label">Días &gt; 3.500 kcal</div>
+      <div class="sub">28% del mes</div>
+    </div>
+    <div class="stat amber">
+      <div class="big num">5.626</div>
+      <div class="label">Pico (13/5)</div>
+      <div class="sub">El día más cargado</div>
+    </div>
+  </div>
+
+  <h3>La distribución que importa</h3>
+
+  <p>
+    El promedio cuenta una parte. Pero el patrón es más nítido si miramos qué
+    proporción del mes estuviste arriba o abajo del target:
+  </p>
+
+  <div class="bar-row">
+    <div class="bar-label"><span>Días dentro del target (≤ 2.560 kcal)</span><span>5 de 21 días · 24%</span></div>
+    <div class="bar-track"><div class="bar-fill green" style="width:24%"></div></div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-label"><span>Días arriba pero contenidos (2.560 – 3.500)</span><span>10 de 21 días · 48%</span></div>
+    <div class="bar-track"><div class="bar-fill amber" style="width:48%"></div></div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-label"><span>Días "de gloria" (&gt; 3.500 kcal)</span><span>6 de 21 días · 28%</span></div>
+    <div class="bar-track"><div class="bar-fill red" style="width:28%"></div></div>
+  </div>
+
+  <p class="footnote">
+    En marzo y abril los días de gloria eran 3 de cada 21. En mayo pasaron a ser
+    6 de cada 21. La frecuencia se duplicó, y eso explica el grueso del excedente
+    sin que cambie nada en los días "normales".
+  </p>
+
+  <h3>Los seis días de mayo que pesan más</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th class="r">Kcal</th>
+        <th class="r">Proteína</th>
+        <th class="r">Grasa</th>
+        <th class="r">Carbos</th>
+        <th>Carácter</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>13/5</td>
+        <td class="r num">5.626</td>
+        <td class="r num">201 g</td>
+        <td class="r num">290 g</td>
+        <td class="r num">584 g</td>
+        <td>El día más alto del mes</td>
+      </tr>
+      <tr>
+        <td>11/5</td>
+        <td class="r num">4.306</td>
+        <td class="r num">152 g</td>
+        <td class="r num">162 g</td>
+        <td class="r num">503 g</td>
+        <td>Carbos altísimos</td>
+      </tr>
+      <tr>
+        <td>19/5</td>
+        <td class="r num">4.076</td>
+        <td class="r num">182 g</td>
+        <td class="r num">208 g</td>
+        <td class="r num">357 g</td>
+        <td>Grasa concentrada</td>
+      </tr>
+      <tr>
+        <td>8/5</td>
+        <td class="r num">3.916</td>
+        <td class="r num">271 g</td>
+        <td class="r num">91 g</td>
+        <td class="r num">485 g</td>
+        <td>Día post-pesaje 125 kg</td>
+      </tr>
+      <tr>
+        <td>18/5</td>
+        <td class="r num">3.789</td>
+        <td class="r num">149 g</td>
+        <td class="r num">177 g</td>
+        <td class="r num">387 g</td>
+        <td>Cardio largo el mismo día (compensa parcial)</td>
+      </tr>
+      <tr>
+        <td>3/5</td>
+        <td class="r num">3.735</td>
+        <td class="r num">132 g</td>
+        <td class="r num">136 g</td>
+        <td class="r num">490 g</td>
+        <td>Carbos &gt; 500 g</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Los protagonistas de mayo</h3>
+
+  <p>
+    Los alimentos que reaparecen en los días más cargados son consistentes y
+    permiten identificar dónde está el ruido sin demonizar ningún alimento puntual:
+  </p>
+
+  <div>
+    <span class="tag red">pizza/empanadas grandes</span>
+    <span class="tag red">cantimpalo + queso (sanguche)</span>
+    <span class="tag red">fideos caseros &gt; 250 g</span>
+    <span class="tag warm">galletitas &gt; 100 g</span>
+    <span class="tag warm">alfajores Jorgito</span>
+    <span class="tag warm">queso parmesano 100 g</span>
+    <span class="tag warm">papas fritas / muzzarella</span>
+    <span class="tag green">huevos</span>
+    <span class="tag green">lentejas</span>
+    <span class="tag green">tapa de nalga</span>
+  </div>
+
+  <p class="footnote" style="margin-top:0.7em">
+    Rojo: aparece en días &gt; 3.500 kcal · ámbar: alimentos densos que vuelven
+    seguido · verde: pilares que están funcionando.
+  </p>
+
+  <div class="callout amber">
+    <h4>La lectura sin lección moral</h4>
+    <p>
+      No es que estos alimentos estén "prohibidos". Es que aparecen en cantidades
+      grandes y en combinaciones densas: 340 g de sanguche, 320 g de fideos con
+      queso, 100 g de parmesano como snack nocturno. <strong>La porción es el
+      problema, no el alimento</strong>. Una porción de fideos de 180 g con la
+      misma salsa baja el día en 250–300 kcal sin perder nada del placer real.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PARTE IV: GYM MAYO ═══════════════════════════════ -->
+<section>
+  <div class="kicker">Parte IV &nbsp;·&nbsp; Mayo en el gimnasio</div>
+  <h2>El dato <em>más concreto</em> y la palanca obvia.</h2>
+
+  <p class="lede">
+    Si tuviera que elegir una sola variable que explica el rebote, no es la comida.
+    Es esto.
+  </p>
+
+  <div class="stats">
+    <div class="stat red">
+      <div class="big num">7</div>
+      <div class="label">Sesiones mayo (1–22)</div>
+      <div class="sub">vs 19 abril · 21 marzo</div>
+    </div>
+    <div class="stat amber">
+      <div class="big num">2</div>
+      <div class="label">Sesiones con fuerza</div>
+      <div class="sub">El resto solo cardio</div>
+    </div>
+    <div class="stat accent">
+      <div class="big num">32<span class="unit">%</span></div>
+      <div class="label">Días con movimiento</div>
+      <div class="sub">vs 61% en abril</div>
+    </div>
+    <div class="stat green">
+      <div class="big num">5</div>
+      <div class="label">Sesiones de soga</div>
+      <div class="sub">Lo que sí se sostuvo</div>
+    </div>
+  </div>
+
+  <h3>Las sesiones de mayo, una por una</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Tipo</th>
+        <th>Detalle</th>
+        <th class="r">Kcal aprox.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>6/5</td>
+        <td>Fuerza + cardio</td>
+        <td>Pecho con barra + cardio</td>
+        <td class="r num">~350</td>
+      </tr>
+      <tr>
+        <td>7/5</td>
+        <td>Cardio</td>
+        <td>Caminata</td>
+        <td class="r num">~200</td>
+      </tr>
+      <tr>
+        <td>8/5</td>
+        <td>Cardio</td>
+        <td>Cardio liviano</td>
+        <td class="r num">~250</td>
+      </tr>
+      <tr>
+        <td>10/5</td>
+        <td>Cardio</td>
+        <td>Cardio (sin detalle de notas)</td>
+        <td class="r num">~250</td>
+      </tr>
+      <tr>
+        <td>18/5</td>
+        <td>Fuerza + cardio + sauna</td>
+        <td>Pesa rusa + soga 50 min intenso + sauna 15 min</td>
+        <td class="r num">~1.150</td>
+      </tr>
+      <tr>
+        <td>20/5</td>
+        <td>Fuerza + cardio</td>
+        <td>Soga 20 min + bloque pecho + soga, tríceps</td>
+        <td class="r num">~700</td>
+      </tr>
+      <tr>
+        <td>22/5</td>
+        <td>Cardio</td>
+        <td>Soga 15 min intenso (23 h)</td>
+        <td class="r num">~340</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>La caída en perspectiva</h3>
+
+  <p>
+    Marzo arrancaste con 21 sesiones en 24 días. Abril sostuviste 19 en 24 días.
+    Mayo arrancó con casi diez días sin entrar a un gimnasio y siguió con un
+    promedio de una sesión cada tres días. <strong>Eso es la mitad del volumen
+    al que tu cuerpo se había adaptado.</strong> Y como pasa siempre, el gasto
+    energético cae junto con la frecuencia: menos sesiones es menos quema
+    directa pero también <strong>menos NEAT</strong> (gasto espontáneo) y
+    menos efecto residual post-ejercicio. La diferencia entre el "tú de abril"
+    y el "tú de mayo" en consumo total puede estar tranquilamente en
+    300–400 kcal/día.
+  </p>
+
+  <h3>Lo que sí funcionó</h3>
+
+  <p>
+    No todo fue negativo en el log. Dos cosas valen la pena nombrar:
+  </p>
+
+  <ul>
+    <li>La <strong>sesión del 18/5</strong> (pesa rusa + soga 50 min + sauna) fue la más completa del mes y de las más completas del trimestre. Es el modelo del tipo de sesión que estás buscando: fuerza corta + cardio denso + cierre con calor. Esa misma estructura, dos veces por semana, basta para sostener todo.</li>
+    <li>El <strong>salto de soga</strong> sigue siendo tu mejor herramienta. Con 125–128 kg de peso corporal y MET 10–11, cada quince minutos a alta intensidad son 340–400 kcal. Es el ejercicio con mejor relación tiempo/kcal de todo tu repertorio.</li>
+  </ul>
+
+  <div class="callout green">
+    <h4>La cuenta del retorno</h4>
+    <p>
+      Si pasás de 7 sesiones en 22 días (lo de mayo) a 12 sesiones en 22 días
+      (lo de abril), agregás aproximadamente <strong>1.500–2.000 kcal/semana</strong>
+      de quema directa. Sumado al efecto sobre apetito (más actividad regula
+      mejor el hambre) y sobre el NEAT, el efecto compuesto puede ser de
+      <strong>500–700 g de grasa por mes</strong> sin tocar la comida.
+      <em>Volver al ritmo de abril sería el cambio más eficiente que podés hacer.</em>
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PARTE V: NO ES FRACASO ═══════════════════════════════ -->
+<section>
+  <div class="kicker">Parte V &nbsp;·&nbsp; Por qué esto no es un fracaso</div>
+  <h2>Pesar es <em>información</em>, no veredicto.</h2>
+
+  <p class="lede">
+    La parte más importante de este informe no son los gráficos. Es esta. Por
+    favor leéla aunque saltes las otras.
+  </p>
+
+  <p>
+    Hay una tentación muy fuerte cuando la balanza sube de leerlo como un fracaso
+    moral: "no me cuidé, no tengo voluntad, soy un desastre". Esa narrativa hace
+    dos daños. Primero te hace sentir mal sin motivo, porque no es lo que dicen
+    los datos. Segundo, y peor, <strong>te tienta a hacer algo drástico</strong>
+    para "compensar": ayuno extremo, déficit agresivo, sobreentrenamiento por
+    castigo. Eso es exactamente lo que rompe procesos largos. Es el ciclo que
+    convierte una oscilación normal en una recaída de meses.
+  </p>
+
+  <h3>Lo que dicen los números fríos</h3>
+
+  <ul>
+    <li>Llevás <strong>setenta y cinco días</strong> en un proceso que sigue siendo negativo en peso (−1,6 kg respecto al arranque).</li>
+    <li>Loggeaste comida <strong>21 días de 22</strong> en mayo. Esa adherencia al registro es notable, incluso en un mes flojo. Es lo que permite tener este informe.</li>
+    <li>Mantuviste algo de movimiento <strong>todas las semanas</strong>, aunque haya bajado en frecuencia.</li>
+    <li>La pesa rusa, la soga, el sauna, la caminata <strong>siguen en tu vida</strong>. No volviste a sedentario absoluto.</li>
+    <li>No abandonaste el ayuno intermitente.</li>
+  </ul>
+
+  <p>
+    Si esto fuera una recaída, el log estaría vacío. Está lleno. Lo que pasó es
+    un <strong>desliz medio mes</strong> en un proceso de dos años, mezclado con
+    una pesada después de catorce días que amplifica visualmente lo que en
+    realidad es ruido + algo de grasa real. No es lo mismo "no cumplir 25 días
+    seguidos" que "soltar el proceso".
+  </p>
+
+  <h3>El experimento mental, otra vez</h3>
+
+  <blockquote>
+    Si esto le pasara a un amigo tuyo y te lo contara: <em>"loggeé todo el mes,
+    bajé el gym pero no lo solté del todo, comí más de la cuenta seis días, pero
+    estoy 1,6 kg abajo del arranque y entiendo qué pasó"</em> — vos le dirías
+    <strong>"vas bien, ajustá lo del gym y listo"</strong>. No le dirías
+    "renunciá".
+  </blockquote>
+
+  <h3>El miedo a la balanza, de vuelta</h3>
+
+  <p>
+    Dos días atrás te dije que llevabas trece días sin pesarte. Hoy ese miedo se
+    confirmó con un dato concreto. Y sin embargo: pesarte fue <strong>la cosa
+    útil que hiciste</strong>. Sin esa balanza no tenías información para girar
+    el barco. La sentís dura ahora, pero lo dura del momento es muy distinto a
+    si esto seguía sin verse durante otros catorce días. <strong>El número alto
+    es incómodo. Conocerlo es liberador.</strong>
+  </p>
+
+  <div class="callout blue">
+    <h4>Lo que conviene hacer hoy y mañana, antes de cualquier plan</h4>
+    <p>
+      No tomes decisiones drásticas hoy. No empieces un ayuno de 36 h, no cortes
+      carbos a cero, no te impongas seis sesiones de gym esta semana. La
+      neurobiología del "rebote-castigo" es la que rompe procesos. Lo que conviene
+      es: <strong>dormir bien esta noche, comer una comida normal y ya está</strong>.
+      Mañana, con cabeza fresca, leés el plan de la sección VI y empezás el lunes.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PARTE VI: PLAN ═══════════════════════════════ -->
+<section>
+  <div class="kicker">Parte VI &nbsp;·&nbsp; Plan concreto de 30 días</div>
+  <h2>Sin <em>drásticos</em>. Sin culpa. Con foco.</h2>
+
+  <p class="lede">
+    No es una dieta nueva. Es una vuelta al carril que ya conocés, con tres
+    ajustes específicos para que la próxima pesada cuente otra historia.
+  </p>
+
+  <h3>Las tres palancas, en orden de impacto</h3>
+
+  <div class="imp">
+    <div class="head">
+      <span class="title">1. Volver a tres sesiones de gym por semana, mínimas</span>
+      <span class="impact high">Impacto alto · más eficiente</span>
+    </div>
+    <p>
+      Doce sesiones en los próximos 28 días. Pueden ser cortas: 20–30 minutos
+      bastan. El template ideal —que vos ya probaste el 18/5 y el 20/5— es:
+      <strong>fuerza corta (kettlebell o pesos libres en casa) + bloque de soga
+      o cardio denso al final</strong>. No hace falta volver a Megatlon. La
+      pesa rusa que tenés y la soga son suficientes.
+    </p>
+    <p class="why">
+      Por qué importa: sin esto, el cuerpo pierde músculo en lugar de grasa.
+      Pequeña pero constante actividad sostiene el TDEE y regula el apetito.
+      Es la variable que más se desvió en mayo, así que es donde está la mayor
+      ganancia.
+    </p>
+  </div>
+
+  <div class="imp">
+    <div class="head">
+      <span class="title">2. Bajar el techo de los días "de gloria"</span>
+      <span class="impact high">Impacto alto · poco doloroso</span>
+    </div>
+    <p>
+      No te pido que dejes de tener días libres. Te propongo que el techo se
+      quede en <strong>3.500 kcal en lugar de 4.500–5.600</strong>. La diferencia
+      entre una pizza grande con cerveza y media pizza con cerveza es 800 kcal
+      sin diferencia real en disfrute. Una porción de fideos de 180 g en lugar
+      de 320 g es 250 kcal sin diferencia real en placer. La porción mide.
+    </p>
+    <p class="why">
+      Por qué importa: tres días libres por mes a 5.000 kcal pesan más que
+      veintisiete días a target. Bajar el techo a 3.500 es lo que más rinde por
+      esfuerzo invertido.
+    </p>
+  </div>
+
+  <div class="imp">
+    <div class="head">
+      <span class="title">3. Pesarse una vez por semana, en serio</span>
+      <span class="impact med">Impacto medio · clave para no perder señal</span>
+    </div>
+    <p>
+      Una vez por semana, mismo día (recomiendo lunes a la mañana), después de
+      ir al baño, antes de desayunar/beber. No te pido más. Lo que mata el
+      proceso no es la balanza alta, es la <strong>balanza ausente</strong>. Sin
+      datos, el cuerpo deriva y la corrección llega tarde. Con una pesada por
+      semana, cualquier desviación se ve a los siete días, no a los catorce.
+    </p>
+    <p class="why">
+      Por qué importa: este informe existe porque te pesaste. Sin esa pesada hoy,
+      el rebote seguiría creciendo en silencio. Pesarse es el sistema de alarma,
+      no el verdugo.
+    </p>
+  </div>
+
+  <h3>Lo que NO conviene hacer</h3>
+
+  <ul>
+    <li><strong>Ayuno extremo (24h+).</strong> El cuerpo recupera glucógeno rápido y la siguiente comida se vuelve enorme. Mantené tus 16h habituales y listo.</li>
+    <li><strong>Cortar carbos a cero.</strong> Te va a hacer perder 2-3 kg de agua en una semana y sentirte un héroe falso. Cuando los reintroduzcas vuelven igual. No sirve.</li>
+    <li><strong>Pesarte todos los días.</strong> Las oscilaciones diarias (±0,8 kg es normal) generan ruido y ansiedad. Una vez por semana es la frecuencia óptima.</li>
+    <li><strong>Hacer 6 sesiones esta semana para "compensar".</strong> El cuerpo tarda dos semanas en re-adaptarse al volumen. Mejor 3 sesiones esta semana, 3 la próxima, sostenido.</li>
+    <li><strong>Sentir que tenés que llegar a 123,3 ya mismo.</strong> Ese era un mínimo, no una línea base. Apuntá primero a 125, después a 124, y dejá que el cuerpo se asiente.</li>
+  </ul>
+
+  <h3>Proyección honesta a 30 días</h3>
+
+  <p>
+    Si aplicás las tres palancas con consistencia razonable (no perfecta — la
+    perfección rompe procesos), la proyección para el 22 de junio es:
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Escenario</th>
+        <th>Adherencia</th>
+        <th class="r">Peso esperado 22/6</th>
+        <th>Comentario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Realista</strong></td>
+        <td>3 sesiones/sem, techo 3.500, 1 pesaje/sem</td>
+        <td class="r num"><strong>124–125 kg</strong></td>
+        <td>El agua + glucógeno se va en 10 días, después grasa real lenta</td>
+      </tr>
+      <tr>
+        <td>Optimista</td>
+        <td>Mismo plan + 2 días por debajo de 2.300</td>
+        <td class="r num">123–124 kg</td>
+        <td>Posible si hay disciplina con la porción</td>
+      </tr>
+      <tr>
+        <td>Statu quo</td>
+        <td>Si sigue como mayo</td>
+        <td class="r num">129–130 kg</td>
+        <td>La curva proyectada sin cambios</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="footnote">
+    La buena noticia es que el escenario realista te deja el 22 de junio en un
+    peso <strong>mejor que el del 8 de mayo</strong>, no peor. El rebote
+    desaparece y un poquito más.
+  </p>
+</section>
+
+<!-- ═══════════════════════════════ PARTE VII: CIERRE ═══════════════════════════════ -->
+<section>
+  <div class="kicker">Parte VII &nbsp;·&nbsp; Para cerrar</div>
+  <h2>Si tocaras <em>solo una cosa</em> esta semana.</h2>
+
+  <p class="lede">
+    Llegamos al final. Si te quedaste hasta acá, ya hiciste lo más difícil:
+    mirar.
+  </p>
+
+  <h3>De acá a 7 días</h3>
+
+  <ol>
+    <li><strong>Tres sesiones de gym esta semana</strong>, mínimo. Una puede ser solo soga 20 min intenso. Otra: pesa rusa 20 min + soga 15 min. La tercera: caminar 40 min + flexiones. No importa la fuerza absoluta. Importa que aparezcan tres veces tu nombre en log.json.</li>
+    <li><strong>Una pesada el próximo lunes</strong>, mismas condiciones que hoy. Sin importar lo que diga, ya sabés que la del 22/5 tenía dentro mucha agua. Lo importante es ver la curva, no el número.</li>
+    <li><strong>Loggear como ya venís haciendo</strong>. La adherencia al registro es lo que está sosteniendo todo este sistema. No la sueltes.</li>
+  </ol>
+
+  <h3>De acá a 30 días</h3>
+
+  <ol>
+    <li>Sostener 3 sesiones/semana. Doce en el mes. Es el número.</li>
+    <li>Si comés algo grande (pizza, asado, fideos), <strong>moderar la porción</strong>: la mitad de lo de mayo. No hace falta esquivar nada.</li>
+    <li>Una pesada por semana. Lunes a la mañana. Sin saltarse ninguna.</li>
+    <li>Volver a leer este informe a los 15 días. Ver cuánto se cumplió y qué hay que ajustar.</li>
+  </ol>
+
+  <h3>De acá a 90 días</h3>
+
+  <ol>
+    <li>Si la cadencia se sostiene, vas a estar entre <strong>121 y 123 kg</strong> a fines de agosto. Es una proyección conservadora, basada en tu pendiente real de marzo-abril (que sabés sostener).</li>
+    <li>A esa altura conviene recalcular el TDEE: cuanto menos pesás, menos quemás. Probablemente baje 100–150 kcal el target.</li>
+    <li>El verano arranca en septiembre. Si llegás a agosto en 121-122, llegás bien.</li>
+  </ol>
+
+  <div class="callout green">
+    <h4>La verdad central, en una sola frase</h4>
+    <p>
+      <strong>Lo que pasó en estas tres semanas no destruye lo que pasó en las
+      diez anteriores</strong>. El proceso sigue vivo, la herramienta sigue
+      funcionando, y la pesada de hoy es exactamente el dato que te faltaba para
+      volver al carril. No te pesaste para castigarte. Te pesaste para saber. Y
+      ahora sabés.
+    </p>
+  </div>
+
+  <h3>Lo último</h3>
+
+  <p>
+    El cuerpo no te traicionó. La balanza no es tu enemiga. La app no está para
+    juzgarte. Todo este sistema —los JSON, los gráficos, los promedios— existe
+    para una sola cosa: <strong>que tengas información clara cuando las
+    sensaciones te confunden</strong>. Hoy las sensaciones te dicen "subí un
+    montón". La información te dice "subiste 1,3 kg de grasa real, en parte
+    porque mayo fue flojo de gym y los días libres se hicieron grandes, y todo
+    es reversible en 30 días".
+  </p>
+
+  <p>
+    Las dos cosas son ciertas. Pero la información dura más.
+  </p>
+
+  <div class="rule" style="margin-top:2.5em;width:100%;background:var(--line);"></div>
+
+  <p style="font-family:'Helvetica',sans-serif; font-size:8.5pt; color:var(--dim); text-align:center; margin-top:1em; letter-spacing:0.1em;">
+    Informe generado el 22 de mayo de 2026 · datos del 8 de marzo al 22 de mayo · Gym Tracker · solo para vos
+  </p>
+</section>
+
+</body>
+</html>

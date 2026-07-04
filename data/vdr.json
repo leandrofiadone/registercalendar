@@ -1,0 +1,46 @@
+{
+  "perfil": "Hombre 37 años, 128kg, objetivo déficit calórico",
+  "fuente": "DRI/RDA USDA 2020 (NIH ODS), adulto masculino 31-50 años",
+  "actualizado": "2026-07-04",
+  "notas": "sodio_mg es límite máximo tolerable, no objetivo a alcanzar. potasio_mg es Ingesta Adecuada (AI). proteina_g es target personal (2.0 g/kg peso real en déficit), no la RDA estándar de 0.8 g/kg.",
+  "macros": {
+    "proteina_g": 230,
+    "fibra_total_g": 38,
+    "omega3_g": 1.6
+  },
+  "micro": {
+    "electrolitos": {
+      "sodio_mg": 2300,
+      "potasio_mg": 4700
+    },
+    "minerales": {
+      "calcio_mg": 1000,
+      "fosforo_mg": 700,
+      "magnesio_mg": 420,
+      "hierro_mg": 8,
+      "zinc_mg": 11,
+      "selenio_mcg": 55,
+      "cobre_mg": 0.9,
+      "manganeso_mg": 2.3,
+      "cromo_mcg": 35,
+      "yodo_mcg": 150
+    },
+    "vitaminas_liposolubles": {
+      "vit_a_mcg_rae": 900,
+      "vit_d_mcg": 15,
+      "vit_e_mg": 15,
+      "vit_k_mcg": 120
+    },
+    "vitaminas_hidrosolubles": {
+      "vit_c_mg": 90,
+      "vit_b1_tiamina_mg": 1.2,
+      "vit_b2_riboflavina_mg": 1.3,
+      "vit_b3_niacina_mg": 16,
+      "vit_b5_ac_pantotenico_mg": 5,
+      "vit_b6_mg": 1.3,
+      "vit_b7_biotina_mcg": 30,
+      "vit_b9_folato_mcg": 400,
+      "vit_b12_mcg": 2.4
+    }
+  }
+}

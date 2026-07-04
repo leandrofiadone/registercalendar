@@ -1,0 +1,70 @@
+{
+  "config": {
+    "ventana_min_dia": 960,
+    "ventana_label": "06:00–22:00",
+    "categorias": [
+      {
+        "codigo": "B",
+        "etiqueta": "Business / B-job",
+        "color": "#58a6ff"
+      },
+      {
+        "codigo": "V",
+        "etiqueta": "Visión",
+        "color": "#bc8cff"
+      },
+      {
+        "codigo": "R",
+        "etiqueta": "Recreación",
+        "color": "#3fb950"
+      },
+      {
+        "codigo": "S",
+        "etiqueta": "Servicio",
+        "color": "#f0883e"
+      },
+      {
+        "codigo": "SC",
+        "etiqueta": "Self-Care",
+        "color": "#db61a2"
+      }
+    ]
+  },
+  "registro": [
+    {
+      "fecha": "2026-05-29",
+      "categoria": "S",
+      "minutos": 214,
+      "nota": "reuniones de UA y AA",
+      "ts": "2026-05-30T00:34:43.105Z"
+    },
+    {
+      "fecha": "2026-05-29",
+      "categoria": "B",
+      "minutos": null,
+      "nota": "programando cosas",
+      "ts": "2026-05-30T00:34:43.105Z"
+    },
+    {
+      "fecha": "2026-05-29",
+      "categoria": "SC",
+      "minutos": null,
+      "nota": "cocine",
+      "ts": "2026-05-30T00:34:43.105Z"
+    },
+    {
+      "fecha": "2026-05-31",
+      "categoria": "SC",
+      "minutos": 30,
+      "nota": "salió a hacer compras",
+      "ts": "2026-05-31T21:04:57.148Z"
+    },
+    {
+      "fecha": "2026-05-30",
+      "categoria": "B",
+      "minutos": 300,
+      "nota": "trabajo con Uber y Didi",
+      "ts": "2026-05-31T21:24:43.627Z"
+    }
+  ]
+}

@@ -15,6 +15,7 @@
     { href: '/nutricion',  label: 'nutrición'   },
     { href: '/calendario', label: 'calendario'  },
     { href: '/perfil',     label: 'perfil'      },
+    { href: '/tiempo',     label: 'tiempo'      },
   ];
 
   let currentPath = $derived($page.url.pathname);
@@ -60,6 +61,8 @@
       <a href="/nutricion" class:active={currentPath.startsWith('/nutricion')}>nut</a>
       <a href="/calendario" class:active={currentPath.startsWith('/calendario')}>cal</a>
       <a href="/perfil" class:active={currentPath.startsWith('/perfil')}>per</a>
+      <a href="/tiempo" class:active={currentPath.startsWith('/tiempo')}>tmp</a>
+      <a href="/lab" class:active={currentPath.startsWith('/lab')} class:lab-link={true}>lab</a>
     </span>
   </footer>
 </div>
@@ -251,6 +254,9 @@
   .foot-r a { color: var(--dim); }
   .foot-r a:hover { color: var(--text); }
   .foot-r a.active { color: var(--accent); }
+  .foot-r a.lab-link { color: var(--amber); opacity: 0.7; }
+  .foot-r a.lab-link:hover { opacity: 1; }
+  .foot-r a.lab-link.active { color: var(--amber); opacity: 1; }
 
   /* Drawer */
   .drawer-backdrop {

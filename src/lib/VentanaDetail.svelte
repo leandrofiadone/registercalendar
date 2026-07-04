@@ -6,9 +6,12 @@
   import MealCard from '$lib/MealCard.svelte';
   import MicronutrientPanel from '$lib/MicronutrientPanel.svelte';
 
-  let { ventana, perfil = null, sessions = [], ventanas = [], bodyOnly = false, alimentosRef = [] } = $props();
+  let { ventana, perfil = null, sessions = [], ventanas = [], bodyOnly = false, alimentosRef = [], vdr = null } = $props();
 
   // Gap de ayuno desde la última comida de la ventana anterior
+  // Gaps mayores a esto son huecos de registro, no ayunos reales
+  const MAX_PLAUSIBLE_FAST_HOURS = 96;
+
   let prevFastGap = $derived.by(() => {
     if (!ventana?.comidas?.length || !ventanas.length) return null;
     const firstMeal = ventana.comidas.find(c => mealToDate(c));
@@ -19,7 +22,7 @@
     const prev = allMeals.filter(m => m.dt < dt1).at(-1);
     if (!prev) return null;
     const gh = gapHours(prev.dt, dt1);
-    if (gh < 1) return null;
+    if (gh < 1 || gh > MAX_PLAUSIBLE_FAST_HOURS) return null;
     return { gh, stage: getFastingStage(gh) };
   });
 
@@ -30,7 +33,7 @@
     const protObj  = perfil.objetivos_diarios.proteina_g_ideal ?? 160;
     const carbsMax = perfil.objetivos_diarios.carbos_g_max ?? 300;
     const tdeBase  = perfil.metabolismo.gasto_total_descanso_kcal || 2776;
-    const kcalBase = perfil.objetivos_diarios.kcal_dia_descanso || 2276;
+    const kcalBase = perfil.objetivos_diarios.kcal_dia_base || perfil.objetivos_diarios.kcal_dia_descanso || 2276;
     const deficitTarget = perfil.objetivos_diarios.deficit_target_kcal ?? 500;
 
     const gymSess   = sessions.find(s => s.date === ventana.ventana_id);
@@ -334,7 +337,7 @@
   </div>
 
   <!-- Micronutrientes -->
-  <MicronutrientPanel comidas={ventana.comidas || []} {alimentosRef} />
+  <MicronutrientPanel totales={ventana.totales_ventana} {vdr} comidas={ventana.comidas || []} {alimentosRef} />
 {/if}
 
 <style>

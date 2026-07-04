@@ -60,7 +60,7 @@
 
   let maxKcal = $derived(
     perfil
-      ? Math.max(...histVentanas.map(v => v.totales_ventana?.kcal || 0), perfil.objetivos_diarios.kcal_dia_gym, 1)
+      ? Math.max(...histVentanas.map(v => v.totales_ventana?.kcal || 0), perfil.objetivos_diarios.kcal_dia_base + 1000, 1)
       : 1
   );
 
@@ -173,7 +173,7 @@
         if (v?.actividades?.length) {
           for (const act of v.actividades) actKcal += actividadKcal(act, pesoKg);
         }
-        const tdee = gymSess ? me.gasto_total_gym_kcal : me.gasto_total_descanso_kcal;
+        const tdee = me.gasto_total_descanso_kcal + actKcal;
         spent += tdee;
       }
       if (daysLogged === 0) continue;
@@ -227,18 +227,29 @@
     if (!perfil) return [];
     const me = perfil.metabolismo;
     const ob = perfil.objetivos_diarios;
+    const pesoKg = perfil.historial_peso?.at(-1)?.peso_kg ?? 80;
     return histVentanas.map(v => {
       const t       = v.totales_ventana || {};
       const kcal    = t.kcal || 0;
-      const isGym   = sessions.some(s => s.date === v.ventana_id);
-      const tdee    = isGym ? me.gasto_total_gym_kcal : me.gasto_total_descanso_kcal;
+      const gymSess = sessions.find(s => s.date === v.ventana_id);
+      const isGym   = !!gymSess;
+      let actKcal   = 0;
+      if (gymSess) {
+        const det = gymKcalDetallado(gymSess, pesoKg);
+        actKcal += det.fuente === 'explicito' ? det.total : det.fuerza + det.cardio.reduce((s,c) => s + c.kcal, 0);
+      }
+      if (v?.actividades?.length) {
+        for (const act of v.actividades) actKcal += actividadKcal(act, pesoKg);
+      }
+      const tdee    = me.gasto_total_descanso_kcal + actKcal;
+      const target  = ob.kcal_dia_base + actKcal;
       const deficit = Math.round(tdee - kcal);
       const pct     = Math.round((kcal / maxKcal) * 100);
-      const barCol  = kcal <= ob.kcal_objetivo_promedio ? 'var(--green)' : 'var(--amber)';
+      const barCol  = kcal <= target ? 'var(--green)' : 'var(--amber)';
       const defSign = deficit >= 0 ? '-' : '+';
       const defCol  = deficit >= 0 ? 'var(--green)' : 'var(--red)';
       const peso    = pesoMap[v.ventana_id] ?? null;
-      return { date: v.ventana_id, kcal, pct, barCol, deficit, defSign, defCol, isGym, peso };
+      return { date: v.ventana_id, kcal, pct, barCol, deficit, defSign, defCol, isGym, actKcal, target, peso };
     });
   });
 
@@ -419,7 +430,7 @@
     <div class="stat-item">
       <div class="num num-hero c-kcal">{avgKcal || '—'}<span class="unit">kcal</span></div>
       <div class="label">Consumo prom 7d</div>
-      <div class="sub-label">Target {ob.kcal_objetivo_promedio}</div>
+      <div class="sub-label">Base {ob.kcal_dia_base} + ejercicio</div>
     </div>
 
     <div class="stat-item">
@@ -448,12 +459,12 @@
       <div class="field-row"><span>Edad</span><span class="num">{perfil.edad} años</span></div>
       <div class="field-row"><span>Protocolo</span><span class="c-accent">{perfil.protocolo}</span></div>
       <div class="field-row"><span>Metabolismo basal</span><span class="num">{me.metabolismo_basal_kcal} <em>kcal</em></span></div>
-      <div class="field-row"><span>Gasto día gym</span><span class="num">{me.gasto_total_gym_kcal} <em>kcal</em></span></div>
-      <div class="field-row"><span>Gasto día sin gym</span><span class="num">{me.gasto_total_descanso_kcal} <em>kcal</em></span></div>
+      <div class="field-row"><span>TDEE base (sin ejercicio)</span><span class="num">{me.gasto_total_descanso_kcal} <em>kcal</em></span></div>
+      <div class="field-row"><span>Gasto ejercicio</span><span class="num c-accent">+ MET × peso × min</span></div>
     </div>
     <div class="field-list">
-      <div class="field-row"><span>Target promedio</span><span class="num c-kcal">{ob.kcal_objetivo_promedio} <em>kcal</em></span></div>
-      <div class="field-row"><span>Día gym / descanso</span><span class="num">{ob.kcal_dia_gym} / {ob.kcal_dia_descanso}</span></div>
+      <div class="field-row"><span>Target base</span><span class="num c-kcal">{ob.kcal_dia_base} <em>kcal</em></span></div>
+      <div class="field-row"><span>Target del día</span><span class="num">base + kcal ejercicio</span></div>
       <div class="field-row"><span>Déficit objetivo</span><span class="num c-good">−{ob.deficit_target_kcal} <em>kcal/día</em></span></div>
       <div class="field-row"><span>Proteína mín / ideal</span><span class="num c-prot">{ob.proteina_g_min} / {ob.proteina_g_ideal} <em>g</em></span></div>
       <div class="field-row"><span>Carbos tope</span><span class="num c-carb">{ob.carbos_g_max} <em>g</em></span></div>
@@ -540,9 +551,9 @@
           {#each histRows as row}
             <tr>
               <td>{fmtDate(row.date)}</td>
-              <td>{#if row.isGym}<span class="chip carb">gym</span>{/if}</td>
+              <td>{#if row.isGym}<span class="chip carb">gym {row.actKcal > 0 ? `+${row.actKcal}` : ''}</span>{/if}</td>
               <td class="r num">{row.peso ? row.peso + 'kg' : '—'}</td>
-              <td class="r num c-kcal">{row.kcal}</td>
+              <td class="r num c-kcal">{row.kcal}<br><span class="num c-dim" style="font-size:9px">/ {row.target}</span></td>
               <td>
                 <div class="bar-wrap">
                   <div class="bar-track"><div class="bar-fill" style="width:{row.pct}%;background:{row.barCol}"></div></div>
@@ -555,7 +566,7 @@
         </tbody>
       </table>
     </div>
-    <p class="caption">Verde = dentro de target {ob.kcal_objetivo_promedio} kcal · Ámbar = por encima · Δ Kcal = cuánto menos (−) o más (+) comiste vs gastaste</p>
+    <p class="caption">Verde = dentro de target del día (base {ob.kcal_dia_base} + kcal de ejercicio real) · Ámbar = por encima · Δ Kcal = cuánto menos (−) o más (+) comiste vs gastaste</p>
   {/if}
 
   <!-- EVOLUCIÓN DE PESO -->

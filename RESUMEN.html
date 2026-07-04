@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gym Tracker · Estado del proyecto · 28 abr 2026</title>
+<style>
+  :root {
+    --bg:      #0d1117;
+    --s1:      #161b22;
+    --s2:      #1c2333;
+    --b1:      #30363d;
+    --b2:      #484f58;
+    --text:    #e6edf3;
+    --muted:   #8b949e;
+    --dim:     #6e7681;
+    --accent:  #bc8cff;
+    --accent-l:#d2b8ff;
+    --blue:    #58a6ff;
+    --blue-l:  #a6c8ff;
+    --green:   #3fb950;
+    --green-l: #56d364;
+    --amber:   #d29922;
+    --red:     #f85149;
+    --orange:  #f0883e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  h1, h2, h3, h4 { font-weight: 600; }
+
+  /* Header */
+  .doc-header {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .doc-header .overtitle {
+    font-family: monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .doc-header h1 {
+    font-size: 2rem;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .doc-header .subtitle {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 0.3rem;
+  }
+  .doc-header .meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+  .meta-pill {
+    font-family: monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    background: var(--s1);
+    border: 1px solid var(--b1);
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+  }
+  .meta-pill span { color: var(--text); }
+
+  /* Section headings */
+  .section-title {
+    font-family: monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-bottom: 1px solid var(--b1);
+    padding-bottom: 0.45rem;
+    margin: 2.5rem 0 1.25rem;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--s1);
+    border: 1px solid var(--b1);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Stat boxes */
+  .stat-box {
+    background: var(--s1);
+    border: 1px solid var(--b1);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .stat-label {
+    font-family: monospace;
+    font-size: 0.68rem;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .stat-value {
+    font-family: monospace;
+    font-size: 1.75rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .stat-sub {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .c-green  { color: var(--green); }
+  .c-blue   { color: var(--blue); }
+  .c-accent { color: var(--accent); }
+  .c-amber  { color: var(--amber); }
+  .c-orange { color: var(--orange); }
+  .c-red    { color: var(--red); }
+  .c-muted  { color: var(--muted); }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin-bottom: 1rem;
+  }
+  th {
+    font-family: monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--dim);
+    border-bottom: 1px solid var(--b1);
+    padding: 0.4rem 0.75rem;
+    text-align: left;
+    font-weight: 500;
+  }
+  td {
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid var(--b1);
+    color: var(--text);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--s2); }
+
+  /* Progress bar */
+  .progress-wrap {
+    background: var(--s2);
+    border-radius: 4px;
+    height: 8px;
+    overflow: hidden;
+    margin-top: 0.4rem;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s;
+  }
+
+  /* Weight chart */
+  .weight-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 80px;
+    margin-top: 1rem;
+    padding: 0 0.25rem;
+  }
+  .weight-bar-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+  }
+  .weight-bar {
+    width: 100%;
+    background: var(--accent);
+    border-radius: 3px 3px 0 0;
+    min-height: 4px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .weight-bar.latest { opacity: 1; background: var(--green); }
+  .weight-bar-label {
+    font-family: monospace;
+    font-size: 0.58rem;
+    color: var(--dim);
+    writing-mode: horizontal-tb;
+  }
+
+  /* Day grid */
+  .day-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+    margin-top: 0.75rem;
+  }
+  .day-cell {
+    aspect-ratio: 1;
+    border-radius: 3px;
+    background: var(--s2);
+    border: 1px solid var(--b1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+    font-size: 0.6rem;
+    color: var(--dim);
+    font-weight: 600;
+  }
+  .day-cell.has-gym { background: rgba(124,106,245,0.35); border-color: rgba(124,106,245,0.5); color: var(--accent-l); }
+  .day-cell.has-cardio { background: rgba(59,130,246,0.25); border-color: rgba(59,130,246,0.4); color: var(--blue-l); }
+  .day-cell.has-mixed { background: rgba(16,185,129,0.25); border-color: rgba(16,185,129,0.4); color: var(--green-l); }
+  .day-cell.header { background: transparent; border: none; color: var(--dim); font-size: 0.6rem; }
+
+  /* Tag */
+  .tag {
+    display: inline-block;
+    font-family: monospace;
+    font-size: 0.7rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    border: 1px solid;
+    margin: 2px;
+  }
+  .tag-accent { background: rgba(124,106,245,.12); color: var(--accent-l); border-color: rgba(124,106,245,.3); }
+  .tag-blue   { background: rgba(59,130,246,.12);  color: var(--blue-l);   border-color: rgba(59,130,246,.3); }
+  .tag-green  { background: rgba(63,185,80,.12);   color: var(--green-l);  border-color: rgba(63,185,80,.3); }
+  .tag-amber  { background: rgba(210,153,34,.12);  color: var(--amber);    border-color: rgba(210,153,34,.3); }
+  .tag-red    { background: rgba(248,81,73,.12);   color: var(--red);      border-color: rgba(248,81,73,.3); }
+  .tag-muted  { background: var(--s2);             color: var(--muted);    border-color: var(--b1); }
+
+  /* Code */
+  code {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.82rem;
+    background: var(--s2);
+    border: 1px solid var(--b1);
+    border-radius: 3px;
+    padding: 0.1rem 0.4rem;
+    color: var(--accent-l);
+  }
+  pre {
+    background: var(--s1);
+    border: 1px solid var(--b1);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  pre .k { color: #ff7b72; }
+  pre .s { color: #a5d6ff; }
+  pre .n { color: var(--green); }
+  pre .c { color: var(--muted); font-style: italic; }
+
+  /* Alert / callout */
+  .callout {
+    border-left: 3px solid;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+  }
+  .callout-green  { border-color: var(--green); background: rgba(63,185,80,.08); }
+  .callout-amber  { border-color: var(--amber); background: rgba(210,153,34,.08); }
+  .callout-red    { border-color: var(--red); background: rgba(248,81,73,.08); }
+  .callout-accent { border-color: var(--accent); background: rgba(124,106,245,.08); }
+  .callout-title  { font-weight: 700; margin-bottom: 0.2rem; }
+
+  /* Fasting stage mockup */
+  .fasting-mock {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 2px solid;
+    width: fit-content;
+    margin-top: 0.5rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  /* Architecture diagram */
+  .arch-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .arch-box {
+    background: var(--s2);
+    border: 1px solid var(--b1);
+    border-radius: 6px;
+    padding: 0.5rem 0.9rem;
+    font-family: monospace;
+    font-size: 0.78rem;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+  }
+  .arch-box.accent { border-color: rgba(124,106,245,.5); background: rgba(124,106,245,.08); color: var(--accent-l); }
+  .arch-box.green  { border-color: rgba(63,185,80,.5); background: rgba(63,185,80,.08); color: var(--green-l); }
+  .arch-box.blue   { border-color: rgba(59,130,246,.5); background: rgba(59,130,246,.08); color: var(--blue-l); }
+  .arch-box.amber  { border-color: rgba(210,153,34,.5); background: rgba(210,153,34,.08); color: var(--amber); }
+  .arch-arrow { color: var(--dim); font-size: 1.1rem; display: flex; align-items: center; }
+
+  /* Two col */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Macro ring */
+  .macro-row {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .macro-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--s2);
+    border: 1px solid var(--b1);
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    min-width: 90px;
+  }
+  .macro-chip .mc-val { font-family: monospace; font-size: 1.3rem; font-weight: 700; }
+  .macro-chip .mc-lbl { font-family: monospace; font-size: 0.62rem; text-transform: uppercase; color: var(--dim); letter-spacing: 0.08em; }
+
+  /* TOC */
+  .toc {
+    background: var(--s1);
+    border: 1px solid var(--b1);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .toc ol { padding-left: 1.25rem; }
+  .toc li { margin-bottom: 0.3rem; }
+  .toc a { color: var(--blue-l); text-decoration: none; font-size: 0.9rem; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* HR */
+  hr { border: none; border-top: 1px solid var(--b1); margin: 2.5rem 0; }
+
+  /* Inline note */
+  .note { color: var(--muted); font-size: 0.83rem; font-style: italic; }
+
+  @media (max-width: 700px) {
+    .card-grid-3, .two-col { grid-template-columns: 1fr 1fr; }
+    body { padding: 1rem; }
+  }
+  @media (max-width: 480px) {
+    .card-grid, .card-grid-3, .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<div class="doc-header">
+  <div class="overtitle">Bitácora técnica y humana</div>
+  <h1>Gym Tracker · Estado del proyecto</h1>
+  <div class="subtitle">Resumen exhaustivo al 28 de abril de 2026 · Generado por Claude Code</div>
+  <div class="meta">
+    <div class="meta-pill">Versión <span>SvelteKit 2.0 + Svelte 5.0</span></div>
+    <div class="meta-pill">Datos <span>JSON plano · sin DB</span></div>
+    <div class="meta-pill">Sesiones <span>40</span></div>
+    <div class="meta-pill">Ventanas <span>52</span></div>
+    <div class="meta-pill">Peso inicial <span>130 kg</span> → actual <span style="color:var(--green)">125 kg</span></div>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <strong style="font-size:0.82rem;color:var(--muted);font-family:monospace;text-transform:uppercase;letter-spacing:0.1em">Índice</strong>
+  <ol style="margin-top:0.75rem">
+    <li><a href="#persona">El humano detrás del tracker</a></li>
+    <li><a href="#progreso">Progreso físico</a></li>
+    <li><a href="#entrenamiento">Entrenamiento</a></li>
+    <li><a href="#nutricion">Nutrición</a></li>
+    <li><a href="#arquitectura">Arquitectura técnica</a></li>
+    <li><a href="#logica">Lógica de cálculo</a></li>
+    <li><a href="#ui">UI y diseño</a></li>
+    <li><a href="#flujo">Flujo de trabajo con IA</a></li>
+    <li><a href="#gaps">Brechas y deuda técnica</a></li>
+    <li><a href="#siguiente">Qué sigue</a></li>
+  </ol>
+</div>
+
+
+<!-- ============================================================
+     1. EL HUMANO
+     ============================================================ -->
+<h2 class="section-title" id="persona">01 · El humano detrás del tracker</h2>
+
+<div class="two-col">
+  <div class="card">
+    <h3 style="color:var(--accent-l);margin-bottom:0.75rem;font-size:1rem">Perfil</h3>
+    <table>
+      <tr><td style="color:var(--muted);width:40%">Nombre</td><td><strong>Lean</strong></td></tr>
+      <tr><td style="color:var(--muted)">Edad</td><td>37 años</td></tr>
+      <tr><td style="color:var(--muted)">Altura</td><td>191 cm</td></tr>
+      <tr><td style="color:var(--muted)">Peso actual</td><td><strong style="color:var(--green)">125 kg</strong></td></tr>
+      <tr><td style="color:var(--muted)">Ciudad</td><td>Buenos Aires, Argentina</td></tr>
+      <tr><td style="color:var(--muted)">Cumpleaños</td><td>~27 abril 2026</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3 style="color:var(--accent-l);margin-bottom:0.75rem;font-size:1rem">Objetivos y protocolo</h3>
+    <table>
+      <tr><td style="color:var(--muted);width:50%">Meta</td><td>Bajar peso preservando músculo</td></tr>
+      <tr><td style="color:var(--muted)">Protocolo</td><td>Ayuno intermitente 16:8</td></tr>
+      <tr><td style="color:var(--muted)">Déficit target</td><td>500 kcal/día</td></tr>
+      <tr><td style="color:var(--muted)">Proteína mínima</td><td>160g/día</td></tr>
+      <tr><td style="color:var(--muted)">Proteína ideal</td><td>190g/día</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card-grid">
+  <div class="stat-box">
+    <span class="stat-label">BMR (Mifflin-St Jeor)</span>
+    <span class="stat-value c-muted">2.314</span>
+    <span class="stat-sub">kcal/día en reposo absoluto</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">TDEE día descanso</span>
+    <span class="stat-value c-blue">2.776</span>
+    <span class="stat-sub">factor 1.2 × BMR</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">TDEE día gym</span>
+    <span class="stat-value c-accent">3.355</span>
+    <span class="stat-sub">factor 1.45 × BMR</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">Target día gym</span>
+    <span class="stat-value c-green">2.850</span>
+    <span class="stat-sub">TDEE gym − 500 kcal</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">Target día descanso</span>
+    <span class="stat-value c-amber">2.276</span>
+    <span class="stat-sub">TDEE descanso − 500 kcal</span>
+  </div>
+</div>
+
+<div class="callout callout-accent">
+  <div class="callout-title">Nota fisiológica</div>
+  El déficit de 500 kcal diario apunta a ~0.5 kg/semana de pérdida real (1 kg grasa ≈ 7.700 kcal). Los días de gym compensan con mayor ingesta, los de descanso bajan más. El promedio ponderado objetivo es ~2.560 kcal.
+</div>
+
+
+<!-- ============================================================
+     2. PROGRESO FÍSICO
+     ============================================================ -->
+<h2 class="section-title" id="progreso">02 · Progreso físico</h2>
+
+<div class="card-grid-3">
+  <div class="stat-box">
+    <span class="stat-label">Pérdida total</span>
+    <span class="stat-value c-green">−5 kg</span>
+    <span class="stat-sub">en 51 días (8 mar → 28 abr)</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">Ritmo semanal</span>
+    <span class="stat-value c-green">−0.69</span>
+    <span class="stat-sub">kg/semana promedio</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">Déficit diario real</span>
+    <span class="stat-value c-blue">~538</span>
+    <span class="stat-sub">kcal/día implícito en la pérdida</span>
+  </div>
+</div>
+
+<div class="card">
+  <strong style="font-size:0.82rem;color:var(--muted);font-family:monospace;text-transform:uppercase;letter-spacing:0.1em">Historial de peso (10 registros)</strong>
+  <div class="weight-chart" id="weightChart">
+    <!-- generado con JS abajo -->
+  </div>
+  <table style="margin-top:1rem">
+    <thead><tr><th>Fecha</th><th>Peso</th><th>Delta</th></tr></thead>
+    <tbody>
+      <tr><td>08 mar 2026</td><td>130.0 kg</td><td style="color:var(--dim)">inicio</td></tr>
+      <tr><td>09 mar 2026</td><td>130.0 kg</td><td style="color:var(--dim)">—</td></tr>
+      <tr><td>11 mar 2026</td><td>130.0 kg</td><td style="color:var(--dim)">—</td></tr>
+      <tr><td>14 mar 2026</td><td>127.1 kg</td><td style="color:var(--green)">−2.9 kg</td></tr>
+      <tr><td>17 mar 2026</td><td>127.0 kg</td><td style="color:var(--green)">−0.1 kg</td></tr>
+      <tr><td>19 mar 2026</td><td>126.5 kg</td><td style="color:var(--green)">−0.5 kg</td></tr>
+      <tr><td>27 mar 2026</td><td>129.0 kg</td><td style="color:var(--amber)">+2.5 kg</td></tr>
+      <tr><td>09 abr 2026</td><td>125.5 kg</td><td style="color:var(--green)">−3.5 kg</td></tr>
+      <tr><td>15 abr 2026</td><td>126.0 kg</td><td style="color:var(--amber)">+0.5 kg</td></tr>
+      <tr><td>28 abr 2026</td><td><strong>125.0 kg</strong></td><td style="color:var(--green)">−1.0 kg</td></tr>
+    </tbody>
+  </table>
+  <div class="note" style="margin-top:0.75rem">
+    El repunte de +2.5 kg el 27 mar es consistente con retención de agua, glucógeno recargado, o variación de medición (misma hora/ropa). La tendencia de fondo es descendente y sostenida.
+  </div>
+</div>
+
+<div class="callout callout-green">
+  <div class="callout-title">Evaluación</div>
+  −5 kg en 51 días es un resultado excelente y fisiológicamente saludable. No hay señal de pérdida de músculo agresiva. El ritmo (~0.7 kg/sem) está dentro del rango óptimo para preservar masa magra en un individuo de 125 kg con entrenamiento activo.
+</div>
+
+
+<!-- ============================================================
+     3. ENTRENAMIENTO
+     ============================================================ -->
+<h2 class="section-title" id="entrenamiento">03 · Entrenamiento</h2>
+
+<div class="card-grid">
+  <div class="stat-box">
+    <span class="stat-label">Sesiones totales</span>
+    <span class="stat-value c-accent">40</span>
+    <span class="stat-sub">07 mar → 24 abr 2026</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">Frecuencia</span>
+    <span class="stat-value c-blue">~5.5</span>
+    <span class="stat-sub">sesiones/semana</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">Cardio registrado</span>
+    <span class="stat-value c-green">1.479</span>
+    <span class="stat-sub">minutos (~24.7 horas)</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">Grupos musculares</span>
+    <span class="stat-value c-amber">15</span>
+    <span class="stat-sub">categorías distintas</span>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="card">
+    <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Grupos entrenados</h3>
+    <table>
+      <thead><tr><th>Grupo</th><th>Sesiones</th><th>%</th></tr></thead>
+      <tbody>
+        <tr><td>Cardio</td><td>17</td><td><div class="progress-wrap"><div class="progress-fill" style="width:43%;background:var(--blue)"></div></div></td></tr>
+        <tr><td>Full Body</td><td>8</td><td><div class="progress-wrap"><div class="progress-fill" style="width:20%;background:var(--green)"></div></div></td></tr>
+        <tr><td>Espalda-Bícep</td><td>7</td><td><div class="progress-wrap"><div class="progress-fill" style="width:18%;background:var(--accent)"></div></div></td></tr>
+        <tr><td>Pecho-Trícep</td><td>6</td><td><div class="progress-wrap"><div class="progress-fill" style="width:15%;background:var(--accent)"></div></div></td></tr>
+        <tr><td>Piernas</td><td>6</td><td><div class="progress-wrap"><div class="progress-fill" style="width:15%;background:var(--amber)"></div></div></td></tr>
+        <tr><td>Hombros</td><td>4</td><td><div class="progress-wrap"><div class="progress-fill" style="width:10%;background:var(--accent)"></div></div></td></tr>
+        <tr><td>Core</td><td>3</td><td><div class="progress-wrap"><div class="progress-fill" style="width:8%;background:var(--orange)"></div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Cardio por tipo</h3>
+    <table>
+      <thead><tr><th>Actividad</th><th>Veces</th></tr></thead>
+      <tbody>
+        <tr><td>Caminata exterior</td><td style="color:var(--green)">17</td></tr>
+        <tr><td>Sauna</td><td style="color:var(--amber)">11</td></tr>
+        <tr><td>Caminata</td><td>9</td></tr>
+        <tr><td>Running exterior</td><td>6</td></tr>
+        <tr><td>Cinta</td><td>6</td></tr>
+        <tr><td>Natación</td><td style="color:var(--blue)">4</td></tr>
+        <tr><td>Saltar soga</td><td>3</td></tr>
+        <tr><td>Kettlebell circuit</td><td>2</td></tr>
+        <tr><td>Funcional</td><td>2</td></tr>
+        <tr><td>Yoga (Ashtanga)</td><td>1</td></tr>
+        <tr><td>Elíptica</td><td>1</td></tr>
+        <tr><td>Sexo</td><td style="color:var(--muted)">1</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Distribución por día de la semana</h3>
+  <div style="display:flex;gap:0.5rem;align-items:flex-end;height:80px;margin-bottom:0.5rem">
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+      <div style="flex:1;display:flex;align-items:flex-end;width:100%"><div style="width:100%;background:var(--accent);opacity:0.7;border-radius:3px 3px 0 0;height:calc(4/7*100%)"></div></div>
+      <span style="font-family:monospace;font-size:0.65rem;color:var(--dim)">Dom<br><strong style="color:var(--text)">4</strong></span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+      <div style="flex:1;display:flex;align-items:flex-end;width:100%"><div style="width:100%;background:var(--accent);opacity:0.7;border-radius:3px 3px 0 0;height:calc(6/7*100%)"></div></div>
+      <span style="font-family:monospace;font-size:0.65rem;color:var(--dim)">Lun<br><strong style="color:var(--text)">6</strong></span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+      <div style="flex:1;display:flex;align-items:flex-end;width:100%"><div style="width:100%;background:var(--accent);opacity:0.7;border-radius:3px 3px 0 0;height:calc(5/7*100%)"></div></div>
+      <span style="font-family:monospace;font-size:0.65rem;color:var(--dim)">Mar<br><strong style="color:var(--text)">5</strong></span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+      <div style="flex:1;display:flex;align-items:flex-end;width:100%"><div style="width:100%;background:var(--accent);opacity:0.7;border-radius:3px 3px 0 0;height:calc(5/7*100%)"></div></div>
+      <span style="font-family:monospace;font-size:0.65rem;color:var(--dim)">Mié<br><strong style="color:var(--text)">5</strong></span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+      <div style="flex:1;display:flex;align-items:flex-end;width:100%"><div style="width:100%;background:var(--green);opacity:0.85;border-radius:3px 3px 0 0;height:100%"></div></div>
+      <span style="font-family:monospace;font-size:0.65rem;color:var(--green-l)">Jue<br><strong>7</strong></span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+      <div style="flex:1;display:flex;align-items:flex-end;width:100%"><div style="width:100%;background:var(--accent);opacity:0.7;border-radius:3px 3px 0 0;height:calc(6/7*100%)"></div></div>
+      <span style="font-family:monospace;font-size:0.65rem;color:var(--dim)">Vie<br><strong style="color:var(--text)">6</strong></span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+      <div style="flex:1;display:flex;align-items:flex-end;width:100%"><div style="width:100%;background:var(--green);opacity:0.85;border-radius:3px 3px 0 0;height:100%"></div></div>
+      <span style="font-family:monospace;font-size:0.65rem;color:var(--green-l)">Sáb<br><strong>7</strong></span>
+    </div>
+  </div>
+  <div class="note">Distribución muy pareja. No hay "día de descanso" fijo — el cuerpo recupera sobre la marcha. El volumen semanal consistente es el driver real del progreso.</div>
+</div>
+
+<div class="card">
+  <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Gimnasios y lugares</h3>
+  <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
+    <span class="tag tag-accent">Casa · 10 ses</span>
+    <span class="tag tag-muted">Sin dato · 13 ses</span>
+    <span class="tag tag-blue">Megatlon · 6 ses</span>
+    <span class="tag tag-green">SportClub Libertador · 3 ses</span>
+    <span class="tag tag-green">SportClub Dot · 3 ses</span>
+    <span class="tag tag-green">SportClub Belgrano · 2 ses</span>
+    <span class="tag tag-green">SportClub Mar del Plata · 2 ses</span>
+    <span class="tag tag-muted">Parque Saavedra · 1 ses</span>
+  </div>
+  <div class="note" style="margin-top:0.75rem">13 sesiones sin <code>gimnasio</code> declarado — campo vacío o <code>"?"</code> en el JSON. Deuda de datos menor.</div>
+</div>
+
+
+<!-- ============================================================
+     4. NUTRICIÓN
+     ============================================================ -->
+<h2 class="section-title" id="nutricion">04 · Nutrición</h2>
+
+<div class="card-grid">
+  <div class="stat-box">
+    <span class="stat-label">Días con datos</span>
+    <span class="stat-value c-accent">46</span>
+    <span class="stat-sub">de 52 ventanas totales</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">Avg kcal/día</span>
+    <span class="stat-value c-orange">2.834</span>
+    <span class="stat-sub">target gym: 2.850</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">Avg proteína</span>
+    <span class="stat-value c-green">155g</span>
+    <span class="stat-sub">target: 160–190g</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">Avg grasa</span>
+    <span class="stat-value c-amber">129g</span>
+    <span class="stat-sub">mín: 60g ✓</span>
+  </div>
+  <div class="stat-box">
+    <span class="stat-label">Avg carbos</span>
+    <span class="stat-value c-blue">257g</span>
+    <span class="stat-sub">máx: 300g ✓</span>
+  </div>
+</div>
+
+<div class="callout callout-amber">
+  <div class="callout-title">Proteína: cerca pero no en target</div>
+  Promedio actual 155g vs target mínimo 160g. La brecha es pequeña (~5g/día) pero sistemática. Agregar 1 huevo o 30g de queso cottage diarios la cierra.
+</div>
+
+<div class="card">
+  <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Distribución calórica promedio</h3>
+  <div class="macro-row">
+    <div class="macro-chip">
+      <span class="mc-val c-orange">2834</span>
+      <span class="mc-lbl">kcal total</span>
+    </div>
+    <div class="macro-chip">
+      <span class="mc-val c-green">155g</span>
+      <span class="mc-lbl">proteína</span>
+    </div>
+    <div class="macro-chip">
+      <span class="mc-val" style="color:var(--amber)">129g</span>
+      <span class="mc-lbl">grasas</span>
+    </div>
+    <div class="macro-chip">
+      <span class="mc-val c-blue">257g</span>
+      <span class="mc-lbl">carbos</span>
+    </div>
+    <div class="macro-chip">
+      <span class="mc-val c-muted">22%</span>
+      <span class="mc-lbl">% proteína</span>
+    </div>
+    <div class="macro-chip">
+      <span class="mc-val" style="color:var(--amber)">41%</span>
+      <span class="mc-lbl">% grasa</span>
+    </div>
+    <div class="macro-chip">
+      <span class="mc-val c-blue">36%</span>
+      <span class="mc-lbl">% carbos</span>
+    </div>
+  </div>
+  <div class="note" style="margin-top:0.75rem">La dieta es relativamente alta en grasas (41%). No es un problema si las fuentes son buenas (aceite oliva, sardinas, queso, frutos secos). Pero explica que los carbos sean moderados aun sin restricción estricta.</div>
+</div>
+
+<div class="card">
+  <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Top 12 alimentos por frecuencia de aparición</h3>
+  <table>
+    <thead><tr><th>#</th><th>Alimento</th><th>Apariciones</th><th>Tipo</th></tr></thead>
+    <tbody>
+      <tr><td style="color:var(--dim)">1</td><td>Hummus</td><td style="color:var(--green)">8</td><td><span class="tag tag-green">legumbre · proteína vegetal · grasa</span></td></tr>
+      <tr><td style="color:var(--dim)">2</td><td>Granola</td><td style="color:var(--blue)">7</td><td><span class="tag tag-amber">carbo complejo · fibra</span></td></tr>
+      <tr><td style="color:var(--dim)">3</td><td>Galletitas Cerealitas</td><td style="color:var(--blue)">7</td><td><span class="tag tag-amber">carbo · snack procesado</span></td></tr>
+      <tr><td style="color:var(--dim)">4</td><td>Queso parmesano</td><td style="color:var(--blue)">7</td><td><span class="tag tag-green">proteína · calcio</span></td></tr>
+      <tr><td style="color:var(--dim)">5</td><td>Crackers masa madre SHIVA</td><td>6</td><td><span class="tag tag-amber">carbo fermentado</span></td></tr>
+      <tr><td style="color:var(--dim)">6</td><td>Mayonesa</td><td>6</td><td><span class="tag tag-muted">grasa · condimento</span></td></tr>
+      <tr><td style="color:var(--dim)">7</td><td>Lentejas cocidas</td><td>5</td><td><span class="tag tag-green">proteína vegetal · hierro</span></td></tr>
+      <tr><td style="color:var(--dim)">8</td><td>Sardina en lata</td><td>5</td><td><span class="tag tag-green">proteína · omega-3</span></td></tr>
+      <tr><td style="color:var(--dim)">9</td><td>Empanada de carne</td><td>5</td><td><span class="tag tag-amber">mixto · carbo + proteína</span></td></tr>
+      <tr><td style="color:var(--dim)">10</td><td>Tomate</td><td>5</td><td><span class="tag tag-green">verdura · fibra</span></td></tr>
+      <tr><td style="color:var(--dim)">11</td><td>Queso cremoso</td><td>4</td><td><span class="tag tag-green">proteína · calcio</span></td></tr>
+      <tr><td style="color:var(--dim)">12</td><td>Tahini</td><td>3</td><td><span class="tag tag-amber">grasa saludable · calcio</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note">Patrón claro: dieta mediterránea / Middle Eastern. Alto en legumbres, pescado, quesos, verduras. El punto débil: galletitas y crackers son carbos de snack, pueden sustituirse por frutas o yogur para mejorar micronutrientes.</div>
+</div>
+
+<div class="card">
+  <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Protocolo de ayuno intermitente · Cómo funciona en el tracker</h3>
+  <p style="font-size:0.9rem;color:var(--muted);margin-bottom:0.75rem">El <code>FastingCounter</code> calcula horas desde la última comida registrada con fecha+hora válidas. Las etapas:</p>
+  <table>
+    <thead><tr><th>Horas</th><th>Etapa</th><th>Color</th><th>Fisiología</th></tr></thead>
+    <tbody>
+      <tr><td>&lt;4h</td><td>Digestión activa</td><td style="color:var(--muted)">gris</td><td>Procesamiento de nutrientes</td></tr>
+      <tr><td>4–12h</td><td>Ayuno limpio</td><td style="color:var(--blue-l)">azul</td><td>Insulina baja, glucosa estabilizándose</td></tr>
+      <tr><td>12–16h</td><td>Cetosis iniciando</td><td style="color:var(--green)">verde</td><td>Glucógeno hepático casi agotado</td></tr>
+      <tr><td>16–18h</td><td>Zona IF · 16h ⚡</td><td style="color:var(--accent)">violeta</td><td>Quema de grasa activa — target protocolo</td></tr>
+      <tr><td>18–24h</td><td>Autofagia activa · 18h 🔬</td><td style="color:#c084fc">lila</td><td>Limpieza celular. Pico GH</td></tr>
+      <tr><td>24–36h</td><td>Cetosis profunda · 24h 🌊</td><td style="color:var(--amber)">ámbar</td><td>Autofagia significativa</td></tr>
+      <tr><td>36–72h</td><td>Ayuno extendido · 36h ⚠️</td><td style="color:var(--red)">rojo</td><td>Regeneración inmune — zona de alerta</td></tr>
+      <tr><td>&gt;72h</td><td>Regeneración celular ✨</td><td style="color:#fbbf24">dorado</td><td>Máxima autofagia — extremo</td></tr>
+    </tbody>
+  </table>
+  <div class="callout callout-amber" style="margin-top:1rem">
+    <div class="callout-title">Bug conocido: días sin registro → ayuno ficticio</div>
+    Si hay días sin comidas loggeadas, el contador muestra 40+ horas de ayuno cuando en realidad no las hubo. Solución actual: placeholder vacío (<code>notas: "sin_registro"</code>) que corta el timer sin sumar kcal. Pendiente: nombre canónico para esta categoría de día.
+  </div>
+</div>
+
+
+<!-- ============================================================
+     5. ARQUITECTURA
+     ============================================================ -->
+<h2 class="section-title" id="arquitectura">05 · Arquitectura técnica</h2>
+
+<div class="card">
+  <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem">Stack completo</h3>
+  <div class="arch-row">
+    <div class="arch-box accent">SvelteKit 2.0</div>
+    <div class="arch-arrow">+</div>
+    <div class="arch-box accent">Svelte 5.0 (runes)</div>
+    <div class="arch-arrow">+</div>
+    <div class="arch-box green">adapter-node</div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box blue">Node.js server</div>
+  </div>
+  <div class="arch-row" style="margin-top:0.5rem">
+    <div class="arch-box amber">data/log.json</div>
+    <div class="arch-arrow">+</div>
+    <div class="arch-box amber">data/nutricion.json</div>
+    <div class="arch-arrow">+</div>
+    <div class="arch-box amber">data/perfil.json</div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box">fs.readFileSync</div>
+  </div>
+  <div class="note" style="margin-top:0.75rem">Sin base de datos. Todo es JSON parseado en server load functions. Funciona porque es una app de un solo usuario local. SQLite o Notion se evaluarán cuando la estructura esté más madura.</div>
+</div>
+
+<div class="card">
+  <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Estructura de rutas</h3>
+  <table>
+    <thead><tr><th>Ruta</th><th>Qué hace</th><th>Carga datos de</th></tr></thead>
+    <tbody>
+      <tr><td><code>/</code></td><td>Redirect → <code>/sesiones</code></td><td>—</td></tr>
+      <tr><td><code>/sesiones</code></td><td>Lista + detalle de sesiones de gym</td><td>log.json, perfil.json</td></tr>
+      <tr><td><code>/nutricion</code></td><td>Lista + detalle de ventanas de ingesta</td><td>nutricion.json, log.json, perfil.json</td></tr>
+      <tr><td><code>/calendario</code></td><td>Vista calendárica integrada</td><td>log.json, nutricion.json, perfil.json</td></tr>
+      <tr><td><code>/perfil</code></td><td>Métricas, historial peso, objetivos</td><td>perfil.json, log.json, nutricion.json</td></tr>
+      <tr><td><code>/ingresar</code></td><td>Drawer de ingreso asistido por IA</td><td>—</td></tr>
+      <tr><td><code>/api/guardar</code></td><td>POST: escribe en log.json</td><td>—</td></tr>
+      <tr><td><code>/api/nutricion</code></td><td>GET/POST: nutricion.json</td><td>—</td></tr>
+      <tr><td><code>/api/perfil</code></td><td>GET/PATCH: perfil.json</td><td>—</td></tr>
+      <tr><td><code>/api/sessions</code></td><td>GET: sesiones</td><td>log.json</td></tr>
+      <tr><td><code>/api/ingresar</code></td><td>POST: proxy a Claude API</td><td>—</td></tr>
+      <tr><td><code>/api/tokens</code></td><td>GET/POST: tokens_log.json</td><td>tokens_log.json</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="two-col">
+  <div class="card">
+    <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Archivos de datos</h3>
+    <table>
+      <thead><tr><th>Archivo</th><th>Contenido</th></tr></thead>
+      <tbody>
+        <tr><td><code>data/log.json</code></td><td>40 sesiones de gym. Array <code>sessions[]</code>. Orden desc.</td></tr>
+        <tr><td><code>data/nutricion.json</code></td><td>52 ventanas. Array <code>ventanas[]</code> con comidas.</td></tr>
+        <tr><td><code>data/perfil.json</code></td><td>Métricas fijas + historial de peso.</td></tr>
+        <tr><td><code>data/alimentos_ref.json</code></td><td>Referencia de alimentos con macros conocidos.</td></tr>
+        <tr><td><code>data/base_datos_consolidada.json</code></td><td>Base de alimentos ampliada.</td></tr>
+        <tr><td><code>data/gimnasios_ref.json</code></td><td>Referencia de gimnasios.</td></tr>
+        <tr><td><code>data/tokens_log.json</code></td><td>Log de uso de tokens de IA.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Componentes lib</h3>
+    <table>
+      <thead><tr><th>Componente</th><th>Función</th></tr></thead>
+      <tbody>
+        <tr><td><code>FastingCounter</code></td><td>Chip que muestra etapa del ayuno. Pulsa cuando &gt;16h.</td></tr>
+        <tr><td><code>TrendChip</code></td><td>Tendencia de peso en el header.</td></tr>
+        <tr><td><code>SessionDetail</code></td><td>Vista detalle de sesión. Fuerza + cardio + kcal.</td></tr>
+        <tr><td><code>VentanaDetail</code></td><td>Vista detalle de ventana nutricional.</td></tr>
+        <tr><td><code>MealCard</code></td><td>Tarjeta de comida individual.</td></tr>
+        <tr><td><code>CalorieBudgetBar</code></td><td>Barra de progreso calórico del día.</td></tr>
+        <tr><td><code>MicronutrientPanel</code></td><td>Panel de micronutrientes.</td></tr>
+        <tr><td><code>Ingresar</code></td><td>Drawer de ingreso asistido por IA.</td></tr>
+        <tr><td><code>Luna13Cal</code></td><td>Calendario lunar (13 meses).</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     6. LÓGICA DE CÁLCULO
+     ============================================================ -->
+<h2 class="section-title" id="logica">06 · Lógica de cálculo de gasto energético</h2>
+
+<div class="card">
+  <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Cardio: MET × peso × tiempo</h3>
+  <pre><span class="c">// activity.js — Compendium of Physical Activities (Ainsworth et al.)</span>
+<span class="k">const</span> MET = {
+  natacion:     { baja: <span class="n">4.5</span>, moderada: <span class="n">6.0</span>, alta: <span class="n">8.0</span> },
+  caminata:     { baja: <span class="n">2.5</span>, moderada: <span class="n">3.5</span>, alta: <span class="n">4.5</span> },
+  running:      { baja: <span class="n">8.0</span>, moderada: <span class="n">10.0</span>, alta: <span class="n">12.0</span> },
+  yoga:         { baja: <span class="n">2.5</span>, moderada: <span class="n">3.0</span>, alta: <span class="n">3.5</span> },
+  sauna:        { baja: <span class="n">1.0</span>, moderada: <span class="n">1.1</span>, alta: <span class="n">1.2</span> },
+  sexo:         { baja: <span class="n">1.3</span>, moderada: <span class="n">1.8</span>, alta: <span class="n">2.8</span> },
+  <span class="c">// ... 17 tipos total</span>
+};
+
+kcal = MET[tipo][intensidad] × pesoKg × (duracion_min / <span class="n">60</span>)</pre>
+</div>
+
+<div class="card">
+  <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Fuerza: modelo híbrido compound/isolation × intensidad × volumen</h3>
+  <table>
+    <thead><tr><th>Variable</th><th>Compound</th><th>Isolation</th></tr></thead>
+    <tbody>
+      <tr><td>MET base</td><td>5.0</td><td>3.5</td></tr>
+      <tr><td>Min/set estimados</td><td>4.5 min</td><td>2.5 min</td></tr>
+    </tbody>
+  </table>
+  <table style="margin-top:0.75rem">
+    <thead><tr><th>Peso relativo a bodyweight</th><th>Multiplicador intensidad</th></tr></thead>
+    <tbody>
+      <tr><td>≥40% BW (100kg+ en 125kg)</td><td>×1.60</td></tr>
+      <tr><td>≥25% BW (31kg+)</td><td>×1.35</td></tr>
+      <tr><td>≥15% BW (19kg+)</td><td>×1.15</td></tr>
+      <tr><td>&lt;15% BW</td><td>×1.00</td></tr>
+    </tbody>
+  </table>
+  <table style="margin-top:0.75rem">
+    <thead><tr><th>Reps</th><th>Multiplicador volumen</th></tr></thead>
+    <tbody>
+      <tr><td>≥15 reps</td><td>×1.10</td></tr>
+      <tr><td>≥10 reps</td><td>×1.05</td></tr>
+      <tr><td>&lt;10 reps</td><td>×1.00</td></tr>
+    </tbody>
+  </table>
+  <div class="callout callout-amber" style="margin-top:0.75rem">
+    <div class="callout-title">Precisión real</div>
+    Sin monitor cardíaco, el error es ±25–30%. El modelo es razonablemente honesto dentro de esa banda. No sobreestima como las maquinas de cardio comerciales (que inflan ~40%). Es un estimador consistente, no una medición.
+  </div>
+</div>
+
+<div class="card">
+  <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Auto-detección compound</h3>
+  <pre><span class="k">const</span> COMPOUND_RE = <span class="s">/sentadilla|squat|peso muerto|deadlift|press|bench|
+  militar|remo|row|dominad|pull.?up|hip thrust|
+  clean|snatch|fondos|dips?|farmer/i</span>;
+
+<span class="c">// Si el peso del set ≥50% del bodyweight → compound automático
+// cubre "Ejercicio no especificado" a 100 kg (80% BW)</span></pre>
+</div>
+
+
+<!-- ============================================================
+     7. UI Y DISEÑO
+     ============================================================ -->
+<h2 class="section-title" id="ui">07 · UI y diseño</h2>
+
+<div class="card">
+  <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Sistema de diseño</h3>
+  <p style="font-size:0.9rem;margin-bottom:0.75rem;color:var(--muted)">Paleta GitHub Dark con identidad propia. Sin UI frameworks — CSS puro con variables.</p>
+  <table>
+    <thead><tr><th>Token</th><th>Valor</th><th>Uso</th></tr></thead>
+    <tbody>
+      <tr><td><code>--bg</code></td><td style="background:#0d1117;color:#888;padding:2px 8px">#0d1117</td><td>Fondo principal</td></tr>
+      <tr><td><code>--s1</code></td><td style="background:#161b22;color:#888;padding:2px 8px">#161b22</td><td>Superficie cards</td></tr>
+      <tr><td><code>--accent</code></td><td style="background:#bc8cff22;color:#bc8cff;padding:2px 8px">#bc8cff</td><td>Fuerza / activo / links</td></tr>
+      <tr><td><code>--blue</code></td><td style="background:#58a6ff22;color:#58a6ff;padding:2px 8px">#58a6ff</td><td>Cardio</td></tr>
+      <tr><td><code>--green</code></td><td style="background:#3fb95022;color:#3fb950;padding:2px 8px">#3fb950</td><td>Sesión mixta / positivo</td></tr>
+      <tr><td><code>--amber</code></td><td style="background:#d2992222;color:#d29922;padding:2px 8px">#d29922</td><td>Advertencia / grasas</td></tr>
+      <tr><td><code>--orange</code></td><td style="background:#f0883e22;color:#f0883e;padding:2px 8px">#f0883e</td><td>Calorías</td></tr>
+      <tr><td><code>--red</code></td><td style="background:#f8514922;color:#f85149;padding:2px 8px">#f85149</td><td>Error / peligro</td></tr>
+    </tbody>
+  </table>
+  <div class="arch-row" style="margin-top:1rem">
+    <div class="arch-box">Display: <strong>Space Grotesk</strong></div>
+    <div class="arch-arrow">·</div>
+    <div class="arch-box">Body: <strong>Geist</strong></div>
+    <div class="arch-arrow">·</div>
+    <div class="arch-box">Mono: <strong>IBM Plex Mono</strong></div>
+  </div>
+  <p style="font-size:0.82rem;color:var(--muted);margin-top:0.5rem">Tipografía por rol semántico — headers display, texto body, números y código mono. <code>.num</code> aplica tabular-nums automáticamente.</p>
+</div>
+
+<div class="two-col">
+  <div class="card">
+    <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Layout</h3>
+    <ul style="font-size:0.88rem;color:var(--muted);padding-left:1.25rem;display:flex;flex-direction:column;gap:0.4rem">
+      <li>Shell full-width sin max-width rígido</li>
+      <li>Top bar: brand · nav · "+ ingresar"</li>
+      <li>Status strip: TrendChip + FastingCounter</li>
+      <li>Sidebar sticky + main content para sesiones/nutrición</li>
+      <li>Footer mono con nav abreviado</li>
+      <li>Drawer lateral (desktop) / bottom sheet (mobile)</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Mobile responsive</h3>
+    <ul style="font-size:0.88rem;color:var(--muted);padding-left:1.25rem;display:flex;flex-direction:column;gap:0.4rem">
+      <li>Breakpoint: 768px</li>
+      <li>Sidebar → horizontal scroll strip (72px alto)</li>
+      <li>Filter box oculto en mobile</li>
+      <li>Drawer → bottom sheet con border-radius 12px</li>
+      <li>Animación: slideInRight (desktop) / slideInUp (mobile)</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     8. FLUJO CON IA
+     ============================================================ -->
+<h2 class="section-title" id="flujo">08 · Flujo de trabajo con IA</h2>
+
+<div class="card">
+  <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Cómo se logea todo</h3>
+  <p style="font-size:0.9rem;color:var(--muted);margin-bottom:1rem">No hay formularios en la UI. El ingreso de datos es 100% conversacional. Lean describe en lenguaje natural lo que comió o entrenó, y Claude Code lo parsea y escribe en el JSON.</p>
+  <div class="arch-row">
+    <div class="arch-box">Lean escribe en chat</div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box accent"><code>/nutricion</code> o <code>/gym</code></div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box green">Script Node.js inline</div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box amber">JSON actualizado</div>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="card">
+    <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Skill /nutricion</h3>
+    <ul style="font-size:0.88rem;color:var(--muted);padding-left:1.25rem;display:flex;flex-direction:column;gap:0.35rem">
+      <li>Todo en un solo script Bash/Node</li>
+      <li>Sin llamadas previas de lectura</li>
+      <li>Estima macros cuando no se conocen (<code>estimado: true</code>)</li>
+      <li>Datos de paquete → <code>estimado: false</code></li>
+      <li>Recalcula <code>totales_ventana</code> sumando todas las comidas</li>
+      <li>Hora del sistema por defecto, acepta hora explícita</li>
+      <li>Soporta imágenes de WhatsApp como input</li>
+      <li><code>ref_id</code> snake_case consistente por alimento</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Skill /gym</h3>
+    <ul style="font-size:0.88rem;color:var(--muted);padding-left:1.25rem;display:flex;flex-direction:column;gap:0.35rem">
+      <li>Lee log.json + perfil.json para peso actual</li>
+      <li>Mergea en sesión existente del día si ya hay una</li>
+      <li>Orden cronológico descendente mantenido</li>
+      <li>Auto-detecta gimnasio (Casa por defecto sin máquinas)</li>
+      <li>Fuerza: sets con reps y peso; <code>null</code> si no se sabe</li>
+      <li>Cardio: MET normalizado del ejercicio descrito</li>
+      <li>Muestra estimación kcal al final con el peso actual</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Reglas aprendidas (feedback persistente)</h3>
+  <table>
+    <thead><tr><th>Regla</th><th>Por qué</th></tr></thead>
+    <tbody>
+      <tr><td>No crear entradas separadas para la misma fecha</td><td>Duplica las sesiones y rompe la vista detalle</td></tr>
+      <tr><td>Productos empaquetados: únicos por marca</td><td>"Bon o Bon Milka" ≠ "Bon o Bon genérico"</td></tr>
+      <tr><td>Skills en un solo script — sin llamadas previas</td><td>Velocidad. El skill debe ser rápido y silencioso</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ============================================================
+     9. GAPS Y DEUDA
+     ============================================================ -->
+<h2 class="section-title" id="gaps">09 · Brechas y deuda técnica</h2>
+
+<div class="card-grid">
+  <div class="callout callout-red" style="margin:0">
+    <div class="callout-title">Sin formularios en UI</div>
+    Todo el ingreso es por IA. Si Claude Code no está disponible, no se puede logear nada. Riesgo de dependencia total.
+  </div>
+  <div class="callout callout-amber" style="margin:0">
+    <div class="callout-title">13 sesiones sin gimnasio</div>
+    Campo <code>gimnasio</code> vacío o <code>"?"</code>. Afecta filtros futuros por lugar.
+  </div>
+  <div class="callout callout-amber" style="margin:0">
+    <div class="callout-title">Fasting counter: días sin registro</div>
+    Muestra ayuno extendido falso cuando hay gaps de datos. Solución parcial: placeholder vacío.
+  </div>
+  <div class="callout callout-amber" style="margin:0">
+    <div class="callout-title">Proteína 5g bajo target</div>
+    155g vs target mínimo 160g. No es urgente pero es sistemático.
+  </div>
+  <div class="callout callout-red" style="margin:0">
+    <div class="callout-title">Sin DB: escala limitada</div>
+    Con &gt;500 sesiones los JSON van a ser lentos de parsear. SQLite es el próximo paso natural.
+  </div>
+  <div class="callout callout-amber" style="margin:0">
+    <div class="callout-title">Cardio "undefined" en datos</div>
+    Un item de cardio con <code>ejercicio: undefined</code>. Calidad de dato.
+  </div>
+</div>
+
+<div class="card" style="margin-top:1rem">
+  <h3 style="color:var(--muted);font-family:monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem">Pendientes conocidos</h3>
+  <table>
+    <thead><tr><th>Item</th><th>Prioridad</th><th>Notas</th></tr></thead>
+    <tbody>
+      <tr><td>Nombre canónico para "días sin registro"</td><td><span class="tag tag-amber">media</span></td><td>Decidir entre: "Sin datos", "Día oscuro", "Brecha", etc.</td></tr>
+      <tr><td>Skill <code>/dia-libre</code> o similar</td><td><span class="tag tag-amber">media</span></td><td>Automatizar placeholder + corte de fasting</td></tr>
+      <tr><td>Diferenciación visual en UI de días sin registro</td><td><span class="tag tag-muted">baja</span></td><td>Mostrar gris/tachado en sidebar de nutrición</td></tr>
+      <tr><td>Limpiar gimnasio "?" en 13 sesiones</td><td><span class="tag tag-muted">baja</span></td><td>Script de migración o retroalimentar manualmente</td></tr>
+      <tr><td>Corregir cardio "undefined"</td><td><span class="tag tag-muted">baja</span></td><td>1 item en log.json</td></tr>
+      <tr><td>Evaluación SQLite</td><td><span class="tag tag-muted">futura</span></td><td>Cuando los JSON superen ~200 registros</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ============================================================
+     10. QUÉ SIGUE
+     ============================================================ -->
+<h2 class="section-title" id="siguiente">10 · Qué sigue (perspectiva técnica y humana)</h2>
+
+<div class="two-col">
+  <div class="card">
+    <h3 style="color:var(--green-l);margin-bottom:0.75rem;font-size:1rem">Lo que está funcionando bien</h3>
+    <ul style="font-size:0.9rem;display:flex;flex-direction:column;gap:0.5rem;padding-left:1rem">
+      <li>El tracking conversacional con IA es fluido — elimina la fricción de formularios</li>
+      <li>El cálculo MET es honesto y consistente (no sobreestima)</li>
+      <li>−5 kg en 51 días con distribución de entrenamiento muy pareja</li>
+      <li>La UI dark theme es legible y no distrae</li>
+      <li>El FastingCounter da información fisiológica real, no decorativa</li>
+      <li>Los skills /gym y /nutricion son rápidos y confiables</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="color:var(--accent-l);margin-bottom:0.75rem;font-size:1rem">Oportunidades inmediatas</h3>
+    <ul style="font-size:0.9rem;display:flex;flex-direction:column;gap:0.5rem;padding-left:1rem">
+      <li><strong>+5g proteína/día</strong>: el gap más pequeño con el mayor impacto en composición corporal</li>
+      <li><strong>Skill para días sin registro</strong>: cortar el fasting ficticio en 1 comando</li>
+      <li><strong>Diferenciación visual</strong> de ventanas sin datos vs con datos</li>
+      <li><strong>Registrar el peso más frecuentemente</strong>: solo 10 datos en 51 días — más datos → mejor tendencia</li>
+      <li><strong>Consistencia en gym de Lean</strong>: anotar gymnasio en sesiones faltantes</li>
+    </ul>
+  </div>
+</div>
+
+<div class="callout callout-accent" style="margin-top:1rem">
+  <div class="callout-title">Perspectiva humana</div>
+  Este tracker no es una app de fitness genérica. Es una bitácora personal construida exactamente a medida de cómo Lean piensa y registra su vida. La decisión de no tener formularios — y de hablarle a Claude en lenguaje natural — refleja que el objetivo es que el registro sea liviano, no que sea "correcto". La pérdida de 5 kg en 51 días con una frecuencia de entrenamiento excepcional (5.5 ses/semana) muestra que el sistema funciona donde más importa: en sostener el hábito.
+</div>
+
+<hr>
+
+<div style="text-align:center;font-family:monospace;font-size:0.7rem;color:var(--dim);padding:1rem 0">
+  GYM TRACKER · Generado por Claude Code (Sonnet 4.6) · 28 abr 2026<br>
+  <span style="color:var(--b2)">Este documento es un snapshot. Los datos cambian cada vez que Lean entrena o come.</span>
+</div>
+
+<script>
+  // Weight chart
+  const weights = [130, 130, 130, 127.1, 127, 126.5, 129, 125.5, 126, 125];
+  const labels  = ['8m', '9m', '11m', '14m', '17m', '19m', '27m', '9a', '15a', '28a'];
+  const min = 124, max = 131;
+  const chart = document.getElementById('weightChart');
+  weights.forEach((w, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'weight-bar-wrap';
+    const pct = Math.round(((w - min) / (max - min)) * 100);
+    const bar = document.createElement('div');
+    bar.className = 'weight-bar' + (i === weights.length - 1 ? ' latest' : '');
+    bar.style.height = pct + '%';
+    bar.title = w + ' kg — ' + labels[i];
+    const lbl = document.createElement('div');
+    lbl.className = 'weight-bar-label';
+    lbl.textContent = w;
+    wrap.appendChild(bar);
+    wrap.appendChild(lbl);
+    chart.appendChild(wrap);
+  });
+</script>
+</body>
+</html>
